@@ -10,6 +10,8 @@ export const BUTTON_STYLE = {
     `w-[180px] h-[45px] bg-white rounded-[50px] text-[#55AA00] text-2xl font-extralight border font-medium ${className}`,
   modalButton: (className: string) =>
     `flex-center text-white w-[180px] h-[60px] rounded-[50px] text-2xl shadow-md ${className}`,
+  faqButton: (className: string) =>
+    `flex-center text-white w-[39px] h-[24px] rounded-[4px] text-[13px] ${className}`,
 } as const;
 
 export const INPUT_STYLE = {
@@ -20,6 +22,7 @@ export const INPUT_STYLE = {
     ` px-2 py-1 font-black placeholder:font-black focus:outline-none ${className}`,
   // 견적서 개수 입력
   count: (className: string) => `w-14 text-right bg-gray-0 ${className}`,
-  headerSearch: (className: string) => `w-80 h-4 font-normal outline-none	 ${className}`,
+  headerSearch: (className: string) =>
+    `w-80 h-4 font-normal outline-none	 ${className}`,
   default: (className: string) => `w-full h-full ${className}`,
 } as const;

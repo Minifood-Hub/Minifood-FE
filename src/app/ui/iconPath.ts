@@ -140,3 +140,10 @@ export const HeaderCartIcon = {
   height: 28,
   fill: '#6E6E6E',
 };
+
+export const AddIcon = {
+  path: 'M11.5 13H5.5V11H11.5V5H13.5V11H19.5V13H13.5V19H11.5V13Z',
+  width: 25,
+  height: 24,
+  fill: '#6E6E6E',
+};

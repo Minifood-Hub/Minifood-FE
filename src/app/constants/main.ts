@@ -15,3 +15,11 @@ export const MAIN_MODAL_TEXT = [
   '로그인',
   '회원가입',
 ];
+
+export const FAQ_TEXT = ['상품', '배송', '결제'];
+
+export const CUSTOMER_SERVICE_TEXT = [
+  'Tel: 012-345-6789',
+  'Email: test@gmail.com',
+  'Fax: 012-345-6789',
+];
