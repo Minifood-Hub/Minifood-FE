@@ -63,7 +63,7 @@ export default function ClientContainer() {
   return (
     <div className="p-8 border border-gray-2">
       <div className="flex items-center gap-4 h-16 border-2 px-4 mb-8">
-        <p>{OPTION_TEXT[0]}</p>
+        <p>{OPTION_TEXT[9]}</p>
         <select
           className="border-2"
           name="selectedOption"
