@@ -3,7 +3,6 @@
 import {
   ALERT_TEXT,
   BTN_TEXT,
-  INPUT_TEXT,
   REGION_TEXT,
   TABLE_TEXT,
 } from '@/app/constants/admin';

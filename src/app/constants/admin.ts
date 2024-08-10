@@ -11,9 +11,13 @@ export const OPTION_TEXT = [
   '거래처 삭제',
   '거래처 지역으로 조회',
   '옵션을 선택해 주세요',
-  '',
-  '',
-  '',
+  '물건 견적서 파일 업로드',
+  '분류 별 물품 조회',
+  '물품 수정',
+  '물품 추가 생성',
+  '물품 삭제',
+  '야채 물품 가격 직접 변경',
+  '야채 물품 가격 엑셀 파일로 변경',
   '견적서 정보 조회',
   '견적서 excel 파일로 추출',
   '오늘 날짜의 모든 견적서 excel 파일로 추출',
@@ -48,6 +52,8 @@ export const TABLE_TEXT = [
   '가격',
   '지역',
   '주소',
+  '분류',
+  '단위',
 ];
 
 export const ALERT_TEXT = [
@@ -67,8 +73,17 @@ export const REGION_TEXT = [
   '신촌',
 ];
 
+export const CATEGORY_TEXT = ['냉동', '냉장', '공산', '채소'];
+
 export const clientStatusMapping: { [key: string]: string } = {
   COMPLETED: '제출됨',
   CREATED: '생성-미제출',
   NONE: '미제출',
+};
+
+export const categoryMapping: { [key: string]: string } = {
+  냉동: 'frozen',
+  냉장: 'refrigeration',
+  공산: 'industrial',
+  채소: 'vegetable',
 };

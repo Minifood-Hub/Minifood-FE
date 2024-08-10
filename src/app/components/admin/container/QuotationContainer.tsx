@@ -36,9 +36,9 @@ export default function QuotationContainer() {
           onChange={handleSelectChange}
           value={selectedOption}
         >
-          <option value="info">{OPTION_TEXT[13]}</option>
-          <option value="extract">{OPTION_TEXT[14]}</option>
-          <option value="extractToday">{OPTION_TEXT[15]}</option>
+          <option value="info">{OPTION_TEXT[17]}</option>
+          <option value="extract">{OPTION_TEXT[18]}</option>
+          <option value="extractToday">{OPTION_TEXT[19]}</option>
         </select>
       </div>
 
