@@ -9,9 +9,12 @@ import {
   INPUT_TEXT,
   TABLE_TEXT,
 } from '@/app/constants/admin';
+import { formatDate } from '@/app/utils/date';
 
 export default function CheckQuotation({ clientId }: ClientIdProps) {
-  const [inputDate, setInputDate] = useState('');
+  const [inputDate, setInputDate] = useState(
+    formatDate(new Date().toISOString()),
+  );
   const [result, setResult] = useState<{ result: CheckQuotationResult | null }>(
     { result: null },
   );

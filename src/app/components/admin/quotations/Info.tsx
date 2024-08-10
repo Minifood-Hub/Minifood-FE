@@ -10,10 +10,11 @@ import { useState } from 'react';
 import Input from '../../common/Input';
 import Button from '../../common/Button';
 import { formatNumber } from '@/app/utils/formatPrice';
+import { formatDate } from '@/app/utils/date';
 
 export default function QuotationInfo() {
   const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
+  const [endDate, setEndDate] = useState(formatDate(new Date().toISOString()));
   const [query, setQuery] = useState('');
   const [result, setResult] = useState<{ items: AdminItemProps[] }>({
     items: [],

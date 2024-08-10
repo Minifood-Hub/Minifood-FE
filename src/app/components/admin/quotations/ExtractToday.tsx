@@ -3,9 +3,12 @@ import { useState } from 'react';
 import Input from '../../common/Input';
 import Button from '../../common/Button';
 import { ALERT_TEXT, BTN_TEXT, INPUT_TEXT } from '@/app/constants/admin';
+import { formatDate } from '@/app/utils/date';
 
 export default function ExtractToday() {
-  const [inputDate, setInputDate] = useState('');
+  const [inputDate, setInputDate] = useState(
+    formatDate(new Date().toISOString()),
+  );
 
   const handleCheckQuotation = async () => {
     if (!inputDate) {

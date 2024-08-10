@@ -10,10 +10,11 @@ import {
   ALERT_TEXT,
 } from '@/app/constants/admin';
 import { formatNumber } from '@/app/utils/formatPrice';
+import { formatDate } from '@/app/utils/date';
 
 export default function InquiryQuotationDate({ clientId }: ClientIdProps) {
   const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
+  const [endDate, setEndDate] = useState(formatDate(new Date().toISOString()));
   const [page, setPage] = useState('1');
   const [pageSize, setPageSize] = useState('10');
   const [result, setResult] = useState<{ result: { items: AdminItemProps[] } }>(
