@@ -3,6 +3,12 @@
 import { OPTION_TEXT } from '@/app/constants/admin';
 import { useState } from 'react';
 import ProdcutsCategory from '../products/ProductsCategory';
+import ProductsUpload from '../products/ProductsUpload';
+import ProductsUpdate from '../products/ProductsUpdate';
+import ProductsCreate from '../products/ProductsCreate';
+import ProductsDelete from '../products/ProductsDelete';
+import ProductsVegetable from '../products/ProductsVegetable';
+import ProductsVegetableFile from '../products/ProductsVegetableFile';
 
 export default function ProductsContainer() {
   const [selectedOption, setSelectedOption] = useState('productsUpload');
@@ -15,19 +21,19 @@ export default function ProductsContainer() {
   const renderComponent = () => {
     switch (selectedOption) {
       case 'productsUpload':
-        return <div />;
+        return <ProductsUpload />;
       case 'productsCategory':
         return <ProdcutsCategory />;
       case 'productsUpdate':
-        return <div />;
-      case 'products':
-        return <div />;
+        return <ProductsUpdate />;
+      case 'productsCreate':
+        return <ProductsCreate />;
       case 'productsDelete':
-        return <div />;
+        return <ProductsDelete />;
       case 'productsVegetable':
-        return <div />;
+        return <ProductsVegetable />;
       case 'productsVegetableFile':
-        return <div />;
+        return <ProductsVegetableFile />;
       default:
         return null;
     }
@@ -45,7 +51,7 @@ export default function ProductsContainer() {
           <option value="productsUpload">{OPTION_TEXT[10]}</option>
           <option value="productsCategory">{OPTION_TEXT[11]}</option>
           <option value="productsUpdate">{OPTION_TEXT[12]}</option>
-          <option value="products">{OPTION_TEXT[13]}</option>
+          <option value="productsCreate">{OPTION_TEXT[13]}</option>
           <option value="productsDelete">{OPTION_TEXT[14]}</option>
           <option value="productsVegetable">{OPTION_TEXT[15]}</option>
           <option value="productsVegetableFile">{OPTION_TEXT[16]}</option>

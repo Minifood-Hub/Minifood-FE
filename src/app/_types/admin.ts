@@ -17,6 +17,14 @@ interface ClientsNameProps {
   address: string;
 }
 
+interface ProductProps {
+  id: number;
+  category: string;
+  name: string;
+  unit: string;
+  price: number;
+}
+
 interface AdminItemProps {
   id: number;
   name: string;
