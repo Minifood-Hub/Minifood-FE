@@ -4,6 +4,7 @@ import { OPTION_TEXT } from '@/app/constants/admin';
 import { useState } from 'react';
 import Extract from '../quotations/Extract';
 import QuotationInfo from '../quotations/Info';
+import ExtractToday from '../quotations/ExtractToday';
 
 export default function QuotationContainer() {
   const [selectedOption, setSelectedOption] = useState('info');
@@ -20,7 +21,7 @@ export default function QuotationContainer() {
       case 'extract':
         return <Extract />;
       case 'extractToday':
-        return <div />;
+        return <ExtractToday />;
       default:
         return null;
     }

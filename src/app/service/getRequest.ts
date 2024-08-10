@@ -19,16 +19,25 @@ const getRequest = async (url: string, token?: string) => {
 const getBinaryRequest = async (url: string, token?: string) => {
   try {
     const headers: Record<string, string> = {};
-    // headers는 빈 객체로 시작하고 token이 존재하면 access-token키를 추가
+
+    // token이 존재하면 access-token 키를 추가
     if (token) {
       headers['access-token'] = token;
     }
 
     const response = await fetch(url, { headers });
 
-    // 바이너리 데이터를 Blob으로 받아 처리
+    // 응답이 성공적일 경우 처리
     if (response.ok) {
-      return await response.blob(); // blob을 반환
+      const contentType = response.headers.get('Content-Type');
+
+      // Content-Type 헤더를 통해 ZIP 파일인지 확인
+      if (contentType && contentType.includes('application/zip')) {
+        return await response.blob(); // ZIP 파일인 경우 Blob으로 처리
+      }
+
+      // ZIP 파일이 아닌 바이너리 데이터도 Blob으로 반환
+      return await response.blob();
     }
 
     throw new Error('binary data fetch 실패');
@@ -169,5 +178,5 @@ export const getAdminQuotationsExtract = async (quotation_id: string) => {
 // 오늘 날짜의 모든 견적서 excel 파일로 추출
 export const getAdminQuotationsExtractsToday = async (input_date: string) => {
   const url = `${SERVER_URL}/api/v1/quotations/extracts/today?input_date=${input_date}`;
-  return getRequest(url);
+  return getBinaryRequest(url);
 };

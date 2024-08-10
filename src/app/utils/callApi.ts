@@ -54,12 +54,19 @@ export async function callGetBinary(endpoint: string, params?: string) {
   if (!response.ok) {
     throw new Error('binary data fetch 실패');
   }
-  // 서버 응답의 Content-Disposition 헤더를 가져옴
+
+  // 서버 응답의 Content-Type과 Content-Disposition 헤더를 가져옴
+  const contentType = response.headers.get('Content-Type') || '';
   const contentDisposition = response.headers.get('Content-Disposition') || '';
 
   // Content-Disposition 헤더에서 파일 이름을 추출
   const filenameMatch = contentDisposition.match(/filename="(.+?)"/);
-  const filename = filenameMatch ? filenameMatch[1] : 'downloaded_file.xlsx';
+  let filename = filenameMatch ? filenameMatch[1] : 'downloaded_file.xlsx';
+
+  // ZIP 파일의 경우 파일 이름 확장자를 .zip으로 변경
+  if (contentType.includes('application/zip')) {
+    filename = filenameMatch ? filenameMatch[1] : 'downloaded_file.zip';
+  }
 
   // 응답 본문을 binary data를 다루기 위한 Blob 객체로 변환
   const blob = await response.blob();
