@@ -11,6 +11,7 @@ import SetRegion from '../clients/SetRegion';
 import Input from '../../common/Input';
 import { INPUT_TEXT, OPTION_TEXT } from '@/app/constants/admin';
 import ClientsName from '../clients/ClientsName';
+import ClientsRegion from '../clients/ClientsRegion';
 
 export default function ClientContainer() {
   const [state, setState] = useState({
@@ -38,6 +39,8 @@ export default function ClientContainer() {
     switch (state.selectedOption) {
       case 'clientsName':
         return <ClientsName />;
+      case 'clientsRegion':
+        return <ClientsRegion />;
       case 'inquiryQuotation':
         return <InquiryQuotation clientId={state.clientId} />;
       case 'inquiryQuotationDate':
@@ -68,6 +71,7 @@ export default function ClientContainer() {
           value={state.selectedOption}
         >
           <option value="clientsName">{OPTION_TEXT[0]}</option>
+          <option value="clientsRegion">{OPTION_TEXT[8]}</option>
           <option value="inquiryQuotation">{OPTION_TEXT[1]}</option>
           <option value="inquiryQuotationDate">{OPTION_TEXT[2]}</option>
           <option value="inquiryPastOrder">{OPTION_TEXT[3]}</option>
@@ -77,17 +81,20 @@ export default function ClientContainer() {
           <option value="deleteClient">{OPTION_TEXT[7]}</option>
         </select>
 
-        <div className="flex gap-4">
-          <p className="whitespace-nowrap">{INPUT_TEXT[0]}</p>
-          <Input
-            name="clientId"
-            className="admin-input"
-            type="default"
-            onChange={handleInputChange}
-            textValue={state.clientId}
-            placeholder={INPUT_TEXT[1]}
-          />
-        </div>
+        {state.selectedOption !== 'clientsName' &&
+          state.selectedOption !== 'clientsRegion' && (
+            <div className="flex gap-4">
+              <p className="whitespace-nowrap">{INPUT_TEXT[0]}</p>
+              <Input
+                name="clientId"
+                className="admin-input"
+                type="default"
+                onChange={handleInputChange}
+                textValue={state.clientId}
+                placeholder={INPUT_TEXT[1]}
+              />
+            </div>
+          )}
       </div>
 
       {renderComponent()}
