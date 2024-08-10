@@ -9,6 +9,14 @@ export const OPTION_TEXT = [
   '거래처 지역 선택',
   '거래처 특이사항 작성',
   '거래처 삭제',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '견적서 정보 조회',
+  '견적서 excel 파일로 추출',
+  '오늘 날짜의 모든 견적서 excel 파일로 추출',
 ];
 
 export const INPUT_TEXT = [
@@ -20,6 +28,13 @@ export const INPUT_TEXT = [
   '종료 날짜',
   '날짜 입력',
   '특이사항 입력',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '견적서 id',
 ];
 
 export const BTN_TEXT = ['실행', '삭제'];

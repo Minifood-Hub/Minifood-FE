@@ -1,5 +1,6 @@
 import AdminHeader from '@/app/components/admin/AdminHeader';
 import ClientContainer from '@/app/components/admin/container/ClientContainer';
+import QuotationContainer from '@/app/components/admin/container/QuotationContainer';
 
 export default function AdminPage({ searchParams }: AdminPageProps) {
   const activePage = searchParams.page || 'client';
@@ -11,7 +12,7 @@ export default function AdminPage({ searchParams }: AdminPageProps) {
       case 'product':
         return <div />;
       case 'quotation':
-        return <div />;
+        return <QuotationContainer />;
       default:
         return null;
     }
