@@ -23,3 +23,5 @@ export const CUSTOMER_SERVICE_TEXT = [
   'Email: test@gmail.com',
   'Fax: 012-345-6789',
 ];
+
+export const MAIN_CALENDAR_TEXT = ['주문량을 확인하고 효율적으로 주문해보세요'];

@@ -6,15 +6,16 @@ import Link from 'next/link';
 import Recommend from '../recommend/Recommend';
 import Reorder from '../Reorder';
 import InformationContainer from './InformationContainer';
+import OrderCalendar from '../OrderCalendar';
 
 function MainContainer() {
   const { user } = useUser();
   const isGuest = !user?.isSuccess;
-  console.log(isGuest, 'is Guest 값');
 
   return (
     <div className="flex flex-col gap-y-20 items-center relative">
       <InformationContainer />
+      <OrderCalendar />
       <div className="flex-center relative ">
         <div className={`${isGuest && 'blur-lg'}`}>
           <Reorder />
