@@ -15,6 +15,29 @@ const getRequest = async (url: string, token?: string) => {
   }
 };
 
+// JSON 형식이 아닌 바이너리 데이터를 처리하는 함수
+const getBinaryRequest = async (url: string, token?: string) => {
+  try {
+    const headers: Record<string, string> = {};
+    // headers는 빈 객체로 시작하고 token이 존재하면 access-token키를 추가
+    if (token) {
+      headers['access-token'] = token;
+    }
+
+    const response = await fetch(url, { headers });
+
+    // 바이너리 데이터를 Blob으로 받아 처리
+    if (response.ok) {
+      return await response.blob(); // blob을 반환
+    }
+
+    throw new Error('binary data fetch 실패');
+  } catch (error) {
+    console.error('Fetch Error:', error);
+    throw error;
+  }
+};
+
 // 내 정보 조회
 export const getUsers = async (token: string) => {
   const url = `${SERVER_URL}/api/v1/users/me`;
@@ -140,7 +163,7 @@ export const getAdminQuotationsInfo = async (
 // 견적서 excel 파일로 추출
 export const getAdminQuotationsExtract = async (quotation_id: string) => {
   const url = `${SERVER_URL}/api/v1/quotations/extract/${quotation_id}`;
-  return getRequest(url);
+  return getBinaryRequest(url);
 };
 
 // 오늘 날짜의 모든 견적서 excel 파일로 추출
