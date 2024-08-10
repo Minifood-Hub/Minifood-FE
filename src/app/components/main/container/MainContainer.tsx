@@ -1,10 +1,11 @@
 'use client';
 
+import { WELCOME_TEXT } from '@/app/constants/main';
 import { useUser } from '@/app/hooks/useUser';
-import LoginModal from '../LoginModal';
+import Link from 'next/link';
 import Recommend from '../recommend/Recommend';
 import Reorder from '../Reorder';
-import Welcome from '../Welcome';
+import InformationContainer from './InformationContainer';
 
 function MainContainer() {
   const { user } = useUser();
@@ -13,16 +14,17 @@ function MainContainer() {
 
   return (
     <div className="flex flex-col gap-y-20 items-center relative">
-      <Welcome />
+      <InformationContainer />
       <div className="flex-center relative ">
-        {isGuest && (
-          <div className="absolute w-full h-full top-0 left-0 flex justify-center items-center z-50">
-            <LoginModal />
-          </div>
-        )}
         <div className={`${isGuest && 'blur-lg'}`}>
           <Reorder />
           <Recommend />
+          <Link
+            href="/order"
+            className="w-[680px] h-[60px] flex items-center justify-center text-white text-2xl bg-[#55AA00] rounded-[50px] shadow-md shadow-slate-400"
+          >
+            {WELCOME_TEXT[4]}
+          </Link>
         </div>
       </div>
     </div>
