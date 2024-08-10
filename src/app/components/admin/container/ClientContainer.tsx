@@ -10,11 +10,12 @@ import SetComment from '../clients/SetComment';
 import SetRegion from '../clients/SetRegion';
 import Input from '../../common/Input';
 import { INPUT_TEXT, OPTION_TEXT } from '@/app/constants/admin';
+import ClientsName from '../clients/ClientsName';
 
 export default function ClientContainer() {
   const [state, setState] = useState({
     clientId: '',
-    selectedOption: '',
+    selectedOption: 'clientsName',
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,6 +36,8 @@ export default function ClientContainer() {
 
   const renderComponent = () => {
     switch (state.selectedOption) {
+      case 'clientsName':
+        return <ClientsName />;
       case 'inquiryQuotation':
         return <InquiryQuotation clientId={state.clientId} />;
       case 'inquiryQuotationDate':
@@ -64,7 +67,7 @@ export default function ClientContainer() {
           onChange={handleSelectChange}
           value={state.selectedOption}
         >
-          <option value="">{OPTION_TEXT[0]}</option>
+          <option value="clientsName">{OPTION_TEXT[0]}</option>
           <option value="inquiryQuotation">{OPTION_TEXT[1]}</option>
           <option value="inquiryQuotationDate">{OPTION_TEXT[2]}</option>
           <option value="inquiryPastOrder">{OPTION_TEXT[3]}</option>

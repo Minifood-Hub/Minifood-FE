@@ -10,6 +10,13 @@ interface ClientIdProps {
   clientId: string;
 }
 
+interface ClientsNameProps {
+  id: number;
+  name: string;
+  region: string;
+  address: string;
+}
+
 interface AdminItemProps {
   id: number;
   name: string;

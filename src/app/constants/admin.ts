@@ -1,7 +1,7 @@
 export const ADMIN_TEXT = ['거래처', ' 상품', '견적서'];
 
 export const OPTION_TEXT = [
-  '옵션을 선택하세요',
+  '거래처 명으로 조회',
   '거래처 견적서 조회',
   '거래처 견적서 기간에 따른 조회',
   '거래처 주문 내역 조회',
@@ -28,7 +28,7 @@ export const INPUT_TEXT = [
   '종료 날짜',
   '날짜 입력',
   '특이사항 입력',
-  '',
+  '거래처명',
   '',
   '',
   '',
@@ -39,7 +39,16 @@ export const INPUT_TEXT = [
 
 export const BTN_TEXT = ['실행', '삭제'];
 
-export const TABLE_TEXT = ['번호', '이름', '생성일', '수정일', '상태', '가격'];
+export const TABLE_TEXT = [
+  '번호',
+  '이름',
+  '생성일',
+  '수정일',
+  '상태',
+  '가격',
+  '지역',
+  '주소',
+];
 
 export const ALERT_TEXT = [
   '모든 입력 필드를 채워주세요.',

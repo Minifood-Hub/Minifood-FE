@@ -96,7 +96,7 @@ export const getQuotationDetail = async (
 // ===== 관리자 =====
 // 거래처 명으로 조회
 export const getAdminClientName = async (name: string) => {
-  const url = `${SERVER_URL}/api/v1/clients/name${name}`;
+  const url = `${SERVER_URL}/api/v1/clients/name/${name}`;
   return getRequest(url);
 };
 
