@@ -1,3 +1,5 @@
+// 분류 별 물품 조회
+
 import {
   ALERT_TEXT,
   BTN_TEXT,
@@ -10,19 +12,19 @@ import { useState } from 'react';
 import Button from '../../common/Button';
 
 export default function ProdcutsCategory() {
-  const [category, setCategory] = useState('');
+  const [category, setCategory] = useState(CATEGORY_TEXT[0]);
   const [result, setResult] = useState<{ items: ProductProps[] }>({
     items: [],
   });
 
-  const handleSetRegion = async () => {
+  const handleSetCategory = async () => {
     if (!category) {
       alert(ALERT_TEXT[0]);
       return;
     }
     try {
       const data = await callGet(
-        `/api/admin/products/${categoryMapping[category]}`,
+        `/api/admin/products/category/${categoryMapping[category]}`,
       );
       console.log(data);
       setResult({ items: data.result });
@@ -64,7 +66,6 @@ export default function ProdcutsCategory() {
       <div className="flex w-full gap-12">
         <select
           className="border-2 px-2"
-          name="region"
           onChange={(e) => setCategory(e.target.value)}
           value={category}
         >
@@ -78,7 +79,7 @@ export default function ProdcutsCategory() {
           className="admin-btn"
           buttonText={BTN_TEXT[0]}
           type="default"
-          onClickHandler={handleSetRegion}
+          onClickHandler={handleSetCategory}
         />
       </div>
       <div className="w-full">{renderTable()}</div>
