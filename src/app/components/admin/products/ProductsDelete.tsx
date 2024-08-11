@@ -13,7 +13,7 @@ export default function ProductsDelete() {
       return;
     }
     try {
-      // await callDelete();
+      await callDelete(`/api/admin/products/${productId}/delete`);
     } catch (error) {
       console.error(error);
     }
