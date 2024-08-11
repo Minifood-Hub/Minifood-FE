@@ -13,7 +13,7 @@ function MainContainer() {
   const isGuest = !user?.isSuccess;
 
   return (
-    <div className="flex flex-col gap-y-20 items-center relative">
+    <div className="flex flex-col gap-y-20 items-center relative bg-black">
       <InformationContainer />
       <OrderCalendar />
       <div className="flex-center relative ">
