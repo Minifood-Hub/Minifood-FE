@@ -1,3 +1,5 @@
+// 물품 수정
+
 import { putUpdateProducts } from '@/app/service/putRequest';
 import { NextResponse } from 'next/server';
 
@@ -7,6 +9,7 @@ export async function PUT(
 ): Promise<NextResponse> {
   try {
     const { product_id } = params;
+    console.log(product_id);
     const body = await req.json();
 
     const response = await putUpdateProducts(body, product_id);
