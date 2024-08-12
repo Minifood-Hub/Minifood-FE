@@ -13,12 +13,10 @@ function MainContainer() {
   return (
     <div className="flex flex-col gap-y-20 items-center relative bg-white">
       <InformationContainer />
-      <OrderCalendar isGuest={isGuest}/>
-      <div className="flex-center relative ">
-        <div className={`${isGuest && 'blur-lg'}`}>
-          <Reorder />
-          <Recommend />
-        </div>
+      <OrderCalendar isGuest={isGuest} />
+      <div className="flex-center relative flex-col">
+        <Recommend />
+        <Reorder />
       </div>
     </div>
   );

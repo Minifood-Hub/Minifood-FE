@@ -25,22 +25,52 @@ function CardSwiper() {
         autoplay={{ delay: 2000, disableOnInteraction: false }}
       >
         <SwiperSlide key={0}>
-          <RecommendCard itemName="대파" amount={198} category="" />
+          <RecommendCard
+            itemName="대파"
+            amount={198}
+            category=""
+            price={8000}
+          />
         </SwiperSlide>
         <SwiperSlide key={1}>
-          <RecommendCard itemName="대파" amount={198} category="" />
+          <RecommendCard
+            itemName="대파"
+            amount={198}
+            category=""
+            price={8000}
+          />
         </SwiperSlide>
         <SwiperSlide key={2}>
-          <RecommendCard itemName="대파" amount={198} category="" />
+          <RecommendCard
+            itemName="대파"
+            amount={198}
+            category=""
+            price={8000}
+          />
         </SwiperSlide>
         <SwiperSlide key={3}>
-          <RecommendCard itemName="대파" amount={198} category="" />
+          <RecommendCard
+            itemName="대파"
+            amount={198}
+            category=""
+            price={8000}
+          />
         </SwiperSlide>
         <SwiperSlide key={4}>
-          <RecommendCard itemName="대파" amount={198} category="" />
+          <RecommendCard
+            itemName="대파"
+            amount={198}
+            category=""
+            price={8000}
+          />
         </SwiperSlide>
         <SwiperSlide key={5}>
-          <RecommendCard itemName="대파" amount={198} category="" />
+          <RecommendCard
+            itemName="대파"
+            amount={198}
+            category=""
+            price={8000}
+          />
         </SwiperSlide>
       </Swiper>
     </div>

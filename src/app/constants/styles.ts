@@ -12,6 +12,8 @@ export const BUTTON_STYLE = {
     `flex-center text-white w-[180px] h-[60px] rounded-[50px] text-2xl shadow-md ${className}`,
   faqButton: (className: string) =>
     `flex-center text-white w-[39px] h-[24px] rounded-[4px] text-[13px] ${className}`,
+  recommendButton: (className: string) =>
+    `flex-center text-black w-[244px] h-[41px] rounded text-[18px] border border-[#e0e0e0] mt-2 font-normal p-2.5 ${className}`,
 } as const;
 
 export const INPUT_STYLE = {
