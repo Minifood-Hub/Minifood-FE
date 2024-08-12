@@ -1,25 +1,45 @@
 import { BTN_TEXT } from '@/app/constants/admin';
 import Button from '../../common/Button';
-import { callPost } from '@/app/utils/callApi';
+import { ChangeEvent, FormEvent, useState } from 'react';
+import { callPostFile } from '@/app/utils/callApi';
 
 export default function ProductsUpload() {
-  // let file;
-  const handleUpload = async () => {
+  const [file, setFile] = useState<File | null>(null);
+
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setFile(e.target.files[0]);
+    }
+  };
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!file) {
+      alert('파일을 선택해주세요.');
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('file', file);
+
     try {
-      // const data = await callPost(`/`, file);
-      // console.log(data);
+      const data = await callPostFile(`/api/admin/products/upload`, formData);
+      console.log(data);
     } catch (error) {
       console.error(error);
     }
   };
+
   return (
-    <div className="flex gap-4 border-2 p-8">
+    <form onSubmit={handleSubmit} className="flex gap-4 border-2 p-8">
+      <input type="file" accept=".xlsx" onChange={handleFileChange} />
       <Button
         className="admin-btn"
         buttonText={BTN_TEXT[0]}
+        buttonType="submit"
         type="default"
-        onClickHandler={handleUpload}
+        onClickHandler={() => {}}
       />
-    </div>
+    </form>
   );
 }
