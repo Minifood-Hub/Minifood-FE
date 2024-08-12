@@ -55,7 +55,7 @@ const OrderCalendar = ({ isGuest }: OrderCalendarProps) => {
                 <div
                   className="rounded-full w-7 h-7"
                   style={{ backgroundColor: CALENDAR_ORDER_COLOR[i] }}
-                ></div>
+                />
                 <div className="text-lg font-normal">{text}</div>
               </div>
             ))}

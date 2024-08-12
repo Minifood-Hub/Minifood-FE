@@ -11,7 +11,7 @@ const CustomerService = () => {
       </div>
       <div className="flex flex-col gap-y-1.5 text-[16px] font-normal tracking-tight">
         {CUSTOMER_SERVICE_TEXT.map((text, i) => (
-          <div key={i}>{text}</div>
+          <div key={text}>{text}</div>
         ))}
       </div>
     </div>

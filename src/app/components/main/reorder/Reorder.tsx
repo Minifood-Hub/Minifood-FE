@@ -13,14 +13,17 @@ function Reorder() {
         <div className="flex flex-col gap-y-2 mb-[18px] mt-6">
           <div className="flex flex-col gap-y-4">
             {ReorderData.map((item, i) => (
-              <div className="flex justify-between w-full py-4 px-6 h-[81px] bg-white items-center">
+              <div
+                key={item.item}
+                className="flex justify-between w-full py-4 px-6 h-[81px] bg-white items-center"
+              >
                 <div className="flex flex-col gap-y-1.5 text-base font-normal">
                   <p>{item.date}</p>
                   <p>{item.item}</p>
                 </div>
                 <Button
                   buttonText={REORDER_TEXT[2]}
-                  type={'reorder'}
+                  type="reorder"
                   onClickHandler={() =>
                     console.log('다시 주문하러 이동하는 로직')
                   }

@@ -1,4 +1,5 @@
 'use client';
+
 import { FAQ_TEXT } from '@/app/constants/main';
 import { AddIcon } from '@/app/ui/iconPath';
 import { useState } from 'react';
@@ -16,14 +17,15 @@ const Question = () => {
       <div className="flex gap-x-3">
         {FAQ_TEXT.map((text, i) => (
           <Button
+            key={text}
             buttonText={text}
-            type={'faqButton'}
+            type="faqButton"
             onClickHandler={() => setIsSelected(i)}
             className={isSelected === i ? 'bg-[#24c062]' : 'bg-[#b8b8b8]'}
           />
         ))}
       </div>
-      <div className='mt-4'>상한 음식이 배송됐어요 어디에 문의하나요?</div>
+      <div className="mt-4">상한 음식이 배송됐어요 어디에 문의하나요?</div>
     </div>
   );
 };

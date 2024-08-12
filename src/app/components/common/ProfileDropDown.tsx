@@ -1,4 +1,5 @@
 'use client';
+
 import { HEADER_PROFILE } from '@/app/constants/common';
 import { HeaderProfileIcon } from '@/app/ui/iconPath';
 import { useState } from 'react';
@@ -23,7 +24,7 @@ const ProfileDropDown = ({ user, logout }: ProfileDropDownProps) => {
         onClick={() => setIsOpen(!isOpen)}
         className="cursor-pointer relative"
       >
-        <Icons name={HeaderProfileIcon} hoverFill="#306317"></Icons>
+        <Icons name={HeaderProfileIcon} hoverFill="#306317" />
       </div>
       {isOpen && (
         <div className="flex flex-col border-[#E0E0E0] border absolute top-[52px] z-10">

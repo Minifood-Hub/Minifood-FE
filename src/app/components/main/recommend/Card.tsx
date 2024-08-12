@@ -29,11 +29,11 @@ function RecommendCard({
           objectFit="cover"
           className="rounded"
         />
-        <div className="absolute inset-0 bg-gray-300 opacity-0 hover:opacity-70 transition-opacity duration-300 rounded"></div>
+        <div className="absolute inset-0 bg-gray-300 opacity-0 hover:opacity-70 transition-opacity duration-300 rounded" />
       </div>
       <Button
-        buttonText={'담기'}
-        type={'recommendButton'}
+        buttonText="담기"
+        type="recommendButton"
         onClickHandler={orderItem}
       />
       <div className="flex flex-col gap-y-3 mt-3 text-base font-normal">

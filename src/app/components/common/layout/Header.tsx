@@ -30,7 +30,7 @@ function Header() {
             <Link href="/">
               <Icons name={HeaderHeartIcon} hoverFill="#306317" />
             </Link>
-            <ProfileDropDown user={'민규'} logout={handleLogout} />
+            <ProfileDropDown user={user.result.email} logout={handleLogout} />
             <Link href="/">
               <Icons name={HeaderCartIcon} hoverFill="#306317" />
             </Link>

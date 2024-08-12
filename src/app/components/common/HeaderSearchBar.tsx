@@ -11,7 +11,7 @@ const HeaderSearchBar = () => {
   return (
     <div className="flex w-[352px] relative h-[44px] px-6 border-2 border-[#306317] items-center rounded-[20px] text-[13px] gap-x-1">
       <Input
-        type={'headerSearch'}
+        type="headerSearch"
         onChange={(e) => setText(e.target.value)}
         placeholder={HEADER_TEXT[3]}
       />
