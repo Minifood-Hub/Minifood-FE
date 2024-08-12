@@ -1,48 +1,72 @@
 'use client';
 
-import { MAIN_CALENDAR_TEXT } from '@/app/constants/main';
+import {
+  CALENDAR_ORDER_COLOR,
+  CALENDAR_ORDER_TEXT,
+  MAIN_CALENDAR_TEXT,
+} from '@/app/constants/main';
 import CalendarNext from '@/app/ui/Icons/CalendarNext';
 import CalendarPrev from '@/app/ui/Icons/CalendarPrev';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import '../../ui/Calendar.css';
-const OrderCalendar = () => {
-  const [today, setToday] = useState<Date | null>(null); // 초기값을 null로 설정
+
+interface OrderCalendarProps {
+  isGuest: boolean;
+}
+
+const OrderCalendar = ({ isGuest }: OrderCalendarProps) => {
+  const [today, setToday] = useState<Date | null>(null);
 
   useEffect(() => {
-    setToday(new Date()); // 클라이언트에서만 현재 날짜 설정
+    setToday(new Date());
   }, []);
-
-  console.log(today);
 
   const onChangeToday = () => {
     setToday(today);
   };
 
-  const tileContent = ({ date }: { date: Date }) => {
-    const day = date.getDate(); // 날짜 숫자만 가져오기
-    console.log(day);
-
-    return <div>{day}</div>; // 날짜 숫자만 표시
-  };
-
   if (!today) {
-    return null; // 오늘 날짜가 설정될 때까지 아무것도 렌더링하지 않음
+    return null;
   }
   return (
-    <div className="w-[1050px] flex flex-col items-center">
-      <div className="text-[28px] font-medium mb-9">
+    <div className="w-full flex flex-col items-center">
+      <div className="text-[28px] font-medium mb-3">
         {MAIN_CALENDAR_TEXT[0]}
       </div>
-      <Calendar
-        onChange={onChangeToday}
-        value={today}
-        prevLabel={<CalendarPrev />}
-        prev2Label={<CalendarPrev />}
-        nextLabel={<CalendarNext />}
-        next2Label={<CalendarNext />}
-        locale="ko-KR"
-      />
+      <div className="w-full bg-[#F7FEFB] py-6 flex justify-center mb-8">
+        <div className="flex gap-x-6 items-center">
+          <Calendar
+            onChange={onChangeToday}
+            value={today}
+            prevLabel={<CalendarPrev />}
+            prev2Label={<CalendarPrev />}
+            nextLabel={<CalendarNext />}
+            next2Label={<CalendarNext />}
+            locale="ko-KR"
+          />
+          <div className="flex flex-col gap-y-8">
+            {CALENDAR_ORDER_TEXT.map((text, i) => (
+              <div
+                className="flex w-[334px] h-[52px] px-6 py-3 gap-x-6 shadow bg-white rounded-[8px]"
+                key={text}
+              >
+                <div
+                  className={`rounded-full w-7 h-7 bg-[${CALENDAR_ORDER_COLOR[i]}]`}
+                ></div>
+                <div className="text-lg font-normal">{text}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <Link
+        href={isGuest ? '/sign-in' : '/order'}
+        className="w-[426px] h-[46px] flex-center text-white font-medium text-lg bg-[#55AA00] rounded-[4px]"
+      >
+        {isGuest ? MAIN_CALENDAR_TEXT[1] : MAIN_CALENDAR_TEXT[2]}
+      </Link>
     </div>
   );
 };
