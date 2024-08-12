@@ -2,6 +2,7 @@ import { BTN_TEXT } from '@/app/constants/admin';
 import Button from '../../common/Button';
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { callPostFile } from '@/app/utils/callApi';
+import Input from '../../common/Input';
 
 export default function ProductsUpload() {
   const [file, setFile] = useState<File | null>(null);
@@ -32,7 +33,13 @@ export default function ProductsUpload() {
 
   return (
     <form onSubmit={handleSubmit} className="flex gap-4 border-2 p-8">
-      <input type="file" accept=".xlsx" onChange={handleFileChange} />
+      <Input
+        type="default"
+        inputType="file"
+        accept=".xlsx"
+        className="max-w-fit"
+        onChange={handleFileChange}
+      />
       <Button
         className="admin-btn"
         buttonText={BTN_TEXT[0]}

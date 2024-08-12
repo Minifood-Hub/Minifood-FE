@@ -35,7 +35,13 @@ export default function ProductsVegetableFile() {
   };
   return (
     <form onSubmit={handleSubmit} className="flex gap-4 border-2 p-8">
-      <input type="file" accept=".xlsx" onChange={handleFileChange} />
+      <Input
+        type="default"
+        inputType="file"
+        accept=".xlsx"
+        className="max-w-fit"
+        onChange={handleFileChange}
+      />
       <Button
         className="admin-btn"
         buttonText={BTN_TEXT[0]}
