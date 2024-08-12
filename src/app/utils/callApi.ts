@@ -98,3 +98,21 @@ export async function callGetBinary(endpoint: string, params?: string) {
   a.click();
   a.remove(); // 다운 후 a 태그를 문서에서 제거
 }
+
+export async function callPostFile(endpoint: string, formData: FormData) {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_LOCAL_SERVER}${endpoint}`,
+    {
+      method: 'POST',
+      body: formData, // 요청 본문에 파일 데이터를 포함
+    },
+  );
+
+  console.log(callPostFile, response);
+
+  if (!response.ok) {
+    throw new Error(`HTTP callPostFile 에러 : ${response.status}`);
+  }
+
+  return response.json(); // JSON 형식으로 응답 데이터 반환
+}

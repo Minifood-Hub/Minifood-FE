@@ -5,6 +5,7 @@ import { BUTTON_STYLE } from '@/app/constants/styles';
 interface ButtonProps {
   buttonText: string;
   type: keyof typeof BUTTON_STYLE;
+  buttonType?: 'button' | 'submit' | 'reset';
   isDisabled?: boolean;
   onClickHandler: () => void;
   mouseEnterHandler?: () => void;
@@ -16,6 +17,7 @@ interface ButtonProps {
 function Button({
   type,
   buttonText,
+  buttonType = 'button',
   className,
   isDisabled,
   onClickHandler,
@@ -27,7 +29,8 @@ function Button({
 
   return (
     <button
-      type="button"
+      // eslint-disable-next-line react/button-has-type
+      type={buttonType}
       className={`${buttonStyles}`}
       onClick={onClickHandler}
       disabled={isDisabled}
