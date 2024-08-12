@@ -8,6 +8,7 @@ interface RecommendCardProps {
   amount: number;
   category: string;
   price: number;
+  orderItem: () => void;
 }
 
 function RecommendCard({
@@ -15,22 +16,26 @@ function RecommendCard({
   amount,
   category,
   price,
+  orderItem,
 }: RecommendCardProps) {
   return (
-    <div className="flex flex-col w-[244px] h-[431px] rounded-[4px] relative">
-      <Image
-        src="/Images/tomato.png"
-        alt="카드 이미지"
-        width={244}
-        height={320}
-        className="rounded"
-      />
+    <div className="flex flex-col w-[244px] h-[431px] rounded-[4px]">
+      <div className="w-[244px] h-[320px] relative rounded">
+        <Image
+          src="/Images/tomato.png"
+          alt="카드 이미지"
+          layout="fill"
+          objectFit="cover"
+          className='rounded'
+        />
+        <div className="absolute inset-0 bg-gray-300 opacity-0 hover:opacity-70 transition-opacity duration-300 rounded"></div>
+      </div>
       <Button
         buttonText={'담기'}
         type={'recommendButton'}
-        onClickHandler={() => console.log('담았어요')}
+        onClickHandler={orderItem}
       />
-      <div className="flex flex-col gap-y-3 mt-3 text-base font-normal">
+      <div className="flex flex-col gap-y-3 mt-3 text-base font-normal hover:bg-gray-3 hover:bg-opacity-70">
         <div>{itemName}</div>
         <div>{price}원</div>
       </div>

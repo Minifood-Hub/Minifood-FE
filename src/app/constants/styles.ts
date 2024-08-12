@@ -5,9 +5,9 @@ export const BUTTON_STYLE = {
     `flex-center p-2 gap-2 rounded-lg w-full whitespace-nowrap text-sm font-extrabold ${className}`,
   default: (className: string) => `w-full h-full ${className}`,
   modalLogin: (className: string) =>
-    `w-[180px] h-[45px] bg-[#55AA00] rounded-[50px] text-white text-2xl font-extralight font-medium ${className}`,
-  modalSignup: (className: string) =>
-    `w-[180px] h-[45px] bg-white rounded-[50px] text-[#55AA00] text-2xl font-extralight border font-medium ${className}`,
+    `w-[110px] h-[45px] bg-[#55aa00] rounded text-white text-sm font-bold font-medium cursor-pointer ${className}`,
+  modalClose: (className: string) =>
+    `w-[110px] h-[45px] bg-white rounded text-black text-sm font-bold border border-[#E0E0E0] cursor-pointer ${className}`,
   modalButton: (className: string) =>
     `flex-center text-white w-[180px] h-[60px] rounded-[50px] text-2xl shadow-md ${className}`,
   faqButton: (className: string) =>
