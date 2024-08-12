@@ -1,5 +1,6 @@
 'use client';
 
+import { formatPrice } from '@/app/utils/formatPrice';
 import Image from 'next/image';
 import Button from '../../common/Button';
 
@@ -26,7 +27,7 @@ function RecommendCard({
           alt="카드 이미지"
           layout="fill"
           objectFit="cover"
-          className='rounded'
+          className="rounded"
         />
         <div className="absolute inset-0 bg-gray-300 opacity-0 hover:opacity-70 transition-opacity duration-300 rounded"></div>
       </div>
@@ -35,9 +36,9 @@ function RecommendCard({
         type={'recommendButton'}
         onClickHandler={orderItem}
       />
-      <div className="flex flex-col gap-y-3 mt-3 text-base font-normal hover:bg-gray-3 hover:bg-opacity-70">
+      <div className="flex flex-col gap-y-3 mt-3 text-base font-normal">
         <div>{itemName}</div>
-        <div>{price}원</div>
+        <div>{formatPrice(price)}원</div>
       </div>
     </div>
   );

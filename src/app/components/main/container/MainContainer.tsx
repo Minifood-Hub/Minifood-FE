@@ -1,9 +1,9 @@
 'use client';
 
 import { useUser } from '@/app/hooks/useUser';
-import OrderCalendar from '../OrderCalendar';
+import OrderCalendar from '../calendar/OrderCalendar';
 import Recommend from '../recommend/Recommend';
-import Reorder from '../Reorder';
+import Reorder from '../reorder/Reorder';
 import InformationContainer from './InformationContainer';
 
 function MainContainer() {

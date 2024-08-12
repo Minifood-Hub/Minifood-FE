@@ -10,15 +10,14 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { useModal } from '@/app/hooks/useModal';
 import { useUser } from '@/app/hooks/useUser';
-import LoginModal from '../LoginModal';
 import RecommendCard from './Card';
+import LoginModal from './LoginModal';
 
 function CardSwiper() {
   const { user } = useUser();
   const { isOpen, openModal, closeModal, handleModalClick } = useModal(false);
 
   const orderItem = () => {
-    console.log('주문 성공ㄴ');
     !user?.isSuccess && openModal();
   };
 

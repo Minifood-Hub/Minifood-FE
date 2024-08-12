@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { REORDER_TEXT } from '@/app/constants/main';
-import Button from '../common/Button';
+import Button from '../../common/Button';
 
 function Reorder() {
   return (

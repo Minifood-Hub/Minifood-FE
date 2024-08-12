@@ -1,7 +1,7 @@
 'use client';
 import { MAIN_MODAL_TEXT } from '@/app/constants/main';
 import { useRouter } from 'next/navigation';
-import Button from '../common/Button';
+import Button from '../../common/Button';
 
 interface LoginModalProps {
   closeModal: () => void;

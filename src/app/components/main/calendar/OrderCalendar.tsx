@@ -5,12 +5,12 @@ import {
   CALENDAR_ORDER_TEXT,
   MAIN_CALENDAR_TEXT,
 } from '@/app/constants/main';
+import '@/app/ui/Calendar.css';
 import CalendarNext from '@/app/ui/Icons/CalendarNext';
 import CalendarPrev from '@/app/ui/Icons/CalendarPrev';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
-import '../../ui/Calendar.css';
 
 interface OrderCalendarProps {
   isGuest: boolean;
