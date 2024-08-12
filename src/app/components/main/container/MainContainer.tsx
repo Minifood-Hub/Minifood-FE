@@ -14,10 +14,8 @@ function MainContainer() {
     <div className="flex flex-col gap-y-20 items-center relative bg-white">
       <InformationContainer />
       <OrderCalendar isGuest={isGuest} />
-      <div className="flex-center relative flex-col">
-        <Recommend />
-        <Reorder />
-      </div>
+      {!isGuest && <Reorder />}
+      <Recommend />
     </div>
   );
 }

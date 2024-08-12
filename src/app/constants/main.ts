@@ -1,4 +1,8 @@
-export const REORDER_TEXT = ['빠르게 다시 주문하기', '주문하기'];
+export const REORDER_TEXT = [
+  '쉽고 빠르게 재구매하기',
+  '이전에 구매한 상품을 간편하게 담아 보세요.',
+  '바로 주문하기',
+];
 
 export const RECOMMEND_TEXT = ['오늘, 이런 상품은 어때요?', '구매하기'];
 
