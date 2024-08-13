@@ -73,8 +73,8 @@ export default function InquiryQuotationDate({ clientId }: ClientIdProps) {
 
   return (
     <div className="flex flex-col gap-4 border-2 p-8">
-      <div className="flex w-full gap-12">
-        <div className="flex gap-4 items-center">
+      <div className="flex w-full gap-8">
+        <div className="flex gap-2 items-center">
           <p className="whitespace-nowrap">{INPUT_TEXT[4]}</p>
           <Input
             name="startDate"

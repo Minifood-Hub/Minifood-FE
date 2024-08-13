@@ -108,8 +108,6 @@ export async function callPostFile(endpoint: string, formData: FormData) {
     },
   );
 
-  console.log(callPostFile, response);
-
   if (!response.ok) {
     throw new Error(`HTTP callPostFile 에러 : ${response.status}`);
   }
