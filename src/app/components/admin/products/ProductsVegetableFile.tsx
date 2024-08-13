@@ -1,4 +1,4 @@
-import { BTN_TEXT, INPUT_TEXT } from '@/app/constants/admin';
+import { ALERT_TEXT, BTN_TEXT } from '@/app/constants/admin';
 import Button from '../../common/Button';
 import { callPostFile } from '@/app/utils/callApi';
 import Input from '../../common/Input';
@@ -16,7 +16,7 @@ export default function ProductsVegetableFile() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!file) {
-      alert('파일을 선택해주세요.');
+      alert(ALERT_TEXT[5]);
       return;
     }
 

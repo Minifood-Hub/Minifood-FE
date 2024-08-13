@@ -62,6 +62,7 @@ export const ALERT_TEXT = [
   '특이사항이 저장되었습니다.',
   '거래처가 삭제되었습니다.',
   '지역을 선택해주세요.',
+  '파일을 선택해주세요.',
 ];
 
 export const REGION_TEXT = [
