@@ -1,30 +1,21 @@
 'use client';
 
 import { useUser } from '@/app/hooks/useUser';
-import LoginModal from '../LoginModal';
+import OrderCalendar from '../calendar/OrderCalendar';
 import Recommend from '../recommend/Recommend';
-import Reorder from '../Reorder';
-import Welcome from '../Welcome';
+import Reorder from '../reorder/Reorder';
+import InformationContainer from './InformationContainer';
 
 function MainContainer() {
   const { user } = useUser();
   const isGuest = !user?.isSuccess;
-  console.log(isGuest, 'is Guest 값');
 
   return (
-    <div className="flex flex-col gap-y-20 items-center relative">
-      <Welcome />
-      <div className="flex-center relative ">
-        {isGuest && (
-          <div className="absolute w-full h-full top-0 left-0 flex justify-center items-center z-50">
-            <LoginModal />
-          </div>
-        )}
-        <div className={`${isGuest && 'blur-lg'}`}>
-          <Reorder />
-          <Recommend />
-        </div>
-      </div>
+    <div className="flex flex-col gap-y-20 items-center relative bg-white">
+      <InformationContainer />
+      <OrderCalendar isGuest={isGuest} />
+      {!isGuest && <Reorder />}
+      <Recommend />
     </div>
   );
 }

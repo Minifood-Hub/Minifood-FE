@@ -1,62 +1,3 @@
-export const QuoteViewData: QuotationViewInfoTypes[] = [
-  {
-    id: 0,
-    name: 'minkyu',
-    total_price: 125000,
-    created_at: '2024. 07. 06',
-    updated_at: '2024. 07. 06',
-  },
-  {
-    id: 1,
-    name: 'minkyu',
-    total_price: 125000,
-    created_at: '2024. 07. 06',
-    updated_at: '2024. 07. 06',
-  },
-  {
-    id: 2,
-    name: 'minkyu',
-    total_price: 125000,
-    created_at: '2024. 07. 06',
-    updated_at: '2024. 07. 06',
-  },
-  {
-    id: 3,
-    name: 'minkyu',
-    total_price: 125000,
-    created_at: '2024. 07. 06',
-    updated_at: '2024. 07. 06',
-  },
-  {
-    id: 4,
-    name: 'minkyu',
-    total_price: 125000,
-    created_at: '2024. 07. 06',
-    updated_at: '2024. 07. 06',
-  },
-  {
-    id: 5,
-    name: 'minkyu',
-    total_price: 125000,
-    created_at: '2024. 07. 06',
-    updated_at: '2024. 07. 06',
-  },
-  {
-    id: 6,
-    name: 'minkyu',
-    total_price: 125000,
-    created_at: '2024. 07. 06',
-    updated_at: '2024. 07. 06',
-  },
-  {
-    id: 7,
-    name: 'minkyu',
-    total_price: 125000,
-    created_at: '2024. 07. 06',
-    updated_at: '2024. 07. 06',
-  },
-];
-
 export const QuotationModalData: QuotationInfoTypes = {
   products: [
     {
@@ -114,3 +55,18 @@ export const QuotationModalData: QuotationInfoTypes = {
   created_at: '2024-07-27',
   updated_at: '2024-07-27',
 };
+
+export const ReorderData = [
+  {
+    date: '7월 23일 화요일',
+    item: '스테비아 토마토 2kg,[유기농] 양배1통,[한돈] 삼겹살/오겹살/앞다리살',
+  },
+  {
+    date: '7월 23일 화요일',
+    item: '스테비아 토마토 2kg,[유기농] 양배1통,[한돈] 삼겹살/오겹살/앞다리살',
+  },
+  {
+    date: '7월 23일 화요일',
+    item: '스테비아 토마토 2kg,[유기농] 양배1통,[한돈] 삼겹살/오겹살/앞다리살',
+  },
+];
