@@ -4,8 +4,8 @@ import { callDelete } from '@/app/utils/callApi';
 import { formatDate } from '@/app/utils/date';
 import { formatPrice } from '@/app/utils/formatPrice';
 import { useRouter } from 'next/navigation';
-import DeleteQuotationModal from './modal/DeleteQuotationModal';
-import QuotationModal from './modal/QuotationModal';
+import DeleteQuotationModal from './modal/edit/DeleteQuotationModal';
+import QuotationModal from './modal/view/QuotationModal';
 
 interface QuotationViewTableInfoProps {
   quoteView: QuotationViewInfoTypes;
