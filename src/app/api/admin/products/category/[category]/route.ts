@@ -9,9 +9,7 @@ export async function GET(
 ): Promise<NextResponse> {
   try {
     const { category } = params;
-    console.log('카테고리', category);
     const data = await getAdminProductsCategory(category);
-    console.log(data);
     return NextResponse.json(data);
   } catch (error) {
     console.error('API Error:', error);

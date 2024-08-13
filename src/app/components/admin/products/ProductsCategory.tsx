@@ -4,12 +4,14 @@ import {
   ALERT_TEXT,
   BTN_TEXT,
   CATEGORY_TEXT,
-  categoryMapping,
+  mapCategoryToEnglish,
   TABLE_TEXT,
 } from '@/app/constants/admin';
 import { callGet } from '@/app/utils/callApi';
 import { useState } from 'react';
 import Button from '../../common/Button';
+import { formatNumber } from '../../../utils/formatPrice';
+import { categoryMapping } from '@/app/constants/order';
 
 export default function ProdcutsCategory() {
   const [category, setCategory] = useState(CATEGORY_TEXT[0]);
@@ -24,7 +26,7 @@ export default function ProdcutsCategory() {
     }
     try {
       const data = await callGet(
-        `/api/admin/products/category/${categoryMapping[category]}`,
+        `/api/admin/products/category/${mapCategoryToEnglish[category]}`,
       );
       console.log(data);
       setResult({ items: data.result });
@@ -50,10 +52,12 @@ export default function ProdcutsCategory() {
           {result.items.map((item: ProductProps) => (
             <tr key={item.id}>
               <td className="admin-table-th">{item.id}</td>
-              <td className="admin-table-th">{item.category}</td>
+              <td className="admin-table-th">
+                {categoryMapping[item.category]}
+              </td>
               <td className="admin-table-th">{item.name}</td>
               <td className="admin-table-th">{item.unit}</td>
-              <td className="admin-table-th">{item.price}</td>
+              <td className="admin-table-th">{formatNumber(item.price)}</td>
             </tr>
           ))}
         </tbody>

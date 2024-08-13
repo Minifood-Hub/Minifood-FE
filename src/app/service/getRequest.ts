@@ -155,7 +155,7 @@ export const getAdminClientCheck = async (
 
 // 분류 별 물품 조회
 export const getAdminProductsCategory = async (category: string) => {
-  const url = `${SERVER_URL}/api/v1/products/${category}`;
+  const url = `${SERVER_URL}/api/v1/products/${category}?_t=${Date.now()}`;
   return getRequest(url);
 };
 

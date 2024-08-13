@@ -81,7 +81,7 @@ export const clientStatusMapping: { [key: string]: string } = {
   NONE: '미제출',
 };
 
-export const categoryMapping: { [key: string]: string } = {
+export const mapCategoryToEnglish: { [key: string]: string } = {
   냉동: 'frozen',
   냉장: 'refrigeration',
   공산: 'industrial',
