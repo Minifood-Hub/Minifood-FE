@@ -1,7 +1,7 @@
 'use client';
 
 import { QUOTATION_DELETE } from '@/app/constants/quotation';
-import Button from '../../common/Button';
+import Button from '../../../common/Button';
 
 interface DeleteQuotationModalProps {
   closeModal: () => void;

@@ -16,7 +16,7 @@ import { Dialog } from '../../common/Dialog';
 import Icons from '../../common/Icons';
 import Input from '../../common/Input';
 import ProductList from '../../order/ProductList';
-import EditQuotationModal from '../modal/EditQuotationModal';
+import EditQuotationModal from '../modal/edit/EditQuotationModal';
 
 interface EditQuoteContainerProps {
   id: string;
