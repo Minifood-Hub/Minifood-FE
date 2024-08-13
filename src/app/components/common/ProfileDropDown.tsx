@@ -27,7 +27,7 @@ const ProfileDropDown = ({ user, logout }: ProfileDropDownProps) => {
         <Icons name={HeaderProfileIcon} hoverFill="#306317" />
       </div>
       {isOpen && (
-        <div className="flex flex-col border-[#E0E0E0] border absolute top-[52px] z-10">
+        <div className="flex flex-col bg-white border-[#E0E0E0] border absolute top-[52px] z-10">
           <div className="flex items-center w-[126px] h-[33px] px-3 py-2 border-b">
             {user}님
           </div>

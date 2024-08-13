@@ -12,6 +12,8 @@ interface UserResult {
   email: string;
   id: number;
   is_active: boolean;
+  client_name: string;
+  client_region: string;
 }
 
 interface User {
