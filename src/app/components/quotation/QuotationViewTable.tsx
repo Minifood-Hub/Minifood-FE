@@ -13,7 +13,7 @@ interface QuotationViewTableProps {
 
 const QuotationViewTable = ({ viewType }: QuotationViewTableProps) => {
   const { user } = useUser();
-  const [page, setPage] = useState<number>(1);
+  const [page, setPage] = useState(1);
   const [quotation, setQuotation] = useState<QuotationTableInfoTypes | null>(
     null,
   );

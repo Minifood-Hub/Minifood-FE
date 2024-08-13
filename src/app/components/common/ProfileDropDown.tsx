@@ -11,7 +11,7 @@ interface ProfileDropDownProps {
 }
 
 const ProfileDropDown = ({ user, logout }: ProfileDropDownProps) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState(false);
   const clickOption = (index: number) => {
     if (index === 2) {
       logout();
