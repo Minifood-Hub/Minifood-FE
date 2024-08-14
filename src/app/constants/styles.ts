@@ -23,7 +23,7 @@ export const INPUT_STYLE = {
   search: (className: string) =>
     ` px-2 py-1 font-black placeholder:font-black focus:outline-none ${className}`,
   // 견적서 개수 입력
-  count: (className: string) => `w-14 text-right bg-gray-0 ${className}`,
+  count: (className: string) => ` ${className}`,
   headerSearch: (className: string) =>
     `w-80 h-4 font-normal outline-none	 ${className}`,
   default: (className: string) => `w-full h-full ${className}`,

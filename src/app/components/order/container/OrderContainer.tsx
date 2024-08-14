@@ -35,6 +35,8 @@ export default function OrderContainer() {
   const [searchResults, setSearchResults] = useState<ProductItemProps[]>([]); // 검색 결과
   const [addedItems, setAddedItems] = useState<ProductItemProps[]>([]); // 추가한 상품
 
+  console.log(searchResults);
+
   useEffect(() => {
     // 4005 상태 시 거래처 생성으로 이동
     if (user && !user.isSuccess && user.code === '4005') {
@@ -80,7 +82,7 @@ export default function OrderContainer() {
       const search = state.search ? encodeURIComponent(state.search) : '""';
       const data = await callGet(
         `/api/order/search`,
-        `name_prefix=${search}&limit=100&cached_time=300`,
+        `name_prefix=${search}&limit=100`,
       );
       setSearchResults(data.result);
     } catch (error) {
@@ -125,84 +127,98 @@ export default function OrderContainer() {
     );
   };
   return (
-    <section className="mt-14 px-24 py-2 w-full min-w-[320px]">
-      <div className="flex gap-4 items-center">
-        <div>
-          <Button
-            className="order-btn self-center"
-            type="default"
-            onClickHandler={() => {
-              setState((prev) => ({
-                ...prev,
-                showBookmark: !prev.showBookmark,
-              }));
-            }}
-            buttonText={ORDER_TEXT[0]}
-          />
-
-          {state.showBookmark && (
-            <div className="absolute flex flex-col w-auto bg-white">
-              {pastOrder.map((order) => (
+    <section className="flex-center flex-col w-full px-36 py-[60px] gap-[10px] self-stretch">
+      <div className="flex flex-col items-end gap-3 self-stretch">
+        <div className="flex flex-col items-start gap-8 self-stretch">
+          <div className="flex flex-col items-start gap-4 self-stretch">
+            <div className="flex justify-between items-start self-stretch">
+              <div className="flex h-9 items-center gap-3">
                 <Button
-                  key={order.past_order_id}
+                  className="order-btn border-[1px] border-gray-1 bg-white font-medium"
                   type="default"
-                  className="px-4 py-1 border-b border-gray-2 cursor-pointer border-t-[1px] border-2 "
-                  onClickHandler={() =>
-                    setPastOrderId(order.past_order_id.toString())
-                  }
-                  buttonText={order.name}
+                  onClickHandler={() => {
+                    setState((prev) => ({
+                      ...prev,
+                      showBookmark: !prev.showBookmark,
+                    }));
+                  }}
+                  buttonText={ORDER_TEXT[0]}
                 />
-              ))}
+                <Button
+                  className="order-btn bg-primary-3 font-medium text-white"
+                  type="default"
+                  onClickHandler={() => {
+                    setState((prev) => ({
+                      ...prev,
+                      showBookmark: !prev.showBookmark,
+                    }));
+                  }}
+                  buttonText="최근 주문내역"
+                />
+                {state.showBookmark && (
+                  <div className="absolute flex flex-col w-auto bg-white">
+                    {pastOrder.map((order) => (
+                      <Button
+                        key={order.past_order_id}
+                        type="default"
+                        className="px-4 py-1 border-b border-gray-2 cursor-pointer border-t-[1px] border-2 "
+                        onClickHandler={() =>
+                          setPastOrderId(order.past_order_id.toString())
+                        }
+                        buttonText={order.name}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+              <div className="flex items-center justify-between w-[513px] bg-white border-[1px] border-gray-1 rounded-[4px] pr-1 focus-within:border-gray-7 focus-within:border-[1px]">
+                <Input
+                  textValue={state.search}
+                  type="search"
+                  onChange={(e) => handleInputChange(e, 'search')}
+                  placeholder={ORDER_TEXT[1]}
+                  onEnterPress={handleSearch}
+                />
+                <Icons onClick={handleSearch} name={SearchIcon} />
+              </div>
             </div>
-          )}
-        </div>
-        <div className="flex-center gap-2 bg-gray-0 border-2 border-gray-2 pr-1 focus-within:border-gray-7 focus-within:border-2">
-          <Input
-            textValue={state.search}
-            type="search"
-            onChange={(e) => handleInputChange(e, 'search')}
-            placeholder={ORDER_TEXT[1]}
-            onEnterPress={handleSearch}
+            <ProductList
+              items={searchResults}
+              isSearchResult
+              addedItems={addedItems}
+              onAddItem={handleAddItem}
+              onRemoveItem={handleRemoveItem}
+              onCountChange={handleCountChange}
+            />
+          </div>
+
+          <ProductList
+            items={addedItems}
+            isSearchResult={false}
+            onRemoveItem={handleRemoveItem}
+            onCountChange={handleCountChange}
           />
-          <Icons onClick={handleSearch} name={SearchIcon} />
         </div>
-        <p className="text-sm">{ORDER_TEXT[2]}</p>
-      </div>
 
-      <ProductList
-        items={searchResults}
-        isSearchResult
-        addedItems={addedItems}
-        onAddItem={handleAddItem}
-        onRemoveItem={handleRemoveItem}
-        onCountChange={handleCountChange}
-      />
+        <div className="w-full flex justify-end gap-12 mt-4">
+          <Button
+            onClickHandler={() => {
+              setState((prev) => ({ ...prev, dialog: true }));
+            }}
+            type="default"
+            className="order-btn w-min"
+            buttonText={ORDER_TEXT[7]}
+          />
 
-      <ProductList
-        items={addedItems}
-        isSearchResult={false}
-        onRemoveItem={handleRemoveItem}
-        onCountChange={handleCountChange}
-      />
-
-      <div className="w-full flex justify-end gap-12 mt-4">
-        <Button
-          onClickHandler={() => {
-            setState((prev) => ({ ...prev, dialog: true }));
-          }}
-          type="default"
-          className="order-btn w-min"
-          buttonText={ORDER_TEXT[7]}
-        />
-
-        <Button
-          onClickHandler={() => {
-            setState((prev) => ({ ...prev, quotation: true }));
-          }}
-          type="default"
-          className="order-btn w-min"
-          buttonText={ORDER_TEXT[4]}
-        />
+          <Button
+            onClickHandler={() => {
+              setState((prev) => ({ ...prev, quotation: true }));
+            }}
+            type="default"
+            className="order-btn w-min"
+            buttonText={ORDER_TEXT[4]}
+          />
+        </div>
       </div>
       {state.alert && (
         <Dialog

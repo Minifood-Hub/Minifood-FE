@@ -9,7 +9,7 @@ export const ORDER_TEXT = [
   '즐겨찾기 추가',
 ];
 
-export const PRODUCT_TEXT = ['분류', '품번', '품명', '개수', '단위', '담기'];
+export const PRODUCT_TEXT = ['분류', '품번', '품명', '단위', '개수', '담기'];
 
 export const MODAL_TEXT = [
   '주문일자',

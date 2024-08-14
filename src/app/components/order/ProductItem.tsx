@@ -46,28 +46,34 @@ export default function ProductItem({
   };
 
   return (
-    <div className="flex items-center pl-1 py-2 w-full text-gray-9 font-bold border-b-2">
-      <div className="w-[7%] pl-4 text-ellipsis whitespace-nowrap">
+    <div className="flex items-center self-stretch text-gray-7 border-b-[1px] border-gray-1">
+      <div className="flex w-[7%] py-2 px-[14px] self-stretch text-ellipsis whitespace-nowrap">
         {category}
       </div>
-      <div className="w-[7%] text-center text-ellipsis whitespace-nowrap">
+      <div className="flex w-[7%] py-2 px-[14px] self-stretch text-ellipsis whitespace-nowrap">
         {id}
       </div>
-      <div className="w-[60%] pl-4 overflow-hidden text-ellipsis whitespace-nowrap">
+      <div className="flex w-[60%] py-2 px-[14px] self-stretch overflow-hidden text-ellipsis whitespace-nowrap">
         {name}
       </div>
-      <div className="w-[10%]">
+      <div className="flex w-[8%] py-2 px-[14px] self-stretch overflow-hidden text-ellipsis whitespace-nowrap">
+        {unit}
+      </div>
+      <div className="flex justify-between w-[10%] py-2 px-[14px] self-stretch">
+        <button type="button" onClick={() => {}}>
+          -
+        </button>
         <Input
-          className="w-16 text-center"
+          className="w-full bg-white px-[14px] text-center"
           placeholder="1"
-          textValue={inputState.count || 1}
+          textValue={inputState.count || '1'}
           type="count"
-          inputType="number"
+          inputType="text"
           onChange={(e) => handleInputChange(e, 'count')}
         />
-      </div>
-      <div className="w-[8%] text-center pr-2 overflow-hidden text-ellipsis whitespace-nowrap">
-        {unit}
+        <button type="button" onClick={() => {}}>
+          +
+        </button>
       </div>
       <div className="w-[8%] flex justify-end pr-4">
         <button
