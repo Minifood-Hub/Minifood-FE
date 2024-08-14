@@ -8,7 +8,16 @@ export const MODAL_TEXT = [
 
 export const MODAL_INFO = ['견적서', 'Date', '구매자', '총액'];
 
-export const QUOTATION = ['견적서조회', '전체', '주간', '월간', '날짜를 선택'];
+export const QUOTATION_VIEW = ['견적서 조회'];
+
+export const QUOTATION_VIEWTYPE = ['전체', '주간', '월간', '날짜'];
+
+export const QUOTATION_TRANS_VIEWTYPE: Record<string, CheckTypes> = {
+  전체: 'all',
+  주간: 'week',
+  월간: 'month',
+  날짜: 'date',
+};
 
 export const VIEW_QUOTATION_GRAPH = ['번호', '생성일자', '수정일자', '총가격'];
 
