@@ -9,7 +9,7 @@ import { callGet } from '@/app/utils/callApi';
 import { useState } from 'react';
 import Input from '../../common/Input';
 import Button from '../../common/Button';
-import { formatNumber } from '@/app/utils/formatPrice';
+import { formatPrice } from '@/app/utils/formatPrice';
 import { formatDate } from '@/app/utils/date';
 
 export default function QuotationInfo() {
@@ -62,7 +62,7 @@ export default function QuotationInfo() {
                 {clientStatusMapping[item.status]}
               </td>
               <td className="admin-table-th">
-                {formatNumber(item.total_price)} 원
+                {formatPrice(item.total_price)} 원
               </td>
             </tr>
           ))}
