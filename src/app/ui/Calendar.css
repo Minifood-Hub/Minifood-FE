@@ -60,8 +60,7 @@
   background-color: #71b033;
 }
 
-.react-calendar__navigation button:enabled:hover,
-.react-calendar__navigation button:enabled:focus {
+.react-calendar__navigation button:enabled:hover {
   background-color: #71b033;
 }
 

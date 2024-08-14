@@ -44,9 +44,9 @@ const OrderCalendar = ({ clientType }: OrderCalendarProps) => {
             onChange={onChangeToday}
             value={today}
             prevLabel={<CalendarPrev />}
-            prev2Label={<CalendarPrev />}
+            prev2Label={null}
             nextLabel={<CalendarNext />}
-            next2Label={<CalendarNext />}
+            next2Label={null}
             locale="ko-KR"
           />
           <div className="flex flex-col gap-y-8">
