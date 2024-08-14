@@ -13,22 +13,21 @@ const DeleteQuotationModal = ({
 }: DeleteQuotationModalProps) => {
   return (
     <div className="fixed top-0 left-0 w-full h-full bg-gray-3 bg-opacity-70 flex justify-center items-center z-50">
-      <div className="flex-center flex-col w-[680px] h-[268px] rounded-[60px] bg-white">
-        <div className="flex text-4xl font-bold text-[#306317]">
-          {QUOTATION_DELETE[0]}
-        </div>
-        <div className="flex gap-x-7 mt-[52px]">
-          <Button
-            buttonText={QUOTATION_DELETE[1]}
-            type="modalButton"
-            onClickHandler={closeModal}
-            className="bg-[#55aa00]"
-          />
+      <div className="flex flex-col items-center w-[420px] h-[187px] rounded bg-white p-8 gap-y-2">
+        <p className="text-lg font-medium">{QUOTATION_DELETE[0]}</p>
+        <p className="text-sm font-normal">{QUOTATION_DELETE[1]}</p>
+        <div className="flex gap-x-6 mt-6">
           <Button
             buttonText={QUOTATION_DELETE[2]}
-            type="modalButton"
+            type="deleteModalButton"
             onClickHandler={deleteQuote}
-            className="bg-[#cf360c]"
+            className="bg-[#FC4C00] text-white"
+          />
+          <Button
+            buttonText={QUOTATION_DELETE[3]}
+            type="deleteModalButton"
+            onClickHandler={closeModal}
+            className="bg-white border border-[#E0E0E0]"
           />
         </div>
       </div>

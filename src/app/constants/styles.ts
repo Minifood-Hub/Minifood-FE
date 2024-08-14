@@ -8,8 +8,8 @@ export const BUTTON_STYLE = {
     `w-[110px] h-[45px] bg-[#55aa00] rounded text-white text-sm font-bold font-medium cursor-pointer ${className}`,
   modalClose: (className: string) =>
     `w-[110px] h-[45px] bg-white rounded text-black text-sm font-bold border border-[#E0E0E0] cursor-pointer ${className}`,
-  modalButton: (className: string) =>
-    `flex-center text-white w-[180px] h-[60px] rounded-[50px] text-2xl shadow-md ${className}`,
+  deleteModalButton: (className: string) =>
+    `flex-center w-[166px] h-[45px] rounded text-xl ${className}`,
   faqButton: (className: string) =>
     `flex-center text-white w-[39px] h-[24px] rounded-[4px] text-[13px] ${className}`,
   recommendButton: (className: string) =>
