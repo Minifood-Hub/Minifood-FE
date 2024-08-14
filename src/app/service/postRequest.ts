@@ -112,3 +112,41 @@ export const postQuotationsProducts = async (
     throw new Error('postQuotationsProducts 에러 발생');
   }
 };
+
+// ===== 관리자 =====
+// 물건 견적서 파일 업로드
+export const postAdminProductsUpload = async (file: File) => {
+  try {
+    const url = `${SERVER_URL}/api/v1/products/upload`;
+    const formData = new FormData();
+    formData.append('file', file); // FormData 객체에 파일 추가
+
+    const response = await fetch(url, {
+      method: 'POST',
+      body: formData, // 요청 본문에 파일 데이터를 포함 FormData 객체 사용
+    });
+
+    const responseText = await response.text(); // 응답 본문을 텍스트로 읽음
+    console.log('서버 응답 :', response.status, responseText);
+
+    if (!response.ok) {
+      throw new Error(`서버 응답 오류: ${response.status} ${responseText}`);
+    }
+
+    return JSON.parse(responseText); // 응답 데이터를 JSON으로 파싱하여 반환
+  } catch (error) {
+    console.error('에러 상세 정보:', error);
+    throw new Error('postAdminProductUpload 에러 발생');
+  }
+};
+
+// 물품 추가 생성
+export const postAdminProducts = async (productsContents: any) => {
+  try {
+    const url = `${SERVER_URL}/api/v1/products`;
+    return await postRequest(url, productsContents);
+  } catch (error) {
+    console.error('에러 : ', error);
+    throw new Error('postAdminProducts 에러 발생');
+  }
+};
