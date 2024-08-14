@@ -23,7 +23,7 @@ const QuotationOrderTable = ({ quotationInfo }: QuotationOrderTableProps) => {
         <div className="w-20">{MODAL_TEXT[5]}</div>
         <div className="w-[86px]">{MODAL_TEXT[6]}</div>
       </div>
-      <div className="flex flex-col w-full gap-y-2 mt-2 pb-4 text-base font-normal border-b-2 border-dashed border-gray-2 mb-6">
+      <div className="flex flex-col w-full h-28 gap-y-2 mt-2 pb-4 text-base font-normal border-b-2 border-dashed border-gray-2 mb-6 overflow-y-auto">
         {quotationInfo.products.map((itemData, index) => {
           return (
             <div key={itemData.product}>

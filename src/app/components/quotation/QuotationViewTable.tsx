@@ -40,7 +40,7 @@ const QuotationViewTable = ({ viewType }: QuotationViewTableProps) => {
         <div className="w-[78px] text-center">{VIEW_QUOTATION_GRAPH[3]}</div>
       </div>
       <div className="w-full h-[0px] border-2 border-black" />
-      <div className="flex flex-col w-full gap-y-1 mt-1">
+      <div className="flex flex-col w-full gap-y-1 mt-1 h">
         {quotation?.items.map((quoteView, index) => {
           return (
             <QuotationViewTableInfo
