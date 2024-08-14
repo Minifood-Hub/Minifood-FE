@@ -1,5 +1,5 @@
-import { toPng } from 'html-to-image';
 import { saveAs } from 'file-saver';
+import { toPng } from 'html-to-image';
 
 export const saveImage = async () => {
   try {

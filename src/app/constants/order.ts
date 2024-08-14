@@ -44,3 +44,12 @@ export const categoryMapping: { [key: string]: string } = {
   industrial: '공산',
   vegetable: '야채',
 };
+
+export const initialOrderState: OrderState = {
+  dialog: false,
+  showBookmark: false,
+  alert: false,
+  search: '',
+  bookmarkName: '',
+  quotation: false,
+};

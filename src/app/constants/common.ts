@@ -12,14 +12,15 @@ import {
 } from '@/app/ui/iconPath';
 
 export const HEADER_TEXT = [
-  '상품목록',
-  '상품주문',
-  '견적서 조회',
-  '주문내역',
+  'JMF',
   '회원가입',
   '로그인',
-  '거래처관리',
+  '찾으시는 상품을 입력해주세요',
 ];
+
+export const HEADER_PROFILE = ['내 정보', '거래처', '로그아웃'];
+
+export const HEADER_PROFILE_PATH = ['내 정보', '거래처', '로그아웃'];
 
 export const FOOTER_TEXT = [
   '이용약관',
@@ -59,10 +60,4 @@ export const SELECTED_SIDENAV_ICONS = [
   SelectedProductsIcon,
 ];
 
-export const SIDENAV_PATH = [
-  '/',
-  '/quotation',
-  '/quotation',
-  '/quotation',
-  '/quotation',
-];
+export const SIDENAV_PATH = ['/', '/order', '/quotation', '/past-order', '/'];

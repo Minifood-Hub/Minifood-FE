@@ -7,29 +7,29 @@ import {
   MODAL_TEXT,
 } from '@/app/constants/order';
 import { cancelIcon } from '@/app/ui/iconPath';
-import { callGet, callPatch, callPost } from '@/app/utils/callApi';
+import { callGet, callPatch, callPost, callPut } from '@/app/utils/callApi';
+import { formatDate } from '@/app/utils/date';
 import { formatPrice } from '@/app/utils/formatPrice';
 import { saveImage } from '@/app/utils/saveImage';
+import { useUser } from '@/app/hooks/useUser';
 import { useRouter } from 'next/navigation';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from '../../common/Button';
 import { Dialog } from '../../common/Dialog';
 import Icons from '../../common/Icons';
 import Input from '../../common/Input';
 import LoadingIndicator from '../../common/Loading';
-import QuotationSave from '../../quotation/modal/QuotationSave';
-import QuotationTable from './OrderQuotationTable';
-import { formatDate } from '@/app/utils/date';
-import { useUser } from '@/app/hooks/useUser';
+import QuotationTable from '../../order/quotation/OrderQuotationTable';
+import QuotationSave from './QuotationSave';
 
-export default function QuotationModal({
+export default function EditQuotationModal({
   QuotationModalData,
   closeModal,
+  quotationId,
 }: QuotationModalProps) {
   const { user } = useUser();
   const router = useRouter();
 
-  const [quotationId, setQuotationId] = useState<number | null>(null);
   const [state, setState] = useState({
     currentDate: '',
     total: 0,
@@ -43,146 +43,88 @@ export default function QuotationModal({
     onClick: () => {},
   });
 
-  // 견적서 생성
-  const createQuotations = async () => {
-    try {
-      const body = {
-        client_id: user?.result.client_id,
-        created_at: currentDate,
-        status: 'CREATED',
-      };
-      const response = await callPost('/api/order/quotations', body);
-      if (response.code === '4003') {
-        setDialog({
-          open: true,
-          topText: DIALOG_TEXT[0],
-          onClick: () => {
-            setDialog({ open: false, topText: '', onClick: () => {} });
-            router.push('/quotation');
-          },
-        });
-      }
-      if (response.isSuccess && response.result) {
-        return response.result.id;
-      }
-    } catch (error) {
-      console.error(error);
-    }
-    return null;
+  const createProducts = async () => {
+    const body = QuotationModalData.filter(
+      (item: any) => item.isEdited === undefined,
+    ).map((item: any) => ({
+      quotation_id: quotationId,
+      product_id: item.id,
+      quantity: item.count,
+    }));
+    await callPost('/api/order/quotations/products', body);
   };
 
-  // 견적서 물품 생성
-  const createProducts = async (id: number) => {
-    try {
-      const body = QuotationModalData.map((item) => ({
-        quotation_id: id,
-        product_id: item.id,
-        quantity: item.count,
-      }));
+  const updateProducts = async () => {
+    const editedItems = QuotationModalData.filter(
+      (item: any) => item.isEdited === true,
+    );
+    const updatePromises = editedItems.map((item: any) => {
+      const body = { quantity: item.count };
+      return callPut(
+        `/api/quotation/put?quotation_id=${quotationId}&product_id=${item.id}`,
+        body,
+      );
+    });
 
-      await callPost('/api/order/quotations/products', body);
+    try {
+      await Promise.all(updatePromises);
     } catch (error) {
       console.error(error);
     }
   };
 
-  // 견적서 합계 금액 업데이트
-  const updateTotal = async (quotation_id: number) => {
-    try {
-      const data = await callGet(`/api/order/quotations/${quotation_id}/total`);
-      if (data.isSuccess) {
-        setState((prev) => ({ ...prev, total: data.result }));
-      }
-    } catch (error) {
-      console.error(error);
+  const updateTotal = async (quotation_id: string) => {
+    const data = await callGet(`/api/order/quotations/${quotation_id}/total`);
+    if (data.isSuccess) {
+      setState((prev) => ({ ...prev, total: data.result }));
     }
   };
 
-  // 오늘 날짜 불러오기
   useEffect(() => {
-    const now = new Date();
-    const formattedDate = formatDate(now.toISOString());
-    setState((prev) => ({ ...prev, currentDate: formattedDate }));
+    const now = formatDate(new Date().toString());
+    setState((prev) => ({ ...prev, currentDate: now }));
   }, []);
 
-  // 견적서 완성
   useEffect(() => {
     const completeQuotation = async () => {
-      if (currentDate && user?.result.client_id) {
+      if (currentDate && user?.result.client_id && quotationId) {
         setState((prev) => ({ ...prev, loading: true }));
-        try {
-          // 1. 견적서 생성
-          const id = await createQuotations();
-          if (!id) {
-            console.error('견적서 생성 실패');
-            return;
-          }
-          setQuotationId(id);
 
-          // 2. 견적서 물품 생성
-          await createProducts(id);
+        await createProducts();
+        await updateProducts();
+        await updateTotal(quotationId);
 
-          // 3. 견적서 합계 금액 업데이트
-          await updateTotal(id);
-        } catch (error) {
-          console.error('견적서 생성 중 오류 발생 : ', error);
-        } finally {
-          setState((prev) => ({ ...prev, loading: false })); // 로딩 종료
-        }
+        setState((prev) => ({ ...prev, loading: false }));
       }
     };
-
-    // 견적서 완성
     completeQuotation();
-  }, [currentDate, user?.result.client_id]);
+  }, [currentDate, user?.result.client_id, quotationId]);
 
-  // 견적서 특이사항 작성 onChange
-  const handlePartiChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const parti = e.target.value;
-    setState((prev) => ({ ...prev, partiValue: parti }));
-  };
-
-  // 견적서 특이사항 작성
   const patchParticulars = async () => {
-    try {
-      const particulars = partiValue;
-      await callPatch(
-        `/api/order/quotations/${quotationId}/particulars`,
-        `particulars=${particulars}`,
-      );
-    } catch (error) {
-      console.error(error);
-    }
+    const particulars = partiValue;
+    await callPatch(
+      `/api/order/quotations/${quotationId}/particulars`,
+      `particulars=${particulars}`,
+    );
   };
 
-  // 견적서 작성 확정
   const patchConfirm = async () => {
-    try {
-      await callPatch(`/api/order/quotations/${quotationId}/confirmation`);
-    } catch (error) {
-      console.error(error);
-    }
+    await callPatch(`/api/order/quotations/${quotationId}/confirmation`);
   };
 
   const handleConfirmQuotation = async () => {
-    try {
-      // 4. 견적서 특이사항 전송
-      await patchParticulars();
-      // 5. 견적서 작성 확정
-      await patchConfirm();
+    await patchParticulars();
+    await patchConfirm();
 
-      setDialog((prev) => ({
-        ...prev,
-        open: true,
-        topText: DIALOG_TEXT[1],
-        onClick: () => {
-          setDialog({ open: false, topText: '', onClick: () => {} });
-          router.push('/quotation');
-        },
-      }));
-    } catch (error) {
-      console.error('견적서 확정 중 오류 발생 : ', error);
-    }
+    setDialog((prev) => ({
+      ...prev,
+      open: true,
+      topText: DIALOG_TEXT[1],
+      onClick: () => {
+        setDialog({ open: false, topText: '', onClick: () => {} });
+        router.push('/quotation');
+      },
+    }));
   };
 
   return (
@@ -222,7 +164,10 @@ export default function QuotationModal({
                 <Input
                   type="default"
                   onChange={(e) => {
-                    handlePartiChange(e);
+                    setState((prev) => ({
+                      ...prev,
+                      partiValue: e.target.value,
+                    }));
                   }}
                   className="w-full min-h-14 px-2 py-1 border-2"
                   textValue={partiValue}

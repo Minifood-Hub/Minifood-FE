@@ -1,5 +1,6 @@
 import { MODAL_TEXT } from '@/app/constants/order';
 import { formatDate } from '@/app/utils/date';
+import { formatPrice } from '@/app/utils/formatPrice';
 
 interface QuotationTableProps {
   quotationInfo: QuotationInfoTypes;
@@ -28,7 +29,9 @@ const QuotationTable = ({ quotationInfo }: QuotationTableProps) => {
                   {itemData.product}
                 </div>
                 <div className="w-[82px] text-center">{itemData.quantity}</div>
-                <div className="w-[117px] text-center">{itemData.price}</div>
+                <div className="w-[117px] text-center">
+                  {formatPrice(itemData.price)}
+                </div>
               </div>
               <div className="w-[612px] h-[0px] border border-black" />
             </div>

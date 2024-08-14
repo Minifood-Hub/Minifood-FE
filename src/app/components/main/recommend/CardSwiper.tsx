@@ -8,13 +8,25 @@ import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+import { useModal } from '@/app/hooks/useModal';
+import { useUser } from '@/app/hooks/useUser';
 import RecommendCard from './Card';
+import LoginModal from './LoginModal';
 
 function CardSwiper() {
+  const { user } = useUser();
+  const { isOpen, openModal, closeModal, handleModalClick } = useModal(false);
+
+  const orderItem = () => {
+    if (!user?.isSuccess) {
+      openModal();
+    }
+  };
+
   return (
-    <div className="flex w-[1140px] h-auto ">
+    <div className="flex w-[1140px] h-auto" onClick={() => orderItem}>
+      {isOpen && <LoginModal closeModal={closeModal} />}
       <Swiper
-        className=""
         grabCursor
         slideToClickedSlide
         pagination={{
@@ -25,22 +37,58 @@ function CardSwiper() {
         autoplay={{ delay: 2000, disableOnInteraction: false }}
       >
         <SwiperSlide key={0}>
-          <RecommendCard itemName="대파" amount={198} category="" />
+          <RecommendCard
+            orderItem={orderItem}
+            itemName="대파"
+            amount={198}
+            category=""
+            price={8000}
+          />
         </SwiperSlide>
         <SwiperSlide key={1}>
-          <RecommendCard itemName="대파" amount={198} category="" />
+          <RecommendCard
+            orderItem={orderItem}
+            itemName="대파"
+            amount={198}
+            category=""
+            price={8000}
+          />
         </SwiperSlide>
         <SwiperSlide key={2}>
-          <RecommendCard itemName="대파" amount={198} category="" />
+          <RecommendCard
+            orderItem={orderItem}
+            itemName="대파"
+            amount={198}
+            category=""
+            price={8000}
+          />
         </SwiperSlide>
         <SwiperSlide key={3}>
-          <RecommendCard itemName="대파" amount={198} category="" />
+          <RecommendCard
+            orderItem={orderItem}
+            itemName="대파"
+            amount={198}
+            category=""
+            price={8000}
+          />
         </SwiperSlide>
         <SwiperSlide key={4}>
-          <RecommendCard itemName="대파" amount={198} category="" />
+          <RecommendCard
+            orderItem={orderItem}
+            itemName="대파"
+            amount={198}
+            category=""
+            price={8000}
+          />
         </SwiperSlide>
         <SwiperSlide key={5}>
-          <RecommendCard itemName="대파" amount={198} category="" />
+          <RecommendCard
+            orderItem={orderItem}
+            itemName="대파"
+            amount={198}
+            category=""
+            price={8000}
+          />
         </SwiperSlide>
       </Swiper>
     </div>

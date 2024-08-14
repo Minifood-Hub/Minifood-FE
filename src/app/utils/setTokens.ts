@@ -2,7 +2,7 @@ import { parse } from 'cookie';
 
 export const setTokens = (accessToken: string) => {
   try {
-    const accessTokenExpires = new Date(Date.now() + 1000 * 60 * 300); // 300분 후
+    const accessTokenExpires = new Date(Date.now() + 1000 * 60 * 3000);
     const accessTokenExpiresUTC = accessTokenExpires.toUTCString();
 
     document.cookie = `accessToken=${accessToken}; expires=${accessTokenExpiresUTC}; path=/;`;

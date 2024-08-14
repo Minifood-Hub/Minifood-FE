@@ -49,6 +49,8 @@ interface QuotationTableProps {
 
 interface ProductItemProps extends QuotationItemType {
   isAdded?: boolean;
+  isEdited?: boolean;
+  unit: string;
   onAddItem?: (item: ProductItemProps) => void;
   onRemoveItem?: (id: string | number) => void;
   onCountChange?: (id: string | number, value: string) => void;
@@ -74,4 +76,5 @@ interface patchQuotationPartiProps extends quotationIdProps {
 interface QuotationModalProps {
   QuotationModalData: ProductItemProps[];
   closeModal: () => void;
+  quotationId?: string;
 }

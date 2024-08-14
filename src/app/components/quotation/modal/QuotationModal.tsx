@@ -5,7 +5,8 @@ import { QuotationModalData } from '@/app/constants/test';
 import { cancelIcon } from '@/app/ui/iconPath';
 import { callGet } from '@/app/utils/callApi';
 import { formatDate } from '@/app/utils/date';
-import { MouseEvent, useEffect, useState } from 'react';
+import { formatPrice } from '@/app/utils/formatPrice';
+import { useEffect, useState } from 'react';
 import Icons from '../../common/Icons';
 import QuotationSave from './QuotationSave';
 import QuotationTable from './QuotationTable';
@@ -54,7 +55,7 @@ const QuotationModal = ({ closeModal, id }: QuotationModalProps) => {
           <div className="w-[62px] text-3xl mt-2.5">{MODAL_INFO[3]}</div>
           <div className="flex flex-col w-[250px] h-14 items-center gap-y-1">
             <div className="w-[238px] h-[50px] text-black text-5xl font-bold text-center">
-              {detailData?.total}원
+              {formatPrice(detailData?.total || 0)}원
             </div>
             <div className="w-full border-[1.5px] border-[#55aa00]" />
             <div className="w-full border-[1.5px] border-[#55aa00]" />

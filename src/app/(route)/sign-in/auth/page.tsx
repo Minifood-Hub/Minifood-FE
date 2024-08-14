@@ -1,18 +1,17 @@
 'use client';
 
-import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect } from 'react';
+// import { useSearchParams } from 'next/navigation';
 
 export default function KakaoAuth() {
-  // const router = useRouter(); 나중에 POST 성공 시 링크 이동 추가
-  const searchParams = useSearchParams();
+  // const searchParams = useSearchParams();
+  // const router = useRouter();
 
-  useEffect(() => {
-    const code = searchParams.get('code');
-    if (code) {
-      console.log('카카오 코드 : ', code);
-    }
-  }, [searchParams]);
+  // useEffect(() => {
+  //   const code = searchParams.get('code');
+  //   if (code) {
+  //     console.log('카카오 코드:', code);
+  //   }
+  // }, []);
 
   return <div>카카오 로그인</div>;
 }
