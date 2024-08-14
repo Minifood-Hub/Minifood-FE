@@ -12,7 +12,7 @@ import ProfileDropDown from '../ProfileDropDown';
 
 function Header() {
   const { user } = useUser();
-  const router = useRouter();
+
   const handleLogout = () => {
     document.cookie = `accessToken=; expires=0; path=/;`;
     window.location.reload();
@@ -20,12 +20,6 @@ function Header() {
 
   const isClient = user?.category === 'CLIENT';
   const isCOMMON = user?.category === 'COMMON';
-
-  const makeClient = () => {
-    if (isClient) {
-      router.push('sign-in/client');
-    }
-  };
 
   return (
     <div className="relative w-full pt-6 bg-white">
@@ -36,12 +30,12 @@ function Header() {
         </div>
         <HeaderSearchBar />
         {isClient ? (
-          <div className="flex gap-x-[54px]" onClick={makeClient}>
+          <div className="flex gap-x-[54px]">
             <Link href="/">
               <Icons name={HeaderHeartIcon} hoverFill="#306317" />
             </Link>
             <ProfileDropDown
-              user={(isCOMMON && user.result.client_name) || '회원'}
+              user={(isCOMMON && user.result.client_name) || 'GUEST'}
               logout={handleLogout}
             />
             <Link href="/">
