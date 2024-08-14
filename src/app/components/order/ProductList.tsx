@@ -43,7 +43,7 @@ export default function ProductList({
         </div>
       )}
 
-      <div className="flex flex-col h-full self-stretch whitespace-nowrap overflow-scroll">
+      <div className="flex flex-col h-full self-stretch whitespace-nowrap overflow-scroll overflow-x-hidden">
         {items.map((item) => (
           <ProductItem
             key={item.id}

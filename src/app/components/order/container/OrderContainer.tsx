@@ -171,7 +171,7 @@ export default function OrderContainer() {
                   </div>
                 )}
               </div>
-              <div className="flex items-center justify-between w-[513px] bg-white border-[1px] border-gray-1 rounded-[4px] pr-1 focus-within:border-gray-7 focus-within:border-[1px]">
+              <div className="flex items-center justify-between px-6 w-[513px] bg-white border-[1px] border-gray-1 rounded-[4px] focus-within:border-gray-7 focus-within:border-[1px]">
                 <Input
                   textValue={state.search}
                   type="search"

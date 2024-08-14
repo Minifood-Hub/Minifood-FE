@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Input from '../common/Input';
 import { ORDER_TEXT } from '@/app/constants/order';
 
@@ -16,35 +16,51 @@ export default function ProductItem({
   onCountChange,
 }: ProductItemProps) {
   const [inputState, setInputState] = useState({
-    count: count || '1',
+    count: count?.toString() || '1',
   });
+
+  useEffect(() => {
+    setInputState((prev) => ({ ...prev, count: count?.toString() || '1' }));
+  }, [count]);
+
+  const updateCount = (newCount: string) => {
+    setInputState((prev) => ({ ...prev, count: newCount }));
+    onCountChange?.(id as string, newCount);
+  };
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement>,
-    type: any,
+    type: 'count',
   ) => {
     let { value } = e.target;
     if (type === 'count') {
       const numericValue = parseInt(value, 10);
       if (Number.isNaN(numericValue) || numericValue <= 0) {
-        value = '1'; // 0 이하의 값일 경우 1로 설정
+        value = '1';
       }
-      onCountChange?.(id as string, value); // ?.를 써서 정의되지 않을 경우 호출 안하게(if문 사용 대신)
+      updateCount(value);
     }
-    setInputState((prev) => ({
-      ...prev,
-      [type]: value,
-    }));
   };
 
   const handleButtonClick = () => {
     if (isAdded) {
-      onRemoveItem?.(id as string); // 함수가 정의 된 경우에만 호출
+      onRemoveItem?.(id as string);
     } else {
       onAddItem?.({ category, id, name, count: inputState.count, unit });
     }
   };
 
+  const handleDecrement = () => {
+    const currentCount = parseInt(inputState.count, 10);
+    if (currentCount > 1) {
+      updateCount((currentCount - 1).toString());
+    }
+  };
+
+  const handleIncrement = () => {
+    const currentCount = parseInt(inputState.count, 10);
+    updateCount((currentCount + 1).toString());
+  };
   return (
     <div className="flex items-center self-stretch text-gray-7 border-b-[1px] border-gray-1 py-2">
       <div className="flex-center w-[89px] py-2 px-[14px] self-stretch text-ellipsis whitespace-nowrap">
@@ -60,7 +76,7 @@ export default function ProductItem({
         {unit}
       </div>
       <div className="flex items-center justify-between w-[110px] py-2 px-5 self-stretch">
-        <button type="button" onClick={() => {}}>
+        <button type="button" onClick={handleDecrement}>
           -
         </button>
         <Input
@@ -71,7 +87,7 @@ export default function ProductItem({
           inputType="text"
           onChange={(e) => handleInputChange(e, 'count')}
         />
-        <button type="button" onClick={() => {}}>
+        <button type="button" onClick={handleIncrement}>
           +
         </button>
       </div>
