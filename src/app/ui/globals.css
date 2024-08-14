@@ -72,4 +72,18 @@ body {
   .order-btn {
     @apply bg-primary-4 text-white text-xl px-2 py-1 font-black whitespace-nowrap;
   }
+
+  /* 관리자 */
+  .admin-table {
+    @apply border-collapse border border-gray-3 w-full;
+  }
+  .admin-table-th {
+    @apply border border-gray-3 px-4 py-2;
+  }
+  .admin-input {
+    @apply bg-gray-0 w-fit border border-gray-7 px-4;
+  }
+  .admin-btn {
+    @apply border-2 border-gray-2 px-8 max-w-fit whitespace-nowrap;
+  }
 }
