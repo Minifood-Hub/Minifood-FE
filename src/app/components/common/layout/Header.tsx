@@ -5,16 +5,26 @@ import { useUser } from '@/app/hooks/useUser';
 import { HeaderCartIcon, HeaderHeartIcon } from '@/app/ui/iconPath';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import HeaderSearchBar from '../HeaderSearchBar';
 import Icons from '../Icons';
 import ProfileDropDown from '../ProfileDropDown';
 
 function Header() {
   const { user } = useUser();
-
+  const router = useRouter();
   const handleLogout = () => {
     document.cookie = `accessToken=; expires=0; path=/;`;
     window.location.reload();
+  };
+
+  const isClient = user?.category === 'CLIENT';
+  const isCOMMON = user?.category === 'COMMON';
+
+  const makeClient = () => {
+    if (isClient) {
+      router.push('sign-in/client');
+    }
   };
 
   return (
@@ -25,12 +35,15 @@ function Header() {
           <Link href="/">{HEADER_TEXT[0]}</Link>
         </div>
         <HeaderSearchBar />
-        {user?.isSuccess ? (
-          <div className="flex gap-x-[54px]">
+        {isClient ? (
+          <div className="flex gap-x-[54px]" onClick={makeClient}>
             <Link href="/">
               <Icons name={HeaderHeartIcon} hoverFill="#306317" />
             </Link>
-            <ProfileDropDown user={user.result.client_name} logout={handleLogout} />
+            <ProfileDropDown
+              user={(isCOMMON && user.result.client_name) || '회원'}
+              logout={handleLogout}
+            />
             <Link href="/">
               <Icons name={HeaderCartIcon} hoverFill="#306317" />
             </Link>
