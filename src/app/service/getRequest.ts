@@ -57,10 +57,9 @@ export const getUsers = async (token: string) => {
 export const getSearchProducts = async ({
   namePrefix,
   limit,
-  cachedTime,
   token,
 }: searchProductsProps) => {
-  const url = `${SERVER_URL}/api/v1/products/search/recent?name_prefix=${namePrefix}&limit=${limit}&cached_time=${cachedTime}`;
+  const url = `${SERVER_URL}/api/v1/products/search/recent?name_prefix=${namePrefix}&limit=${limit}`;
   return getRequest(url, token);
 };
 

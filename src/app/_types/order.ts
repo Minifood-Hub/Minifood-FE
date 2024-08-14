@@ -25,7 +25,6 @@ interface User {
 interface searchProductsProps {
   namePrefix: string;
   limit: string;
-  cachedTime: string;
   token: string;
 }
 

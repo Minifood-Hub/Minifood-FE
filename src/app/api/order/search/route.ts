@@ -8,12 +8,10 @@ export async function GET(request: Request): Promise<NextResponse> {
     const url = new URL(request.url);
     const namePrefix = url.searchParams.get('name_prefix') || '';
     const limit = url.searchParams.get('limit') || '10';
-    const cachedTime = url.searchParams.get('cached_time') || '300';
 
     const data = await getSearchProducts({
       namePrefix,
       limit,
-      cachedTime,
       token,
     });
     return NextResponse.json(data);
