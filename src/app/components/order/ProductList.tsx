@@ -21,10 +21,10 @@ export default function ProductList({
           <div className="flex-center w-[89px] py-2 px-3 font-bold">
             {PRODUCT_TEXT[0]}
           </div>
-          <div className="flex items-center w-[179px] py-2 px-3 font-bold">
+          <div className="flex items-center w-[119px] py-2 px-3 font-bold">
             {PRODUCT_TEXT[1]}
           </div>
-          <div className="flex items-center justify-start w-[356px] py-2 px-3 font-bold">
+          <div className="flex items-center justify-start w-[416px] py-2 px-3 font-bold">
             {PRODUCT_TEXT[2]}
           </div>
           <div className="flex-center w-[110px] py-2 px-3 font-bold">

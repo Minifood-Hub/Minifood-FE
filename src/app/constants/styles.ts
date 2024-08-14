@@ -2,7 +2,7 @@ export const BUTTON_STYLE = {
   reorder: (className: string) =>
     `w-[111px] h-[39px] bg-[#55aa00] rounded text-white text-base font-normal ${className}`,
   dialog: (className: string) =>
-    `flex-center p-2 gap-2 rounded-lg w-full whitespace-nowrap text-sm font-extrabold ${className}`,
+    `flex-center px-4 py-2 gap-2 rounded-[4px] whitespace-nowrap text-lg font-medium ${className}`,
   default: (className: string) => `w-full h-full ${className}`,
   modalLogin: (className: string) =>
     `w-[110px] h-[45px] bg-[#55aa00] rounded text-white text-sm font-bold font-medium cursor-pointer ${className}`,

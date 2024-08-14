@@ -50,10 +50,10 @@ export default function ProductItem({
       <div className="flex-center w-[89px] py-2 px-[14px] self-stretch text-ellipsis whitespace-nowrap">
         {category}
       </div>
-      <div className="flex items-center w-[179px] py-2 px-[14px] self-stretch text-ellipsis whitespace-nowrap">
+      <div className="flex items-center w-[119px] py-2 px-[14px] self-stretch text-ellipsis whitespace-nowrap">
         {id}
       </div>
-      <div className="flex items-center w-[356px] py-2 px-[14px] self-stretch overflow-hidden text-ellipsis whitespace-nowrap">
+      <div className="flex items-center w-[416px] py-2 px-[14px] self-stretch overflow-hidden text-ellipsis whitespace-nowrap">
         {name}
       </div>
       <div className="flex items-center w-[110px] py-2 px-[14px] justify-center self-stretch overflow-hidden text-ellipsis whitespace-nowrap">

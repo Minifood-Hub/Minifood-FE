@@ -132,7 +132,7 @@ export default function OrderContainer() {
         <div className="flex flex-col items-start gap-8 self-stretch">
           <div className="flex flex-col items-start gap-4 self-stretch">
             <div className="flex justify-between items-start self-stretch">
-              <div className="flex h-9 items-center gap-3">
+              <div className="relative flex h-9 items-center gap-3">
                 <Button
                   className="order-btn border-[1px] border-gray-1 bg-white font-medium"
                   type="default"
@@ -156,12 +156,12 @@ export default function OrderContainer() {
                   buttonText="최근 주문내역"
                 />
                 {state.showBookmark && (
-                  <div className="absolute flex flex-col w-auto bg-white">
+                  <div className="absolute top-9 flex flex-col bg-white rounded-[4px]">
                     {pastOrder.map((order) => (
                       <Button
                         key={order.past_order_id}
                         type="default"
-                        className="px-4 py-1 border-b border-gray-2 cursor-pointer border-t-[1px] border-2 "
+                        className="px-4 py-2 first:rounded-t-[4px] last:rounded-b-[4px] border-b border-gray-2 cursor-pointer border-t-[1px] border-[1px]"
                         onClickHandler={() =>
                           setPastOrderId(order.past_order_id.toString())
                         }
