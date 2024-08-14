@@ -63,6 +63,12 @@ export const getSearchProducts = async ({
   return getRequest(url, token);
 };
 
+// 견적서 정보 조회
+export const getQuotations = async (quotation_id: string) => {
+  const url = `${SERVER_URL}/api/v1/quotations/${quotation_id}`;
+  return getRequest(url);
+};
+
 // 즐겨찾기 상세 불러오기
 export const getPastOrder = async (past_order_id: string) => {
   const url = `${SERVER_URL}/api/v1/past-order/${past_order_id}`;
