@@ -127,8 +127,8 @@ export default function OrderContainer() {
     );
   };
   return (
-    <section className="flex-center flex-col w-full px-36 py-[60px] gap-[10px] self-stretch">
-      <div className="flex flex-col items-end gap-3 self-stretch">
+    <section className="flex-center flex-col w-full px-0 py-[60px] gap-[10px] self-stretch">
+      <div className="flex flex-col mx-auto items-end gap-3 self-stretch w-[960px]">
         <div className="flex flex-col items-start gap-8 self-stretch">
           <div className="flex flex-col items-start gap-4 self-stretch">
             <div className="flex justify-between items-start self-stretch">
@@ -200,13 +200,13 @@ export default function OrderContainer() {
           />
         </div>
 
-        <div className="w-full flex justify-end gap-12 mt-4">
+        <div className="flex items-center gap-6">
           <Button
             onClickHandler={() => {
               setState((prev) => ({ ...prev, dialog: true }));
             }}
             type="default"
-            className="order-btn w-min"
+            className="order-btn border-[1px] py-3 px-6 border-gray-1 bg-white"
             buttonText={ORDER_TEXT[7]}
           />
 
@@ -215,7 +215,7 @@ export default function OrderContainer() {
               setState((prev) => ({ ...prev, quotation: true }));
             }}
             type="default"
-            className="order-btn w-min"
+            className="order-btn py-3 px-6 text-white bg-primary-3"
             buttonText={ORDER_TEXT[4]}
           />
         </div>

@@ -15,35 +15,35 @@ export default function ProductList({
   onCountChange,
 }: ProductListProps) {
   return (
-    <div className="flex flex-col h-[350px] items-start self-stretch border-[1px] border-gray-1 bg-white">
+    <div className="flex w-full flex-col h-[350px] items-start self-stretch border-[1px] border-gray-1 bg-white">
       {isSearchResult ? (
         <div className="flex items-center self-stretch whitespace-nowrap bg-primary-3 text-white">
-          <div className="flex w-[7%] py-2 px-3 justify-center items-end gap-[10px] font-bold">
+          <div className="flex-center w-[89px] py-2 px-3 font-bold">
             {PRODUCT_TEXT[0]}
           </div>
-          <div className="flex w-[7%] py-2 px-3 justify-center items-end gap-[10px] font-bold">
+          <div className="flex items-center w-[179px] py-2 px-3 font-bold">
             {PRODUCT_TEXT[1]}
           </div>
-          <div className="flex w-[49%] py-2 px-3 justify-start items-end gap-[10px] font-bold">
+          <div className="flex items-center justify-start w-[356px] py-2 px-3 font-bold">
             {PRODUCT_TEXT[2]}
           </div>
-          <div className="flex w-[10%] py-2 px-3 justify-center items-end gap-[10px] font-bold">
+          <div className="flex-center w-[110px] py-2 px-3 font-bold">
             {PRODUCT_TEXT[3]}
           </div>
-          <div className="flex w-[19%] py-2 px-3 justify-center items-end gap-[10px] font-bold">
+          <div className="flex-center w-[110px] py-2 px-3 font-bold">
             {PRODUCT_TEXT[4]}
           </div>
-          <div className="flex w-[8%] py-2 px-3 justify-center items-end gap-[10px] font-bold">
+          <div className="flex-center w-[121px] py-2 px-3 mr-3 font-bold">
             {PRODUCT_TEXT[5]}
           </div>
         </div>
       ) : (
-        <div className="flex text-white font-black px-4 py-1">
+        <div className="flex px-6 py-2 items-center self-stretch bg-primary-3 text-white font-bold">
           {ORDER_TEXT[3]}
         </div>
       )}
 
-      <div className="flex flex-col py-2 px-[14px] gap-[10px] h-full self-stretch whitespace-nowrap overflow-scroll">
+      <div className="flex flex-col h-full self-stretch whitespace-nowrap overflow-scroll">
         {items.map((item) => (
           <ProductItem
             key={item.id}
