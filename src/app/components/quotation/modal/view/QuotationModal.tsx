@@ -26,7 +26,7 @@ const QuotationModal = ({ closeModal, id }: QuotationModalProps) => {
     <div className="fixed top-0 left-0 w-full h-full bg-gray-3 bg-opacity-70 flex justify-center items-center z-50">
       <div className="flex flex-col w-[800px] rounded p-10 bg-gray-1 relative items-center">
         <div className="w-full flex-center bg-[#55AA00] text-white rounded h-[57px] mb-2">
-          {MODAL_INFO[0]}
+          {detailData?.name}
         </div>
         <div className="w-full flex flex-col text-lg font-light bg-white px-6 pt-6">
           <div className="text-lg font-bold mt-3 pb-3 border-b-2 border-black">
