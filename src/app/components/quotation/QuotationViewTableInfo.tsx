@@ -4,6 +4,7 @@ import { callDelete } from '@/app/utils/callApi';
 import { formatDate } from '@/app/utils/date';
 import { formatPrice } from '@/app/utils/formatPrice';
 import { useRouter } from 'next/navigation';
+import Button from '../common/Button';
 import DeleteQuotationModal from './modal/edit/DeleteQuotationModal';
 import QuotationModal from './modal/view/QuotationModal';
 
@@ -38,37 +39,36 @@ const QuotationViewTableInfo = ({
           deleteQuote={() => deleteQuotation(quoteView.id)}
         />
       )}
-      <div className="w-full pl-1 justify-start items-center gap-x-[20px] inline-flex h-[48px] text-lg">
-        <div className="w-[108px] text-center">{index + 1}</div>
-        <div className="w-[200px] text-center">
+      <div className="w-full pl-1 justify-start items-center inline-flex h-[53px] text-base font-normal border-b border-b-[#E0E0E0]">
+        <div className="w-[10.4%] text-center">{index + 1}</div>
+        <div className="w-[21.4%] text-center">
           {formatDate(quoteView.created_at)}
         </div>
-        <div className="w-[250px] text-center">
-          {formatDate(quoteView.updated_at)}
-        </div>
-        <div className="w-[170px] text-center">
+        <div className="w-[21.4%] text-center">{quoteView.name}</div>
+        <div className="w-[21.4%] text-center">
           {formatPrice(quoteView.total_price)}원
         </div>
-        <div
-          className="w-[42px] text-center cursor-pointer font-bold"
-          onClick={openModal}
-        >
-          {QUOTATION_MANAGE[0]}
-        </div>
-        <div
-          className="w-[42px] text-center cursor-pointer font-bold text-primary-4"
-          onClick={() => router.push(`quotation/edit/${quoteView.id}`)}
-        >
-          {QUOTATION_MANAGE[1]}
-        </div>
-        <div
-          className="w-[42px] text-center cursor-pointer font-bold text-red-1"
-          onClick={openDeleteModal}
-        >
-          {QUOTATION_MANAGE[2]}
+        <div className="flex gap-x-[10%] px-[5%] flex-grow">
+          <Button
+            buttonText={QUOTATION_MANAGE[0]}
+            type={'quoteTableControl'}
+            onClickHandler={openModal}
+            className="border border-[#e0e0e0]"
+          />
+          <Button
+            buttonText={QUOTATION_MANAGE[1]}
+            type={'quoteTableControl'}
+            onClickHandler={() => router.push(`quotation/edit/${quoteView.id}`)}
+            className="border border-[#e0e0e0]"
+          />
+          <Button
+            buttonText={QUOTATION_MANAGE[2]}
+            type={'quoteTableControl'}
+            onClickHandler={openDeleteModal}
+            className="bg-[#fc4c00] text-white"
+          />
         </div>
       </div>
-      <div className="w-full h-[0px] border border-black" />
     </div>
   );
 };

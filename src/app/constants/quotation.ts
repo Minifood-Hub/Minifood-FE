@@ -19,7 +19,7 @@ export const QUOTATION_TRANS_VIEWTYPE: Record<string, CheckTypes> = {
   날짜: 'date',
 };
 
-export const VIEW_QUOTATION_GRAPH = ['번호', '생성일자', '수정일자', '총가격'];
+export const VIEW_QUOTATION_GRAPH = ['번호', '생성일자', '견적서명', '총가격'];
 
 export const QUOTATION_MANAGE = ['조회', '수정', '삭제'];
 

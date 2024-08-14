@@ -1,11 +1,11 @@
 'use client';
 
 import { VIEW_QUOTATION_GRAPH } from '@/app/constants/quotation';
+import { useUser } from '@/app/hooks/useUser';
 import { callGet } from '@/app/utils/callApi';
 import { useEffect, useState } from 'react';
 import Pagination from '../common/Pagination';
 import QuotationViewTableInfo from './QuotationViewTableInfo';
-import { useUser } from '@/app/hooks/useUser';
 
 interface QuotationViewTableProps {
   viewType: CheckTypes;
@@ -32,15 +32,14 @@ const QuotationViewTable = ({ viewType }: QuotationViewTableProps) => {
   }, [user, viewType]);
 
   return (
-    <div className="w-full h-[710px] flex flex-col items-center">
-      <div className="flex w-full items-center gap-x-20 text-xl font-bold h-10 mt-12 bg-[#F0F0F0] px-3">
-        <div className="w-[93px] text-center">{VIEW_QUOTATION_GRAPH[0]}</div>
-        <div className="w-[101px] text-center">{VIEW_QUOTATION_GRAPH[1]}</div>
-        <div className="w-[222px] text-center">{VIEW_QUOTATION_GRAPH[2]}</div>
-        <div className="w-[78px] text-center">{VIEW_QUOTATION_GRAPH[3]}</div>
+    <div className="w-[full] h-[665px] flex flex-col items-center">
+      <div className="flex w-full items-center text-white text-base font-bold h-9 mt-4 bg-[#55aa00]">
+        <div className="w-[10.4%] text-center">{VIEW_QUOTATION_GRAPH[0]}</div>
+        <div className="w-[21.4%] text-center">{VIEW_QUOTATION_GRAPH[1]}</div>
+        <div className="w-[21.4%] text-center">{VIEW_QUOTATION_GRAPH[2]}</div>
+        <div className="w-[21.4%] text-center">{VIEW_QUOTATION_GRAPH[3]}</div>
       </div>
-      <div className="w-full h-[0px] border-2 border-black" />
-      <div className="flex flex-col w-full gap-y-1 mt-1 h">
+      <div className="flex flex-col w-full">
         {quotation?.items.map((quoteView, index) => {
           return (
             <QuotationViewTableInfo

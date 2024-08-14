@@ -18,6 +18,8 @@ export const BUTTON_STYLE = {
     `w-[352px] h-[45px] bg-[#55aa00] rounded text-white text-lg font-medium  ${className}`,
   quoteClose: (className: string) =>
     `w-[352px] h-[45px] bg-white rounded text-black text-lg font-medium border border-[#B8B8B8] ${className}`,
+  quoteTableControl: (className: string) =>
+    `w-[56px] h-[29px] rounded text-sm font-medium ${className}`,
 } as const;
 
 export const INPUT_STYLE = {
