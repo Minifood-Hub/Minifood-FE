@@ -78,5 +78,6 @@ interface patchQuotationPartiProps extends quotationIdProps {
 interface QuotationModalProps {
   QuotationModalData: ProductItemProps[];
   closeModal: () => void;
-  quotationId?: string;
+  quotationId?: string | null;
+  currentDate?: string;
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Input from '../common/Input';
 import { ORDER_TEXT } from '@/app/constants/order';
 
@@ -11,6 +11,7 @@ export default function ProductItem({
   count,
   isAdded,
   unit,
+  isSearchResult,
   onAddItem,
   onRemoveItem,
   onCountChange,
@@ -43,14 +44,19 @@ export default function ProductItem({
   };
 
   const handleButtonClick = () => {
-    if (isAdded) {
-      onRemoveItem?.(id as string);
-    } else {
-      onAddItem?.({ category, id, name, count: inputState.count, unit });
+    try {
+      if (isAdded) {
+        onRemoveItem?.(id as string);
+      } else {
+        onAddItem?.({ category, id, name, count: inputState.count, unit });
+      }
+    } catch (error) {
+      console.error('아이템 추가 에러:', error);
     }
   };
 
   const handleDecrement = () => {
+    if (!isSearchResult) return;
     const currentCount = parseInt(inputState.count, 10);
     if (currentCount > 1) {
       updateCount((currentCount - 1).toString());
@@ -58,9 +64,11 @@ export default function ProductItem({
   };
 
   const handleIncrement = () => {
+    if (!isSearchResult) return;
     const currentCount = parseInt(inputState.count, 10);
     updateCount((currentCount + 1).toString());
   };
+
   return (
     <div className="flex items-center self-stretch text-gray-7 border-b-[1px] border-gray-1 py-2">
       <div className="flex-center w-[89px] py-2 px-[14px] self-stretch text-ellipsis whitespace-nowrap">
@@ -76,20 +84,26 @@ export default function ProductItem({
         {unit}
       </div>
       <div className="flex items-center justify-between w-[110px] py-2 px-5 self-stretch">
-        <button type="button" onClick={handleDecrement}>
-          -
-        </button>
-        <Input
-          className="min-w-fit w-full bg-white px-[14px] text-center"
-          placeholder="1"
-          textValue={inputState.count || '1'}
-          type="count"
-          inputType="text"
-          onChange={(e) => handleInputChange(e, 'count')}
-        />
-        <button type="button" onClick={handleIncrement}>
-          +
-        </button>
+        {isSearchResult ? (
+          <>
+            <button type="button" onClick={handleDecrement}>
+              -
+            </button>
+            <Input
+              className="min-w-fit w-full bg-white px-[14px] text-center"
+              placeholder="1"
+              textValue={inputState.count || '1'}
+              type="count"
+              inputType="text"
+              onChange={(e) => handleInputChange(e, 'count')}
+            />
+            <button type="button" onClick={handleIncrement}>
+              +
+            </button>
+          </>
+        ) : (
+          <span className="text-center w-full">{inputState.count}</span>
+        )}
       </div>
       <div className="w-[110px] items-center px-[14px] flex justify-center">
         <button

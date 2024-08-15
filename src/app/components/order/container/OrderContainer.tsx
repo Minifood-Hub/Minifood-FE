@@ -210,7 +210,7 @@ export default function OrderContainer() {
         quantity: item.count,
       };
 
-      await callPost('/api/order/quotations/products', body);
+      await callPost('/api/order/quotations/products', [body]);
 
       // 상품을 추가한 후 addedItems 상태 업데이트
       setAddedItems((prevItems) => [...prevItems, item]);
