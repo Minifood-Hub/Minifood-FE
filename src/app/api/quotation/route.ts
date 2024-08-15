@@ -8,8 +8,8 @@ export async function GET(req: Request): Promise<NextResponse> {
     const { searchParams } = new URL(req.url);
     const id = searchParams.get('id') || '';
     const date = searchParams.get('date') || '';
-
-    const data = await getQuotation(id, date, token);
+    const page = searchParams.get('page') || '';
+    const data = await getQuotation(id, date, page, token);
     return NextResponse.json(data);
   } catch (error) {
     return NextResponse.json('Internal Server Error');

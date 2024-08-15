@@ -21,19 +21,20 @@ const QuotationViewTable = ({ viewType }: QuotationViewTableProps) => {
   const handlePageChange = ({ selected }: { selected: number }) => {
     setPage(() => selected + 1);
   };
+  console.log(page, '와 가져온 데이터', quotation);
 
   useEffect(() => {
     const fetchData = async () => {
-      const url = `/api/quotation?id=${user?.result.client_id}&date=${viewType}`;
+      const url = `/api/quotation?id=${user?.result.client_id}&date=${viewType}&page=${page}`;
       const data = await callGet(url);
       setQuotation(data.result);
     };
     fetchData();
-  }, [user, viewType]);
+  }, [user, viewType, page]);
 
   return (
-    <div className="w-[full] h-[665px] flex flex-col items-center">
-      <div className="flex w-full items-center text-white text-base font-bold h-9 mt-4 bg-[#55aa00]">
+    <div className="w-[full] h-[665px] flex flex-col items-center bg-white mt-4 relative">
+      <div className="flex w-full items-center text-white text-base font-bold h-9 bg-[#55aa00]">
         <div className="w-[10.4%] text-center">{VIEW_QUOTATION_GRAPH[0]}</div>
         <div className="w-[21.4%] text-center">{VIEW_QUOTATION_GRAPH[1]}</div>
         <div className="w-[21.4%] text-center">{VIEW_QUOTATION_GRAPH[2]}</div>
@@ -50,7 +51,7 @@ const QuotationViewTable = ({ viewType }: QuotationViewTableProps) => {
           );
         })}
       </div>
-      <div className="absolute bottom-[180px]">
+      <div className="absolute bottom-8">
         <Pagination
           totalPages={quotation?.total_pages || 5}
           onPageChange={handlePageChange}
