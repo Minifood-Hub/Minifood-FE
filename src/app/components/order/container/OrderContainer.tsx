@@ -105,7 +105,6 @@ export default function OrderContainer() {
       if (currentDate && user?.result.client_id) {
         try {
           const id = await createQuotations();
-          console.log(id);
           if (id) {
             setQuotationId(id); // id 설정
 
@@ -141,13 +140,14 @@ export default function OrderContainer() {
         const productList = data.result.product_list.map(
           (product: QuotationItemType) => ({
             id: product.id,
-            category: categoryMapping[product.category],
+            category: product.category,
             name: product.name,
             unit: product.unit,
             price: product.price,
           }),
         );
-        setAddedItems(productList);
+        console.log(productList);
+        setSearchResults(productList);
         setOrderState((prev) => ({ ...prev, showBookmark: false }));
       }
     } catch (error) {
@@ -173,6 +173,7 @@ export default function OrderContainer() {
         `/api/order/search`,
         `name_prefix=${inputSearch}&limit=100`,
       );
+      console.log('검색결과', data.result);
       setSearchResults(data.result);
     } catch (error) {
       console.error(error);
@@ -320,7 +321,7 @@ export default function OrderContainer() {
 
           <Button
             onClickHandler={() => {
-              setOrderState((prev) => ({ ...prev, quotation: true }));
+              setOrderState((prev) => ({ ...prev, showQuot: true }));
             }}
             type="default"
             className="order-btn py-3 px-6 text-white bg-primary-3"
@@ -367,8 +368,10 @@ export default function OrderContainer() {
         <QuotationModal
           QuotationModalData={addedItems}
           closeModal={() => {
-            setOrderState((prev) => ({ ...prev, quotation: false }));
+            setOrderState((prev) => ({ ...prev, showQuot: false }));
           }}
+          quotationId={quotationId}
+          currentDate={currentDate}
         />
       )}
     </section>
