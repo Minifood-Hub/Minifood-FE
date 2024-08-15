@@ -301,19 +301,29 @@ export default function OrderContainer() {
         <div className="flex items-center gap-6">
           <Button
             onClickHandler={() => {
-              setOrderState((prev) => ({ ...prev, bookmark: true }));
+              if (addedItems.length > 0) {
+                setOrderState((prev) => ({ ...prev, bookmark: true }));
+              }
             }}
             type="default"
-            className="order-btn border-[1px] py-3 px-6 border-gray-1 bg-white"
+            className={`order-btn border-[1px] py-3 px-6  ${
+              addedItems.length === 0
+                ? 'bg-gray-2 text-white'
+                : 'bg-white border-gray-1'
+            }`}
             buttonText={ORDER_TEXT[7]}
           />
 
           <Button
             onClickHandler={() => {
-              setOrderState((prev) => ({ ...prev, showQuot: true }));
+              if (addedItems.length > 0) {
+                setOrderState((prev) => ({ ...prev, showQuot: true }));
+              }
             }}
             type="default"
-            className="order-btn py-3 px-6 text-white bg-primary-3"
+            className={`order-btn py-3 px-6 text-white ${
+              addedItems.length === 0 ? 'bg-gray-2' : 'bg-primary-3'
+            }`}
             buttonText={ORDER_TEXT[4]}
           />
         </div>
