@@ -47,17 +47,17 @@ export default function OrderContainer() {
         status: 'CREATED',
       };
       const response = await callPost('/api/order/quotations', body);
-      if (response.code === '4003') {
-        setDialogState(() => ({
-          open: true,
-          topText: DIALOG_TEXT[0],
-          BtnText: BUTTON_TEXT[0],
-          onBtnClick: () => {
-            setOrderState((prev) => ({ ...prev, open: false }));
-            router.push('/quotation');
-          },
-        }));
-      }
+      // if (response.code === '4003') {
+      //   setDialogState(() => ({
+      //     open: true,
+      //     topText: DIALOG_TEXT[0],
+      //     BtnText: BUTTON_TEXT[0],
+      //     onBtnClick: () => {
+      //       setOrderState((prev) => ({ ...prev, open: false }));
+      //       router.push('/quotation');
+      //     },
+      //   }));
+      // }
       if (response.isSuccess && response.result) {
         return response.result.id;
       }
@@ -251,7 +251,7 @@ export default function OrderContainer() {
                   className="order-btn bg-primary-3 font-medium text-white"
                   type="default"
                   onClickHandler={setRecentProducts}
-                  buttonText="최근 주문내역"
+                  buttonText={ORDER_TEXT[10]}
                 />
                 {orderState.showBookmark && (
                   <div className="absolute top-9 flex flex-col bg-white rounded-[4px]">
