@@ -127,6 +127,27 @@ export default function OrderContainer() {
     }
   };
 
+  // 최근 구매한 물품 리스트 조회
+  const setRecentProducts = async () => {
+    try {
+      const data = await callGet(`/api/order/search/recent`);
+      if (data.isSuccess) {
+        const productList = data.result.product_list.map(
+          (product: QuotationItemType) => ({
+            id: product.id,
+            category: product.category,
+            name: product.name,
+            unit: product.unit,
+            price: product.price,
+          }),
+        );
+        setSearchResults(productList);
+      }
+    } catch (error) {
+      console.error('클라이언트 에러', error);
+    }
+  };
+
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement>,
     type: keyof OrderState,
@@ -229,12 +250,7 @@ export default function OrderContainer() {
                 <Button
                   className="order-btn bg-primary-3 font-medium text-white"
                   type="default"
-                  onClickHandler={() => {
-                    setOrderState((prev) => ({
-                      ...prev,
-                      showBookmark: !prev.showBookmark,
-                    }));
-                  }}
+                  onClickHandler={setRecentProducts}
                   buttonText="최근 주문내역"
                 />
                 {orderState.showBookmark && (

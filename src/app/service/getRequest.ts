@@ -63,6 +63,12 @@ export const getSearchProducts = async ({
   return getRequest(url, token);
 };
 
+// 최근 구매한 물품 리스트 조회
+export const getPurchaseRecent = async (accessToken: string) => {
+  const url = `${SERVER_URL}/api/v1/products/search/purchases/recent?limit=100`;
+  return getRequest(url, accessToken);
+};
+
 // 견적서 정보 조회
 export const getQuotations = async (quotation_id: string) => {
   const url = `${SERVER_URL}/api/v1/quotations/${quotation_id}`;
