@@ -13,19 +13,20 @@ import ProductList from '../ProductList';
 import QuotationModal from '../quotation/OrderQuotationModal';
 import { useUser } from '@/app/hooks/useUser';
 import Button from '../../common/Button';
-import { formatDate } from '@/app/utils/date';
+import { useCurrentDate } from '@/app/hooks/useCurrentDate';
 
 export default function OrderContainer() {
   const router = useRouter();
   const { user } = useUser(); // 커스텀 훅에서 user 가져오기
   const { pastOrder, getPastOrder } = usePastOrder(); // 커스텀 훅에서 즐겨찾기 가져오기
+  const currentDate = useCurrentDate();
+
   const [orderState, setOrderState] = useState<OrderState>({
     bookmark: false,
     showBookmark: false,
     search: '',
     bookmarkName: '',
     showQuot: false,
-    currentDate: '',
   });
 
   const [searchResults, setSearchResults] = useState<ProductItemProps[]>([]); // 검색 결과
@@ -43,21 +44,21 @@ export default function OrderContainer() {
     try {
       const body = {
         client_id: user?.result.client_id,
-        created_at: orderState.currentDate,
+        created_at: currentDate,
         status: 'CREATED',
       };
       const response = await callPost('/api/order/quotations', body);
-      // if (response.code === '4003') {
-      //   setDialogState(() => ({
-      //     open: true,
-      //     topText: DIALOG_TEXT[0],
-      //     BtnText: BUTTON_TEXT[0],
-      //     onBtnClick: () => {
-      //       setOrderState((prev) => ({ ...prev, open: false }));
-      //       router.push('/quotation');
-      //     },
-      //   }));
-      // }
+      if (response.code === '4003') {
+        setDialogState(() => ({
+          open: true,
+          topText: DIALOG_TEXT[0],
+          BtnText: BUTTON_TEXT[0],
+          onBtnClick: () => {
+            setOrderState((prev) => ({ ...prev, open: false }));
+            router.push('/quotation');
+          },
+        }));
+      }
       if (response.isSuccess && response.result) {
         return response.result.id;
       }
@@ -66,13 +67,6 @@ export default function OrderContainer() {
     }
     return null;
   };
-
-  // 오늘 날짜 불러오기
-  useEffect(() => {
-    const now = new Date();
-    const formattedDate = formatDate(now.toISOString());
-    setOrderState((prev) => ({ ...prev, currentDate: formattedDate }));
-  }, []);
 
   useEffect(() => {
     // 4005 상태 시 거래처 생성으로 이동
@@ -91,7 +85,7 @@ export default function OrderContainer() {
 
   useEffect(() => {
     const completeQuotation = async () => {
-      if (orderState.currentDate && user?.result.client_id) {
+      if (currentDate && user?.result.client_id) {
         try {
           const id = await createQuotations();
           if (id) {
@@ -103,7 +97,7 @@ export default function OrderContainer() {
       }
     };
     completeQuotation();
-  }, [orderState.currentDate, user?.result.client_id]);
+  }, [currentDate, user?.result.client_id]);
 
   // 즐겨 찾기에서 불러온 상품을 추가한 상품에 저장
   const setPastOrderId = async (past_order_id: string) => {
@@ -368,7 +362,7 @@ export default function OrderContainer() {
             setOrderState((prev) => ({ ...prev, showQuot: false }));
           }}
           quotationId={quotationId}
-          currentDate={orderState.currentDate}
+          currentDate={currentDate}
         />
       )}
     </section>

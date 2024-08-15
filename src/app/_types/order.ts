@@ -4,7 +4,6 @@ interface OrderState {
   search: string;
   bookmarkName: string;
   showQuot: boolean;
-  currentDate: string;
 }
 
 interface UserResult {
