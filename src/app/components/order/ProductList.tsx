@@ -62,6 +62,7 @@ export default function ProductList({
             onAddItem={onAddItem}
             onRemoveItem={onRemoveItem}
             onCountChange={onCountChange}
+            isSearchResult={isSearchResult}
           />
         ))}
       </div>
