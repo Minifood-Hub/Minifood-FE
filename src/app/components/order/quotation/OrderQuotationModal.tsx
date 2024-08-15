@@ -7,7 +7,7 @@ import {
   MODAL_TEXT,
 } from '@/app/constants/order';
 import { cancelIcon } from '@/app/ui/iconPath';
-import { callGet, callPatch, callPost } from '@/app/utils/callApi';
+import { callGet, callPatch } from '@/app/utils/callApi';
 import { formatPrice } from '@/app/utils/formatPrice';
 import { saveImage } from '@/app/utils/saveImage';
 import { useRouter } from 'next/navigation';
@@ -103,9 +103,7 @@ export default function QuotationModal({
 
   const handleConfirmQuotation = async () => {
     try {
-      // 4. 견적서 특이사항 전송
       await patchParticulars();
-      // 5. 견적서 작성 확정
       await patchConfirm();
 
       setDialog((prev) => ({

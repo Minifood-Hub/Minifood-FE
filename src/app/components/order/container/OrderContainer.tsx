@@ -3,12 +3,7 @@
 import { useEffect, useState } from 'react';
 import Input from '../../common/Input';
 import { SearchIcon } from '@/app/ui/iconPath';
-import {
-  BUTTON_TEXT,
-  categoryMapping,
-  DIALOG_TEXT,
-  ORDER_TEXT,
-} from '../../../constants/order';
+import { BUTTON_TEXT, DIALOG_TEXT, ORDER_TEXT } from '../../../constants/order';
 import Icons from '../../common/Icons';
 import { Dialog } from '../../common/Dialog';
 import { callDelete, callGet, callPost } from '@/app/utils/callApi';
@@ -25,42 +20,42 @@ export default function OrderContainer() {
   const { user } = useUser(); // 커스텀 훅에서 user 가져오기
   const { pastOrder, getPastOrder } = usePastOrder(); // 커스텀 훅에서 즐겨찾기 가져오기
   const [orderState, setOrderState] = useState<OrderState>({
-    dialog: false,
+    bookmark: false,
     showBookmark: false,
-    clientAlert: false,
-    dupliAlert: false,
     search: '',
     bookmarkName: '',
     showQuot: false,
     currentDate: '',
   });
-  const {
-    dialog,
-    showBookmark,
-    clientAlert,
-    dupliAlert,
-    search,
-    bookmarkName,
-    showQuot,
-    currentDate,
-  } = orderState;
+
   const [searchResults, setSearchResults] = useState<ProductItemProps[]>([]); // 검색 결과
   const [addedItems, setAddedItems] = useState<ProductItemProps[]>([]); // 추가한 상품
   const [quotationId, setQuotationId] = useState<string | null>(null);
+  const [dialogState, setDialogState] = useState({
+    open: false,
+    topText: '',
+    BtnText: '',
+    onBtnClick: () => {},
+  });
 
   // 견적서 생성
   const createQuotations = async () => {
     try {
       const body = {
         client_id: user?.result.client_id,
-        created_at: currentDate,
+        created_at: orderState.currentDate,
         status: 'CREATED',
       };
       const response = await callPost('/api/order/quotations', body);
       if (response.code === '4003') {
-        setOrderState((prev) => ({
-          ...prev,
-          dupliAlert: true,
+        setDialogState(() => ({
+          open: true,
+          topText: DIALOG_TEXT[0],
+          BtnText: BUTTON_TEXT[0],
+          onBtnClick: () => {
+            setOrderState((prev) => ({ ...prev, open: false }));
+            router.push('/quotation');
+          },
         }));
       }
       if (response.isSuccess && response.result) {
@@ -79,36 +74,28 @@ export default function OrderContainer() {
     setOrderState((prev) => ({ ...prev, currentDate: formattedDate }));
   }, []);
 
-  // 견적서 정보 조회
-  const getQuotationInfo = async (id: string) => {
-    try {
-      const data = await callGet(`/api/order/quotations/${id}`);
-      if (data.isSuccess) {
-        const productList = data.result.product_list.map(
-          (product: QuotationItemType) => ({
-            id: product.id,
-            category: categoryMapping[product.category],
-            name: product.name,
-            unit: product.unit,
-            price: product.price,
-          }),
-        );
-        setAddedItems(productList);
-      }
-    } catch (error) {
-      console.error(error);
+  useEffect(() => {
+    // 4005 상태 시 거래처 생성으로 이동
+    if (user && !user.isSuccess && user.code === '4005') {
+      setDialogState(() => ({
+        open: true,
+        topText: DIALOG_TEXT[3],
+        BtnText: BUTTON_TEXT[0],
+        onBtnClick: () => {
+          setOrderState((prev) => ({ ...prev, open: false }));
+          router.push('/sign-in/client');
+        },
+      }));
     }
-  };
+  }, [user]);
 
   useEffect(() => {
     const completeQuotation = async () => {
-      if (currentDate && user?.result.client_id) {
+      if (orderState.currentDate && user?.result.client_id) {
         try {
           const id = await createQuotations();
           if (id) {
             setQuotationId(id); // id 설정
-
-            await getQuotationInfo(id); // id가 설정된 후 정보 조회
           }
         } catch (error) {
           console.error('견적서 생성 중 오류 발생 : ', error);
@@ -116,21 +103,7 @@ export default function OrderContainer() {
       }
     };
     completeQuotation();
-  }, [currentDate, user?.result.client_id]);
-
-  useEffect(() => {
-    if (quotationId) {
-      // quotationId가 설정된 후에만 호출
-      getQuotationInfo(quotationId);
-    }
-  }, [quotationId]); // quotationId가 바뀔 때마다 실행
-
-  useEffect(() => {
-    // 4005 상태 시 거래처 생성으로 이동
-    if (user && !user.isSuccess && user.code === '4005') {
-      setOrderState((prev) => ({ ...prev, clientAlert: true }));
-    }
-  }, [user]);
+  }, [orderState.currentDate, user?.result.client_id]);
 
   // 즐겨 찾기에서 불러온 상품을 추가한 상품에 저장
   const setPastOrderId = async (past_order_id: string) => {
@@ -146,7 +119,6 @@ export default function OrderContainer() {
             price: product.price,
           }),
         );
-        console.log(productList);
         setSearchResults(productList);
         setOrderState((prev) => ({ ...prev, showBookmark: false }));
       }
@@ -166,36 +138,39 @@ export default function OrderContainer() {
     }));
   };
 
+  // 검색
   const handleSearch = async () => {
     try {
-      const inputSearch = search ? encodeURIComponent(search) : '""';
+      const inputSearch = orderState.search
+        ? encodeURIComponent(orderState.search)
+        : '""';
       const data = await callGet(
         `/api/order/search`,
         `name_prefix=${inputSearch}&limit=100`,
       );
-      console.log('검색결과', data.result);
       setSearchResults(data.result);
     } catch (error) {
       console.error(error);
     }
   };
 
+  // 즐겨찾기 추가
   const handleAddBookMark = async () => {
-    if (!bookmarkName) {
+    if (!orderState.bookmarkName) {
       alert(DIALOG_TEXT[2]);
       return;
     }
     try {
       const body = {
         client_id: user?.result.client_id,
-        name: bookmarkName,
+        name: orderState.bookmarkName,
         product_ids: addedItems.map((item) => item.id),
       };
 
       await callPost('/api/order/post-past-order', body);
 
       await getPastOrder();
-      setOrderState((prev) => ({ ...prev, dialog: false, bookmarkName: '' }));
+      setOrderState((prev) => ({ ...prev, bookmark: false, bookmarkName: '' }));
     } catch (error) {
       console.error(error);
     }
@@ -209,9 +184,7 @@ export default function OrderContainer() {
         product_id: item.id,
         quantity: item.count,
       };
-
       await callPost('/api/order/quotations/products', [body]);
-
       // 상품을 추가한 후 addedItems 상태 업데이트
       setAddedItems((prevItems) => [...prevItems, item]);
     } catch (error) {
@@ -224,7 +197,6 @@ export default function OrderContainer() {
     await callDelete(
       `/api/order/quotations/${quotationId}/${product_id}/delete`,
     );
-
     // 상품 삭제 후 addedItems 상태 업데이트
     setAddedItems((prevItems) =>
       prevItems.filter((item) => item.id !== product_id),
@@ -265,7 +237,7 @@ export default function OrderContainer() {
                   }}
                   buttonText="최근 주문내역"
                 />
-                {showBookmark && (
+                {orderState.showBookmark && (
                   <div className="absolute top-9 flex flex-col bg-white rounded-[4px]">
                     {pastOrder.map((order) => (
                       <Button
@@ -281,9 +253,10 @@ export default function OrderContainer() {
                   </div>
                 )}
               </div>
+              {/* 검색창 */}
               <div className="flex items-center justify-between px-6 w-[513px] bg-white border-[1px] border-gray-1 rounded-[4px] focus-within:border-gray-7 focus-within:border-[1px]">
                 <Input
-                  textValue={search}
+                  textValue={orderState.search}
                   type="search"
                   onChange={(e) => handleInputChange(e, 'search')}
                   placeholder={ORDER_TEXT[1]}
@@ -312,7 +285,7 @@ export default function OrderContainer() {
         <div className="flex items-center gap-6">
           <Button
             onClickHandler={() => {
-              setOrderState((prev) => ({ ...prev, dialog: true }));
+              setOrderState((prev) => ({ ...prev, bookmark: true }));
             }}
             type="default"
             className="order-btn border-[1px] py-3 px-6 border-gray-1 bg-white"
@@ -329,17 +302,15 @@ export default function OrderContainer() {
           />
         </div>
       </div>
-      {clientAlert && (
+      {dialogState.open && (
         <Dialog
-          topText={DIALOG_TEXT[3]}
-          BtnText={BUTTON_TEXT[0]}
-          onBtnClick={() => {
-            setOrderState((prev) => ({ ...prev, clientAlert: false }));
-            router.push('/sign-in/client');
-          }}
+          topText={dialogState.topText}
+          BtnText={dialogState.BtnText}
+          onBtnClick={dialogState.onBtnClick}
         />
       )}
-      {dialog && (
+
+      {orderState.bookmark && (
         <Dialog
           isTwoButton
           topText={DIALOG_TEXT[4]}
@@ -348,13 +319,13 @@ export default function OrderContainer() {
           onSubBtnClick={() => {
             setOrderState((prev) => ({
               ...prev,
-              dialog: false,
+              bookmark: false,
               bookmarkName: '',
             })); // 다이얼로그를 닫을 때 입력값 초기화
           }}
           onBtnClick={handleAddBookMark}
           hasInput
-          value={bookmarkName}
+          value={orderState.bookmarkName}
           onChange={(e) =>
             setOrderState((prev) => ({
               ...prev,
@@ -364,14 +335,14 @@ export default function OrderContainer() {
         />
       )}
 
-      {showQuot && (
+      {orderState.showQuot && (
         <QuotationModal
           QuotationModalData={addedItems}
           closeModal={() => {
             setOrderState((prev) => ({ ...prev, showQuot: false }));
           }}
           quotationId={quotationId}
-          currentDate={currentDate}
+          currentDate={orderState.currentDate}
         />
       )}
     </section>

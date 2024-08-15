@@ -46,12 +46,10 @@ export const categoryMapping: { [key: string]: string } = {
 };
 
 export const initialOrderState: OrderState = {
-  dialog: false,
+  bookmark: false,
   showBookmark: false,
-  dupliAlert: false,
   search: '',
   bookmarkName: '',
   showQuot: false,
-  clientAlert: false,
   currentDate: '',
 };

@@ -1,8 +1,6 @@
 interface OrderState {
-  dialog: boolean;
+  bookmark: boolean;
   showBookmark: boolean;
-  clientAlert: boolean;
-  dupliAlert: boolean;
   search: string;
   bookmarkName: string;
   showQuot: boolean;

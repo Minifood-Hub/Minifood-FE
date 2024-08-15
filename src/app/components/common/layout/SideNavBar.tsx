@@ -24,7 +24,10 @@ export default function SideNavBar({ selected }: SideNavBarProps) {
       <div className="w-40 mt-[52px] flex ml-7 justify-center flex-col gap-y-7 text-[22px] text-[#737373] font-bold">
         {SIDENAV_PATH.map((path, i) => {
           return (
-            <div key={path} className="flex items-center gap-x-2 h-9">
+            <div
+              key={SIDENAV_TEXT[i]}
+              className="flex items-center gap-x-2 h-9"
+            >
               <Icons
                 name={
                   isSelected(SIDENAV_TEXT[i])
