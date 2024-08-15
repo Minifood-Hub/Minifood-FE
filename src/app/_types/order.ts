@@ -1,10 +1,12 @@
 interface OrderState {
   dialog: boolean;
   showBookmark: boolean;
-  alert: boolean;
+  clientAlert: boolean;
+  dupliAlert: boolean;
   search: string;
   bookmarkName: string;
-  quotation: boolean;
+  showQuot: boolean;
+  currentDate: string;
 }
 
 interface UserResult {
@@ -50,6 +52,7 @@ interface ProductItemProps extends QuotationItemType {
   isAdded?: boolean;
   isEdited?: boolean;
   unit: string;
+  isSearchResult?: boolean;
   onAddItem?: (item: ProductItemProps) => void;
   onRemoveItem?: (id: string | number) => void;
   onCountChange?: (id: string | number, value: string) => void;
