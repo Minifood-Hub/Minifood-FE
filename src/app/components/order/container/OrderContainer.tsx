@@ -314,10 +314,10 @@ export default function OrderContainer() {
               }
             }}
             type="default"
-            className={`order-btn border-[1px] py-3 px-6  ${
+            className={`order-btn py-3 px-6  ${
               addedItems.length === 0
                 ? 'bg-gray-2 text-white'
-                : 'bg-white border-gray-1'
+                : 'bg-white border-[1px] border-gray-1'
             }`}
             buttonText={ORDER_TEXT[7]}
           />

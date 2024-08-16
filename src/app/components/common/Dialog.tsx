@@ -43,8 +43,7 @@ export function Dialog({
         {hasInput && (
           <div className="flex flex-col items-start self-stretch">
             <Input
-              className="border-[1px] border-gray-2 rounded-[4px] p-3"
-              type="default"
+              type="dialog"
               textValue={value}
               onChange={onChange || (() => {})}
             />

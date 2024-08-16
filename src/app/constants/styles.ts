@@ -27,4 +27,7 @@ export const INPUT_STYLE = {
   headerSearch: (className: string) =>
     `w-80 h-4 font-normal outline-none	 ${className}`,
   default: (className: string) => `w-full h-full ${className}`,
+  // 다이얼로그 input
+  dialog: (className: string) =>
+    `border-[1px] border-gray-2 rounded-[4px] p-3 w-full ${className}`,
 } as const;
