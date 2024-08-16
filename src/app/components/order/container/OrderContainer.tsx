@@ -140,15 +140,13 @@ export default function OrderContainer() {
     try {
       const data = await callGet(`/api/order/search/recent`);
       if (data.isSuccess) {
-        const productList = data.result.product_list.map(
-          (product: QuotationItemType) => ({
-            id: product.id,
-            category: product.category,
-            name: product.name,
-            unit: product.unit,
-            price: product.price,
-          }),
-        );
+        const productList = data.result.map((product: QuotationItemType) => ({
+          id: product.id,
+          category: product.category,
+          name: product.name,
+          unit: product.unit,
+          price: product.price,
+        }));
         setSearchResults(productList);
       }
     } catch (error) {
