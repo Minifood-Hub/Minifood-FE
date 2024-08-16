@@ -17,7 +17,7 @@ import { useCurrentDate } from '@/app/hooks/useCurrentDate';
 
 export default function OrderContainer() {
   const router = useRouter();
-  const { user } = useUser(); // 커스텀 훅에서 user 가져오기
+  const { user, isLoading } = useUser(); // 커스텀 훅에서 user 가져오기
   const { pastOrder, getPastOrder } = usePastOrder(); // 커스텀 훅에서 즐겨찾기 가져오기
   const currentDate = useCurrentDate();
 
@@ -84,6 +84,20 @@ export default function OrderContainer() {
   }, [user]);
 
   useEffect(() => {
+    if (isLoading) return; // 로딩 중일 때는 아무 작업도 하지 않음
+    if (!user || !user.result) {
+      setDialogState(() => ({
+        open: true,
+        topText: DIALOG_TEXT[6],
+        BtnText: BUTTON_TEXT[0],
+        onBtnClick: () => {
+          setOrderState((prev) => ({ ...prev, open: false }));
+          router.push('/sign-in');
+        },
+      }));
+      return;
+    }
+
     const completeQuotation = async () => {
       if (currentDate && user?.result.client_id) {
         try {
@@ -97,7 +111,7 @@ export default function OrderContainer() {
       }
     };
     completeQuotation();
-  }, [currentDate, user?.result.client_id]);
+  }, [isLoading, currentDate, user?.result.client_id]);
 
   // 즐겨 찾기에서 불러온 상품을 추가한 상품에 저장
   const setPastOrderId = async (past_order_id: string) => {

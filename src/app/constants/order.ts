@@ -37,6 +37,7 @@ export const DIALOG_TEXT = [
   '거래처가 생성되지 않았습니다.',
   '즐겨찾기 이름을 적어주세요',
   '현재 추가한 상품으로 즐겨찾기가 만들어집니다',
+  '세션이 만료되었습니다. 다시 로그인해주세요.',
 ];
 
 export const BUTTON_TEXT = ['이동', '추가', '주문 확정', '닫기'];
@@ -48,7 +49,7 @@ export const categoryMapping: { [key: string]: string } = {
   vegetable: '야채',
 };
 
-export const initialOrderState: OrderState = {
+export const initialOrderState = {
   bookmark: false,
   showBookmark: false,
   search: '',
