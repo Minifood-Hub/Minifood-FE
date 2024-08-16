@@ -1,4 +1,4 @@
-export const ADMIN_TEXT = ['거래처', ' 상품', '견적서'];
+export const ADMIN_TEXT = ['거래처', ' 상품', '견적서', '공지사항'];
 
 export const OPTION_TEXT = [
   '거래처 명으로 조회',
@@ -21,6 +21,14 @@ export const OPTION_TEXT = [
   '견적서 정보 조회',
   '견적서 excel 파일로 추출',
   '오늘 날짜의 모든 견적서 excel 파일로 추출',
+];
+
+export const NOTICE_OPTION_TEXT = [
+  '공지사항 생성',
+  '모든 공지사항 조회',
+  '공지사항 조회',
+  '공지사항 수정',
+  '공지사항 삭제',
 ];
 
 export const INPUT_TEXT = [

@@ -1,5 +1,6 @@
 import AdminHeader from '@/app/components/admin/AdminHeader';
 import ClientContainer from '@/app/components/admin/container/ClientContainer';
+import NoticesContainer from '@/app/components/admin/container/NoticesContainer';
 import ProductsContainer from '@/app/components/admin/container/ProductsContainer';
 import QuotationContainer from '@/app/components/admin/container/QuotationContainer';
 
@@ -14,6 +15,8 @@ export default function AdminPage({ searchParams }: AdminPageProps) {
         return <ProductsContainer />;
       case 'quotation':
         return <QuotationContainer />;
+      case 'notices':
+        return <NoticesContainer />;
       default:
         return null;
     }
