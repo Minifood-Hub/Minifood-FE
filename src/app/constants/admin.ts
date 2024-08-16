@@ -42,14 +42,14 @@ export const INPUT_TEXT = [
   '특이사항 입력',
   '거래처 명',
   '물품 번호',
-  '',
-  '',
+  '제목',
+  '내용',
   '',
   '',
   '견적서 id',
 ];
 
-export const BTN_TEXT = ['실행', '삭제'];
+export const BTN_TEXT = ['실행', '삭제', '생성'];
 
 export const TABLE_TEXT = [
   '번호',
@@ -71,6 +71,7 @@ export const ALERT_TEXT = [
   '거래처가 삭제되었습니다.',
   '지역을 선택해주세요.',
   '파일을 선택해주세요.',
+  '정상적으로 제출되었습니다.',
 ];
 
 export const REGION_TEXT = [
