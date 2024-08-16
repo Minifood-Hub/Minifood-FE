@@ -3,6 +3,7 @@
 import { NOTICE_OPTION_TEXT, OPTION_TEXT } from '@/app/constants/admin';
 import { useState } from 'react';
 import NoticePost from '../notices/NoticePost';
+import NoticeGet from '../notices/NoticeGet';
 
 export default function NoticesContainer() {
   const [selectedOption, setSelectedOption] = useState('noticePost');
@@ -16,6 +17,8 @@ export default function NoticesContainer() {
     switch (selectedOption) {
       case 'noticePost':
         return <NoticePost />;
+      case 'noticeGet':
+        return <NoticeGet />;
       default:
         return null;
     }

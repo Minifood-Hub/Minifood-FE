@@ -17,6 +17,14 @@ interface ClientsNameProps {
   address: string;
 }
 
+interface NoticeProps {
+  title: string;
+  content: string;
+  id: number;
+  created_at: string;
+  updated_at: string | null;
+}
+
 interface ProductProps {
   id: number;
   category: string;
