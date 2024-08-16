@@ -36,11 +36,7 @@ export default function ProductsUpdate() {
       return;
     }
     try {
-      const response = await callPut(
-        `/api/admin/products/${productId}/update`,
-        inputState,
-      );
-      console.log('Response:', response);
+      await callPut(`/api/admin/products/${productId}/update`, inputState);
     } catch (error) {
       console.error(error);
     }

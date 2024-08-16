@@ -5,6 +5,7 @@ import { useState } from 'react';
 import NoticePost from '../notices/NoticePost';
 import NoticeGet from '../notices/NoticeGet';
 import NoticeGetId from '../notices/NoticeGetId';
+import NoticePut from '../notices/NoticePut';
 
 export default function NoticesContainer() {
   const [selectedOption, setSelectedOption] = useState('noticePost');
@@ -22,6 +23,8 @@ export default function NoticesContainer() {
         return <NoticeGet />;
       case 'noticeGetId':
         return <NoticeGetId />;
+      case 'noticePut':
+        return <NoticePut />;
       default:
         return null;
     }

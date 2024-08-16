@@ -49,7 +49,7 @@ export const INPUT_TEXT = [
   '견적서 id',
 ];
 
-export const BTN_TEXT = ['실행', '삭제', '생성'];
+export const BTN_TEXT = ['실행', '삭제', '생성', '수정'];
 
 export const TABLE_TEXT = [
   '번호',

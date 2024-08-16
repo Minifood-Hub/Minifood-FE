@@ -194,12 +194,12 @@ export const getAdminQuotationsExtractsToday = async (input_date: string) => {
 
 // 모든 공지사항 조회
 export const getAdminNotices = async () => {
-  const url = `${SERVER_URL}/api/v1/notices`;
+  const url = `${SERVER_URL}/api/v1/notices?_t=${Date.now()}`;
   return getRequest(url);
 };
 
 // 공지사항 조회
 export const getAdminNoticesId = async (notice_id: string) => {
-  const url = `${SERVER_URL}/api/v1/notices/${notice_id}`;
+  const url = `${SERVER_URL}/api/v1/notices/${notice_id}?_t=${Date.now()}`;
   return getRequest(url);
 };
