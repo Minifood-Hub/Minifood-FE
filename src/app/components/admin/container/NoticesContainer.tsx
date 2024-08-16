@@ -6,6 +6,7 @@ import NoticePost from '../notices/NoticePost';
 import NoticeGet from '../notices/NoticeGet';
 import NoticeGetId from '../notices/NoticeGetId';
 import NoticePut from '../notices/NoticePut';
+import NoticeDelete from '../notices/NoticeDelete';
 
 export default function NoticesContainer() {
   const [selectedOption, setSelectedOption] = useState('noticePost');
@@ -25,6 +26,8 @@ export default function NoticesContainer() {
         return <NoticeGetId />;
       case 'noticePut':
         return <NoticePut />;
+      case 'noticeDelete':
+        return <NoticeDelete />;
       default:
         return null;
     }
