@@ -71,3 +71,17 @@ export const putUpdateProducts = async (
     throw new Error('putUpdateProducts 에러 발생');
   }
 };
+
+// 공지사항 수정
+export const putAdminNotices = async (
+  notice_id: string,
+  noticeContents: any,
+) => {
+  try {
+    const url = `${SERVER_URL}/api/v1/notices/${notice_id}`;
+    return await putRequest(url, noticeContents);
+  } catch (error) {
+    console.error(error);
+    throw new Error('putAdminNotices 에러 발생');
+  }
+};

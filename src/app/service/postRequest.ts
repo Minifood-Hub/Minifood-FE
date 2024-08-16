@@ -150,3 +150,14 @@ export const postAdminProducts = async (productsContents: any) => {
     throw new Error('postAdminProducts 에러 발생');
   }
 };
+
+// 공지사항 생성
+export const postAdminNotices = async (noticeContents: any) => {
+  try {
+    const url = `${SERVER_URL}/api/v1/notices`;
+    return await postRequest(url, noticeContents);
+  } catch (error) {
+    console.error('에러 : ', error);
+    throw new Error('postAdminNotices 에러 발생');
+  }
+};

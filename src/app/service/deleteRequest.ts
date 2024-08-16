@@ -55,3 +55,9 @@ export const deleteAdminProducts = async (product_id: string) => {
   const url = `${SERVER_URL}/api/v1/products/${product_id}/delete`;
   return deleteRequest(url);
 };
+
+// 공지사항 삭제
+export const deleteAdminNotices = async (notice_id: string) => {
+  const url = `${SERVER_URL}/api/v1/notices/${notice_id}`;
+  return deleteRequest(url);
+};
