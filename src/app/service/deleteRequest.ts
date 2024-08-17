@@ -35,7 +35,6 @@ export const deletePastOrder = async (pastorder_id: string) => {
   return deleteRequest(url);
 };
 
-
 // ===== 관리자 =====
 // 거래처 삭제
 export const deleteAdminClient = async (client_id: string) => {
