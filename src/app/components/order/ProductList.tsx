@@ -15,25 +15,48 @@ export default function ProductList({
   onCountChange,
 }: ProductListProps) {
   return (
-    <div className="bg-primary-4 mt-4 w-full">
+    <div className="flex w-full flex-col h-[350px] items-start self-stretch border-[1px] border-gray-1 bg-white">
       {isSearchResult ? (
-        <div className="flex text-white font-black py-1 pl-4 pr-6 whitespace-nowrap">
-          <div className="w-[7%] text-center pl-4">{PRODUCT_TEXT[0]}</div>
-          <div className="w-[7%] text-center">{PRODUCT_TEXT[1]}</div>
-          <div className="w-[60%] pl-4">{PRODUCT_TEXT[2]}</div>
-          <div className="w-[10%] text-center">{PRODUCT_TEXT[3]}</div>
-          <div className="w-[8%] text-center pr-2">{PRODUCT_TEXT[4]}</div>
-          <div className="w-[8%] text-right pr-8">{PRODUCT_TEXT[5]}</div>
+        <div className="flex items-center self-stretch whitespace-nowrap bg-primary-3 text-white font-bold">
+          <div className="flex-center w-[89px] py-2 px-3">
+            {PRODUCT_TEXT[0]}
+          </div>
+          <div className="flex items-center w-[119px] py-2 px-3">
+            {PRODUCT_TEXT[1]}
+          </div>
+          <div className="flex items-center justify-start w-[416px] py-2 px-3">
+            {PRODUCT_TEXT[2]}
+          </div>
+          <div className="flex-center w-[110px] py-2 px-3">
+            {PRODUCT_TEXT[3]}
+          </div>
+          <div className="flex-center w-[110px] py-2 px-3">
+            {PRODUCT_TEXT[4]}
+          </div>
+          <div className="flex-center w-[121px] py-2 px-3 mr-3 ">
+            {PRODUCT_TEXT[5]}
+          </div>
         </div>
       ) : (
-        <div className="flex text-white font-black px-4 py-1">
+        <div className="flex px-6 py-2 items-center self-stretch bg-primary-3 text-white font-bold">
           {ORDER_TEXT[3]}
         </div>
       )}
 
-      <div
-        className={`bg-white px-3 ${isSearchResult ? 'h-80' : 'h-48'} flex-col border-2 whitespace-nowrap overflow-scroll`}
-      >
+      <div className="flex flex-col h-full self-stretch whitespace-nowrap overflow-scroll overflow-x-hidden">
+        {(isSearchResult && items.length === 0) ||
+        (!isSearchResult && items.length === 0) ? (
+          <div className="flex-center h-full text-center font-medium">
+            {isSearchResult ? (
+              <div>
+                <p>{ORDER_TEXT[8]}</p>
+                <p>{ORDER_TEXT[2]}</p>
+              </div>
+            ) : (
+              <p>{ORDER_TEXT[9]}</p>
+            )}
+          </div>
+        ) : null}
         {items.map((item) => (
           <ProductItem
             key={item.id}
@@ -52,6 +75,7 @@ export default function ProductList({
             onAddItem={onAddItem}
             onRemoveItem={onRemoveItem}
             onCountChange={onCountChange}
+            isSearchResult={isSearchResult}
           />
         ))}
       </div>

@@ -2,7 +2,7 @@ import { callGet } from '@/app/utils/callApi';
 import { useState } from 'react';
 import Input from '../../common/Input';
 import Button from '../../common/Button';
-import { formatNumber } from '../../../utils/formatPrice';
+
 import {
   clientStatusMapping,
   BTN_TEXT,
@@ -10,6 +10,7 @@ import {
   TABLE_TEXT,
   ALERT_TEXT,
 } from '@/app/constants/admin';
+import { formatPrice } from '@/app/utils/formatPrice';
 
 export default function InquiryQuotation({ clientId }: ClientIdProps) {
   const [page, setPage] = useState('1');
@@ -60,7 +61,7 @@ export default function InquiryQuotation({ clientId }: ClientIdProps) {
                 {clientStatusMapping[item.status]}
               </td>
               <td className="admin-table-th">
-                {formatNumber(item.total_price)} 원
+                {formatPrice(item.total_price)} 원
               </td>
             </tr>
           ))}

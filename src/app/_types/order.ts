@@ -1,10 +1,9 @@
 interface OrderState {
-  dialog: boolean;
+  bookmark: boolean;
   showBookmark: boolean;
-  alert: boolean;
   search: string;
   bookmarkName: string;
-  quotation: boolean;
+  showQuot: boolean;
 }
 
 interface UserResult {
@@ -25,7 +24,6 @@ interface User {
 interface searchProductsProps {
   namePrefix: string;
   limit: string;
-  cachedTime: string;
   token: string;
 }
 
@@ -51,6 +49,7 @@ interface ProductItemProps extends QuotationItemType {
   isAdded?: boolean;
   isEdited?: boolean;
   unit: string;
+  isSearchResult?: boolean;
   onAddItem?: (item: ProductItemProps) => void;
   onRemoveItem?: (id: string | number) => void;
   onCountChange?: (id: string | number, value: string) => void;
@@ -76,5 +75,6 @@ interface patchQuotationPartiProps extends quotationIdProps {
 interface QuotationModalProps {
   QuotationModalData: ProductItemProps[];
   closeModal: () => void;
-  quotationId?: string;
+  quotationId?: string | null;
+  currentDate?: string;
 }

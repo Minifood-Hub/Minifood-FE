@@ -2,7 +2,7 @@ export const BUTTON_STYLE = {
   reorder: (className: string) =>
     `w-[111px] h-[39px] bg-[#55aa00] rounded text-white text-base font-normal ${className}`,
   dialog: (className: string) =>
-    `flex-center p-2 gap-2 rounded-lg w-full whitespace-nowrap text-sm font-extrabold ${className}`,
+    `flex-center px-4 py-2 gap-2 rounded-[4px] whitespace-nowrap text-lg font-medium ${className}`,
   default: (className: string) => `w-full h-full ${className}`,
   modalLogin: (className: string) =>
     `w-[110px] h-[45px] bg-[#55aa00] rounded text-white text-sm font-bold font-medium cursor-pointer ${className}`,
@@ -21,10 +21,13 @@ export const INPUT_STYLE = {
   signin: (className: string) =>
     `w-full p-3 items-center rounded-xl border-2 bg-white text-gray-7 font-bold placeholder:text-gray-2 placeholder:font-normal ${className}`,
   search: (className: string) =>
-    ` px-2 py-1 font-black placeholder:font-black focus:outline-none ${className}`,
+    `w-full h-9 rounded-[4px] text-sm placeholder:text-sm focus:outline-none ${className}`,
   // 견적서 개수 입력
-  count: (className: string) => `w-14 text-right bg-gray-0 ${className}`,
+  count: (className: string) => ` ${className}`,
   headerSearch: (className: string) =>
     `w-80 h-4 font-normal outline-none	 ${className}`,
   default: (className: string) => `w-full h-full ${className}`,
+  // 다이얼로그 input
+  dialog: (className: string) =>
+    `border-[1px] border-gray-2 rounded-[4px] p-3 w-full ${className}`,
 } as const;

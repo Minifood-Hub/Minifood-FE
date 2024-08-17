@@ -22,7 +22,7 @@ export const patchQuotationConfirm = async ({
   quotation_id,
 }: quotationIdProps) => {
   try {
-    const url = `${SERVER_URL}/api/v1/quotations/${quotation_id}/confirmation`;
+    const url = `${SERVER_URL}/api/v1/quotations/${quotation_id}/quotation/check`;
     return await patchRequest(url);
   } catch (error) {
     console.error('에러 : ', error);
@@ -36,7 +36,7 @@ export const patchQuotationParticulars = async ({
   particulars,
 }: patchQuotationPartiProps) => {
   try {
-    const url = `${SERVER_URL}/api/v1/quotations/${quotation_id}/particulars?particulars=${particulars}`;
+    const url = `${SERVER_URL}/api/v1/quotations/${quotation_id}/particulars/update?particulars=${particulars}`;
     return await patchRequest(url);
   } catch (error) {
     console.error('에러 : ', error);

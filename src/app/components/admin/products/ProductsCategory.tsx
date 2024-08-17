@@ -10,7 +10,7 @@ import {
 import { callGet } from '@/app/utils/callApi';
 import { useState } from 'react';
 import Button from '../../common/Button';
-import { formatNumber } from '../../../utils/formatPrice';
+import { formatPrice } from '../../../utils/formatPrice';
 import { categoryMapping } from '@/app/constants/order';
 
 export default function ProdcutsCategory() {
@@ -57,7 +57,7 @@ export default function ProdcutsCategory() {
               </td>
               <td className="admin-table-th">{item.name}</td>
               <td className="admin-table-th">{item.unit}</td>
-              <td className="admin-table-th">{formatNumber(item.price)}</td>
+              <td className="admin-table-th">{formatPrice(item.price)}</td>
             </tr>
           ))}
         </tbody>
