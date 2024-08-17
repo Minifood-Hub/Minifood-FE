@@ -7,7 +7,7 @@ import {
   MODAL_TEXT,
 } from '@/app/constants/order';
 import { cancelIcon } from '@/app/ui/iconPath';
-import { callGet, callPatch, callPost } from '@/app/utils/callApi';
+import { callGet, callPatch } from '@/app/utils/callApi';
 import { formatPrice } from '@/app/utils/formatPrice';
 import { saveImage } from '@/app/utils/saveImage';
 import { useRouter } from 'next/navigation';
@@ -19,77 +19,35 @@ import Input from '../../common/Input';
 import LoadingIndicator from '../../common/Loading';
 import QuotationSave from '../../quotation/modal/QuotationSave';
 import QuotationTable from './OrderQuotationTable';
-import { formatDate } from '@/app/utils/date';
 import { useUser } from '@/app/hooks/useUser';
 
 export default function QuotationModal({
   QuotationModalData,
   closeModal,
+  quotationId,
+  currentDate,
 }: QuotationModalProps) {
   const { user } = useUser();
   const router = useRouter();
 
-  const [quotationId, setQuotationId] = useState<number | null>(null);
   const [state, setState] = useState({
-    currentDate: '',
     total: 0,
     partiValue: '',
     loading: false,
   });
-  const { currentDate, total, partiValue, loading } = state;
+  const { total, partiValue, loading } = state;
   const [dialog, setDialog] = useState({
     open: false,
     topText: '',
     onClick: () => {},
   });
 
-  // 견적서 생성
-  const createQuotations = async () => {
-    try {
-      const body = {
-        client_id: user?.result.client_id,
-        created_at: currentDate,
-        status: 'CREATED',
-      };
-      const response = await callPost('/api/order/quotations', body);
-      if (response.code === '4003') {
-        setDialog({
-          open: true,
-          topText: DIALOG_TEXT[0],
-          onClick: () => {
-            setDialog({ open: false, topText: '', onClick: () => {} });
-            router.push('/quotation');
-          },
-        });
-      }
-      if (response.isSuccess && response.result) {
-        return response.result.id;
-      }
-    } catch (error) {
-      console.error(error);
-    }
-    return null;
-  };
-
-  // 견적서 물품 생성
-  const createProducts = async (id: number) => {
-    try {
-      const body = QuotationModalData.map((item) => ({
-        quotation_id: id,
-        product_id: item.id,
-        quantity: item.count,
-      }));
-
-      await callPost('/api/order/quotations/products', body);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   // 견적서 합계 금액 업데이트
-  const updateTotal = async (quotation_id: number) => {
+  const updateTotal = async (quotation_id: string) => {
     try {
       const data = await callGet(`/api/order/quotations/${quotation_id}/total`);
+      console.log(quotation_id);
+      console.log(data);
       if (data.isSuccess) {
         setState((prev) => ({ ...prev, total: data.result }));
       }
@@ -98,32 +56,13 @@ export default function QuotationModal({
     }
   };
 
-  // 오늘 날짜 불러오기
-  useEffect(() => {
-    const now = new Date();
-    const formattedDate = formatDate(now.toISOString());
-    setState((prev) => ({ ...prev, currentDate: formattedDate }));
-  }, []);
-
   // 견적서 완성
   useEffect(() => {
     const completeQuotation = async () => {
-      if (currentDate && user?.result.client_id) {
+      if (quotationId) {
         setState((prev) => ({ ...prev, loading: true }));
         try {
-          // 1. 견적서 생성
-          const id = await createQuotations();
-          if (!id) {
-            console.error('견적서 생성 실패');
-            return;
-          }
-          setQuotationId(id);
-
-          // 2. 견적서 물품 생성
-          await createProducts(id);
-
-          // 3. 견적서 합계 금액 업데이트
-          await updateTotal(id);
+          await updateTotal(quotationId);
         } catch (error) {
           console.error('견적서 생성 중 오류 발생 : ', error);
         } finally {
@@ -131,10 +70,8 @@ export default function QuotationModal({
         }
       }
     };
-
-    // 견적서 완성
     completeQuotation();
-  }, [currentDate, user?.result.client_id]);
+  }, []);
 
   // 견적서 특이사항 작성 onChange
   const handlePartiChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -166,9 +103,7 @@ export default function QuotationModal({
 
   const handleConfirmQuotation = async () => {
     try {
-      // 4. 견적서 특이사항 전송
       await patchParticulars();
-      // 5. 견적서 작성 확정
       await patchConfirm();
 
       setDialog((prev) => ({

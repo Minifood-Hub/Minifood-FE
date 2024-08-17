@@ -17,14 +17,17 @@ export default function SideNavBar({ selected }: SideNavBarProps) {
     return selectedMenu === selected;
   };
   return (
-    <div className="bg-white w-64 flex flex-col items-center rounded-[20px] pt-9">
+    <div className="bg-white w-64 h-full flex flex-col items-center rounded-[20px] pt-9 shadow-xl">
       <Link href="/">
         <Image src="/Images/JMF2.png" alt="로고" width={100} height={75} />
       </Link>
       <div className="w-40 mt-[52px] flex ml-7 justify-center flex-col gap-y-7 text-[22px] text-[#737373] font-bold">
         {SIDENAV_PATH.map((path, i) => {
           return (
-            <div key={path} className="flex items-center gap-x-2 h-9">
+            <div
+              key={SIDENAV_TEXT[i]}
+              className="flex items-center gap-x-2 h-9"
+            >
               <Icons
                 name={
                   isSelected(SIDENAV_TEXT[i])

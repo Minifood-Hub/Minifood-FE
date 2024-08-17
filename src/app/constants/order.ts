@@ -1,15 +1,18 @@
 export const ORDER_TEXT = [
   '즐겨찾기',
   '검색어를 입력해주세요',
-  "상품 검색 후 개수를 입력한 뒤에 '담기'를 눌러주세요.",
+  "상품을 검색하고 개수를 입력한 뒤에 '담기' 버튼을 눌러주세요.",
   '추가한 상품',
-  '주문',
+  '주문하기',
   '삭제',
   '담기',
   '즐겨찾기 추가',
+  '검색된 상품이 없습니다.',
+  '추가된 상품이 아직 없습니다.',
+  '최근 주문내역',
 ];
 
-export const PRODUCT_TEXT = ['분류', '품번', '품명', '개수', '단위', '담기'];
+export const PRODUCT_TEXT = ['분류', '품번', '품명', '단위', '개수', '담기'];
 
 export const MODAL_TEXT = [
   '주문목록',
@@ -41,6 +44,7 @@ export const DIALOG_TEXT = [
   '거래처가 생성되지 않았습니다.',
   '즐겨찾기 이름을 적어주세요',
   '현재 추가한 상품으로 즐겨찾기가 만들어집니다',
+  '세션이 만료되었습니다. 다시 로그인해주세요.',
 ];
 
 export const BUTTON_TEXT = ['이동', '추가', '주문 확정', '닫기'];
@@ -52,11 +56,11 @@ export const categoryMapping: { [key: string]: string } = {
   vegetable: '야채',
 };
 
-export const initialOrderState: OrderState = {
-  dialog: false,
+export const initialOrderState = {
+  bookmark: false,
   showBookmark: false,
-  alert: false,
   search: '',
   bookmarkName: '',
-  quotation: false,
+  showQuot: false,
+  currentDate: '',
 };

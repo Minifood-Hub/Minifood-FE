@@ -30,35 +30,36 @@ export function Dialog({
 }: DialogProps) {
   return (
     <div className="fixed inset-0 flex-center z-50 bg-black bg-opacity-30">
-      <div className="flex w-auto min-w-[30vw] max-w-[80vw] py-6 px-4 flex-col items-start gap-8 rounded-2xl bg-white shadow-xl">
+      <div className="flex w-[500px] p-8 flex-col items-start gap-8 rounded-[4px] border-[1px] border-gray-2 bg-white shadow-xl">
         {/* 텍스트 */}
-        <div className="flex items-center py-0 px-4 flex-col gap-2 self-stretch ">
-          <span className="w-full text-center text-xl font-semibold break-words whitespace-pre-wrap">
+        <div className="flex items-center flex-col gap-2 self-stretch ">
+          <span className="text-center text-lg font-medium break-words whitespace-pre-wrap">
             {topText}
           </span>
-          <p>{subText}</p>
+          <p className="text-sm">{subText}</p>
         </div>
 
         {/* 인풋 */}
         {hasInput && (
-          <div className="relative w-full">
+          <div className="flex flex-col items-start self-stretch">
             <Input
-              className="border-2 border-gray-1 px-2 py-4"
-              type="default"
+              type="dialog"
               textValue={value}
               onChange={onChange || (() => {})}
             />
-            <p className="text-xs text-end">{value?.length} / 10</p>
+            <p className="flex pt-1 pr-2 items-center justify-end self-stretch text-xs">
+              {value?.length} / 10
+            </p>
           </div>
         )}
 
         {/* 버튼 */}
-        <div className="flex px-8 items-center gap-4 self-stretch">
+        <div className="flex items-center gap-6 self-stretch">
           {/* 버튼 2개일 때 나오는 왼쪽 버튼 */}
           {isTwoButton && (
             <Button
               onClickHandler={onSubBtnClick || (() => {})}
-              className="bg-gray-1 text-gray-7"
+              className="bg-white text-gray-7 border-[1px] border-gray-1 w-full"
               buttonText="취소"
               type="dialog"
               isDisabled={false}
@@ -70,7 +71,7 @@ export function Dialog({
             onClickHandler={onBtnClick}
             buttonText={BtnText}
             type="dialog"
-            className="bg-primary-3 text-white"
+            className="bg-primary-3 text-white w-full"
             isDisabled={false}
           />
         </div>

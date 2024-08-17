@@ -57,11 +57,22 @@ export const getUsers = async (token: string) => {
 export const getSearchProducts = async ({
   namePrefix,
   limit,
-  cachedTime,
   token,
 }: searchProductsProps) => {
-  const url = `${SERVER_URL}/api/v1/products/search/recent?name_prefix=${namePrefix}&limit=${limit}&cached_time=${cachedTime}`;
+  const url = `${SERVER_URL}/api/v1/products/search/recent?name_prefix=${namePrefix}&limit=${limit}`;
   return getRequest(url, token);
+};
+
+// 최근 구매한 물품 리스트 조회
+export const getPurchaseRecent = async (accessToken: string) => {
+  const url = `${SERVER_URL}/api/v1/products/search/purchases/recent?limit=100`;
+  return getRequest(url, accessToken);
+};
+
+// 견적서 정보 조회
+export const getQuotations = async (quotation_id: string) => {
+  const url = `${SERVER_URL}/api/v1/quotations/${quotation_id}`;
+  return getRequest(url);
 };
 
 // 즐겨찾기 상세 불러오기
