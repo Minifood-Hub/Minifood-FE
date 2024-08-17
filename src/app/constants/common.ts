@@ -1,10 +1,8 @@
 import {
   OrderIcon,
-  PastOrderIcon,
   ProductsIcon,
   QuotationIcon,
   SelectedOrderIcon,
-  SelectedPastOrderIcon,
   SelectedProductsIcon,
   SelectedQuotationIcon,
   SelectedStarIcon,
@@ -36,28 +34,15 @@ export const FOOTER_TEXT = [
 
 export const CONTRIBUTORS = ['YPYP', 'KimGorok', 'Minkyu'];
 
-export const SIDENAV_TEXT = [
-  '즐겨찾기',
-  '주문생성',
-  '견적서',
-  '주문내역',
-  '상품조회',
-];
+export const SIDENAV_TEXT = ['주문생성', '즐겨찾기', '견적서', '상품조회'];
 
-export const SIDENAV_ICONS = [
-  StarIcon,
-  OrderIcon,
-  QuotationIcon,
-  PastOrderIcon,
-  ProductsIcon,
-];
+export const SIDENAV_ICONS = [OrderIcon, StarIcon, QuotationIcon, ProductsIcon];
 
 export const SELECTED_SIDENAV_ICONS = [
-  SelectedStarIcon,
   SelectedOrderIcon,
+  SelectedStarIcon,
   SelectedQuotationIcon,
-  SelectedPastOrderIcon,
   SelectedProductsIcon,
 ];
 
-export const SIDENAV_PATH = ['/', '/order', '/quotation', '/past-order', '/'];
+export const SIDENAV_PATH = ['/order', '/past-order', '/quotation', '/'];

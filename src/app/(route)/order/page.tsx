@@ -9,7 +9,7 @@ export default function Order() {
     <section>
       <div className="bg-white w-full h-full flex relative">
         {/* 네비게이션 바 */}
-        <SideNavBar selected={SIDENAV_TEXT[1]} />
+        <SideNavBar selected={SIDENAV_TEXT[0]} />
 
         {/* 탑바 */}
         <TopBar />
