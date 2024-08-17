@@ -25,7 +25,6 @@ const QuotationViewTable = ({
   const handlePageChange = ({ selected }: { selected: number }) => {
     setPage(() => selected + 1);
   };
-  console.log(customDate, '커스텀 데이투');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,7 +32,6 @@ const QuotationViewTable = ({
         ? `/api/quotation?id=${user?.result.client_id}&date=${viewType}&page=${page}&start=${customDate.startDate}&end=${customDate.endDate}`
         : `/api/quotation?id=${user?.result.client_id}&date=${viewType}&page=${page}`;
       const data = await callGet(url);
-      console.log(url, '로 요청');
 
       setQuotation(data.result);
     };

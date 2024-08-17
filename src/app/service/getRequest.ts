@@ -96,8 +96,6 @@ export const getQuotation = async (
       : `${SERVER_URL}/api/v1/clients/${client_id}/quotations/date?date_range_type=${date}&page=${page}&page_size=10${
           start && end ? `&start_date=${start}&end_date=${end}` : ''
         }`;
-  console.log(url, '요청 url');
-
   return getRequest(url, accessToken);
 };
 
