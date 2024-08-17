@@ -29,15 +29,12 @@ function Header() {
           <Link href="/">{HEADER_TEXT[0]}</Link>
         </div>
         <HeaderSearchBar />
-        {isClient||isCOMMON ? (
+        {isClient || isCOMMON ? (
           <div className="flex gap-x-[54px]">
             <Link href="/">
               <Icons name={HeaderHeartIcon} hoverFill="#306317" />
             </Link>
-            <ProfileDropDown
-              user={user}
-              logout={handleLogout}
-            />
+            <ProfileDropDown user={user} logout={handleLogout} />
             <Link href="/">
               <Icons name={HeaderCartIcon} hoverFill="#306317" />
             </Link>

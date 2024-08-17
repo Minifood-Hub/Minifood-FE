@@ -41,7 +41,7 @@ interface QuotationTableInfoTypes {
   total_pages: number;
 }
 
-interface CustomDateTypes{
-  startDate: string
-  endDate: string
+interface CustomDateTypes {
+  startDate: string;
+  endDate: string;
 }

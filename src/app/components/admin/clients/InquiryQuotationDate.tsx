@@ -9,7 +9,7 @@ import {
   TABLE_TEXT,
   ALERT_TEXT,
 } from '@/app/constants/admin';
-import { formatNumber } from '@/app/utils/formatPrice';
+import { formatPrice } from '@/app/utils/formatPrice';
 import { formatDate } from '@/app/utils/date';
 
 export default function InquiryQuotationDate({ clientId }: ClientIdProps) {
@@ -62,7 +62,7 @@ export default function InquiryQuotationDate({ clientId }: ClientIdProps) {
                 {clientStatusMapping[item.status]}
               </td>
               <td className="admin-table-th">
-                {formatNumber(item.total_price)} 원
+                {formatPrice(item.total_price)} 원
               </td>
             </tr>
           ))}
