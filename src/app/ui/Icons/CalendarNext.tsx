@@ -16,7 +16,7 @@ const CalendarNext = () => {
           rx="4"
           transform="rotate(-180 24 24)"
           fill="white"
-          fill-opacity="0.2"
+          fillOpacity="0.2"
         />
         <path d="M10 7L15 12L10 17V7Z" fill="white" />
       </svg>
