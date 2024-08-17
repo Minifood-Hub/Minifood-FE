@@ -64,3 +64,13 @@ export const initialOrderState = {
   showQuot: false,
   currentDate: '',
 };
+
+export const initialEditOrderState = {
+  bookmark: false,
+  showBookmark: false,
+  search: '',
+  bookmarkName: '',
+  quotation: false,
+  dialog: false,
+  currentDate: '',
+};

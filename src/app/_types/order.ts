@@ -80,3 +80,12 @@ interface QuotationModalProps {
   quotationId?: string | null;
   currentDate?: string;
 }
+
+interface EditOrderState {
+  bookmark: boolean;
+  showBookmark: boolean;
+  search: string;
+  bookmarkName: string;
+  dialog: boolean;
+  quotation: boolean;
+}

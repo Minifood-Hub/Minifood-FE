@@ -1,15 +1,15 @@
 'use client';
 
 import { usePastOrder } from '@/app/hooks/usePastOrder';
+import { useUser } from '@/app/hooks/useUser';
 import { SearchIcon } from '@/app/ui/iconPath';
 import { callDelete, callGet, callPost } from '@/app/utils/callApi';
-import { useUser } from '@/app/hooks/useUser';
 import { useEffect, useState } from 'react';
 import {
   BUTTON_TEXT,
   categoryMapping,
   DIALOG_TEXT,
-  initialOrderState,
+  initialEditOrderState,
   ORDER_TEXT,
 } from '../../../constants/order';
 import { Dialog } from '../../common/Dialog';
@@ -26,7 +26,7 @@ export default function EditQuoteContainer({ id }: EditQuoteContainerProps) {
   const { user } = useUser();
   const { pastOrder, getPastOrder } = usePastOrder();
 
-  const [state, setState] = useState<OrderState>(initialOrderState);
+  const [state, setState] = useState<EditOrderState>(initialEditOrderState);
   const [searchResults, setSearchResults] = useState<ProductItemProps[]>([]);
   const [addedItems, setAddedItems] = useState<ProductItemProps[]>([]);
   console.log(addedItems);
@@ -87,8 +87,6 @@ export default function EditQuoteContainer({ id }: EditQuoteContainerProps) {
   const handleRemoveItem = async (itemId: string | number) => {
     const itemToRemove = addedItems.find((item) => item.id === itemId);
     if (itemToRemove?.isEdited) {
-      console.log('삭제 진행');
-
       await callDelete(
         `/api/quotation/delete/product?quotation_id=${id}&product_id=${itemId}`,
       );
