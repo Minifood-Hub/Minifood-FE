@@ -17,7 +17,7 @@ export default function SideNavBar({ selected }: SideNavBarProps) {
     return selectedMenu === selected;
   };
   return (
-    <div className="bg-white w-64 h-full flex flex-col items-center rounded-[20px] pt-9 shadow-xl">
+    <div className="bg-white w-64 flex flex-col items-center rounded-[20px] pt-9 shadow-xl">
       <Link href="/">
         <Image src="/Images/JMF2.png" alt="로고" width={100} height={75} />
       </Link>
