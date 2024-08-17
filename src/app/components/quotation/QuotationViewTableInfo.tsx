@@ -51,19 +51,19 @@ const QuotationViewTableInfo = ({
         <div className="flex gap-x-[10%] px-[5%] flex-grow">
           <Button
             buttonText={QUOTATION_MANAGE[0]}
-            type={'quoteTableControl'}
+            type="quoteTableControl"
             onClickHandler={openModal}
             className="border border-[#e0e0e0]"
           />
           <Button
             buttonText={QUOTATION_MANAGE[1]}
-            type={'quoteTableControl'}
+            type="quoteTableControl"
             onClickHandler={() => router.push(`quotation/edit/${quoteView.id}`)}
             className="border border-[#e0e0e0]"
           />
           <Button
             buttonText={QUOTATION_MANAGE[2]}
-            type={'quoteTableControl'}
+            type="quoteTableControl"
             onClickHandler={openDeleteModal}
             className="bg-[#fc4c00] text-white"
           />

@@ -25,10 +25,9 @@ const QuotationContainer = () => {
   };
 
   useEffect(() => {
-    const checkDate = async () => {
-      date[1] && closeModal();
-    };
-    checkDate();
+    if (date[1]) {
+      closeModal();
+    }
   }, [date]);
 
   const customDate: CustomDateTypes = {

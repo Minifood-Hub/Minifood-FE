@@ -24,7 +24,7 @@ const QuotationCalendar = ({
       <div className="flex relative">
         <Calendar
           onChange={setDate}
-          selectRange={true}
+          selectRange
           value={date}
           prevLabel={<CalendarPrev />}
           prev2Label={null}

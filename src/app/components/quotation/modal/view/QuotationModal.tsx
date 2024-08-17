@@ -51,12 +51,12 @@ const QuotationModal = ({ closeModal, id }: QuotationModalProps) => {
         <div className="w-full flex gap-x-4 mt-[60px]">
           <Button
             buttonText="닫기"
-            type={'quoteClose'}
+            type="quoteClose"
             onClickHandler={closeModal}
           />
           <Button
             buttonText="주문확정"
-            type={'quoteOrder'}
+            type="quoteOrder"
             onClickHandler={closeModal}
           />
         </div>
