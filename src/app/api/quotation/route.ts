@@ -9,7 +9,9 @@ export async function GET(req: Request): Promise<NextResponse> {
     const id = searchParams.get('id') || '';
     const date = searchParams.get('date') || '';
     const page = searchParams.get('page') || '';
-    const data = await getQuotation(id, date, page, token);
+    const start = searchParams.get('start') || '';
+    const end = searchParams.get('end') || '';
+    const data = await getQuotation(id, date, page, start, end, token);
     return NextResponse.json(data);
   } catch (error) {
     return NextResponse.json('Internal Server Error');

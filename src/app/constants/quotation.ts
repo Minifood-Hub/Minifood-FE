@@ -16,7 +16,7 @@ export const QUOTATION_TRANS_VIEWTYPE: Record<string, CheckTypes> = {
   전체: 'all',
   주간: 'week',
   월간: 'month',
-  날짜: 'date',
+  날짜: 'custom',
 };
 
 export const VIEW_QUOTATION_GRAPH = ['번호', '생성일자', '견적서명', '총가격'];

@@ -9,9 +9,13 @@ import QuotationViewTableInfo from './QuotationViewTableInfo';
 
 interface QuotationViewTableProps {
   viewType: CheckTypes;
+  customDate?: CustomDateTypes;
 }
 
-const QuotationViewTable = ({ viewType }: QuotationViewTableProps) => {
+const QuotationViewTable = ({
+  viewType,
+  customDate,
+}: QuotationViewTableProps) => {
   const { user } = useUser();
   const [page, setPage] = useState(1);
   const [quotation, setQuotation] = useState<QuotationTableInfoTypes | null>(
@@ -21,16 +25,20 @@ const QuotationViewTable = ({ viewType }: QuotationViewTableProps) => {
   const handlePageChange = ({ selected }: { selected: number }) => {
     setPage(() => selected + 1);
   };
-  console.log(page, '와 가져온 데이터', quotation);
+  console.log(customDate, '커스텀 데이투');
 
   useEffect(() => {
     const fetchData = async () => {
-      const url = `/api/quotation?id=${user?.result.client_id}&date=${viewType}&page=${page}`;
+      const url = customDate
+        ? `/api/quotation?id=${user?.result.client_id}&date=${viewType}&page=${page}&start=${customDate.startDate}&end=${customDate.endDate}`
+        : `/api/quotation?id=${user?.result.client_id}&date=${viewType}&page=${page}`;
       const data = await callGet(url);
+      console.log(url, '로 요청');
+
       setQuotation(data.result);
     };
     fetchData();
-  }, [user, viewType, page]);
+  }, [user, viewType, page, customDate]);
 
   return (
     <div className="w-[full] h-[665px] flex flex-col items-center bg-white mt-4 relative">
@@ -41,15 +49,21 @@ const QuotationViewTable = ({ viewType }: QuotationViewTableProps) => {
         <div className="w-[21.4%] text-center">{VIEW_QUOTATION_GRAPH[3]}</div>
       </div>
       <div className="flex flex-col w-full">
-        {quotation?.items.map((quoteView, index) => {
-          return (
-            <QuotationViewTableInfo
-              quoteView={quoteView}
-              index={index}
-              key={quoteView.id}
-            />
-          );
-        })}
+        {viewType === 'custom' && quotation === null ? (
+          <div className="w-full h-full flex-center mt-[300px] text-3xl font-semibold">
+            날짜를 선택해주세요 📆
+          </div>
+        ) : (
+          quotation?.items.map((quoteView, index) => {
+            return (
+              <QuotationViewTableInfo
+                quoteView={quoteView}
+                index={index}
+                key={quoteView.id}
+              />
+            );
+          })
+        )}
       </div>
       <div className="absolute bottom-8">
         <Pagination

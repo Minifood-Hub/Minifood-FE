@@ -22,7 +22,7 @@ interface QuotationViewInfoTypes {
   updated_at: string;
 }
 
-type CheckTypes = 'all' | 'week' | 'month' | 'date';
+type CheckTypes = 'all' | 'week' | 'month' | 'custom';
 
 interface ItemsTypes {
   id: number;
@@ -39,4 +39,9 @@ interface QuotationTableInfoTypes {
   page: number;
   page_size: number;
   total_pages: number;
+}
+
+interface CustomDateTypes{
+  startDate: string
+  endDate: string
 }

@@ -86,12 +86,16 @@ export const getQuotation = async (
   client_id: string,
   date: string,
   page: string,
+  start: string,
+  end: string,
   accessToken: string,
 ) => {
   const url =
     date === 'all'
       ? `${SERVER_URL}/api/v1/clients/${client_id}/quotations?page=${page}&page_size=10`
-      : `${SERVER_URL}/api/v1/clients/${client_id}/quotations/date?date_range_type=${date}&page=${page}&page_size=10`;
+      : `${SERVER_URL}/api/v1/clients/${client_id}/quotations/date?date_range_type=${date}&page=${page}&page_size=10${
+          start && end ? `&start_date=${start}&end_date=${end}` : ''
+        }`;
   console.log(url, '요청 url');
 
   return getRequest(url, accessToken);
