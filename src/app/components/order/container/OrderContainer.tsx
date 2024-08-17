@@ -1,19 +1,19 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import Input from '../../common/Input';
+import { useCurrentDate } from '@/app/hooks/useCurrentDate';
+import { usePastOrder } from '@/app/hooks/usePastOrder';
+import { useUser } from '@/app/hooks/useUser';
 import { SearchIcon } from '@/app/ui/iconPath';
-import { BUTTON_TEXT, DIALOG_TEXT, ORDER_TEXT } from '../../../constants/order';
-import Icons from '../../common/Icons';
-import { Dialog } from '../../common/Dialog';
 import { callDelete, callGet, callPost } from '@/app/utils/callApi';
 import { useRouter } from 'next/navigation';
-import { usePastOrder } from '@/app/hooks/usePastOrder';
+import { useEffect, useState } from 'react';
+import { BUTTON_TEXT, DIALOG_TEXT, ORDER_TEXT } from '../../../constants/order';
+import Button from '../../common/Button';
+import { Dialog } from '../../common/Dialog';
+import Icons from '../../common/Icons';
+import Input from '../../common/Input';
 import ProductList from '../ProductList';
 import QuotationModal from '../quotation/OrderQuotationModal';
-import { useUser } from '@/app/hooks/useUser';
-import Button from '../../common/Button';
-import { useCurrentDate } from '@/app/hooks/useCurrentDate';
 
 export default function OrderContainer() {
   const router = useRouter();
@@ -222,7 +222,7 @@ export default function OrderContainer() {
   // 상품 삭제
   const handleRemoveItem = async (product_id: string | number) => {
     await callDelete(
-      `/api/order/quotations/${quotationId}/${product_id}/delete`,
+      `/api/quotation/delete/product?quotation_id=${quotationId}&product_id=${product_id}`,
     );
     // 상품 삭제 후 addedItems 상태 업데이트
     setAddedItems((prevItems) =>
