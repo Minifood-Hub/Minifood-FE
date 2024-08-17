@@ -1,16 +1,15 @@
-import { callGet } from '@/app/utils/callApi';
-import { useState } from 'react';
-import Input from '../../common/Input';
-import Button from '../../common/Button';
-
 import {
-  clientStatusMapping,
+  ALERT_TEXT,
   BTN_TEXT,
+  clientStatusMapping,
   INPUT_TEXT,
   TABLE_TEXT,
-  ALERT_TEXT,
 } from '@/app/constants/admin';
-import { formatPrice } from '@/app/utils/formatPrice';
+import { callGet } from '@/app/utils/callApi';
+import { useState } from 'react';
+import { formatPrice } from '../../../utils/formatPrice';
+import Button from '../../common/Button';
+import Input from '../../common/Input';
 
 export default function InquiryQuotation({ clientId }: ClientIdProps) {
   const [page, setPage] = useState('1');

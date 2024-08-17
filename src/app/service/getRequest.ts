@@ -96,12 +96,17 @@ export const getClientPastOrder = async (client_id: string) => {
 export const getQuotation = async (
   client_id: string,
   date: string,
+  page: string,
+  start: string,
+  end: string,
   accessToken: string,
 ) => {
   const url =
     date === 'all'
-      ? `${SERVER_URL}/api/v1/clients/${client_id}/quotations`
-      : `${SERVER_URL}/api/v1/clients/${client_id}/quotations/date?date_range_type=${date}`;
+      ? `${SERVER_URL}/api/v1/clients/${client_id}/quotations?page=${page}&page_size=10`
+      : `${SERVER_URL}/api/v1/clients/${client_id}/quotations/date?date_range_type=${date}&page=${page}&page_size=10${
+          start && end ? `&start_date=${start}&end_date=${end}` : ''
+        }`;
   return getRequest(url, accessToken);
 };
 

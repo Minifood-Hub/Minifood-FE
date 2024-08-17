@@ -18,7 +18,7 @@ function CardSwiper() {
   const { isOpen, openModal, closeModal, handleModalClick } = useModal(false);
 
   const orderItem = () => {
-    if (!user?.isSuccess) {
+    if (!user?.category) {
       openModal();
     }
   };

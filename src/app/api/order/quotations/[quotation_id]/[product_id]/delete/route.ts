@@ -1,4 +1,4 @@
-import { deleteQuotationProduct } from '@/app/service/deleteRequest';
+import { deleteQuoteProduct } from '@/app/service/deleteRequest';
 import { NextResponse } from 'next/server';
 
 export async function DELETE(
@@ -8,7 +8,7 @@ export async function DELETE(
   try {
     const { quotation_id, product_id } = params;
 
-    const data = await deleteQuotationProduct(quotation_id, product_id);
+    const data = await deleteQuoteProduct(quotation_id, product_id);
     return NextResponse.json(data);
   } catch (error) {
     return NextResponse.json('Internal Server Error');

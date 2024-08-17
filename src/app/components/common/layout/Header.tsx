@@ -5,6 +5,7 @@ import { useUser } from '@/app/hooks/useUser';
 import { HeaderCartIcon, HeaderHeartIcon } from '@/app/ui/iconPath';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import HeaderSearchBar from '../HeaderSearchBar';
 import Icons from '../Icons';
 import ProfileDropDown from '../ProfileDropDown';
@@ -17,6 +18,9 @@ function Header() {
     window.location.reload();
   };
 
+  const isClient = user?.category === 'CLIENT';
+  const isCOMMON = user?.category === 'COMMON';
+
   return (
     <div className="relative w-full pt-6 bg-white">
       <header className="relative w-full h-16 flex items-center px-[15%] justify-between">
@@ -25,12 +29,12 @@ function Header() {
           <Link href="/">{HEADER_TEXT[0]}</Link>
         </div>
         <HeaderSearchBar />
-        {user?.isSuccess ? (
+        {isClient || isCOMMON ? (
           <div className="flex gap-x-[54px]">
             <Link href="/">
               <Icons name={HeaderHeartIcon} hoverFill="#306317" />
             </Link>
-            <ProfileDropDown user={user.result.email} logout={handleLogout} />
+            <ProfileDropDown user={user} logout={handleLogout} />
             <Link href="/">
               <Icons name={HeaderCartIcon} hoverFill="#306317" />
             </Link>
