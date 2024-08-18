@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css');
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  font-family:
+    'Pretendard Variable',
+    Pretendard,
+    -apple-system,
+    BlinkMacSystemFont,
+    system-ui,
+    Roboto,
+    'Helvetica Neue',
+    'Segoe UI',
+    'Apple SD Gothic Neo',
+    'Noto Sans KR',
+    'Malgun Gothic',
+    'Apple Color Emoji',
+    'Segoe UI Emoji',
+    'Segoe UI Symbol',
+    sans-serif;
+}
+
+/* 스크롤바 숨기기 */
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
+}
+
+.swiper {
+  width: 100%;
+}
+
+.swiper-wrapper {
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+
+.swiper .swiper-pagination-bullet {
+  background-color: rgb(26, 163, 8);
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer components {
+  .flex-center {
+    @apply flex justify-center items-center;
+  }
+
+  /* Order */
+  .order-btn {
+    @apply flex-center max-h-9 py-2 px-4 gap-[10px] self-stretch rounded-[4px] whitespace-nowrap;
+  }
+
+  /* 관리자 */
+  .admin-table {
+    @apply border-collapse border border-gray-3 w-full;
+  }
+  .admin-table-th {
+    @apply border border-gray-3 px-4 py-2;
+  }
+  .admin-input {
+    @apply bg-gray-0 w-fit border border-gray-7 px-4;
+  }
+  .admin-btn {
+    @apply border-2 border-gray-2 px-8 max-w-fit whitespace-nowrap;
+  }
+
+  .quotation-table-btn {
+    @apply flex-center rounded cursor-pointer w-[60px] h-9;
+  }
+}

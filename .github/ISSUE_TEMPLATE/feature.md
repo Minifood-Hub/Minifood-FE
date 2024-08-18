@@ -1,7 +1,7 @@
 ---
 name: featrue
 about: Suggest an idea for this project
-title: '#[issue number] [issue name]'
+title: '#[이슈번호] [해당 페이지 or 파트] [기능]'
 labels: ''
 assignees: ''
 ---
