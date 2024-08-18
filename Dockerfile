@@ -51,7 +51,6 @@ RUN adduser --system --uid 1001 nextjs
 # 빌드에 필요한 최소한의 파일만 ./next/standalone로 출력이 된다.
 # standalone 결과물에는 public 폴더와 static 폴더 내용은 포함되지 않으므로, 따로 복사를 해준다.
 COPY --from=builder /usr/src/app/public ./public
-COPY --from=builder --chown=nextjs:nodejs /usr/src/app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /usr/src/app/.next/static ./.next/static
 
 # 컨테이너의 수신 대기 포트를 60005으로 설정
