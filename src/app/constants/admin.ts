@@ -23,14 +23,6 @@ export const OPTION_TEXT = [
   '오늘 날짜의 모든 견적서 excel 파일로 추출',
 ];
 
-export const NOTICE_OPTION_TEXT = [
-  '공지사항 생성',
-  '모든 공지사항 조회',
-  '공지사항 조회',
-  '공지사항 수정',
-  '공지사항 삭제',
-];
-
 export const INPUT_TEXT = [
   '거래처 id',
   '거래처 아이디 입력',
@@ -49,7 +41,16 @@ export const INPUT_TEXT = [
   '견적서 id',
 ];
 
-export const BTN_TEXT = ['실행', '삭제', '생성', '수정'];
+export const BTN_TEXT = [
+  '실행',
+  '삭제',
+  '생성',
+  '수정',
+  '검색',
+  '취소',
+  '저장',
+  '작성',
+];
 
 export const TABLE_TEXT = [
   '번호',
@@ -72,6 +73,7 @@ export const ALERT_TEXT = [
   '지역을 선택해주세요.',
   '파일을 선택해주세요.',
   '정상적으로 제출되었습니다.',
+  '공지사항이 삭제되었습니다.',
 ];
 
 export const REGION_TEXT = [

@@ -153,3 +153,10 @@ export const WhiteCloseIcon = {
   height: 14,
   fill: 'white',
 };
+
+export const ArrowDownIcon = {
+  path: 'm19.5 8.25-7.5 7.5-7.5-7.5',
+  width: 24,
+  height: 24,
+  fill: '#6E6E6E',
+};
