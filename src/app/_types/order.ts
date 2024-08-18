@@ -11,6 +11,8 @@ interface UserResult {
   email: string;
   id: number;
   is_active: boolean;
+  client_name: string;
+  client_region: string;
 }
 
 interface User {
@@ -77,4 +79,13 @@ interface QuotationModalProps {
   closeModal: () => void;
   quotationId?: string | null;
   currentDate?: string;
+}
+
+interface EditOrderState {
+  bookmark: boolean;
+  showBookmark: boolean;
+  search: string;
+  bookmarkName: string;
+  dialog: boolean;
+  quotation: boolean;
 }

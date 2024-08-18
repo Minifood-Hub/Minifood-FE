@@ -13,11 +13,17 @@ import { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 
 interface OrderCalendarProps {
-  isGuest: boolean;
+  clientType: string;
 }
 
-const OrderCalendar = ({ isGuest }: OrderCalendarProps) => {
+const OrderCalendar = ({ clientType }: OrderCalendarProps) => {
   const [today, setToday] = useState<Date | null>(null);
+  const path =
+    clientType === 'COMMON'
+      ? '/order'
+      : clientType === 'CLIENT'
+        ? '/sign-in/client'
+        : '/sign-in';
 
   useEffect(() => {
     setToday(new Date());
@@ -27,9 +33,6 @@ const OrderCalendar = ({ isGuest }: OrderCalendarProps) => {
     setToday(today);
   };
 
-  if (!today) {
-    return null;
-  }
   return (
     <div className="w-full flex flex-col items-center">
       <div className="text-[28px] font-medium mb-3">
@@ -41,9 +44,9 @@ const OrderCalendar = ({ isGuest }: OrderCalendarProps) => {
             onChange={onChangeToday}
             value={today}
             prevLabel={<CalendarPrev />}
-            prev2Label={<CalendarPrev />}
+            prev2Label={null}
             nextLabel={<CalendarNext />}
-            next2Label={<CalendarNext />}
+            next2Label={null}
             locale="ko-KR"
           />
           <div className="flex flex-col gap-y-8">
@@ -63,10 +66,10 @@ const OrderCalendar = ({ isGuest }: OrderCalendarProps) => {
         </div>
       </div>
       <Link
-        href={isGuest ? '/sign-in' : '/order'}
+        href={path}
         className="w-[426px] h-[46px] flex-center text-white font-medium text-lg bg-[#55AA00] rounded-[4px]"
       >
-        {isGuest ? MAIN_CALENDAR_TEXT[1] : MAIN_CALENDAR_TEXT[2]}
+        {clientType === 'GUEST' ? MAIN_CALENDAR_TEXT[1] : MAIN_CALENDAR_TEXT[2]}
       </Link>
     </div>
   );

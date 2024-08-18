@@ -4,10 +4,10 @@ import Link from 'next/link';
 
 function Footer() {
   return (
-    <div className="w-full flex justify-center text-[#306317]">
+    <div className="w-full h-[auto] text-[#306317]">
       <footer className="flex w-full h-[160px] justify-center min-w-[800px] p-[52px] gap-x-7">
         <div className="flex flex-col">
-          <div className="flex w-[auto] h-[auto] pb-2 border-b-2 border-white text-base font-light ">
+          <div className="flex w-[auto] h-[auto] pb-2 text-base font-light ">
             <div className="border-r-2 pr-2">{FOOTER_TEXT[0]}</div>
             <div className="border-r-2 px-2">{FOOTER_TEXT[1]}</div>
             <div className="border-r-2 px-2">{FOOTER_TEXT[2]}</div>

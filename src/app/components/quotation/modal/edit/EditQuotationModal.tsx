@@ -14,13 +14,13 @@ import { saveImage } from '@/app/utils/saveImage';
 import { useUser } from '@/app/hooks/useUser';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import Button from '../../common/Button';
-import { Dialog } from '../../common/Dialog';
-import Icons from '../../common/Icons';
-import Input from '../../common/Input';
-import LoadingIndicator from '../../common/Loading';
-import QuotationTable from '../../order/quotation/OrderQuotationTable';
-import QuotationSave from './QuotationSave';
+import Button from '../../../common/Button';
+import { Dialog } from '../../../common/Dialog';
+import Icons from '../../../common/Icons';
+import Input from '../../../common/Input';
+import LoadingIndicator from '../../../common/Loading';
+import QuotationTable from '../../../order/quotation/OrderQuotationTable';
+import QuotationSave from '../QuotationSave';
 
 export default function EditQuotationModal({
   QuotationModalData,
