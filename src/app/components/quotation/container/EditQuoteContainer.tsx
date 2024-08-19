@@ -34,8 +34,6 @@ export default function EditQuoteContainer({ id }: EditQuoteContainerProps) {
   useEffect(() => {
     const fetchData = async () => {
       const data = await callGet(`/api/quotation/detail?id=${id}`);
-      console.log(data.result);
-      console.log(id);
       setAddedItems(
         data.result.products.map((product: any, index: number) => ({
           category: categoryMapping[product.category],
