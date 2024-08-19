@@ -24,6 +24,7 @@ export default function EditQuoteContainer({ id }: EditQuoteContainerProps) {
   );
   const [searchResults, setSearchResults] = useState<ProductItemProps[]>([]);
   const [addedItems, setAddedItems] = useState<ProductItemProps[]>([]);
+  const [quotationName, setQuotationName] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,6 +39,7 @@ export default function EditQuoteContainer({ id }: EditQuoteContainerProps) {
           isEdited: true,
         })),
       );
+      setQuotationName(data.result.name);
     };
     fetchData();
   }, [id]);
@@ -136,6 +138,7 @@ export default function EditQuoteContainer({ id }: EditQuoteContainerProps) {
             setEditState((prev) => ({ ...prev, quotation: false }));
           }}
           quotationId={id}
+          quotationName={quotationName}
         />
       )}
     </section>
