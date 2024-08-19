@@ -6,18 +6,13 @@ import {
   MODAL_INFO,
   MODAL_TEXT,
 } from '@/app/constants/order';
-import { cancelIcon } from '@/app/ui/iconPath';
 import { callGet, callPatch } from '@/app/utils/callApi';
-import { formatPrice } from '@/app/utils/formatPrice';
-import { saveImage } from '@/app/utils/saveImage';
 import { useRouter } from 'next/navigation';
 import { ChangeEvent, useEffect, useState } from 'react';
 import Button from '../../common/Button';
 import { Dialog } from '../../common/Dialog';
-import Icons from '../../common/Icons';
 import Input from '../../common/Input';
 import LoadingIndicator from '../../common/Loading';
-import QuotationSave from '../../quotation/modal/QuotationSave';
 import QuotationTable from './OrderQuotationTable';
 import { useUser } from '@/app/hooks/useUser';
 
@@ -25,7 +20,6 @@ export default function QuotationModal({
   QuotationModalData,
   closeModal,
   quotationId,
-  currentDate,
 }: QuotationModalProps) {
   const { user } = useUser();
   const router = useRouter();
@@ -121,70 +115,74 @@ export default function QuotationModal({
   };
 
   return (
-    <div className="fixed inset-0 flex-center z-50 bg-black bg-opacity-30">
+    <div className="fixed inset-0 flex-center bg-gray-3 bg-opacity-70 z-50">
       <div
         id="quotation-modal"
-        className="flex flex-col w-[680px] h-[812px] rounded-3xl px-8 py-7 bg-white relative whitespace-nowrap"
+        className="flex flex-col w-[800px] max-h-screen items-start rounded p-10 gap-[60px] bg-gray-1 whitespace-nowrap overflow-y-auto"
       >
         {loading ? (
           <LoadingIndicator />
         ) : (
           <>
-            <div className="self-end cursor-pointer" onClick={closeModal}>
-              <Icons name={cancelIcon} />
-            </div>
-            <div className="w-full flex text-lg font-light">
-              <span className="text-5xl font-bold mr-6">{MODAL_INFO[0]}</span>
-              <div>
-                <div className="flex gap-x-2">
-                  <span className="font-bold">{MODAL_INFO[1]}</span>
-                  <span>{currentDate}</span>
-                </div>
-                <div className="flex gap-x-2">
-                  <span className="font-bold">{MODAL_INFO[2]}</span>
-                  <span>{user?.result.email}</span>
-                </div>
+            <div className="flex flex-col items-start gap-2 self-stretch">
+              <div className="flex-center py-[18px] px-6 gap-[10px] self-stretch rounded bg-primary-3 text-white text-lg font-bold">
+                {MODAL_INFO[0]}
               </div>
-            </div>
-
-            <div className="w-full border-2 border-[#55aa00] mt-2.5" />
-
-            <QuotationTable quotationInfo={QuotationModalData} />
-
-            <div className="w-full mt-4 flex flex-col">
-              <p>{MODAL_TEXT[7]}</p>
-              <div className="flex">
-                <Input
-                  type="default"
-                  onChange={(e) => {
-                    handlePartiChange(e);
-                  }}
-                  className="w-full min-h-14 px-2 py-1 border-2"
-                  textValue={partiValue}
+              <div className="flex flex-col items-center gap-8 self-stretch bg-white px-6 pt-6">
+                <div className="flex flex-col items-center self-stretch border-b border-dashed border-gray-3">
+                  <div className="flex py-3 px-0 items-center gap-[10px] self-stretch">
+                    <span className="text-gray-7 text-lg font-bold">
+                      {MODAL_INFO[1]}
+                    </span>
+                  </div>
+                  <div className="flex py-4 px-0 flex-col items-start gap-2 self-stretch">
+                    <div className="flex justify-between items-center self-stretch">
+                      <p className="text-gray-4 text-center">판매자상호</p>
+                      <p className="text-gray-6">JMF(주)</p>
+                    </div>
+                    <div className="flex justify-between items-center self-stretch">
+                      <p className="text-gray-4 text-center">상업자등록번호</p>
+                      <p className="text-gray-6">333-22-55555</p>
+                    </div>
+                    <div className="flex justify-between items-center self-stretch">
+                      <p className="text-gray-4 text-center">주소</p>
+                      <p className="text-gray-6">
+                        {user?.result.client_region}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <QuotationTable
+                  total={total}
+                  quotationInfo={QuotationModalData}
                 />
               </div>
             </div>
 
-            <div className="absolute right-12 bottom-32 flex items-center font-extrabold">
-              <span className="text-2xl mr-4">{MODAL_INFO[3]}</span>
-              <div className="pl-4 border-double border-b-[7px] border-[#55aa00]">
-                <span className="text-2xl sm:text-4xl font-bold text-end pb-1">
-                  {formatPrice(total)} 원
-                </span>
-              </div>
-            </div>
-            <div className="absolute bottom-32">
-              <QuotationSave onClick={saveImage} />
+            <div className="flex flex-col items-start gap-2 self-stretch">
+              <p className="font-medium">{MODAL_TEXT[7]}</p>
+              <Input
+                type="default"
+                onChange={(e) => {
+                  handlePartiChange(e);
+                }}
+                className="flex py-4 px-6 items-start gap-[10px] self-stretch rounded border border-gray-2 bg-white"
+                textValue={partiValue}
+              />
             </div>
 
-            <div className="flex flex-col absolute bottom-8 right-12 w-[calc(100%-6rem)]">
-              {MODAL_TEXT[8]}
+            <div className="flex items-center gap-4 self-stretch">
+              <Button
+                buttonText="닫기"
+                type="default"
+                className="flex-center py-3 px-6 gap-[10px] rounded border border-gray-2 bg-white font-normal"
+                onClickHandler={closeModal}
+              />
               <Button
                 onClickHandler={handleConfirmQuotation}
                 buttonText={BUTTON_TEXT[2]}
                 type="default"
-                className="bg-primary-3 text-white rounded-lg whitespace-nowrap font-extrabold text-xl py-2"
-                isDisabled={false}
+                className="flex-center py-3 px-6 gap-[10px] rounded border bg-primary-3 font-normal text-white"
               />
             </div>
 

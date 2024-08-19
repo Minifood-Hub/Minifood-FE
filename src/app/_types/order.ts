@@ -40,11 +40,13 @@ interface QuotationItemType {
   name: string;
   count?: string | number;
   unit: string;
-  price?: string;
+  price?: number;
+  created_at?: string;
 }
 
 interface QuotationTableProps {
   quotationInfo: QuotationItemType[];
+  total: number;
 }
 
 interface ProductItemProps extends QuotationItemType {
