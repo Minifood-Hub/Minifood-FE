@@ -20,11 +20,9 @@ export default function EditQuotationModal({
   const [detailData, setDetailData] = useState<QuotationInfoTypes | null>(null);
   const [state, setState] = useState({
     currentDate: '',
-    total: 0,
     partiValue: '',
-    loading: false,
   });
-  const { currentDate, total, partiValue, loading } = state;
+  const { currentDate, partiValue } = state;
 
   const createProducts = async () => {
     const body = QuotationModalData.filter(
@@ -58,9 +56,6 @@ export default function EditQuotationModal({
 
   const updateTotal = async (quotation_id: string) => {
     const data = await callGet(`/api/order/quotations/${quotation_id}/total`);
-    if (data.isSuccess) {
-      setState((prev) => ({ ...prev, total: data.result }));
-    }
   };
 
   useEffect(() => {
@@ -71,14 +66,11 @@ export default function EditQuotationModal({
   useEffect(() => {
     const completeQuotation = async () => {
       if (currentDate && user?.result.client_id && quotationId) {
-        setState((prev) => ({ ...prev, loading: true }));
-
         await createProducts();
         await updateProducts();
         await updateTotal(quotationId);
         const data = await callGet(`/api/quotation/detail?id=${quotationId}`);
         setDetailData(data.result);
-        setState((prev) => ({ ...prev, loading: false }));
       }
     };
     completeQuotation();
