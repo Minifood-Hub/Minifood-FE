@@ -116,7 +116,7 @@ export default function OrderContainer() {
   // 즐겨 찾기에서 불러온 상품을 추가한 상품에 저장
   const setPastOrderId = async (past_order_id: string) => {
     try {
-      const data = await callGet(`/api/order/get-past-order/${past_order_id}`);
+      const data = await callGet(`/api/past-order/get/${past_order_id}`);
       if (data.isSuccess) {
         const productList = data.result.product_list.map(
           (product: QuotationItemType) => ({
@@ -194,7 +194,7 @@ export default function OrderContainer() {
         product_ids: addedItems.map((item) => item.id),
       };
 
-      await callPost('/api/order/post-past-order', body);
+      await callPost('/api/past-order/post', body);
 
       await getPastOrder();
       setOrderState((prev) => ({ ...prev, bookmark: false, bookmarkName: '' }));
