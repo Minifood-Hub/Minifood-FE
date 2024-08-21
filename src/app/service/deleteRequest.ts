@@ -4,11 +4,11 @@ const commonHeaders = {
   'Content-Type': 'application/json',
 };
 
-const deleteRequest = async (url: string) => {
+const deleteRequest = async (url: string, token?: string) => {
   try {
     const response = await fetch(url, {
       method: 'DELETE',
-      headers: commonHeaders,
+      headers: { ...commonHeaders, ...(token && { 'access-token': token }) },
     });
     return await response.json();
   } catch (err) {
@@ -25,9 +25,10 @@ export const deleteQuotation = async (id: string) => {
 export const deleteQuoteProduct = async (
   quotation_id: string,
   product_id: string,
+  token: string,
 ) => {
   const url = `${SERVER_URL}/api/v1/quotations/${quotation_id}/${product_id}/delete`;
-  return deleteRequest(url);
+  return deleteRequest(url, token);
 };
 
 export const deletePastOrder = async (pastorder_id: string) => {

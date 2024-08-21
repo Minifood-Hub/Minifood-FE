@@ -70,6 +70,7 @@ interface ProductListProps {
 
 interface quotationIdProps {
   quotation_id: string;
+  token: string;
 }
 
 interface patchQuotationPartiProps extends quotationIdProps {

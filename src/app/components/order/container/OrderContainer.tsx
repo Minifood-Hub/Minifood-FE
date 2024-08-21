@@ -222,7 +222,7 @@ export default function OrderContainer() {
   // 상품 삭제
   const handleRemoveItem = async (product_id: string | number) => {
     await callDelete(
-      `/api/quotation/delete/product?quotation_id=${quotationId}&product_id=${product_id}`,
+      `/api/order/quotations/${quotationId}/${product_id}/delete`,
     );
     // 상품 삭제 후 addedItems 상태 업데이트
     setAddedItems((prevItems) =>
