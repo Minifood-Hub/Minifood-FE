@@ -9,7 +9,7 @@ export async function PUT(
     const { notice_id } = params;
     const body = await req.json();
 
-    const response = await putAdminNotices(notice_id, body);
+    const response = await putAdminNotices(notice_id, body, req);
 
     return NextResponse.json(response, { status: 200 });
   } catch (error) {
