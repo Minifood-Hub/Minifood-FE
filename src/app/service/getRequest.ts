@@ -70,27 +70,30 @@ export const getPurchaseRecent = async (accessToken: string) => {
 };
 
 // 견적서 정보 조회
-export const getQuotations = async (quotation_id: string) => {
+export const getQuotations = async (quotation_id: string, token: string) => {
   const url = `${SERVER_URL}/api/v1/quotations/${quotation_id}`;
-  return getRequest(url);
+  return getRequest(url, token);
 };
 
 // 즐겨찾기 상세 불러오기
-export const getPastOrder = async (past_order_id: string) => {
+export const getPastOrder = async (past_order_id: string, token: string) => {
   const url = `${SERVER_URL}/api/v1/past-order/${past_order_id}`;
-  return getRequest(url);
+  return getRequest(url, token);
 };
 
 // 합계 금액 업데이트
-export const getQuotationTotal = async (quotation_id: string) => {
+export const getQuotationTotal = async (
+  quotation_id: string,
+  token: string,
+) => {
   const url = `${SERVER_URL}/api/v1/quotations/${quotation_id}/total`;
-  return getRequest(url);
+  return getRequest(url, token);
 };
 
 // 거래처 주문 내역 조회(URL 캐시 버스팅 사용)
-export const getClientPastOrder = async (client_id: string) => {
+export const getClientPastOrder = async (client_id: string, token: string) => {
   const url = `${SERVER_URL}/api/v1/clients/${client_id}/past-order?_t=${Date.now()}`;
-  return getRequest(url);
+  return getRequest(url, token);
 };
 
 export const getQuotation = async (
