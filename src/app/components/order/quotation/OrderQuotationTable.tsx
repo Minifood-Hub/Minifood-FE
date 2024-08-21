@@ -18,11 +18,11 @@ export default function QuotationTable({ quotationInfo }: QuotationTableProps) {
           <p className="w-10">{MODAL_TEXT[5]}</p>
         </div>
 
-        <div className="max-h-40 overflow-scroll overflow-x-hidden">
+        <div className="max-h-32 overflow-scroll overflow-x-hidden">
           {quotationInfo.map((itemData, index) => {
             return (
               <div key={itemData.id} className="flex gap-1 text-gray-7 pb-3">
-                <p className="w-20 pl-2">{index}</p>
+                <p className="w-20 pl-2">{index + 1}</p>
                 <p className="w-[416px] break-words whitespace-normal">
                   {itemData.name}
                 </p>
