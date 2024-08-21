@@ -78,10 +78,13 @@ export const postClient = async (clientContents: any, accessToken?: string) => {
 };
 
 // 주문 내역 생성
-export const postPastOrder = async (pastOrderContents: any) => {
+export const postPastOrder = async (
+  pastOrderContents: any,
+  accessToken: string,
+) => {
   try {
     const url = `${SERVER_URL}/api/v1/past-order`;
-    return await postRequest(url, pastOrderContents);
+    return await postRequest(url, pastOrderContents, accessToken);
   } catch (error) {
     console.error('에러 :', error);
     throw new Error('postPastOrder 에러 발생');
@@ -89,10 +92,10 @@ export const postPastOrder = async (pastOrderContents: any) => {
 };
 
 // 견적서 생성
-export const postQuotations = async (quotationContents: any) => {
+export const postQuotations = async (quotationContents: any, token: string) => {
   try {
     const url = `${SERVER_URL}/api/v1/quotations`;
-    return await postRequest(url, quotationContents);
+    return await postRequest(url, quotationContents, token);
   } catch (error) {
     console.error('에러 :', error);
     throw new Error('postQuotations 에러 발생');
