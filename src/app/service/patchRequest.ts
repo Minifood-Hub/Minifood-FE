@@ -1,10 +1,15 @@
 const SERVER_URL = process.env.NEXT_PUBLIC_SERVER;
 
-const patchRequest = async (url: string) => {
+const headers = {
+  'Content-Type': 'application/json',
+};
+
+const patchRequest = async (url: string, token?: string) => {
   const response = await fetch(url, {
     method: 'PATCH',
     headers: {
-      'Content-Type': 'application/json',
+      ...headers,
+      ...(token && { 'access-token': token }),
     },
   });
 
@@ -13,17 +18,17 @@ const patchRequest = async (url: string) => {
   }
 
   const data = await response.json();
-  console.log(`Response data: ${JSON.stringify(data)}`);
   return data;
 };
 
 // 견적서 작성 확정
 export const patchQuotationConfirm = async ({
   quotation_id,
+  token,
 }: quotationIdProps) => {
   try {
     const url = `${SERVER_URL}/api/v1/quotations/${quotation_id}/quotation/check`;
-    return await patchRequest(url);
+    return await patchRequest(url, token);
   } catch (error) {
     console.error('에러 : ', error);
     throw new Error('patchQuotationConfirm 에러 발생');
@@ -34,10 +39,11 @@ export const patchQuotationConfirm = async ({
 export const patchQuotationParticulars = async ({
   quotation_id,
   particulars,
+  token,
 }: patchQuotationPartiProps) => {
   try {
     const url = `${SERVER_URL}/api/v1/quotations/${quotation_id}/particulars/update?particulars=${particulars}`;
-    return await patchRequest(url);
+    return await patchRequest(url, token);
   } catch (error) {
     console.error('에러 : ', error);
     throw new Error('patchQuotationParticulars 에러 발생');
