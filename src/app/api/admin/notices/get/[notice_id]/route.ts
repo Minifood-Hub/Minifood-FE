@@ -8,7 +8,7 @@ export async function GET(
   try {
     const noticeId = Number(params.notice_id);
 
-    const data = await getAdminNoticesId(noticeId.toString());
+    const data = await getAdminNoticesId(noticeId.toString(), req);
     return NextResponse.json(data);
   } catch (error) {
     console.error('API Error: ', error);

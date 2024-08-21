@@ -8,7 +8,7 @@ export async function GET(req: Request): Promise<NextResponse> {
     const url = new URL(req.url);
     const region = url.searchParams.get('region') || '';
 
-    const data = await getAdminClientRegion(region);
+    const data = await getAdminClientRegion(region, req);
     return NextResponse.json(data);
   } catch (error) {
     console.error('API Error:', error);

@@ -27,7 +27,6 @@ interface User {
 interface searchProductsProps {
   namePrefix: string;
   limit: string;
-  token: string;
 }
 
 interface PastOrder {
