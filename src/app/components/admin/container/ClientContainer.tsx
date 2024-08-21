@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CheckQuotation from '../clients/CheckQuotation';
 import DeleteClient from '../clients/DeleteClient';
 import InquiryPastOrder from '../clients/InquiryPastOrder';
@@ -9,11 +9,23 @@ import InquiryQuotationDate from '../clients/InquiryQuotationDate';
 import SetComment from '../clients/SetComment';
 import SetRegion from '../clients/SetRegion';
 import Input from '../../common/Input';
-import { INPUT_TEXT, OPTION_TEXT } from '@/app/constants/admin';
+import { ALERT_TEXT, INPUT_TEXT, OPTION_TEXT } from '@/app/constants/admin';
 import ClientsName from '../clients/ClientsName';
 import ClientsRegion from '../clients/ClientsRegion';
+import { useUser } from '@/app/hooks/useUser';
+import { useRouter } from 'next/navigation';
 
 export default function ClientContainer() {
+  const { user } = useUser();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (user && user.result && user.result.is_admin === false) {
+      alert(ALERT_TEXT[8]);
+      router.push('/');
+    }
+  }, [user, router]);
+
   const [state, setState] = useState({
     clientId: '',
     selectedOption: 'clientsName',

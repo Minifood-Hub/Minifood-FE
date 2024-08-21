@@ -74,6 +74,7 @@ export const ALERT_TEXT = [
   '파일을 선택해주세요.',
   '정상적으로 제출되었습니다.',
   '공지사항이 삭제되었습니다.',
+  '접근 권한이 없습니다.',
 ];
 
 export const REGION_TEXT = [
