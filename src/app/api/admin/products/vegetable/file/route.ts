@@ -12,7 +12,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       return NextResponse.json({ error: '파일이 없습니다.' }, { status: 400 });
     }
 
-    const result = await patchAdminProductsVegetableFile(file);
+    const result = await patchAdminProductsVegetableFile(file, req);
 
     return NextResponse.json(result, { status: 200 });
   } catch (error) {
