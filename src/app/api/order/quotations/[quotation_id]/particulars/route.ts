@@ -1,5 +1,4 @@
 import { patchQuotationParticulars } from '@/app/service/patchRequest';
-import { getCookie } from '@/app/utils/setTokens';
 import { NextResponse } from 'next/server';
 
 export async function PATCH(
@@ -7,16 +6,15 @@ export async function PATCH(
   { params }: { params: { quotation_id: string } },
 ): Promise<NextResponse> {
   try {
-    const token = getCookie(req, 'accessToken');
     const { quotation_id } = params;
     const { searchParams } = new URL(req.url);
     const particulars = searchParams.get('particulars') || '';
 
-    const data = await patchQuotationParticulars({
+    const data = await patchQuotationParticulars(
       quotation_id,
       particulars,
-      token,
-    });
+      req,
+    );
     return NextResponse.json(data);
   } catch (error) {
     console.error('API Error:', error);

@@ -12,7 +12,7 @@ export async function PATCH(
     const { searchParams } = new URL(req.url);
     const price = searchParams.get('price') || '';
 
-    const data = await patchAdminProductsVegetable(product_id, price);
+    const data = await patchAdminProductsVegetable(product_id, price, req);
     return NextResponse.json(data);
   } catch (error) {
     console.error('API Error:', error);

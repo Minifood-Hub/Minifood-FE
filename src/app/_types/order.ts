@@ -68,15 +68,6 @@ interface ProductListProps {
   onCountChange?: (id: string | number, value: string) => void;
 }
 
-interface quotationIdProps {
-  quotation_id: string;
-  token: string;
-}
-
-interface patchQuotationPartiProps extends quotationIdProps {
-  particulars: string;
-}
-
 interface QuotationModalProps {
   QuotationModalData: ProductItemProps[];
   closeModal: () => void;
