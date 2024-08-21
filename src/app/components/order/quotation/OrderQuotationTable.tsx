@@ -1,12 +1,8 @@
 import { MODAL_TEXT } from '@/app/constants/order';
-import { formatPrice } from '@/app/utils/formatPrice';
 import QuoteBottom from '../../quotation/modal/view/QuoteBottom';
 import { useCurrentDate } from '@/app/hooks/useCurrentDate';
 
-export default function QuotationTable({
-  quotationInfo,
-  total,
-}: QuotationTableProps) {
+export default function QuotationTable({ quotationInfo }: QuotationTableProps) {
   const currentDate = useCurrentDate();
   return (
     <div className="flex flex-col items-center self-stretch">

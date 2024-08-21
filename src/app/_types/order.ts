@@ -46,7 +46,6 @@ interface QuotationItemType {
 
 interface QuotationTableProps {
   quotationInfo: QuotationItemType[];
-  total: number;
 }
 
 interface ProductItemProps extends QuotationItemType {

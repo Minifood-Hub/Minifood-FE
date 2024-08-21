@@ -152,10 +152,7 @@ export default function QuotationModal({
                     </div>
                   </div>
                 </div>
-                <QuotationTable
-                  total={total}
-                  quotationInfo={QuotationModalData}
-                />
+                <QuotationTable quotationInfo={QuotationModalData} />
               </div>
             </div>
 
