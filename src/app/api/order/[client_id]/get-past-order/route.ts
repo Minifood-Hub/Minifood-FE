@@ -7,7 +7,7 @@ export async function GET(
 ): Promise<NextResponse> {
   try {
     const clientId = params.client_id;
-    const data = await getClientPastOrder(clientId);
+    const data = await getClientPastOrder(clientId, req);
     return NextResponse.json(data);
   } catch (error) {
     console.error('API Error: ', error);

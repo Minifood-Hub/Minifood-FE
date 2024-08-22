@@ -10,10 +10,11 @@ export async function PATCH(
     const { searchParams } = new URL(req.url);
     const particulars = searchParams.get('particulars') || '';
 
-    const data = await patchQuotationParticulars({
+    const data = await patchQuotationParticulars(
       quotation_id,
       particulars,
-    });
+      req,
+    );
     return NextResponse.json(data);
   } catch (error) {
     console.error('API Error:', error);

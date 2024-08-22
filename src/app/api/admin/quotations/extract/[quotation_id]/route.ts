@@ -9,7 +9,7 @@ export async function GET(
 ): Promise<NextResponse> {
   try {
     const { quotation_id } = params;
-    const data = await getAdminQuotationsExtract(quotation_id);
+    const data = await getAdminQuotationsExtract(quotation_id, req);
 
     // Blob 타입의 데이터를 ArrayBuffer로 변환하여 바이너리 데이터를 얻음
     const fileBuffer = await data.arrayBuffer();

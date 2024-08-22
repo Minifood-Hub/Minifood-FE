@@ -51,7 +51,7 @@ export default function EditQuoteContainer({ id }: EditQuoteContainerProps) {
   }, [id]);
 
   const setPastOrderId = async (past_order_id: string) => {
-    const data = await callGet(`/api/order/get-past-order/${past_order_id}`);
+    const data = await callGet(`/api/past-order/get/${past_order_id}`);
     setAddedItems(data.result.product_list);
     setState((prev) => ({ ...prev, showBookmark: false }));
   };
@@ -73,7 +73,7 @@ export default function EditQuoteContainer({ id }: EditQuoteContainerProps) {
       name: state.bookmarkName,
       product_ids: addedItems.map((item) => item.id),
     };
-    await callPost('/api/order/post-past-order', body);
+    await callPost('/api/past-order/post', body);
     await getPastOrder();
     setState((prev) => ({ ...prev, dialog: false, bookmarkName: '' }));
   };

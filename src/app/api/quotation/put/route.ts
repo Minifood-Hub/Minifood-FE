@@ -8,7 +8,7 @@ export async function PUT(req: Request): Promise<NextResponse> {
     const product_id = Number(searchParams.get('product_id') || '');
     const body = await req.json();
 
-    const data = await putQuotation(body, quotation_id, product_id);
+    const data = await putQuotation(body, quotation_id, product_id, req);
     return NextResponse.json(data);
   } catch (error) {
     return NextResponse.json('Internal Server Error');

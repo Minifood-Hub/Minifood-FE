@@ -10,7 +10,7 @@ export async function GET(req: Request): Promise<NextResponse> {
     const end = url.searchParams.get('end') || '';
     const query = url.searchParams.get('query') || '';
 
-    const data = await getAdminQuotationsInfo(start, end, query);
+    const data = await getAdminQuotationsInfo(start, end, query, req);
     return NextResponse.json(data);
   } catch (error) {
     console.error('API Error:', error);

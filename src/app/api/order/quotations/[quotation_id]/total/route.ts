@@ -7,7 +7,7 @@ export async function GET(
 ): Promise<NextResponse> {
   try {
     const { quotation_id } = params;
-    const data = await getQuotationTotal(quotation_id); // get추가하기
+    const data = await getQuotationTotal(quotation_id, req);
     return NextResponse.json(data);
   } catch (error) {
     console.error('API Error: ', error);

@@ -11,6 +11,7 @@ interface UserResult {
   email: string;
   id: number;
   is_active: boolean;
+  is_admin?: boolean;
   client_name: string;
   client_region: string;
 }
@@ -26,7 +27,6 @@ interface User {
 interface searchProductsProps {
   namePrefix: string;
   limit: string;
-  token: string;
 }
 
 interface PastOrder {
@@ -40,7 +40,8 @@ interface QuotationItemType {
   name: string;
   count?: string | number;
   unit: string;
-  price?: string;
+  price?: number;
+  created_at?: string;
 }
 
 interface QuotationTableProps {
@@ -64,14 +65,6 @@ interface ProductListProps {
   onAddItem?: (item: ProductItemProps) => void;
   onRemoveItem: (id: string | number) => void;
   onCountChange?: (id: string | number, value: string) => void;
-}
-
-interface quotationIdProps {
-  quotation_id: string;
-}
-
-interface patchQuotationPartiProps extends quotationIdProps {
-  particulars: string;
 }
 
 interface QuotationModalProps {
