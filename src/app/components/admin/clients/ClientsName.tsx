@@ -9,22 +9,26 @@ import {
 import Input from '../../common/Input';
 import Button from '../../common/Button';
 import { useState } from 'react';
-import { callGet } from '@/app/utils/callApi';
+import { callDelete, callGet, callPatch } from '@/app/utils/callApi';
+import InquiryPastOrder from './InquiryPastOrder';
 
 export default function ClientsName() {
   const [name, setName] = useState('');
   const [result, setResult] = useState<{ items: ClientsNameProps[] }>({
     items: [],
   });
+  const [inputComment, setInputComment] = useState('');
+  const [showPastorder, setShowPastOrder] = useState(false);
 
+  // 거래처 조회
   const handleGetQuotations = async () => {
     if (!name) {
       alert(ALERT_TEXT[0]);
       return;
     }
-
     try {
       const data = await callGet(`/api/admin/clients/name/${name}`);
+      console.log(data);
       setResult({ items: data.result });
     } catch (error) {
       console.error(error);
@@ -32,28 +36,88 @@ export default function ClientsName() {
     }
   };
 
+  // 특이사항 작성
+  const handleSetComment = async (client_id: number) => {
+    if (!inputComment) {
+      alert(ALERT_TEXT[0]);
+      return;
+    }
+    try {
+      await callPatch(
+        `/api/admin/clients/${client_id}/comment`,
+        `input_comment=${inputComment}`,
+      );
+      alert(ALERT_TEXT[2]);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  // 거래처 삭제
+  const handleDelete = async (client_id: number) => {
+    try {
+      await callDelete(`/api/admin/clients/${client_id}/delete`);
+      alert(ALERT_TEXT[3]);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const renderTable = () => {
     return (
-      <table className="admin-table">
-        <thead>
-          <tr>
-            <th className="admin-table-th">{TABLE_TEXT[0]}</th>
-            <th className="admin-table-th">{TABLE_TEXT[1]}</th>
-            <th className="admin-table-th">{TABLE_TEXT[6]}</th>
-            <th className="admin-table-th">{TABLE_TEXT[7]}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {result.items.map((item: ClientsNameProps) => (
-            <tr key={item.id}>
-              <td className="admin-table-th">{item.id}</td>
-              <td className="admin-table-th">{item.name}</td>
-              <td className="admin-table-th">{item.region}</td>
-              <td className="admin-table-th">{item.address}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <div className="w-full">
+        <div className="flex bg-primary-1 w-full p-2 text-white font-bold">
+          <div className="w-[5%]">{TABLE_TEXT[0]}</div>
+          <div className="w-[15%]">{TABLE_TEXT[1]}</div>
+          <div className="w-[15%]">{TABLE_TEXT[6]}</div>
+          <div className="w-[25%]">{TABLE_TEXT[7]}</div>
+          <div className="w-[10%] text-center">주문내역</div>
+          <div className="w-[25%]">특이사항</div>
+          <div className="w-[5%] text-center">삭제</div>
+        </div>
+        {result.items.map((item: ClientsNameProps) => (
+          <>
+            <div className="flex p-2 border-2" key={item.id}>
+              <div className="w-[5%]">{item.id}</div>
+              <div className="w-[15%]">{item.name}</div>
+              <div className="w-[15%]">{item.region}</div>
+              <div className="w-[25%]">{item.address}</div>
+              <div className="w-[10%] cursor-pointer">
+                <Button
+                  type="default"
+                  onClickHandler={() => setShowPastOrder((prev) => !prev)}
+                  className=""
+                  buttonText="조회"
+                />
+              </div>
+              <div className="w-[25%] flex justify-between pr-4">
+                <Input
+                  className="border-2"
+                  type="default"
+                  onChange={(e) => setInputComment(e.target.value)}
+                  textValue={inputComment}
+                  placeholder={INPUT_TEXT[7]}
+                />
+                <Button
+                  className="admin-btn"
+                  buttonText={BTN_TEXT[0]}
+                  type="default"
+                  onClickHandler={() => handleSetComment(item.id)}
+                />
+              </div>
+              <div className="w-[5%]">
+                <Button
+                  type="default"
+                  onClickHandler={() => handleDelete(item.id)}
+                  className="flex justify-center text-red-1 cursor-pointer"
+                  buttonText={BTN_TEXT[1]}
+                />
+              </div>
+            </div>
+            {showPastorder && <InquiryPastOrder clientId={item.id} />}
+          </>
+        ))}
+      </div>
     );
   };
 
