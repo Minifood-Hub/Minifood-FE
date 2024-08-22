@@ -19,7 +19,6 @@ export const OPTION_TEXT = [
   '야채 물품 가격 직접 변경',
   '야채 물품 가격 엑셀 파일로 변경',
   '견적서 정보 조회',
-  '견적서 excel 파일로 추출',
   '오늘 날짜의 모든 견적서 excel 파일로 추출',
 ];
 
@@ -63,6 +62,7 @@ export const TABLE_TEXT = [
   '주소',
   '분류',
   '단위',
+  'excel로 추출',
 ];
 
 export const ALERT_TEXT = [
