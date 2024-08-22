@@ -1,11 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import CheckQuotation from '../clients/CheckQuotation';
 import DeleteClient from '../clients/DeleteClient';
 import InquiryPastOrder from '../clients/InquiryPastOrder';
-import InquiryQuotation from '../clients/InquiryQuotation';
-import InquiryQuotationDate from '../clients/InquiryQuotationDate';
 import SetComment from '../clients/SetComment';
 import SetRegion from '../clients/SetRegion';
 import Input from '../../common/Input';
@@ -53,14 +50,8 @@ export default function ClientContainer() {
         return <ClientsName />;
       case 'clientsRegion':
         return <ClientsRegion />;
-      case 'inquiryQuotation':
-        return <InquiryQuotation clientId={state.clientId} />;
-      case 'inquiryQuotationDate':
-        return <InquiryQuotationDate clientId={state.clientId} />;
       case 'inquiryPastOrder':
         return <InquiryPastOrder clientId={state.clientId} />;
-      case 'checkQuotation':
-        return <CheckQuotation clientId={state.clientId} />;
       case 'setRegion':
         return <SetRegion clientId={state.clientId} />;
       case 'setComment':
@@ -84,10 +75,7 @@ export default function ClientContainer() {
         >
           <option value="clientsName">{OPTION_TEXT[0]}</option>
           <option value="clientsRegion">{OPTION_TEXT[8]}</option>
-          <option value="inquiryQuotation">{OPTION_TEXT[1]}</option>
-          <option value="inquiryQuotationDate">{OPTION_TEXT[2]}</option>
           <option value="inquiryPastOrder">{OPTION_TEXT[3]}</option>
-          <option value="checkQuotation">{OPTION_TEXT[4]}</option>
           <option value="setRegion">{OPTION_TEXT[5]}</option>
           <option value="setComment">{OPTION_TEXT[6]}</option>
           <option value="deleteClient">{OPTION_TEXT[7]}</option>

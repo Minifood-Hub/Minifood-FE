@@ -5,16 +5,16 @@ import ProductsContainer from '@/app/components/admin/container/ProductsContaine
 import QuotationContainer from '@/app/components/admin/container/QuotationContainer';
 
 export default function AdminPage({ searchParams }: AdminPageProps) {
-  const activePage = searchParams.page || 'client';
+  const activePage = searchParams.page || 'quotation';
 
   const renderActivePage = () => {
     switch (activePage) {
+      case 'quotation':
+        return <QuotationContainer />;
       case 'client':
         return <ClientContainer />;
       case 'product':
         return <ProductsContainer />;
-      case 'quotation':
-        return <QuotationContainer />;
       case 'notices':
         return <NoticesContainer />;
       default:

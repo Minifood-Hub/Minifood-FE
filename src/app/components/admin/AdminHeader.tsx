@@ -15,6 +15,12 @@ export default function AdminHeader({ isActive }: AdminHeaderProps) {
     <header className="bg-gray-0 p-4 flex justify-between items-center">
       <div className="flex gap-4">
         <div
+          className={`px-4 py-2 font-extrabold cursor-pointer ${isActive === 'quotation' ? 'bg-primary-1 text-white' : 'bg-white'}`}
+          onClick={() => handleActiveChange('quotation')}
+        >
+          {ADMIN_TEXT[2]}
+        </div>
+        <div
           className={`px-4 py-2 font-extrabold cursor-pointer ${isActive === 'client' ? 'bg-primary-1 text-white' : 'bg-white'}`}
           onClick={() => handleActiveChange('client')}
         >
@@ -25,12 +31,6 @@ export default function AdminHeader({ isActive }: AdminHeaderProps) {
           onClick={() => handleActiveChange('product')}
         >
           {ADMIN_TEXT[1]}
-        </div>
-        <div
-          className={`px-4 py-2 font-extrabold cursor-pointer ${isActive === 'quotation' ? 'bg-primary-1 text-white' : 'bg-white'}`}
-          onClick={() => handleActiveChange('quotation')}
-        >
-          {ADMIN_TEXT[2]}
         </div>
         <div
           className={`px-4 py-2 font-extrabold cursor-pointer ${isActive === 'notices' ? 'bg-primary-1 text-white' : 'bg-white'}`}
