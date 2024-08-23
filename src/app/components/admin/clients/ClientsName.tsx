@@ -9,7 +9,7 @@ import {
 } from '@/app/constants/admin';
 import Input from '../../common/Input';
 import Button from '../../common/Button';
-import React, { ChangeEvent, useState } from 'react';
+import React, { useState } from 'react';
 import { callDelete, callGet, callPatch } from '@/app/utils/callApi';
 import InquiryPastOrder from './InquiryPastOrder';
 
@@ -19,13 +19,9 @@ export default function ClientsName() {
     items: [],
   });
   const [inputComment, setInputComment] = useState('');
-  const [showPastorder, setShowPastOrder] = useState(false);
+  const [showPastOrder, setShowPastOrder] = useState<number | null>(null);
   const [isEditRegion, setIsEditRegion] = useState<number | null>(null);
   const [region, setRegion] = useState('');
-
-  const handleInputChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    setRegion(e.target.value);
-  };
 
   // 거래처 조회
   const handleGetQuotations = async () => {
@@ -109,7 +105,7 @@ export default function ClientsName() {
                   <div className="flex items-center">
                     <select
                       className="border-2"
-                      onChange={(e) => handleInputChange(e)}
+                      onChange={(e) => setRegion(e.target.value)}
                       value={region}
                     >
                       {REGION_TEXT.map((text) => (
@@ -120,7 +116,7 @@ export default function ClientsName() {
                     </select>
                     <Button
                       onClickHandler={() => handleSetRegion(item.id)}
-                      className="max-w-fit px-2 ml-4 bg-primary-3 text-white font-boldml-2"
+                      className="ml-2 admin-btn"
                       type="default"
                       buttonText={BTN_TEXT[6]}
                     />
@@ -133,7 +129,7 @@ export default function ClientsName() {
                         setIsEditRegion(item.id);
                         setRegion(item.region);
                       }}
-                      className="max-w-fit px-2 ml-4 bg-primary-3 text-white font-bold"
+                      className="px-2 ml-4 admin-btn"
                       type="default"
                       buttonText={REGION_TEXT[0]}
                     />
@@ -144,8 +140,12 @@ export default function ClientsName() {
               <div className="w-[10%] flex justify-center">
                 <Button
                   type="default"
-                  onClickHandler={() => setShowPastOrder((prev) => !prev)}
-                  className="max-w-fit px-4 bg-primary-3 text-white font-bold"
+                  onClickHandler={() =>
+                    setShowPastOrder((prev) =>
+                      prev === item.id ? null : item.id,
+                    )
+                  }
+                  className="admin-btn"
                   buttonText={BTN_TEXT[8]}
                 />
               </div>
@@ -158,7 +158,7 @@ export default function ClientsName() {
                   placeholder={INPUT_TEXT[7]}
                 />
                 <Button
-                  className="max-w-fit px-4 bg-primary-3 text-white font-bold"
+                  className="admin-btn"
                   buttonText={BTN_TEXT[0]}
                   type="default"
                   onClickHandler={() => handleSetComment(item.id)}
@@ -168,12 +168,14 @@ export default function ClientsName() {
                 <Button
                   type="default"
                   onClickHandler={() => handleDelete(item.id)}
-                  className="max-w-fit px-4 bg-red-1 text-white font-bold"
+                  className="bg-red-1 admin-btn"
                   buttonText={BTN_TEXT[1]}
                 />
               </div>
             </div>
-            {showPastorder && <InquiryPastOrder clientId={item.id} />}
+            {showPastOrder === item.id && (
+              <InquiryPastOrder clientId={item.id} />
+            )}
           </React.Fragment>
         ))}
       </div>
