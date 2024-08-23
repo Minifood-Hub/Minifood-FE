@@ -1,38 +1,21 @@
 'use client';
 
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
-import Button from '../components/common/Button';
-import Icons from '../components/common/Icons';
-import { cancelIcon } from '../ui/iconPath';
+import { Dialog } from '../components/common/Dialog';
 
-export default function GlobalError({
-  error,
-  reset,
-}: {
-  error: Error & { digest?: string };
-  reset: () => void;
-}) {
+export default function Error() {
   const router = useRouter();
-  useEffect(() => {
-    console.error(error);
-    router.push('/login');
-  }, [error]);
 
   return (
-    <div className="bg-black w-screen h-screen text-white flex flex-col justify-center items-center gap-10">
-      <h2 className="text-3xl font-bold">문제가 발생했습니다.</h2>
-      <Button
-        type="quoteOrder"
-        className="hover:bg-white"
-        isDisabled={false}
-        buttonText="새로고침"
-        onClickHandler={() => reset()}
+    <div>
+      <Dialog
+        topText="세션이 만료되었습니다."
+        subText="다시 로그인해주세요."
+        BtnText="이동"
+        onBtnClick={() => {
+          router.push('/sign-in');
+        }}
       />
-      <Link href="/" className="flex flex-col justify-center items-center">
-        홈으로 <Icons name={cancelIcon} />
-      </Link>
     </div>
   );
 }

@@ -7,7 +7,7 @@ export async function PUT(req: Request): Promise<NextResponse> {
     const pastorder_id = Number(searchParams.get('pastorder_id') || '');
     const body = await req.json();
 
-    const data = await putPastOrder(pastorder_id, body);
+    const data = await putPastOrder(pastorder_id, body, req);
     return NextResponse.json(data);
   } catch (error) {
     return NextResponse.json('Internal Server Error');

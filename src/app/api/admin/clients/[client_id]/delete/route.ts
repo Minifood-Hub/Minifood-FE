@@ -10,7 +10,7 @@ export async function DELETE(
   try {
     const { client_id } = params;
 
-    const data = await deleteAdminClient(client_id);
+    const data = await deleteAdminClient(client_id, req);
     return NextResponse.json(data);
   } catch (error) {
     return NextResponse.json('Internal Server Error');

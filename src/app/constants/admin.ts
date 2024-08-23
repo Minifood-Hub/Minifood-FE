@@ -1,4 +1,4 @@
-export const ADMIN_TEXT = ['거래처', ' 상품', '견적서'];
+export const ADMIN_TEXT = ['거래처', ' 상품', '견적서', '공지사항'];
 
 export const OPTION_TEXT = [
   '거래처 명으로 조회',
@@ -19,7 +19,6 @@ export const OPTION_TEXT = [
   '야채 물품 가격 직접 변경',
   '야채 물품 가격 엑셀 파일로 변경',
   '견적서 정보 조회',
-  '견적서 excel 파일로 추출',
   '오늘 날짜의 모든 견적서 excel 파일로 추출',
 ];
 
@@ -34,14 +33,23 @@ export const INPUT_TEXT = [
   '특이사항 입력',
   '거래처 명',
   '물품 번호',
-  '',
-  '',
-  '',
+  '제목',
+  '내용',
+  '공지사항 id',
   '',
   '견적서 id',
 ];
 
-export const BTN_TEXT = ['실행', '삭제'];
+export const BTN_TEXT = [
+  '실행',
+  '삭제',
+  '생성',
+  '수정',
+  '검색',
+  '취소',
+  '저장',
+  '작성',
+];
 
 export const TABLE_TEXT = [
   '번호',
@@ -54,6 +62,7 @@ export const TABLE_TEXT = [
   '주소',
   '분류',
   '단위',
+  'excel로 추출',
 ];
 
 export const ALERT_TEXT = [
@@ -63,6 +72,9 @@ export const ALERT_TEXT = [
   '거래처가 삭제되었습니다.',
   '지역을 선택해주세요.',
   '파일을 선택해주세요.',
+  '정상적으로 제출되었습니다.',
+  '공지사항이 삭제되었습니다.',
+  '접근 권한이 없습니다.',
 ];
 
 export const REGION_TEXT = [

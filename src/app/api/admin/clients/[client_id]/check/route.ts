@@ -12,7 +12,7 @@ export async function GET(
     const url = new URL(req.url);
     const input_date = url.searchParams.get('input_date') || '';
 
-    const data = await getAdminClientCheck(client_id, input_date);
+    const data = await getAdminClientCheck(client_id, input_date, req);
     return NextResponse.json(data);
   } catch (error) {
     console.error('API Error:', error);

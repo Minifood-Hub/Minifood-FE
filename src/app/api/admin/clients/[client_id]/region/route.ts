@@ -12,7 +12,7 @@ export async function PATCH(
     const { searchParams } = new URL(req.url);
     const region = searchParams.get('region') || '';
 
-    const data = await patchAdminClientRegion(client_id, region);
+    const data = await patchAdminClientRegion(client_id, region, req);
     return NextResponse.json(data);
   } catch (error) {
     console.error('API Error:', error);
