@@ -238,3 +238,9 @@ export const getFAQ = async () => {
   const url = `${SERVER_URL}/api/v1/faqs`;
   return getRequest(url);
 };
+
+// FAQ 조회
+export const getFAQId = async (faq_id: string) => {
+  const url = `${SERVER_URL}/api/v1/faqs/${faq_id}`;
+  return getRequest(url);
+};

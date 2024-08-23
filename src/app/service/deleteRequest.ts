@@ -59,3 +59,9 @@ export const deleteAdminNotices = async (notice_id: string, req: Request) => {
   const url = `${SERVER_URL}/api/v1/notices/${notice_id}`;
   return deleteRequest(url, req);
 };
+
+// faq 삭제
+export const deleteAdminFAQ = async (faq_id: string, req: Request) => {
+  const url = `${SERVER_URL}/api/v1/faqs/${faq_id}`;
+  return deleteRequest(url, req);
+};

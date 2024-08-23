@@ -93,3 +93,12 @@ export const putAdminNotices = async (
     throw new Error('putAdminNotices 에러 발생');
   }
 };
+
+export const putAdminFAQ = async (
+  faq_id: string,
+  noticeContents: FAQPostTypes,
+  req: Request,
+) => {
+  const url = `${SERVER_URL}/api/v1/faqs/${faq_id}`;
+  return await putRequest(url, req, noticeContents);
+};

@@ -170,3 +170,9 @@ export const postAdminNotices = async (noticeContents: any, req: Request) => {
     throw new Error('postAdminNotices 에러 발생');
   }
 };
+
+// FAQ 생성
+export const postAdminFAQ = async (faqContents: FAQPostTypes, req: Request) => {
+  const url = `${SERVER_URL}/api/v1/faqs`;
+  return await postRequest(url, faqContents, req);
+};
