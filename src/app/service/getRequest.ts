@@ -232,3 +232,9 @@ export const getAdminNoticesId = async (notice_id: string, req: Request) => {
   const url = `${SERVER_URL}/api/v1/notices/${notice_id}?_t=${Date.now()}`;
   return getRequest(url, req);
 };
+
+// FAQ 조회
+export const getFAQ = async () => {
+  const url = `${SERVER_URL}/api/v1/faqs`;
+  return getRequest(url);
+};
