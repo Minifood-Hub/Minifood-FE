@@ -8,7 +8,6 @@ import InformationContainer from './InformationContainer';
 
 function MainContainer() {
   const { user } = useUser();
-  const isClient = user?.category === 'CLIENT';
   const isCOMMON = user?.category === 'COMMON';
 
   return (

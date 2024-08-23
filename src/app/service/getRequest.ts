@@ -222,9 +222,9 @@ export const getAdminQuotationsExtractsToday = async (
 };
 
 // 모든 공지사항 조회
-export const getAdminNotices = async (req: Request) => {
-  const url = `${SERVER_URL}/api/v1/notices?_t=${Date.now()}`;
-  return getRequest(url, req);
+export const getAdminNotices = async () => {
+  const url = `${SERVER_URL}/api/v1/notices`;
+  return getRequest(url);
 };
 
 // 공지사항 조회

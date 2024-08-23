@@ -1,17 +1,35 @@
+import { MAIN_INFORMATION } from '@/app/constants/main';
 import { AddIcon } from '@/app/ui/iconPath';
+import { callGet } from '@/app/utils/callApi';
+import { useEffect, useState } from 'react';
 import Icons from '../../common/Icons';
 
 const Announcement = () => {
+  const [notices, setNotices] = useState<NoticeProps[]>([]);
+  const preNotices = notices.slice(0, 3);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await callGet('/api/admin/notices/get');
+      setNotices(data.result);
+    };
+    fetchData();
+  }, []);
+
   return (
     <div className="w-[333px] h-40 px-4 py-[18px] rounded-[20px] shadow text-[#333333]">
       <div className="flex justify-between mb-4 items-center">
-        <div className="text-lg font-medium">공지사항</div>
-        <Icons name={AddIcon} />
+        <div className="text-lg font-medium">{MAIN_INFORMATION[0]}</div>
+        <Icons name={AddIcon} className="cursor-pointer" />
       </div>
       <div className="flex flex-col gap-y-1.5 text-[16px] font-normal tracking-tight">
-        <div>새로 입고된 상품 안내</div>
-        <div>8월 9일 시스템 점검 안내</div>
-        <div>광복절 배송 안내</div>
+        {preNotices.map((notice, index) => (
+          <div key={notice.id}>
+            {notice.title.length > 15
+              ? notice.title.slice(0, 15) + '...'
+              : notice.title}
+          </div>
+        ))}
       </div>
     </div>
   );

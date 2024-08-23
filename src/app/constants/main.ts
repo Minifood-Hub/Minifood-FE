@@ -34,3 +34,5 @@ export const CALENDAR_ORDER_TEXT = [
 ];
 
 export const CALENDAR_ORDER_COLOR = ['#FF4D00', '#FF9D00', '#55AA00'];
+
+export const MAIN_INFORMATION =['공지사항', 'FAQ', '고객센터']
