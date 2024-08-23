@@ -49,6 +49,7 @@ export const BTN_TEXT = [
   '취소',
   '저장',
   '작성',
+  '조회',
 ];
 
 export const TABLE_TEXT = [
@@ -63,6 +64,8 @@ export const TABLE_TEXT = [
   '분류',
   '단위',
   'excel로 추출',
+  '주문내역',
+  '특이사항',
 ];
 
 export const ALERT_TEXT = [
@@ -78,7 +81,7 @@ export const ALERT_TEXT = [
 ];
 
 export const REGION_TEXT = [
-  '지역을 선택해주세요',
+  '지역 선택',
   '노원',
   '의정부',
   '강남',
