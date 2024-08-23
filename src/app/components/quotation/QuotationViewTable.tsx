@@ -42,9 +42,8 @@ const QuotationViewTable = ({
     <div className="w-[full] h-[665px] flex flex-col items-center bg-white mt-4 relative">
       <div className="flex w-full items-center text-white text-base font-bold h-9 bg-[#55aa00]">
         <div className="w-[10.4%] text-center">{VIEW_QUOTATION_GRAPH[0]}</div>
-        <div className="w-[21.4%] text-center">{VIEW_QUOTATION_GRAPH[1]}</div>
-        <div className="w-[21.4%] text-center">{VIEW_QUOTATION_GRAPH[2]}</div>
-        <div className="w-[21.4%] text-center">{VIEW_QUOTATION_GRAPH[3]}</div>
+        <div className="w-[32%] text-center">{VIEW_QUOTATION_GRAPH[1]}</div>
+        <div className="w-[32%] text-center">{VIEW_QUOTATION_GRAPH[2]}</div>
       </div>
       <div className="flex flex-col w-full">
         {viewType === 'custom' && quotation === null ? (
