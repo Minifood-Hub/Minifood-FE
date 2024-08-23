@@ -30,4 +30,3 @@ export const QUOTATION_DELETE = [
   '취소',
 ];
 
-export const MODAL_PRICE = ['과세금액', '비과세금액', '부가세', '총액'];

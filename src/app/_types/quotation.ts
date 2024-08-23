@@ -1,5 +1,8 @@
 interface ProductsTypes {
+  id: number;
+  category: string;
   product: string;
+  unit: string;
   quantity: number;
   price: number;
   created_at: string;
