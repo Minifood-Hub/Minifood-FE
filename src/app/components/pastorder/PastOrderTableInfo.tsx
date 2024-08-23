@@ -3,6 +3,7 @@ import { useModal } from '@/app/hooks/useModal';
 import { callDelete } from '@/app/utils/callApi';
 import { useRouter } from 'next/navigation';
 import Button from '../common/Button';
+import DeletePastorderModal from './modal/DeletePastorderModal';
 
 interface PastOrderTableInfoProps {
   pastorder: PastOrder;
@@ -12,19 +13,20 @@ interface PastOrderTableInfoProps {
 const PastOrderTableInfo = ({ pastorder, index }: PastOrderTableInfoProps) => {
   const router = useRouter();
   const { isOpen, openModal, closeModal, handleModalClick } = useModal(false);
-  const {
-    isOpen: isDeleteModalOpen,
-    openModal: openDeleteModal,
-    closeModal: closeDeleteModal,
-  } = useModal(false);
 
-  const deleteQuotation = (id: number) => {
-    callDelete(`/api/quotation/delete?id=${id}`);
+  const deletePastOrder = (id: number) => {
+    callDelete(`/api/past-order/delete?pastorder_id=${id}`);
     window.location.reload();
   };
 
   return (
     <div key={pastorder.past_order_id}>
+      {isOpen && (
+        <DeletePastorderModal
+          closeModal={closeModal}
+          deletePastorder={() => deletePastOrder(pastorder.past_order_id)}
+        />
+      )}
       <div className="w-full pl-1 justify-start items-center inline-flex h-[53px] text-base font-normal border-b border-b-[#E0E0E0]">
         <div className="w-[9.5%] text-center">{index + 1}</div>
         <div className="w-[65.5%] text-center">{pastorder.name}</div>
@@ -32,7 +34,7 @@ const PastOrderTableInfo = ({ pastorder, index }: PastOrderTableInfoProps) => {
           <Button
             buttonText={QUOTATION_MANAGE[0]}
             type="quoteTableControl"
-            onClickHandler={openModal}
+            onClickHandler={() => console.log('여긴 조회')}
             className="border border-[#e0e0e0]"
           />
           <Button
@@ -46,7 +48,7 @@ const PastOrderTableInfo = ({ pastorder, index }: PastOrderTableInfoProps) => {
           <Button
             buttonText={QUOTATION_MANAGE[2]}
             type="quoteTableControl"
-            onClickHandler={openDeleteModal}
+            onClickHandler={openModal}
             className="bg-[#fc4c00] text-white"
           />
         </div>

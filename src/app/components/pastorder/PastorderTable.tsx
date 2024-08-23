@@ -24,7 +24,6 @@ const PastorderTable = ({ customDate }: PastorderTableProps) => {
     const fetchData = async () => {
       const url = `/api/order/${user?.result.client_id}/get-past-order`;
       const data = await callGet(url);
-      console.log(data, '가져온 주문내역 데이터');
       setPastOrders(data.result);
     };
     fetchData();
