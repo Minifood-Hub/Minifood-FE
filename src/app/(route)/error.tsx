@@ -1,30 +1,38 @@
-'use client'; // Error boundaries must be Client Components
+'use client';
 
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
+import Button from '../components/common/Button';
+import Icons from '../components/common/Icons';
+import { cancelIcon } from '../ui/iconPath';
 
-export default function Error({
+export default function GlobalError({
   error,
   reset,
 }: {
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  const router = useRouter();
   useEffect(() => {
-    // Log the error to an error reporting service
     console.error(error);
+    router.push('/login');
   }, [error]);
 
   return (
-    <div>
-      <h2>Something went wrong!</h2>
-      <button
-        onClick={
-          // Attempt to recover by trying to re-render the segment
-          () => reset()
-        }
-      >
-        Try again
-      </button>
+    <div className="bg-black w-screen h-screen text-white flex flex-col justify-center items-center gap-10">
+      <h2 className="text-3xl font-bold">문제가 발생했습니다.</h2>
+      <Button
+        type="quoteOrder"
+        className="hover:bg-white"
+        isDisabled={false}
+        buttonText="새로고침"
+        onClickHandler={() => reset()}
+      />
+      <Link href="/" className="flex flex-col justify-center items-center">
+        홈으로 <Icons name={cancelIcon} />
+      </Link>
     </div>
   );
 }
