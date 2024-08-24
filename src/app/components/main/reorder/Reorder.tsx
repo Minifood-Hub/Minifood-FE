@@ -2,6 +2,7 @@
 
 import { REORDER_TEXT } from '@/app/constants/main';
 import { callGet } from '@/app/utils/callApi';
+import { shortenText } from '@/app/utils/shortenText';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
@@ -11,10 +12,6 @@ interface ReorderProps {
 
 export default function Reorder({ client_id }: ReorderProps) {
   const [recent, setRecent] = useState<RecentQuotationTypes[]>([]);
-
-  const shortenItems = (items: string): string => {
-    return items.length > 45 ? items.slice(0, 45) + '...' : items;
-  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -45,11 +42,11 @@ export default function Reorder({ client_id }: ReorderProps) {
                 >
                   <div className="flex flex-col gap-y-1.5 text-base font-normal">
                     <p>{quotations.date}</p>
-                    <p>{shortenItems(quotations.products.join(','))}</p>
+                    <p>{shortenText(quotations.products.join(','), 45)}</p>
                   </div>
                   <Link
                     className="w-[111px] h-[39px] bg-[#55aa00] rounded text-white text-base font-normal flex-center"
-                    href={'/order'}
+                    href="/order"
                   >
                     {REORDER_TEXT[2]}
                   </Link>

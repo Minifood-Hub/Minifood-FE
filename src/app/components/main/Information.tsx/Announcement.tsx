@@ -1,6 +1,7 @@
 import { MAIN_INFORMATION } from '@/app/constants/main';
 import { AddIcon } from '@/app/ui/iconPath';
 import { callGet } from '@/app/utils/callApi';
+import { shortenText } from '@/app/utils/shortenText';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Icons from '../../common/Icons';
@@ -18,7 +19,7 @@ const Announcement = () => {
   }, []);
 
   return (
-    <Link href={'/notice'}>
+    <Link href="/notice">
       <div className="w-[333px] h-40 px-4 py-[18px] rounded-[20px] shadow text-[#333333]">
         <div className="flex justify-between mb-4 items-center">
           <div className="text-lg font-medium">{MAIN_INFORMATION[0]}</div>
@@ -26,11 +27,7 @@ const Announcement = () => {
         </div>
         <div className="flex flex-col gap-y-1.5 text-[16px] font-normal tracking-tight">
           {preNotices.map((notice, index) => (
-            <div key={notice.id}>
-              {notice.title.length > 15
-                ? notice.title.slice(0, 15) + '...'
-                : notice.title}
-            </div>
+            <div key={notice.id}>{shortenText(notice.title, 15)}</div>
           ))}
         </div>
       </div>
