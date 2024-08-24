@@ -1,16 +1,26 @@
 'use client';
 
 import { REORDER_TEXT } from '@/app/constants/main';
-import { ReorderData } from '@/app/constants/test';
 import { callGet } from '@/app/utils/callApi';
-import { useState } from 'react';
-import Button from '../../common/Button';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
-function Reorder() {
-  const [recent, setRecent] = useState<RecentQuotationTypes | null>(null);
+interface ReorderProps {
+  client_id: number;
+}
+
+export default function Reorder({ client_id }: ReorderProps) {
+  const [recent, setRecent] = useState<RecentQuotationTypes[]>([]);
+
+  const shortenItems = (items: string): string => {
+    return items.length > 45 ? items.slice(0, 45) + '...' : items;
+  };
+
   useEffect(() => {
     const fetchData = async () => {
-      const data = await callGet('/api/admin/notices/get');
+      const data = await callGet(
+        `/api/quotation/recent?client_id=${client_id}`,
+      );
       setRecent(data.result);
     };
     fetchData();
@@ -22,33 +32,33 @@ function Reorder() {
         <div className="text-xl font-semibold">{REORDER_TEXT[0]}</div>
         <div className="text-base font-normal">{REORDER_TEXT[1]}</div>
         <div className="flex flex-col gap-y-2 mb-[18px] mt-6">
-          <div className="flex flex-col gap-y-4">
-            {ReorderData.map((item, i) => (
-              <div
-                key={item.item}
-                className="flex justify-between w-full py-4 px-6 h-[81px] bg-white items-center"
-              >
-                <div className="flex flex-col gap-y-1.5 text-base font-normal">
-                  <p>{item.date}</p>
-                  <p>{item.item}</p>
-                </div>
-                <Button
-                  buttonText={REORDER_TEXT[2]}
-                  type="reorder"
-                  onClickHandler={() =>
-                    console.log('다시 주문하러 이동하는 로직')
-                  }
-                />
+          <div className="flex flex-col gap-y-4 items-center justify-center">
+            {recent.length === 0 ? (
+              <div className="text-3xl font-semibold pt-20">
+                {REORDER_TEXT[3]}
               </div>
-            ))}
+            ) : (
+              recent.map((quotations, i) => (
+                <div
+                  key={quotations.date}
+                  className="flex justify-between w-full py-4 px-6 h-[81px] bg-white items-center"
+                >
+                  <div className="flex flex-col gap-y-1.5 text-base font-normal">
+                    <p>{quotations.date}</p>
+                    <p>{shortenItems(quotations.products.join(','))}</p>
+                  </div>
+                  <Link
+                    className="w-[111px] h-[39px] bg-[#55aa00] rounded text-white text-base font-normal flex-center"
+                    href={'/order'}
+                  >
+                    {REORDER_TEXT[2]}
+                  </Link>
+                </div>
+              ))
+            )}
           </div>
         </div>
       </div>
     </div>
   );
-}
-
-export default Reorder;
-function useEffect(arg0: () => void, arg1: never[]) {
-  throw new Error('Function not implemented.');
 }
