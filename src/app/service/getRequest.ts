@@ -222,13 +222,31 @@ export const getAdminQuotationsExtractsToday = async (
 };
 
 // 모든 공지사항 조회
-export const getAdminNotices = async (req: Request) => {
-  const url = `${SERVER_URL}/api/v1/notices?_t=${Date.now()}`;
-  return getRequest(url, req);
+export const getAdminNotices = async () => {
+  const url = `${SERVER_URL}/api/v1/notices`;
+  return getRequest(url);
 };
 
 // 공지사항 조회
 export const getAdminNoticesId = async (notice_id: string, req: Request) => {
   const url = `${SERVER_URL}/api/v1/notices/${notice_id}?_t=${Date.now()}`;
+  return getRequest(url, req);
+};
+
+// FAQ 조회
+export const getFAQ = async () => {
+  const url = `${SERVER_URL}/api/v1/faqs`;
+  return getRequest(url);
+};
+
+// FAQ 상세조회
+export const getFAQId = async (faq_id: string) => {
+  const url = `${SERVER_URL}/api/v1/faqs/${faq_id}`;
+  return getRequest(url);
+};
+
+// 최근 견적서 조회
+export const getRecentQuotation = async (client_id: string, req: Request) => {
+  const url = `${SERVER_URL}/api/v1/clients/${client_id}/recent/purchase`;
   return getRequest(url, req);
 };

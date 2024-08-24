@@ -72,6 +72,7 @@ interface QuotationModalProps {
   closeModal: () => void;
   quotationId?: string | null;
   currentDate?: string;
+  quotationName?: string;
 }
 
 interface EditOrderState {

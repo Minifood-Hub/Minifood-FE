@@ -35,7 +35,7 @@ function Header() {
               <Icons name={HeaderHeartIcon} hoverFill="#306317" />
             </Link>
             <ProfileDropDown user={user} logout={handleLogout} />
-            <Link href="/">
+            <Link href="/pastorder">
               <Icons name={HeaderCartIcon} hoverFill="#306317" />
             </Link>
           </div>

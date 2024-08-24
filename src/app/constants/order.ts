@@ -35,6 +35,7 @@ export const MODAL_INFO = [
   '상업자등록번호',
   '주소',
   '주문목록',
+  '총수량',
 ];
 
 export const DIALOG_TEXT = [

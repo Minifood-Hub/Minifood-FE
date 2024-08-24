@@ -1,5 +1,8 @@
 interface ProductsTypes {
+  id: number;
+  category: string;
   product: string;
+  unit: string;
   quantity: number;
   price: number;
   created_at: string;
@@ -44,4 +47,9 @@ interface QuotationTableInfoTypes {
 interface CustomDateTypes {
   startDate: string;
   endDate: string;
+}
+
+interface RecentQuotationTypes {
+  products: string[];
+  date: string;
 }
