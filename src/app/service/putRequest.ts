@@ -94,11 +94,11 @@ export const putAdminNotices = async (
   }
 };
 
-export const putAdminFAQ = async (
+export const putAdminFAQ = (
   faq_id: string,
   noticeContents: FAQPostTypes,
   req: Request,
 ) => {
   const url = `${SERVER_URL}/api/v1/faqs/${faq_id}`;
-  return await putRequest(url, req, noticeContents);
+  return putRequest(url, req, noticeContents);
 };
