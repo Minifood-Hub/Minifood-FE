@@ -239,8 +239,14 @@ export const getFAQ = async () => {
   return getRequest(url);
 };
 
-// FAQ 조회
+// FAQ 상세조회
 export const getFAQId = async (faq_id: string) => {
   const url = `${SERVER_URL}/api/v1/faqs/${faq_id}`;
   return getRequest(url);
+};
+
+// 최근 견적서 조회
+export const getRecentQuotation = async (client_id: string, req: Request) => {
+  const url = `${SERVER_URL}/api/v1/clients/${client_id}/recent/purchase`;
+  return getRequest(url, req);
 };

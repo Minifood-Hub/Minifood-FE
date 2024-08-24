@@ -48,3 +48,8 @@ interface CustomDateTypes {
   startDate: string;
   endDate: string;
 }
+
+interface RecentQuotationTypes {
+  products: string[];
+  date: string
+}

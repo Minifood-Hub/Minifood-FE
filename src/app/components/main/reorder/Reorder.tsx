@@ -2,9 +2,20 @@
 
 import { REORDER_TEXT } from '@/app/constants/main';
 import { ReorderData } from '@/app/constants/test';
+import { callGet } from '@/app/utils/callApi';
+import { useState } from 'react';
 import Button from '../../common/Button';
 
 function Reorder() {
+  const [recent, setRecent] = useState<RecentQuotationTypes | null>(null);
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await callGet('/api/admin/notices/get');
+      setRecent(data.result);
+    };
+    fetchData();
+  }, []);
+
   return (
     <div className="w-full h-[421px] flex flex-col items-center py-6 bg-[#f7f7f7]">
       <div className="w-[1050px] flex flex-col">
@@ -38,3 +49,6 @@ function Reorder() {
 }
 
 export default Reorder;
+function useEffect(arg0: () => void, arg1: never[]) {
+  throw new Error('Function not implemented.');
+}
