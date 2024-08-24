@@ -7,7 +7,7 @@ export async function PUT(
 ): Promise<NextResponse> {
   const { faq_id } = params;
   const body = await req.json();
-  
+
   const response = await putAdminFAQ(faq_id, body, req);
   return NextResponse.json(response, { status: 200 });
 }

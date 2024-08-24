@@ -51,5 +51,5 @@ interface CustomDateTypes {
 
 interface RecentQuotationTypes {
   products: string[];
-  date: string
+  date: string;
 }

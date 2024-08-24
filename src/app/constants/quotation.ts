@@ -29,4 +29,3 @@ export const QUOTATION_DELETE = [
   '삭제',
   '취소',
 ];
-
