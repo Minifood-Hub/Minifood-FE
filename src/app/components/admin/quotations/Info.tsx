@@ -105,14 +105,14 @@ export default function QuotationInfo() {
               {formatPrice(item.total_price)} 원
             </div>
             <div className="w-[10%] text-center">
-              <div
-                className="cursor-pointer underline"
-                onClick={() => {
+              <Button
+                type="default"
+                className="admin-btn"
+                onClickHandler={() => {
                   handleExtractQuotation(item.id);
                 }}
-              >
-                {TABLE_TEXT[13]}
-              </div>
+                buttonText={TABLE_TEXT[13]}
+              />
             </div>
           </div>
         ))}

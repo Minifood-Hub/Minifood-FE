@@ -169,22 +169,22 @@ export default function ProductsCategory() {
                 formatPrice(item.price)
               )}
             </div>
-            <div className="w-[10%]">
+            <div className="w-[10%] flex justify-center">
               {isEdit === item.id ? (
-                <div className="flex">
+                <div className="flex justify-center gap-4">
                   <Button
                     onClickHandler={() => {
                       setIsEdit(null);
                     }}
-                    className="flex justify-center cursor-pointer"
+                    className="admin-btn bg-gray-2"
                     buttonText={BTN_TEXT[5]}
                     type="default"
                   />
-                  /
+
                   <Button
                     type="default"
                     onClickHandler={() => handleUpdate(item.id)}
-                    className="flex justify-center cursor-pointer"
+                    className="admin-btn"
                     buttonText={BTN_TEXT[6]}
                   />
                 </div>
@@ -192,16 +192,16 @@ export default function ProductsCategory() {
                 <Button
                   type="default"
                   onClickHandler={() => handleEditClick(item)}
-                  className="flex justify-center cursor-pointer"
+                  className="admin-btn"
                   buttonText={BTN_TEXT[3]}
                 />
               )}
             </div>
-            <div className="w-[10%]">
+            <div className="w-[10%] flex justify-center">
               <Button
                 type="default"
                 onClickHandler={() => handleDelete(item.id)}
-                className="flex justify-center text-red-1 cursor-pointer"
+                className="bg-red-1 admin-btn"
                 buttonText={BTN_TEXT[1]}
               />
             </div>

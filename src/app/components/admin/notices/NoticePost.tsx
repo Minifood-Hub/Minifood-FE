@@ -54,7 +54,7 @@ export default function NoticePost() {
 
         <div className="flex flex-col w-1/2">
           <Button
-            className="bg-primary-4 text-white font-bold max-w-fit px-8 py-2 self-end"
+            className="bg-primary-3 text-white font-bold max-w-fit px-8 py-2 self-end"
             buttonText={BTN_TEXT[2]}
             type="default"
             onClickHandler={handlePostNotice}
