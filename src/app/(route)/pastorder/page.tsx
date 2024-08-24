@@ -1,22 +1,20 @@
 import Footer from '@/app/components/common/layout/Footer';
 import SideNavBar from '@/app/components/common/layout/SideNavBar';
-import EditQuoteContainer from '@/app/components/quotation/container/EditQuoteContainer';
+import PastorderContainer from '@/app/components/pastorder/container/PastorderContainer';
 import { SIDENAV_TEXT } from '@/app/constants/common';
 
-const QuotationEditPage = ({ params }: { params: { id: string } }) => {
+export default function Quotation() {
   return (
     <section>
-      <div className="bg-gray-0 min-w-full h-full flex flex-col relative">
+      <div className="bg-[#FAF7F7] w-full h-full flex flex-col relative">
         <div className="w-full flex relative h-full">
-          <SideNavBar selected={SIDENAV_TEXT[2]} />
+          <SideNavBar selected={SIDENAV_TEXT[1]} />
           <div className="flex flex-col items-center w-full">
-            <EditQuoteContainer id={params.id} />
+            <PastorderContainer />
             <Footer />
           </div>
         </div>
       </div>
     </section>
   );
-};
-
-export default QuotationEditPage;
+}

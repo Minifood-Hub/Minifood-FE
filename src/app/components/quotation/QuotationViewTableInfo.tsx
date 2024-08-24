@@ -2,7 +2,6 @@ import { QUOTATION_MANAGE } from '@/app/constants/quotation';
 import { useModal } from '@/app/hooks/useModal';
 import { callDelete } from '@/app/utils/callApi';
 import { formatDate } from '@/app/utils/date';
-import { formatPrice } from '@/app/utils/formatPrice';
 import { useRouter } from 'next/navigation';
 import Button from '../common/Button';
 import DeleteQuotationModal from './modal/edit/DeleteQuotationModal';
@@ -41,13 +40,10 @@ const QuotationViewTableInfo = ({
       )}
       <div className="w-full pl-1 justify-start items-center inline-flex h-[53px] text-base font-normal border-b border-b-[#E0E0E0]">
         <div className="w-[10.4%] text-center">{index + 1}</div>
-        <div className="w-[21.4%] text-center">
+        <div className="w-[32%] text-center">
           {formatDate(quoteView.created_at)}
         </div>
-        <div className="w-[21.4%] text-center">{quoteView.name}</div>
-        <div className="w-[21.4%] text-center">
-          {formatPrice(quoteView.total_price)}원
-        </div>
+        <div className="w-[32%] text-center">{quoteView.name}</div>
         <div className="flex gap-x-[10%] px-[5%] flex-grow">
           <Button
             buttonText={QUOTATION_MANAGE[0]}

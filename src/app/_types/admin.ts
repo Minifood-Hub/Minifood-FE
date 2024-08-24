@@ -51,3 +51,18 @@ interface CheckQuotationResult {
   client_id: number;
   status: boolean;
 }
+
+interface FAQProps {
+  category: string;
+  question: string;
+  answer: string;
+  id: number;
+  created_at: string;
+  updated_at: string;
+}
+
+interface FAQPostTypes {
+  category: string;
+  question: string;
+  answer: string;
+}
