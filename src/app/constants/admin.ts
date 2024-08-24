@@ -36,7 +36,7 @@ export const INPUT_TEXT = [
   '제목',
   '내용',
   '공지사항 id',
-  '',
+  '종료 날짜의 모든 견적서 excel 파일로 추출',
   '견적서 id',
 ];
 
@@ -66,6 +66,7 @@ export const TABLE_TEXT = [
   'excel로 추출',
   '주문내역',
   '특이사항',
+  '추출',
 ];
 
 export const ALERT_TEXT = [

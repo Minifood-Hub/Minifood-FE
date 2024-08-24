@@ -11,6 +11,7 @@ import Input from '../../common/Input';
 import Button from '../../common/Button';
 import { formatPrice } from '@/app/utils/formatPrice';
 import { formatDate } from '@/app/utils/date';
+import QuotationModal from '../../quotation/modal/view/QuotationModal';
 
 export default function QuotationInfo() {
   const [startDate, setStartDate] = useState('');
@@ -19,6 +20,9 @@ export default function QuotationInfo() {
   const [result, setResult] = useState<{ items: AdminItemProps[] }>({
     items: [],
   });
+
+  const [showQuote, setShowQuote] = useState(false);
+  const [selectedId, setSelectedId] = useState<number>(0);
 
   const handleGetQuotations = async () => {
     if (!startDate || !endDate || !query) {
@@ -61,47 +65,58 @@ export default function QuotationInfo() {
     }
   };
 
+  // 견적서 열기
+  const handleShowQuote = (client_id: number) => {
+    setSelectedId(client_id);
+    setShowQuote(true);
+  };
+
+  // 견적서 닫기
+  const handleCloseQuote = () => {
+    setShowQuote(false);
+    setSelectedId(0);
+  };
+
   const renderTable = () => {
     return (
-      <table className="admin-table">
-        <thead>
-          <tr>
-            <th className="admin-table-th">{TABLE_TEXT[0]}</th>
-            <th className="admin-table-th">{TABLE_TEXT[1]}</th>
-            <th className="admin-table-th">{TABLE_TEXT[2]}</th>
-            <th className="admin-table-th">{TABLE_TEXT[3]}</th>
-            <th className="admin-table-th">{TABLE_TEXT[4]}</th>
-            <th className="admin-table-th">{TABLE_TEXT[5]}</th>
-            <th className="admin-table-th">{TABLE_TEXT[10]}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {result.items.map((item: AdminItemProps) => (
-            <tr key={item.id}>
-              <td className="admin-table-th">{item.id}</td>
-              <td className="admin-table-th">{item.name}</td>
-              <td className="admin-table-th">{item.created_at}</td>
-              <td className="admin-table-th">{item.updated_at || 'N/A'}</td>
-              <td className="admin-table-th">
-                {clientStatusMapping[item.status]}
-              </td>
-              <td className="admin-table-th">
-                {formatPrice(item.total_price)} 원
-              </td>
-              <td className="admin-table-th">
-                <div
-                  className="cursor-pointer text-center"
-                  onClick={() => {
-                    handleExtractQuotation(item.id);
-                  }}
-                >
-                  추출
-                </div>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <div className="w-full">
+        <div className="flex bg-primary-1 w-full p-2 text-white font-bold">
+          <div className="w-[5%]">{TABLE_TEXT[0]}</div>
+          <div className="w-[30%]">{TABLE_TEXT[1]}</div>
+          <div className="w-[15%]">{TABLE_TEXT[2]}</div>
+          <div className="w-[15%]">{TABLE_TEXT[3]}</div>
+          <div className="w-[10%]">{TABLE_TEXT[4]}</div>
+          <div className="w-[15%] text-center">{TABLE_TEXT[5]}</div>
+          <div className="w-[10%] text-center">{TABLE_TEXT[10]}</div>
+        </div>
+        {result.items.map((item: AdminItemProps) => (
+          <div className="flex p-2 border-2" key={item.id}>
+            <div className="w-[5%]">{item.id}</div>
+            <div
+              onClick={() => handleShowQuote(item.id)}
+              className="w-[30%] cursor-pointer underline"
+            >
+              {item.name}
+            </div>
+            <div className="w-[15%]">{item.created_at}</div>
+            <div className="w-[15%]">{item.updated_at || 'N/A'}</div>
+            <div className="w-[10%]">{clientStatusMapping[item.status]}</div>
+            <div className="w-[15%] text-center">
+              {formatPrice(item.total_price)} 원
+            </div>
+            <div className="w-[10%] text-center">
+              <div
+                className="cursor-pointer underline"
+                onClick={() => {
+                  handleExtractQuotation(item.id);
+                }}
+              >
+                {TABLE_TEXT[13]}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
     );
   };
 
@@ -157,14 +172,17 @@ export default function QuotationInfo() {
         <div className="w-full">{renderTable()}</div>
       </div>
       <div className="flex items-center gap-4 justify-end pt-8">
-        <p>종료 날짜의 모든 견적서 excel 파일로 추출</p>
+        <p>{INPUT_TEXT[13]}</p>
         <Button
-          className="text-white font-bold max-w-fit px-8 py-2 self-end bg-primary-4"
+          className="text-white font-bold max-w-fit px-8 py-2 self-end bg-primary-3"
           buttonText={BTN_TEXT[0]}
           type="default"
           onClickHandler={handleExtractTodayQuotation}
         />
       </div>
+      {showQuote && (
+        <QuotationModal closeModal={handleCloseQuote} id={selectedId} />
+      )}
     </>
   );
 }
