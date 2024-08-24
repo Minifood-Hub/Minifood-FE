@@ -125,7 +125,7 @@ export default function QuotationInfo() {
       <div className="flex flex-col gap-4 border-2 p-8">
         <div className="flex w-full gap-12">
           <div className="flex gap-4 items-center">
-            <p className="whitespace-nowrap">{INPUT_TEXT[4]}</p>
+            <p className="whitespace-nowrap">{INPUT_TEXT[0]}</p>
             <Input
               name="startDate"
               className="admin-input"
@@ -133,12 +133,12 @@ export default function QuotationInfo() {
               type="default"
               onChange={(e) => setStartDate(e.target.value)}
               textValue={startDate}
-              placeholder={INPUT_TEXT[4]}
+              placeholder={INPUT_TEXT[0]}
             />
           </div>
 
           <div className="flex gap-4 items-center">
-            <p className="whitespace-nowrap">{INPUT_TEXT[5]}</p>
+            <p className="whitespace-nowrap">{INPUT_TEXT[1]}</p>
             <Input
               name="endDate"
               className="admin-input"
@@ -146,19 +146,19 @@ export default function QuotationInfo() {
               type="default"
               onChange={(e) => setEndDate(e.target.value)}
               textValue={endDate}
-              placeholder={INPUT_TEXT[5]}
+              placeholder={INPUT_TEXT[1]}
             />
           </div>
 
           <div className="flex gap-4 items-center">
-            <p className="whitespace-nowrap">{INPUT_TEXT[8]}</p>
+            <p className="whitespace-nowrap">{INPUT_TEXT[3]}</p>
             <Input
               name="query"
               className="admin-input"
               type="default"
               onChange={(e) => setQuery(e.target.value)}
               textValue={query}
-              placeholder={INPUT_TEXT[8]}
+              placeholder={INPUT_TEXT[3]}
             />
           </div>
 
@@ -172,7 +172,7 @@ export default function QuotationInfo() {
         <div className="w-full">{renderTable()}</div>
       </div>
       <div className="flex items-center gap-4 justify-end pt-8">
-        <p>{INPUT_TEXT[13]}</p>
+        <p>{INPUT_TEXT[8]}</p>
         <Button
           className="text-white font-bold max-w-fit px-8 py-2 self-end bg-primary-3"
           buttonText={BTN_TEXT[0]}

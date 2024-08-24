@@ -114,7 +114,7 @@ export default function NoticeGet() {
       ) : (
         <>
           <div className="flex w-full justify-start items-center gap-4">
-            <p>{INPUT_TEXT[12]}</p>
+            <p>{INPUT_TEXT[7]}</p>
             <Input
               type="default"
               className="max-w-fit border-2 px-4 py-2"

@@ -157,7 +157,7 @@ export default function ClientsRegion() {
                   type="default"
                   onChange={(e) => setInputComment(e.target.value)}
                   textValue={inputComment}
-                  placeholder={INPUT_TEXT[7]}
+                  placeholder={INPUT_TEXT[2]}
                 />
                 <Button
                   className="admin-btn"

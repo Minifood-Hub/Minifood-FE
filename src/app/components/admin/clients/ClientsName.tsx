@@ -155,7 +155,7 @@ export default function ClientsName() {
                   type="default"
                   onChange={(e) => setInputComment(e.target.value)}
                   textValue={inputComment}
-                  placeholder={INPUT_TEXT[7]}
+                  placeholder={INPUT_TEXT[2]}
                 />
                 <Button
                   className="admin-btn"
@@ -186,14 +186,14 @@ export default function ClientsName() {
     <div className="flex flex-col gap-4 border-2 p-8">
       <div className="flex w-full gap-12">
         <div className="flex gap-4 items-center">
-          <p className="whitespace-nowrap">{INPUT_TEXT[8]}</p>
+          <p className="whitespace-nowrap">{INPUT_TEXT[3]}</p>
           <Input
             name="page"
             className="admin-input"
             type="default"
             onChange={(e) => setName(e.target.value)}
             textValue={name}
-            placeholder={INPUT_TEXT[8]}
+            placeholder={INPUT_TEXT[3]}
           />
         </div>
 

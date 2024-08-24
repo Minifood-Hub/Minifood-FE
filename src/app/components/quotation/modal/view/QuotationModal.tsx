@@ -13,7 +13,8 @@ interface QuotationModalProps {
 
 const QuotationModal = ({ closeModal, id }: QuotationModalProps) => {
   const [detailData, setDetailData] = useState<QuotationInfoTypes | null>(null);
-
+  console.log('아이디', id);
+  console.log('디테일 데이터', detailData);
   useEffect(() => {
     const fetchData = async () => {
       const data = await callGet(`/api/quotation/detail?id=${id}`);
