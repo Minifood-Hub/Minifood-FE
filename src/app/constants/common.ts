@@ -45,7 +45,7 @@ export const SELECTED_SIDENAV_ICONS = [
   SelectedProductsIcon,
 ];
 
-export const SIDENAV_PATH = ['/order', '/pastorder', '/quotation', '/'];
+export const SIDENAV_PATH = ['/order', '/pastorder', '/quotation', '/product'];
 
 export const DAYS_OF_WEEEK = [
   '월요일',
