@@ -9,9 +9,12 @@ import '@/app/ui/Calendar.css';
 import CalendarNext from '@/app/ui/Icons/CalendarNext';
 import CalendarPrev from '@/app/ui/Icons/CalendarPrev';
 import { callGet } from '@/app/utils/callApi';
+import clsx from 'clsx';
+import moment from 'moment';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
+import CalendarStatus from './CalendarStatus';
 
 interface OrderCalendarProps {
   clientType: string;
@@ -20,13 +23,14 @@ interface OrderCalendarProps {
 const OrderCalendar = ({ clientType }: OrderCalendarProps) => {
   const [today, setToday] = useState<Date | null>(null);
   const [daily, setDaily] = useState<DailyQuotationTypes[]>([]);
+
   const path =
     clientType === 'COMMON'
       ? '/order'
       : clientType === 'CLIENT'
         ? '/sign-in/client'
         : '/sign-in';
-console.log(daily, '가져온 통계');
+  console.log(daily, '가져온 통계');
 
   useEffect(() => {
     setToday(new Date());
@@ -43,6 +47,32 @@ console.log(daily, '가져온 통계');
   const onChangeToday = () => {
     setToday(today);
   };
+  const getStatusForDate = (date: Date) => {
+    const formattedDate = date.toISOString().split('T')[0];
+    const dayStatus = daily.find((item) => item.date === formattedDate);
+    return dayStatus ? dayStatus.status : null;
+  };
+
+  const getTileClassName = ({ date }: { date: Date }) => {
+    const status = getStatusForDate(date);
+    return clsx({
+      high: status === '상',
+      middle: status === '중',
+      low: status === '하',
+    });
+  };
+
+  const renderTileContent = ({ date, view }: { date: Date; view: string }) => {
+    const status = getStatusForDate(date);
+    return status ? (
+      <CalendarStatus
+        status={status || ''}
+        date={date.toISOString().split('T')[0]}
+      />
+    ) : (
+      <div>{date.toISOString().split('T')[0].slice(8, 10)}</div>
+    );
+  };
 
   return (
     <div className="w-full flex flex-col items-center">
@@ -56,9 +86,12 @@ console.log(daily, '가져온 통계');
             value={today}
             prevLabel={<CalendarPrev />}
             prev2Label={null}
+            formatDay={(locale, date) => moment(date).format('D')}
             nextLabel={<CalendarNext />}
             next2Label={null}
             locale="ko-KR"
+            tileContent={renderTileContent}
+            tileClassName={getTileClassName}
           />
           <div className="flex flex-col gap-y-8">
             {CALENDAR_ORDER_TEXT.map((text, i) => (

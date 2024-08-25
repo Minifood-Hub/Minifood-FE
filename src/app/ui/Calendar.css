@@ -47,6 +47,8 @@
   height: 60px;
   margin-bottom: 1em;
   background-color: #4e9c00;
+  font-size: 20px;
+  font-weight: bold;
   color: #ffffff;
   justify-content: space-between;
 }
@@ -59,10 +61,6 @@
 .react-calendar__navigation button:disabled {
   background-color: #71b033;
 }
-
-/* .react-calendar__navigation button:enabled:hover {
-  background-color: #71b033;
-} */
 
 .react-calendar__month-view__weekdays {
   text-align: center;
@@ -112,7 +110,6 @@
   background: none;
   text-align: center;
   line-height: 16px;
-  font-size: 0.833em;
 }
 
 .react-calendar__tile:disabled {
@@ -125,42 +122,6 @@
 .react-calendar__century-view__decades__decade--neighboringCentury:disabled {
   color: #cdcdcd;
 }
-
-/* .react-calendar__tile:enabled:hover,
-.react-calendar__tile:enabled:focus {
-  background-color: #e6e6e6;
-}
-
-.react-calendar__tile--now {
-  background: #ffff76;
-}
-
-.react-calendar__tile--now:enabled:hover,
-.react-calendar__tile--now:enabled:focus {
-  background: #ffffa9;
-}
-
-.react-calendar__tile--hasActive {
-  background: #76baff;
-}
-
-.react-calendar__tile--hasActive:enabled:hover,
-.react-calendar__tile--hasActive:enabled:focus {
-  background: #a9d4ff;
-}
-
-.react-calendar__tile--active {
-  color: white;
-}
-
-.react-calendar__tile--active:enabled:hover,
-.react-calendar__tile--active:enabled:focus {
-  background: #1087ff;
-}
-
-.react-calendar--selectRange .react-calendar__tile--hover {
-  background-color: #e6e6e6;
-} */
 
 .react-calendar__month-view__weekdays__weekday {
   width: 40px;
@@ -178,4 +139,32 @@
 .react-calendar__month-view__weekdays__weekday abbr {
   text-decoration: none;
   content: attr(title);
+}
+
+.low,
+.middle,
+.high {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 16px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.low {
+  color: black;
+}
+
+.middle {
+  color: red;
+}
+.high {
+  color: red;
+}
+
+.react-calendar__month-view__days__day abbr {
+  display: none; /* abbr 태그를 숨깁니다 */
 }
