@@ -1,7 +1,6 @@
 import { ALERT_TEXT, BTN_TEXT } from '@/app/constants/admin';
 import Button from '../../common/Button';
 import { ChangeEvent, FormEvent, useState } from 'react';
-import { callPostFile } from '@/app/utils/callApi';
 import Input from '../../common/Input';
 
 export default function ProductsUpload() {
@@ -24,10 +23,21 @@ export default function ProductsUpload() {
     formData.append('file', file);
 
     try {
-      const data = await callPostFile(`/api/admin/products/upload`, formData);
-      console.log(data);
+      const response = await fetch('/api/admin/products/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log('업로드 성공:', data);
+      alert('파일이 성공적으로 업로드되었습니다.');
     } catch (error) {
-      console.error(error);
+      console.error('파일 업로드 중 오류 발생:', error);
+      alert('파일 업로드 중 오류가 발생했습니다.');
     }
   };
 
