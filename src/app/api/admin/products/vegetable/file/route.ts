@@ -3,7 +3,7 @@
 import { patchAdminProductsVegetableFile } from '@/app/service/patchRequest';
 import { NextRequest, NextResponse } from 'next/server';
 
-export async function POST(req: NextRequest): Promise<NextResponse> {
+export async function PATCH(req: NextRequest): Promise<NextResponse> {
   try {
     const formData = await req.formData(); // 요청에서 FormData 객체를 추출
     const file = formData.get('file') as File; // 파일 데이터 추출
