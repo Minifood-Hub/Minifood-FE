@@ -30,12 +30,12 @@ export default function Reorder({ client_id }: ReorderProps) {
         <div className="text-base font-normal">{REORDER_TEXT[1]}</div>
         <div className="flex flex-col gap-y-2 mb-[18px] mt-6">
           <div className="flex flex-col gap-y-4 items-center justify-center">
-            {recent.length === 0 ? (
+            {recent?.length === 0 ? (
               <div className="text-3xl font-semibold pt-20">
                 {REORDER_TEXT[3]}
               </div>
             ) : (
-              recent.map((quotations, i) => (
+              recent?.map((quotations, i) => (
                 <div
                   key={quotations.date}
                   className="flex justify-between w-full py-4 px-6 h-[81px] bg-white items-center"
