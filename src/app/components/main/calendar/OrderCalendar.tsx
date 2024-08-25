@@ -8,6 +8,7 @@ import {
 import '@/app/ui/Calendar.css';
 import CalendarNext from '@/app/ui/Icons/CalendarNext';
 import CalendarPrev from '@/app/ui/Icons/CalendarPrev';
+import { callGet } from '@/app/utils/callApi';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
@@ -18,15 +19,25 @@ interface OrderCalendarProps {
 
 const OrderCalendar = ({ clientType }: OrderCalendarProps) => {
   const [today, setToday] = useState<Date | null>(null);
+  const [daily, setDaily] = useState<DailyQuotationTypes[]>([]);
   const path =
     clientType === 'COMMON'
       ? '/order'
       : clientType === 'CLIENT'
         ? '/sign-in/client'
         : '/sign-in';
+console.log(daily, '가져온 통계');
 
   useEffect(() => {
     setToday(new Date());
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await callGet('/api/quotation/daily');
+      setDaily(data.result);
+    };
+    fetchData();
   }, []);
 
   const onChangeToday = () => {

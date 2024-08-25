@@ -53,3 +53,8 @@ interface RecentQuotationTypes {
   products: string[];
   date: string;
 }
+
+interface DailyQuotationTypes {
+  date: string;
+  status: string;
+}
