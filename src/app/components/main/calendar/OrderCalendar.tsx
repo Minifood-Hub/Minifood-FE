@@ -25,6 +25,7 @@ const OrderCalendar = ({ clientType }: OrderCalendarProps) => {
   const [daily, setDaily] = useState<DailyQuotationTypes[]>(
     DAILY_QUOTATION_GUEST,
   );
+  console.log(daily);
 
   const path =
     clientType === 'COMMON'
@@ -43,7 +44,7 @@ const OrderCalendar = ({ clientType }: OrderCalendarProps) => {
       clientType === 'COMMON' && setDaily(data.result);
     };
     fetchData();
-  }, []);
+  }, [daily, clientType]);
 
   const onChangeToday = () => {
     setToday(today);
