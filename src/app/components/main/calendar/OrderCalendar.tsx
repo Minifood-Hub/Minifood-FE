@@ -10,7 +10,6 @@ import CalendarNext from '@/app/ui/Icons/CalendarNext';
 import CalendarPrev from '@/app/ui/Icons/CalendarPrev';
 import { callGet } from '@/app/utils/callApi';
 import clsx from 'clsx';
-import moment from 'moment';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
@@ -70,7 +69,9 @@ const OrderCalendar = ({ clientType }: OrderCalendarProps) => {
         date={date.toISOString().split('T')[0]}
       />
     ) : (
-      <div>{date.toISOString().split('T')[0].slice(8, 10)}</div>
+      <div className="text-center">
+        {date.toISOString().split('T')[0].slice(8, 10)}
+      </div>
     );
   };
 
@@ -86,7 +87,6 @@ const OrderCalendar = ({ clientType }: OrderCalendarProps) => {
             value={today}
             prevLabel={<CalendarPrev />}
             prev2Label={null}
-            formatDay={(locale, date) => moment(date).format('D')}
             nextLabel={<CalendarNext />}
             next2Label={null}
             locale="ko-KR"

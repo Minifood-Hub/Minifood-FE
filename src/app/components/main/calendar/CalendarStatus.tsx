@@ -16,7 +16,7 @@ const CalendarStatus = ({ status, date }: CalendarStatusProps) => {
   };
   return (
     <div
-      className={`w-[38px] h-[38px] p-2.5 text-white rounded-full bg-[${statusStyle(status)}]`}
+      className={`w-[38px] h-[38px] p-2.5 text-white text-center rounded-full bg-[${statusStyle(status)}]`}
     >
       {date.slice(8, 10)}
     </div>
