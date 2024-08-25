@@ -32,12 +32,11 @@ export default function ProductsVegetableFile() {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      const data = await response.json();
-      console.log('업로드 성공:', data);
-      alert('파일이 성공적으로 업로드되었습니다.');
+      await response.json();
+      alert(ALERT_TEXT[10]);
     } catch (error) {
       console.error('파일 업로드 중 오류 발생:', error);
-      alert('파일 업로드 중 오류가 발생했습니다.');
+      alert(ALERT_TEXT[11]);
     }
   };
   return (
