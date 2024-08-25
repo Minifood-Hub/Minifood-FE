@@ -37,3 +37,203 @@ export const CALENDAR_ORDER_TEXT = [
 export const CALENDAR_ORDER_COLOR = ['#FF4D00', '#FF9D00', '#55AA00'];
 
 export const MAIN_INFORMATION = ['공지사항', 'FAQ', '고객센터'];
+
+export const DAILY_QUOTATION_GUEST = [
+  {
+    date: '2024-07-01',
+    status: '하',
+  },
+  {
+    date: '2024-07-02',
+    status: '하',
+  },
+  {
+    date: '2024-07-03',
+    status: '하',
+  },
+  {
+    date: '2024-07-04',
+    status: '하',
+  },
+  {
+    date: '2024-07-05',
+    status: '하',
+  },
+  {
+    date: '2024-07-06',
+    status: '하',
+  },
+  {
+    date: '2024-07-07',
+    status: '하',
+  },
+  {
+    date: '2024-07-08',
+    status: '하',
+  },
+  {
+    date: '2024-07-09',
+    status: '하',
+  },
+  {
+    date: '2024-07-10',
+    status: '하',
+  },
+  {
+    date: '2024-07-11',
+    status: '하',
+  },
+  {
+    date: '2024-07-12',
+    status: '하',
+  },
+  {
+    date: '2024-07-13',
+    status: '하',
+  },
+  {
+    date: '2024-07-14',
+    status: '하',
+  },
+  {
+    date: '2024-07-15',
+    status: '하',
+  },
+  {
+    date: '2024-07-16',
+    status: '하',
+  },
+  {
+    date: '2024-07-17',
+    status: '하',
+  },
+  {
+    date: '2024-07-18',
+    status: '하',
+  },
+  {
+    date: '2024-07-19',
+    status: '하',
+  },
+  {
+    date: '2024-07-20',
+    status: '하',
+  },
+  {
+    date: '2024-07-21',
+    status: '하',
+  },
+  {
+    date: '2024-07-22',
+    status: '하',
+  },
+  {
+    date: '2024-07-23',
+    status: '하',
+  },
+  {
+    date: '2024-07-24',
+    status: '하',
+  },
+  {
+    date: '2024-07-25',
+    status: '하',
+  },
+  {
+    date: '2024-07-26',
+    status: '하',
+  },
+  {
+    date: '2024-07-27',
+    status: '하',
+  },
+  {
+    date: '2024-07-28',
+    status: '하',
+  },
+  {
+    date: '2024-07-31',
+    status: '하',
+  },
+  {
+    date: '2024-08-01',
+    status: '하',
+  },
+  {
+    date: '2024-08-02',
+    status: '중',
+  },
+  {
+    date: '2024-08-03',
+    status: '하',
+  },
+  {
+    date: '2024-08-04',
+    status: '하',
+  },
+  {
+    date: '2024-08-05',
+    status: '상',
+  },
+  {
+    date: '2024-08-06',
+    status: '하',
+  },
+  {
+    date: '2024-08-08',
+    status: '하',
+  },
+  {
+    date: '2024-08-10',
+    status: '중',
+  },
+  {
+    date: '2024-08-11',
+    status: '중',
+  },
+  {
+    date: '2024-08-12',
+    status: '하',
+  },
+  {
+    date: '2024-08-13',
+    status: '하',
+  },
+  {
+    date: '2024-08-14',
+    status: '상',
+  },
+  {
+    date: '2024-08-17',
+    status: '하',
+  },
+  {
+    date: '2024-08-18',
+    status: '중',
+  },
+  {
+    date: '2024-08-19',
+    status: '하',
+  },
+  {
+    date: '2024-08-20',
+    status: '하',
+  },
+  {
+    date: '2024-08-21',
+    status: '상',
+  },
+
+  {
+    date: '2024-08-23',
+    status: '상',
+  },
+  {
+    date: '2024-08-24',
+    status: '중',
+  },
+  {
+    date: '2024-08-25',
+    status: '중',
+  },
+];

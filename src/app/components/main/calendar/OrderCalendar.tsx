@@ -3,6 +3,7 @@
 import {
   CALENDAR_ORDER_COLOR,
   CALENDAR_ORDER_TEXT,
+  DAILY_QUOTATION_GUEST,
   MAIN_CALENDAR_TEXT,
 } from '@/app/constants/main';
 import '@/app/ui/Calendar.css';
@@ -21,7 +22,9 @@ interface OrderCalendarProps {
 
 const OrderCalendar = ({ clientType }: OrderCalendarProps) => {
   const [today, setToday] = useState<Date | null>(null);
-  const [daily, setDaily] = useState<DailyQuotationTypes[]>([]);
+  const [daily, setDaily] = useState<DailyQuotationTypes[]>(
+    DAILY_QUOTATION_GUEST,
+  );
 
   const path =
     clientType === 'COMMON'
@@ -29,7 +32,6 @@ const OrderCalendar = ({ clientType }: OrderCalendarProps) => {
       : clientType === 'CLIENT'
         ? '/sign-in/client'
         : '/sign-in';
-  console.log(daily, '가져온 통계');
 
   useEffect(() => {
     setToday(new Date());
@@ -38,7 +40,7 @@ const OrderCalendar = ({ clientType }: OrderCalendarProps) => {
   useEffect(() => {
     const fetchData = async () => {
       const data = await callGet('/api/quotation/daily');
-      setDaily(data.result);
+      clientType === 'COMMON' && setDaily(data.result);
     };
     fetchData();
   }, []);
@@ -46,6 +48,7 @@ const OrderCalendar = ({ clientType }: OrderCalendarProps) => {
   const onChangeToday = () => {
     setToday(today);
   };
+
   const getStatusForDate = (date: Date) => {
     const formattedDate = date.toISOString().split('T')[0];
     const dayStatus = daily.find((item) => item.date === formattedDate);

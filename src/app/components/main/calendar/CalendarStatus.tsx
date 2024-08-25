@@ -14,9 +14,11 @@ const CalendarStatus = ({ status, date }: CalendarStatusProps) => {
         return '#FF4D00';
     }
   };
+
   return (
     <div
-      className={`w-[38px] h-[38px] p-2.5 text-white text-center rounded-full bg-[${statusStyle(status)}]`}
+      className="w-[38px] h-[38px] p-2.5 text-white text rounded-full"
+      style={{ backgroundColor: statusStyle(status) }}
     >
       {date.slice(8, 10)}
     </div>
