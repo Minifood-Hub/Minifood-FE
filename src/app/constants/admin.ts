@@ -62,6 +62,7 @@ export const ALERT_TEXT = [
   '정상적으로 제출되었습니다.',
   '공지사항이 삭제되었습니다.',
   '접근 권한이 없습니다.',
+  '가격이 변경되었습니다.',
 ];
 
 export const REGION_TEXT = [
