@@ -1,6 +1,6 @@
 export const PRODUCT_HEADER = ['상품조회', '검색어를 입력해주세요'];
 
-export const PRODUCT_CATEGORY: ProductTypes[] = [
+export const PRODUCT_CATEGORY: ProductCategory[] = [
   '전체',
   '야채',
   '냉동',

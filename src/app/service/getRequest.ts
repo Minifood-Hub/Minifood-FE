@@ -256,3 +256,13 @@ export const getDailyQuotation = async (req: Request) => {
   const url = `${SERVER_URL}/api/v1/statistics/daily-quotation-totals`;
   return getRequest(url, req);
 };
+
+export const getProducts = async (req: Request) => {
+  const url = `${SERVER_URL}/api/v1/custom-products`;
+  return getRequest(url, req);
+};
+
+export const getProductDetail = async (product_id: string, req: Request) => {
+  const url = `${SERVER_URL}/api/v1/custom-products/${product_id}`;
+  return getRequest(url, req);
+};

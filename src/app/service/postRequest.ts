@@ -176,3 +176,13 @@ export const postAdminFAQ = (faqContents: FAQPostTypes, req: Request) => {
   const url = `${SERVER_URL}/api/v1/faqs`;
   return postRequest(url, faqContents, req);
 };
+
+export const postProduct = async (product: any, req: Request) => {
+  const url = `${SERVER_URL}/api/v1/custom-products`;
+  return await postRequest(url, product, req);
+};
+
+export const postProductBulk = async (productBulk: any, req: Request) => {
+  const url = `${SERVER_URL}/api/v1/custom-products/bulk`;
+  return await postRequest(url, productBulk, req);
+};

@@ -102,3 +102,12 @@ export const putAdminFAQ = (
   const url = `${SERVER_URL}/api/v1/faqs/${faq_id}`;
   return putRequest(url, req, noticeContents);
 };
+
+export const putProduct = async (
+  product_id: string,
+  product: ProductTypes,
+  req: Request,
+) => {
+  const url = `${SERVER_URL}/api/v1/custom-products/${product_id}/update`;
+  return putRequest(url, req, product);
+};
