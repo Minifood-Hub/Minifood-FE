@@ -65,6 +65,7 @@ export const ALERT_TEXT = [
   '가격이 변경되었습니다.',
   '파일이 성공적으로 업로드되었습니다.',
   '파일 업로드 중 오류가 발생했습니다.',
+  '물품이 생성되었습니다.',
 ];
 
 export const REGION_TEXT = [
@@ -76,7 +77,7 @@ export const REGION_TEXT = [
   '신촌',
 ];
 
-export const CATEGORY_TEXT = ['냉동', '냉장', '공산', '채소'];
+export const CATEGORY_TEXT = ['분류 선택', '냉동', '냉장', '공산', '채소'];
 
 export const clientStatusMapping: { [key: string]: string } = {
   COMPLETED: '제출됨',
