@@ -5,6 +5,7 @@ import { MODAL_INFO } from '@/app/constants/order';
 import { callGet } from '@/app/utils/callApi';
 import { useEffect, useState } from 'react';
 import QuotationTable from './QuotationTable';
+import { usePDF } from 'react-to-pdf';
 
 interface QuotationModalProps {
   closeModal: () => void;
@@ -14,6 +15,8 @@ interface QuotationModalProps {
 
 const QuotationModal = ({ closeModal, id, isAdmin }: QuotationModalProps) => {
   const [detailData, setDetailData] = useState<QuotationInfoTypes | null>(null);
+  const [isPdfGenerating, setIsPdfGenerating] = useState(false);
+
   useEffect(() => {
     const fetchData = async () => {
       const data = await callGet(`/api/quotation/detail?id=${id}`);
@@ -22,9 +25,34 @@ const QuotationModal = ({ closeModal, id, isAdmin }: QuotationModalProps) => {
     fetchData();
   }, []);
 
+  const { toPDF, targetRef } = usePDF({
+    filename: 'JMF견적서.pdf',
+    page: { format: 'A4' },
+    method: 'save',
+  });
+
+  const handlePDFGeneration = async () => {
+    const setPdfGenerating = async (value: boolean) => {
+      await new Promise((resolve) => {
+        setIsPdfGenerating(value);
+        setTimeout(resolve, 0);
+      });
+    };
+
+    await setPdfGenerating(true);
+    try {
+      toPDF();
+    } finally {
+      await setPdfGenerating(false); // 오류가 발생해도 항상 끝나고 isPdfGenerating는 false로
+    }
+  };
+
   return (
     <div className="fixed top-0 left-0 w-full h-full bg-gray-3 bg-opacity-70 flex justify-center items-center z-50">
-      <div className="flex flex-col w-[800px] rounded p-10 bg-gray-1 relative items-center">
+      <div
+        ref={targetRef}
+        className="flex flex-col w-[800px] h-auto rounded p-10 bg-gray-1 relative items-center"
+      >
         <div className="w-full flex-center bg-[#55AA00] text-white rounded h-[57px] mb-2">
           {detailData?.name}
         </div>
@@ -47,7 +75,11 @@ const QuotationModal = ({ closeModal, id, isAdmin }: QuotationModalProps) => {
             </div>
           </div>
           {detailData && (
-            <QuotationTable quotationInfo={detailData} isAdmin={isAdmin} />
+            <QuotationTable
+              quotationInfo={detailData}
+              isAdmin={isAdmin}
+              isPdfGenerating={isPdfGenerating}
+            />
           )}
         </div>
         <div className="w-full flex gap-x-4 mt-[60px]">
@@ -63,6 +95,11 @@ const QuotationModal = ({ closeModal, id, isAdmin }: QuotationModalProps) => {
               onClickHandler={closeModal}
             />
           )}
+          <Button
+            buttonText="PDF 저장"
+            type="quoteOrder"
+            onClickHandler={handlePDFGeneration}
+          />
         </div>
       </div>
     </div>

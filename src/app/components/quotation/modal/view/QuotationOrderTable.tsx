@@ -3,12 +3,12 @@ import { formatDate } from '@/app/utils/date';
 
 interface QuotationOrderTableProps {
   quotationInfo: QuotationInfoTypes;
-  isAdmin?: boolean;
+  isPdfGenerating?: boolean;
 }
 
 const QuotationOrderTable = ({
   quotationInfo,
-  isAdmin,
+  isPdfGenerating,
 }: QuotationOrderTableProps) => {
   return (
     <div>
@@ -21,11 +21,13 @@ const QuotationOrderTable = ({
       <div className="flex gap-x-1 text-base font-normal text-[#999] mt-4">
         <div className="w-20">{MODAL_TEXT[1]}</div>
         <div className="w-[420px]">{MODAL_TEXT[2]}</div>
-        <div className="w-20">{MODAL_TEXT[3]}</div>
-        <div className="w-20 text-center">{MODAL_TEXT[5]}</div>
+        <div className="w-16">{MODAL_TEXT[3]}</div>
+        <div className="w-16 text-center">{MODAL_TEXT[5]}</div>
       </div>
       <div
-        className={`flex flex-col w-full ${isAdmin ? 'h-28' : 'h-44'} gap-y-2 mt-2 pb-4 text-base font-normal border-b-2 border-dashed border-gray-2 mb-6 overflow-y-auto`}
+        className={`flex flex-col w-full gap-y-2 mt-2 pb-4 text-base font-normal border-b-2 border-dashed border-gray-2 mb-6 ${
+          isPdfGenerating ? 'h-auto' : 'h-36 overflow-y-auto'
+        }`}
       >
         {quotationInfo.products.map((itemData, index) => {
           return (
