@@ -3,17 +3,15 @@
 import { useCurrentDate } from '@/app/hooks/useCurrentDate';
 import { usePastOrder } from '@/app/hooks/usePastOrder';
 import { useUser } from '@/app/hooks/useUser';
-import { SearchIcon } from '@/app/ui/iconPath';
 import { callDelete, callGet, callPost } from '@/app/utils/callApi';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { BUTTON_TEXT, DIALOG_TEXT, ORDER_TEXT } from '../../../constants/order';
 import Button from '../../common/Button';
 import { Dialog } from '../../common/Dialog';
-import Icons from '../../common/Icons';
-import Input from '../../common/Input';
 import ProductList from '../ProductList';
 import QuotationModal from '../quotation/OrderQuotationModal';
+import SearchComponent from '../Search';
 
 export default function OrderContainer() {
   const router = useRouter();
@@ -29,7 +27,7 @@ export default function OrderContainer() {
     showQuot: false,
   });
 
-  const [searchResults, setSearchResults] = useState<ProductItemProps[]>([]); // 검색 결과
+  const [searchResults, setSearchResults] = useState<ProductItemProps[]>([]);
   const [addedItems, setAddedItems] = useState<ProductItemProps[]>([]); // 추가한 상품
   const [quotationId, setQuotationId] = useState<string | null>(null);
   const [dialogState, setDialogState] = useState({
@@ -113,6 +111,11 @@ export default function OrderContainer() {
     completeQuotation();
   }, [isLoading, currentDate, user?.result.client_id]);
 
+  // 검색 결과 저장
+  const handleSearchResultsUpdate = (results: ProductItemProps[]) => {
+    setSearchResults(results);
+  };
+
   // 즐겨 찾기에서 불러온 상품을 추가한 상품에 저장
   const setPastOrderId = async (past_order_id: string) => {
     try {
@@ -151,33 +154,6 @@ export default function OrderContainer() {
       }
     } catch (error) {
       console.error('클라이언트 에러', error);
-    }
-  };
-
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    type: keyof OrderState,
-  ) => {
-    const { value } = e.target;
-    setOrderState((prev) => ({
-      ...prev,
-      [type]: value,
-    }));
-  };
-
-  // 검색
-  const handleSearch = async () => {
-    try {
-      const inputSearch = orderState.search
-        ? encodeURIComponent(orderState.search)
-        : '""';
-      const data = await callGet(
-        `/api/order/search`,
-        `name_prefix=${inputSearch}&limit=100`,
-      );
-      setSearchResults(data.result);
-    } catch (error) {
-      console.error(error);
     }
   };
 
@@ -230,6 +206,7 @@ export default function OrderContainer() {
     );
   };
 
+  // 개수 변경 함수
   const handleCountChange = (id: string | number, count: string) => {
     setAddedItems((prevItems) =>
       prevItems.map((item) => (item.id === id ? { ...item, count } : item)),
@@ -276,16 +253,9 @@ export default function OrderContainer() {
                 )}
               </div>
               {/* 검색창 */}
-              <div className="flex items-center justify-between px-6 w-[513px] bg-white border-[1px] border-gray-1 rounded-[4px] focus-within:border-gray-7 focus-within:border-[1px]">
-                <Input
-                  textValue={orderState.search}
-                  type="search"
-                  onChange={(e) => handleInputChange(e, 'search')}
-                  placeholder={ORDER_TEXT[1]}
-                  onEnterPress={handleSearch}
-                />
-                <Icons onClick={handleSearch} name={SearchIcon} />
-              </div>
+              <SearchComponent
+                onSearchResultsUpdate={handleSearchResultsUpdate}
+              />
             </div>
             <ProductList
               items={searchResults}
