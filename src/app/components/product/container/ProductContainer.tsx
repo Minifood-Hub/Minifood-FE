@@ -3,6 +3,7 @@
 import { PRODUCT_CATEGORY } from '@/app/constants/product';
 import { useState } from 'react';
 import ProductHeader from '../ProductHeader';
+import ProductsTable from '../ProductsTable';
 
 const ProductContainer = () => {
   const [productType, setProductType] = useState<ProductTypes>('전체');
@@ -26,6 +27,7 @@ const ProductContainer = () => {
             </div>
           ))}
         </div>
+        <ProductsTable />
       </div>
     </div>
   );
