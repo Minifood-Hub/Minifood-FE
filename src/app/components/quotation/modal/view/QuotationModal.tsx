@@ -9,12 +9,11 @@ import QuotationTable from './QuotationTable';
 interface QuotationModalProps {
   closeModal: () => void;
   id: number;
+  isAdmin?: boolean;
 }
 
-const QuotationModal = ({ closeModal, id }: QuotationModalProps) => {
+const QuotationModal = ({ closeModal, id, isAdmin }: QuotationModalProps) => {
   const [detailData, setDetailData] = useState<QuotationInfoTypes | null>(null);
-  console.log('아이디', id);
-  console.log('디테일 데이터', detailData);
   useEffect(() => {
     const fetchData = async () => {
       const data = await callGet(`/api/quotation/detail?id=${id}`);
@@ -47,7 +46,9 @@ const QuotationModal = ({ closeModal, id }: QuotationModalProps) => {
               <div>서울시 어쩌구 어디로 888 1층</div>
             </div>
           </div>
-          {detailData && <QuotationTable quotationInfo={detailData} />}
+          {detailData && (
+            <QuotationTable quotationInfo={detailData} isAdmin={isAdmin} />
+          )}
         </div>
         <div className="w-full flex gap-x-4 mt-[60px]">
           <Button
@@ -55,11 +56,13 @@ const QuotationModal = ({ closeModal, id }: QuotationModalProps) => {
             type="quoteClose"
             onClickHandler={closeModal}
           />
-          <Button
-            buttonText="주문확정"
-            type="quoteOrder"
-            onClickHandler={closeModal}
-          />
+          {!isAdmin && (
+            <Button
+              buttonText="주문확정"
+              type="quoteOrder"
+              onClickHandler={closeModal}
+            />
+          )}
         </div>
       </div>
     </div>

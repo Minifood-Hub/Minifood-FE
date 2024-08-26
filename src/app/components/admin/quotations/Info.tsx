@@ -181,7 +181,7 @@ export default function QuotationInfo() {
         />
       </div>
       {showQuote && (
-        <QuotationModal closeModal={handleCloseQuote} id={selectedId} />
+        <QuotationModal closeModal={handleCloseQuote} id={selectedId} isAdmin />
       )}
     </>
   );
