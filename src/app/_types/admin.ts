@@ -34,6 +34,31 @@ interface FAQProps {
   updated_at: string | null;
 }
 
+interface FAQPutProps {
+  editingId: number | null;
+  selectedId: number | null;
+  editFAQ: {
+    category: string;
+    question: string;
+    answer: string;
+  };
+  setEditFAQ: React.Dispatch<
+    React.SetStateAction<{
+      category: string;
+      question: string;
+      answer: string;
+    }>
+  >;
+  setEditingId: React.Dispatch<React.SetStateAction<number | null>>;
+  handleGetFAQ: () => Promise<void>;
+  item: {
+    id: number;
+    category: string;
+    question: string;
+    answer: string;
+  };
+}
+
 interface ProductProps {
   id: number;
   category: string;
