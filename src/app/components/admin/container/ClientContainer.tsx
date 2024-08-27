@@ -1,23 +1,11 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { ALERT_TEXT, OPTION_TEXT } from '@/app/constants/admin';
+import { useState } from 'react';
+import { OPTION_TEXT } from '@/app/constants/admin';
 import ClientsName from '../clients/ClientsName';
 import ClientsRegion from '../clients/ClientsRegion';
-import { useUser } from '@/app/hooks/useUser';
-import { useRouter } from 'next/navigation';
 
 export default function ClientContainer() {
-  const { user } = useUser();
-  const router = useRouter();
-
-  useEffect(() => {
-    if (user && user.result && user.result.is_admin === false) {
-      alert(ALERT_TEXT[8]);
-      router.push('/');
-    }
-  }, [user, router]);
-
   const [state, setState] = useState('clientsName');
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
