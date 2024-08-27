@@ -6,6 +6,8 @@ import { callGet } from '@/app/utils/callApi';
 import { useEffect, useState } from 'react';
 import QuotationTable from './QuotationTable';
 import { usePDF } from 'react-to-pdf';
+import Icons from '@/app/components/common/Icons';
+import { PhotoCameraIcon } from '@/app/ui/iconPath';
 
 interface QuotationModalProps {
   closeModal: () => void;
@@ -82,24 +84,29 @@ const QuotationModal = ({ closeModal, id, isAdmin }: QuotationModalProps) => {
             />
           )}
         </div>
+        <div className="pt-8 flex justify-end items-center self-stretch">
+          <button
+            className="max-w-fit flex-center py-2 px-[18px] rounded bg-primary-3 gap-2"
+            type="button"
+            onClick={handlePDFGeneration}
+          >
+            <Icons name={PhotoCameraIcon} />
+            <p className="font-medium text-white">PDF로 저장</p>
+          </button>
+        </div>
         <div className="w-full flex gap-x-4 mt-[60px]">
           <Button
             buttonText="닫기"
             type="quoteClose"
             onClickHandler={closeModal}
           />
-          {!isAdmin && (
+          {detailData?.status !== 'COMPLETED' && (
             <Button
               buttonText="주문확정"
               type="quoteOrder"
               onClickHandler={closeModal}
             />
           )}
-          <Button
-            buttonText="PDF 저장"
-            type="quoteOrder"
-            onClickHandler={handlePDFGeneration}
-          />
         </div>
       </div>
     </div>

@@ -13,9 +13,9 @@ export const BUTTON_STYLE = {
   recommendButton: (className: string) =>
     `flex-center text-black w-[244px] h-[41px] rounded text-[18px] border border-[#e0e0e0] mt-2 font-normal p-2.5 ${className}`,
   quoteOrder: (className: string) =>
-    `w-[352px] h-[45px] bg-[#55aa00] rounded text-white text-lg font-medium  ${className}`,
+    `w-full h-[45px] bg-[#55aa00] rounded text-white text-lg font-medium  ${className}`,
   quoteClose: (className: string) =>
-    `w-[352px] h-[45px] bg-white rounded text-black text-lg font-medium border border-[#B8B8B8] ${className}`,
+    `w-full h-[45px] bg-white rounded text-black text-lg font-medium border border-[#B8B8B8] ${className}`,
   quoteTableControl: (className: string) =>
     `w-[56px] h-[29px] rounded text-sm font-medium ${className}`,
 } as const;
