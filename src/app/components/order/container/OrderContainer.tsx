@@ -131,7 +131,7 @@ export default function OrderContainer() {
           }),
         );
         setSearchResults(productList);
-        setOrderState((prev) => ({ ...prev, showPastOrder: false }));
+        setOrderState((prev) => ({ ...prev, showPastorder: false }));
       }
     } catch (error) {
       console.error('클라이언트 에러', error);
@@ -175,8 +175,8 @@ export default function OrderContainer() {
       await getPastOrder();
       setOrderState((prev) => ({
         ...prev,
-        createPastOrder: false,
-        pastOrderName: '',
+        createPastorder: false,
+        pastorderName: '',
       }));
     } catch (error) {
       console.error(error);
@@ -229,7 +229,7 @@ export default function OrderContainer() {
                   onClickHandler={() => {
                     setOrderState((prev) => ({
                       ...prev,
-                      showPastOrder: !prev.showPastorder,
+                      showPastorder: !prev.showPastorder,
                     }));
                   }}
                   buttonText={ORDER_TEXT[0]}
@@ -282,7 +282,7 @@ export default function OrderContainer() {
           <Button
             onClickHandler={() => {
               if (addedItems.length > 0) {
-                setOrderState((prev) => ({ ...prev, createPastOrder: true }));
+                setOrderState((prev) => ({ ...prev, createPastorder: true }));
               }
             }}
             type="default"
@@ -325,8 +325,8 @@ export default function OrderContainer() {
           onSubBtnClick={() => {
             setOrderState((prev) => ({
               ...prev,
-              createPastOrder: false,
-              pastOrderName: '',
+              createPastorder: false,
+              pastorderName: '',
             })); // 다이얼로그를 닫을 때 입력값 초기화
           }}
           onBtnClick={handleAddPastOrder}
@@ -335,7 +335,7 @@ export default function OrderContainer() {
           onChange={(e) =>
             setOrderState((prev) => ({
               ...prev,
-              pastOrderName: e.target.value.slice(0, 10), // 10자 제한
+              pastorderName: e.target.value.slice(0, 10), // 10자 제한
             }))
           }
         />
