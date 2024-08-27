@@ -1,5 +1,5 @@
 export const SIGNIN_TEXT = [
-  '이메일',
+  '이메일 찾기',
   '비밀번호 변경',
   '비밀번호',
   '비밀번호 확인',
@@ -10,7 +10,7 @@ export const SIGNIN_TEXT = [
 ];
 
 export const SIGNIN_PLACEHOLDER = [
-  'user@example.com',
+  '이메일을 입력해주세요.',
   '영문, 숫자, 특수기호를 포함하는 6자 이상의 비밀번호를 입력해주세요.',
   '********',
   '지역명을 입력해주세요 예)인천 부평구, 성남시 수정구',

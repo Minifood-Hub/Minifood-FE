@@ -6,23 +6,23 @@ import { useRouter } from 'next/navigation';
 function SignInSubTab() {
   const router = useRouter();
   return (
-    <div className="flex gap-5">
+    <div className="flex items-center">
       <button
         onClick={() => {
           router.push('/sign-in');
         }}
         type="button"
-        className="text-gray-5 text-sm font-light"
+        className="flex-center px-2 border-r border-gray-1 text-[15px]"
       >
         {SIGNIN_TEXT[0]}
       </button>
-      <p className="text-sm">|</p>
+
       <button
         onClick={() => {
           router.push('/sign-in/sign-up');
         }}
         type="button"
-        className="text-gray-5 text-sm font-light"
+        className="flex-center px-2 text-[15px]"
       >
         {SIGNIN_TEXT[5]}
       </button>

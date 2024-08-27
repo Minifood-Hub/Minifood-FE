@@ -32,7 +32,7 @@ const config: Config = {
           5: '#DEEFD5',
         },
         red: {
-          1: '#CF360C',
+          1: '#FF0000',
         },
         yellow: {
           1: '#E3E300',

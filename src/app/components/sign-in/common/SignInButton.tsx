@@ -4,16 +4,15 @@ export default function SignInButton({
   onClick,
   type,
   text,
-  isDelete,
 }: SingInButtonProps) {
   return (
     <button
       onClick={onClick}
       // eslint-disable-next-line react/button-has-type
       type={type}
-      className={`${isDelete ? 'bg-red-1' : 'bg-primary-1'} w-full mt-4 rounded-xl py-3`}
+      className="flex-center h-[45px] py-1 px-6 self-stretch rounded-md bg-primary-3"
     >
-      <p className="text-white text-xl font-black">{text}</p>
+      <p className="text-white">{text}</p>
     </button>
   );
 }
