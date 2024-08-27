@@ -59,6 +59,28 @@ interface FAQPutProps {
   };
 }
 
+interface NoticePutProps {
+  editingId: number | null;
+  selectedId: number | null;
+  editNotice: {
+    title: string;
+    content: string;
+  };
+  setEditNotice: React.Dispatch<
+    React.SetStateAction<{
+      title: string;
+      content: string;
+    }>
+  >;
+  setEditingId: React.Dispatch<React.SetStateAction<number | null>>;
+  handleGetNotice: () => Promise<void>;
+  item: {
+    id: number;
+    title: string;
+    content: string;
+  };
+}
+
 interface ProductProps {
   id: number;
   category: string;

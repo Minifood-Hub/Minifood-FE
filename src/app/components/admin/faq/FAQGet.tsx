@@ -1,13 +1,8 @@
 'use client';
 
-import {
-  ALERT_TEXT,
-  BTN_TEXT,
-  INPUT_TEXT,
-  TABLE_TEXT,
-} from '@/app/constants/admin';
+import { BTN_TEXT, INPUT_TEXT, TABLE_TEXT } from '@/app/constants/admin';
 import { useCallback, useEffect, useState } from 'react';
-import { callDelete, callGet } from '@/app/utils/callApi';
+import { callGet } from '@/app/utils/callApi';
 import Button from '../../common/Button';
 import Input from '../../common/Input';
 import Icons from '../../common/Icons';
@@ -70,16 +65,6 @@ export default function FAQGet() {
     setEditingId(null); // 새로운 항목을 열 때 편집 모드 초기화
   };
 
-  // FAQ 삭제
-  const handleDelete = async () => {
-    try {
-      await callDelete(`/api/admin/faq/delete/${selectedId}`);
-      alert(ALERT_TEXT[7]);
-      await handleGetFAQ(); // 삭제 후 새로 불러오기
-    } catch (error) {
-      console.error(error);
-    }
-  };
   return (
     <div className="flex flex-col items-center gap-4 border-2 p-8">
       {isPost ? (
