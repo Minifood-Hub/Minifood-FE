@@ -22,6 +22,7 @@ export default function OrderContainer() {
     toggleShowPastOrder,
     setPastOrderId,
     addPastOrder,
+    getPastOrder,
   } = usePastOrder();
   const currentDate = useCurrentDate();
 
@@ -114,6 +115,7 @@ export default function OrderContainer() {
       }
     };
     completeQuotation();
+    getPastOrder();
   }, [isLoading, currentDate, user?.result.client_id]);
 
   // 검색 결과 저장
