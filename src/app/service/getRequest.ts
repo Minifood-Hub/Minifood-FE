@@ -235,13 +235,13 @@ export const getAdminNoticesId = async (notice_id: string, req: Request) => {
 
 // FAQ 조회
 export const getFAQ = async () => {
-  const url = `${SERVER_URL}/api/v1/faqs`;
+  const url = `${SERVER_URL}/api/v1/faqs?_t=${Date.now()}`;
   return getRequest(url);
 };
 
 // FAQ 상세조회
 export const getFAQId = async (faq_id: string) => {
-  const url = `${SERVER_URL}/api/v1/faqs/${faq_id}`;
+  const url = `${SERVER_URL}/api/v1/faqs/${faq_id}?_t=${Date.now()}`;
   return getRequest(url);
 };
 

@@ -38,6 +38,12 @@ export default function AdminHeader({ isActive }: AdminHeaderProps) {
         >
           {ADMIN_TEXT[3]}
         </div>
+        <div
+          className={`px-4 py-2 font-extrabold cursor-pointer ${isActive === 'faq' ? 'bg-primary-1 text-white' : 'bg-white'}`}
+          onClick={() => handleActiveChange('faq')}
+        >
+          {ADMIN_TEXT[4]}
+        </div>
       </div>
     </header>
   );

@@ -25,6 +25,15 @@ interface NoticeProps {
   updated_at: string | null;
 }
 
+interface FAQProps {
+  category: string;
+  question: string;
+  answer: string;
+  id: number;
+  created_at: string;
+  updated_at: string | null;
+}
+
 interface ProductProps {
   id: number;
   category: string;
@@ -50,15 +59,6 @@ interface AdminItemProps {
 interface CheckQuotationResult {
   client_id: number;
   status: boolean;
-}
-
-interface FAQProps {
-  category: string;
-  question: string;
-  answer: string;
-  id: number;
-  created_at: string;
-  updated_at: string;
 }
 
 interface FAQPostTypes {
