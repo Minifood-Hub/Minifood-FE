@@ -16,12 +16,17 @@ import SearchComponent from '../Search';
 export default function OrderContainer() {
   const router = useRouter();
   const { user, isLoading } = useUser(); // 커스텀 훅에서 user 가져오기
-  const { pastOrder, getPastOrder } = usePastOrder(); // 커스텀 훅에서 즐겨찾기 가져오기
+  const {
+    pastOrder,
+    showPastOrder,
+    toggleShowPastOrder,
+    setPastOrderId,
+    addPastOrder,
+  } = usePastOrder();
   const currentDate = useCurrentDate();
 
   const [orderState, setOrderState] = useState<OrderState>({
     createPastorder: false,
-    showPastorder: false,
     pastorderName: '',
     search: '',
     showQuot: false,
@@ -117,25 +122,10 @@ export default function OrderContainer() {
   };
 
   // 즐겨 찾기에서 불러온 상품을 추가한 상품에 저장
-  const setPastOrderId = async (past_order_id: string) => {
-    try {
-      const data = await callGet(`/api/past-order/get/${past_order_id}`);
-      if (data.isSuccess) {
-        const productList = data.result.product_list.map(
-          (product: QuotationItemType) => ({
-            id: product.id,
-            category: product.category,
-            name: product.name,
-            unit: product.unit,
-            price: product.price,
-          }),
-        );
-        setSearchResults(productList);
-        setOrderState((prev) => ({ ...prev, showPastorder: false }));
-      }
-    } catch (error) {
-      console.error('클라이언트 에러', error);
-    }
+  const handleSetPastOrderId = async (past_order_id: string) => {
+    const productList = await setPastOrderId(past_order_id);
+    setSearchResults(productList);
+    toggleShowPastOrder();
   };
 
   // 최근 구매한 물품 리스트 조회
@@ -159,28 +149,15 @@ export default function OrderContainer() {
 
   // 즐겨찾기 추가
   const handleAddPastOrder = async () => {
-    if (!orderState.pastorderName) {
-      alert(DIALOG_TEXT[2]);
-      return;
-    }
-    try {
-      const body = {
-        client_id: user?.result.client_id,
-        name: orderState.pastorderName,
-        product_ids: addedItems.map((item) => item.id),
-      };
-
-      await callPost('/api/past-order/post', body);
-
-      await getPastOrder();
-      setOrderState((prev) => ({
-        ...prev,
-        createPastorder: false,
-        pastorderName: '',
-      }));
-    } catch (error) {
-      console.error(error);
-    }
+    await addPastOrder(
+      orderState.pastorderName,
+      addedItems.map((item) => item.id),
+    );
+    setOrderState((prev) => ({
+      ...prev,
+      createPastorder: false,
+      pastorderName: '',
+    }));
   };
 
   // 상품 추가
@@ -226,12 +203,7 @@ export default function OrderContainer() {
                 <Button
                   className="order-btn border-[1px] border-gray-1 bg-white font-medium"
                   type="default"
-                  onClickHandler={() => {
-                    setOrderState((prev) => ({
-                      ...prev,
-                      showPastorder: !prev.showPastorder,
-                    }));
-                  }}
+                  onClickHandler={toggleShowPastOrder}
                   buttonText={ORDER_TEXT[0]}
                 />
                 <Button
@@ -240,7 +212,7 @@ export default function OrderContainer() {
                   onClickHandler={setRecentProducts}
                   buttonText={ORDER_TEXT[10]}
                 />
-                {orderState.showPastorder && (
+                {showPastOrder && (
                   <div className="absolute top-9 flex flex-col bg-white rounded-[4px]">
                     {pastOrder.map((order) => (
                       <Button
@@ -248,7 +220,7 @@ export default function OrderContainer() {
                         type="default"
                         className="px-4 py-2 first:rounded-t-[4px] last:rounded-b-[4px] border-b border-gray-2 cursor-pointer border-t-[1px] border-[1px]"
                         onClickHandler={() =>
-                          setPastOrderId(order.past_order_id.toString())
+                          handleSetPastOrderId(order.past_order_id.toString())
                         }
                         buttonText={order.name}
                       />

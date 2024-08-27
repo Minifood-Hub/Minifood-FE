@@ -1,6 +1,5 @@
 interface OrderState {
   createPastorder: boolean;
-  showPastorder: boolean;
   pastorderName: string;
   search: string;
   showQuot: boolean;
@@ -35,7 +34,7 @@ interface PastOrder {
 }
 
 interface QuotationItemType {
-  id?: string | number;
+  id: string | number;
   category: string;
   name: string;
   count?: string | number;
