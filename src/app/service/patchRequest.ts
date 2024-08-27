@@ -104,19 +104,21 @@ export const patchAdminProductsVegetableFile = async (
     const formData = new FormData();
     formData.append('file', file); // FormData 객체에 파일 추가
 
+    const token = getCookie(req, 'accessToken');
+
     const response = await fetch(url, {
       method: 'PATCH',
-      body: formData, // 요청 본문에 파일 데이터를 포함 FormData 객체 사용
+      headers: {
+        ...(token && { 'access-token': token }),
+      },
+      body: formData,
     });
 
-    const responseText = await response.text(); // 응답 본문을 텍스트로 읽음
-    console.log('서버 응답 :', response.status, responseText);
-
     if (!response.ok) {
-      throw new Error(`서버 응답 오류: ${response.status} ${responseText}`);
+      throw new Error(`서버 응답 오류: ${response.status}`);
     }
 
-    return JSON.parse(responseText); // 응답 데이터를 JSON으로 파싱하여 반환
+    return await response.json();
   } catch (error) {
     console.error('에러 : ', error);
     throw new Error('patchAdminProductsVegetableFile 에러 발생');

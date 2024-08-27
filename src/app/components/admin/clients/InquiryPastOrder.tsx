@@ -1,7 +1,5 @@
 import { callGet } from '@/app/utils/callApi';
-import { useState } from 'react';
-import Button from '../../common/Button';
-import { ALERT_TEXT, BTN_TEXT, TABLE_TEXT } from '@/app/constants/admin';
+import { useEffect, useState } from 'react';
 
 export default function InquiryPastOrder({ clientId }: ClientIdProps) {
   const [result, setResult] = useState<{ result: AdminItemProps[] }>({
@@ -9,10 +7,6 @@ export default function InquiryPastOrder({ clientId }: ClientIdProps) {
   });
 
   const handleGetPastOrders = async () => {
-    if (!clientId) {
-      alert(ALERT_TEXT[0]);
-      return;
-    }
     try {
       const data = await callGet(`/api/order/${clientId}/get-past-order`);
       setResult(data);
@@ -22,36 +16,31 @@ export default function InquiryPastOrder({ clientId }: ClientIdProps) {
     }
   };
 
+  useEffect(() => {
+    handleGetPastOrders();
+  }, [clientId]);
+
   const renderTable = () => {
     return (
-      <table className="admin-table max-w-fit">
-        <thead>
-          <tr>
-            <th className="admin-table-th">{TABLE_TEXT[0]}</th>
-            <th className="admin-table-th">{TABLE_TEXT[1]}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {result.result.map((item: AdminItemProps) => (
-            <tr key={item.past_order_id}>
-              <td className="admin-table-th">{item.past_order_id}</td>
-              <td className="admin-table-th">{item.name}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <div className="w-1/2 mx-auto border-2">
+        <div className="flex bg-primary-1 w-full p-2 text-white font-bold">
+          <div className="w-[30%]">번호</div>
+          <div className="w-[70%]">이름</div>
+        </div>
+        {result.result.map((item: AdminItemProps) => (
+          <div
+            className="flex p-2 border-b-2 last:border-none"
+            key={item.past_order_id}
+          >
+            <div className="w-[30%] border-r-2 last:border-none">
+              {item.past_order_id}
+            </div>
+            <div className="w-[70%]">{item.name}</div>
+          </div>
+        ))}
+      </div>
     );
   };
 
-  return (
-    <div className="flex flex-col gap-4 border-2 p-8">
-      <Button
-        className="admin-btn"
-        buttonText={BTN_TEXT[0]}
-        type="default"
-        onClickHandler={handleGetPastOrders}
-      />
-      {renderTable()}
-    </div>
-  );
+  return <div className="p-8">{renderTable()}</div>;
 }

@@ -7,7 +7,7 @@ interface AdminPageProps {
 }
 
 interface ClientIdProps {
-  clientId: string;
+  clientId: string | number;
 }
 
 interface ClientsNameProps {

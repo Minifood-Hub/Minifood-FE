@@ -14,6 +14,7 @@ import {
 } from '@/app/constants/sign-in';
 import { setTokens } from '@/app/utils/setTokens';
 import Image from 'next/image';
+import { useUserStore } from '@/app/store/useStore';
 
 const REDIRECT_URL = 'http://localhost:3000/sign-in/auth';
 
@@ -36,6 +37,8 @@ export default function SignInComponents() {
     }));
   };
 
+  const fetchUser = useUserStore((state) => state.fetchUser);
+
   const handleBtnClick = async () => {
     const { email, pwd } = signInState;
 
@@ -48,6 +51,7 @@ export default function SignInComponents() {
       const responseData = await postLogin({ email, pwd });
       if (responseData.isSuccess) {
         setTokens(responseData.result.access_token);
+        await fetchUser();
         router.push('/');
       } else {
         alert(SIGNIN_ERROR[0]);

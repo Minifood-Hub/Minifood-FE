@@ -71,7 +71,7 @@ export const putUpdateProducts = async (
   req: Request,
 ) => {
   try {
-    const url = `${SERVER_URL}/api/v1/products${product_id}/update`;
+    const url = `${SERVER_URL}/api/v1/products/${product_id}/update`;
     return await putRequest(url, req, productContents);
   } catch (error) {
     console.error(error);

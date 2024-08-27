@@ -114,7 +114,7 @@ export default function NoticeGet() {
       ) : (
         <>
           <div className="flex w-full justify-start items-center gap-4">
-            <p>{INPUT_TEXT[12]}</p>
+            <p>{INPUT_TEXT[7]}</p>
             <Input
               type="default"
               className="max-w-fit border-2 px-4 py-2"
@@ -123,7 +123,7 @@ export default function NoticeGet() {
             />
             <Button
               type="default"
-              className="max-w-fit border-2 border-gray-4 px-2 py-1"
+              className="py-2 admin-btn"
               onClickHandler={handleSearchNotice}
               buttonText={BTN_TEXT[4]}
             />
@@ -209,7 +209,7 @@ export default function NoticeGet() {
                     />
 
                     <Button
-                      className="bg-primary-4 text-white font-bold max-w-fit px-8 py-2 self-end"
+                      className="bg-primary-3 text-white font-bold max-w-fit px-8 py-2 self-end"
                       buttonText={
                         editingId === item.id ? BTN_TEXT[6] : BTN_TEXT[3]
                       }
@@ -229,7 +229,7 @@ export default function NoticeGet() {
       )}
 
       <Button
-        className={`text-white font-bold max-w-fit px-8 py-2 self-end ${isPost ? 'bg-gray-2' : 'bg-primary-4'}`}
+        className={`text-white font-bold max-w-fit px-8 py-2 self-end ${isPost ? 'bg-gray-2' : 'bg-primary-3'}`}
         buttonText={isPost ? BTN_TEXT[5] : BTN_TEXT[7]}
         type="default"
         onClickHandler={() => {
