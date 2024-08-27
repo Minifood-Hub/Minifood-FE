@@ -1,8 +1,8 @@
 interface OrderState {
-  bookmark: boolean;
-  showBookmark: boolean;
+  createPastorder: boolean;
+  showPastorder: boolean;
+  pastorderName: string;
   search: string;
-  bookmarkName: string;
   showQuot: boolean;
 }
 

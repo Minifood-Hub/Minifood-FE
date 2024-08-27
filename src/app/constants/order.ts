@@ -57,15 +57,6 @@ export const categoryMapping: { [key: string]: string } = {
   vegetable: '야채',
 };
 
-export const initialOrderState = {
-  bookmark: false,
-  showBookmark: false,
-  search: '',
-  bookmarkName: '',
-  showQuot: false,
-  currentDate: '',
-};
-
 export const initialEditOrderState = {
   bookmark: false,
   showBookmark: false,

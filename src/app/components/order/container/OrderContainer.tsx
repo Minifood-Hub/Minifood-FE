@@ -20,10 +20,10 @@ export default function OrderContainer() {
   const currentDate = useCurrentDate();
 
   const [orderState, setOrderState] = useState<OrderState>({
-    bookmark: false,
-    showBookmark: false,
+    createPastorder: false,
+    showPastorder: false,
+    pastorderName: '',
     search: '',
-    bookmarkName: '',
     showQuot: false,
   });
 
@@ -131,7 +131,7 @@ export default function OrderContainer() {
           }),
         );
         setSearchResults(productList);
-        setOrderState((prev) => ({ ...prev, showBookmark: false }));
+        setOrderState((prev) => ({ ...prev, showPastOrder: false }));
       }
     } catch (error) {
       console.error('클라이언트 에러', error);
@@ -158,22 +158,26 @@ export default function OrderContainer() {
   };
 
   // 즐겨찾기 추가
-  const handleAddBookMark = async () => {
-    if (!orderState.bookmarkName) {
+  const handleAddPastOrder = async () => {
+    if (!orderState.pastorderName) {
       alert(DIALOG_TEXT[2]);
       return;
     }
     try {
       const body = {
         client_id: user?.result.client_id,
-        name: orderState.bookmarkName,
+        name: orderState.pastorderName,
         product_ids: addedItems.map((item) => item.id),
       };
 
       await callPost('/api/past-order/post', body);
 
       await getPastOrder();
-      setOrderState((prev) => ({ ...prev, bookmark: false, bookmarkName: '' }));
+      setOrderState((prev) => ({
+        ...prev,
+        createPastOrder: false,
+        pastOrderName: '',
+      }));
     } catch (error) {
       console.error(error);
     }
@@ -225,7 +229,7 @@ export default function OrderContainer() {
                   onClickHandler={() => {
                     setOrderState((prev) => ({
                       ...prev,
-                      showBookmark: !prev.showBookmark,
+                      showPastOrder: !prev.showPastorder,
                     }));
                   }}
                   buttonText={ORDER_TEXT[0]}
@@ -236,7 +240,7 @@ export default function OrderContainer() {
                   onClickHandler={setRecentProducts}
                   buttonText={ORDER_TEXT[10]}
                 />
-                {orderState.showBookmark && (
+                {orderState.showPastorder && (
                   <div className="absolute top-9 flex flex-col bg-white rounded-[4px]">
                     {pastOrder.map((order) => (
                       <Button
@@ -278,7 +282,7 @@ export default function OrderContainer() {
           <Button
             onClickHandler={() => {
               if (addedItems.length > 0) {
-                setOrderState((prev) => ({ ...prev, bookmark: true }));
+                setOrderState((prev) => ({ ...prev, createPastOrder: true }));
               }
             }}
             type="default"
@@ -312,7 +316,7 @@ export default function OrderContainer() {
         />
       )}
 
-      {orderState.bookmark && (
+      {orderState.createPastorder && (
         <Dialog
           isTwoButton
           topText={DIALOG_TEXT[4]}
@@ -321,17 +325,17 @@ export default function OrderContainer() {
           onSubBtnClick={() => {
             setOrderState((prev) => ({
               ...prev,
-              bookmark: false,
-              bookmarkName: '',
+              createPastOrder: false,
+              pastOrderName: '',
             })); // 다이얼로그를 닫을 때 입력값 초기화
           }}
-          onBtnClick={handleAddBookMark}
+          onBtnClick={handleAddPastOrder}
           hasInput
-          value={orderState.bookmarkName}
+          value={orderState.pastorderName}
           onChange={(e) =>
             setOrderState((prev) => ({
               ...prev,
-              bookmarkName: e.target.value.slice(0, 10), // 10자 제한
+              pastOrderName: e.target.value.slice(0, 10), // 10자 제한
             }))
           }
         />
