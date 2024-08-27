@@ -1,13 +1,14 @@
 'use client';
 
 import Button from '@/app/components/common/Button';
-import { MODAL_INFO } from '@/app/constants/order';
-import { callGet } from '@/app/utils/callApi';
+import { BUTTON_TEXT, DIALOG_TEXT, MODAL_INFO } from '@/app/constants/order';
+import { callGet, callPatch } from '@/app/utils/callApi';
 import { useEffect, useState } from 'react';
 import QuotationTable from './QuotationTable';
 import { usePDF } from 'react-to-pdf';
 import Icons from '@/app/components/common/Icons';
 import { PhotoCameraIcon } from '@/app/ui/iconPath';
+import { Dialog } from '@/app/components/common/Dialog';
 
 interface QuotationModalProps {
   closeModal: () => void;
@@ -18,6 +19,12 @@ interface QuotationModalProps {
 const QuotationModal = ({ closeModal, id, isAdmin }: QuotationModalProps) => {
   const [detailData, setDetailData] = useState<QuotationInfoTypes | null>(null);
   const [isPdfGenerating, setIsPdfGenerating] = useState(false);
+
+  const [dialog, setDialog] = useState({
+    open: false,
+    topText: '',
+    onClick: () => {},
+  });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -46,6 +53,32 @@ const QuotationModal = ({ closeModal, id, isAdmin }: QuotationModalProps) => {
       toPDF();
     } finally {
       await setPdfGenerating(false); // 오류가 발생해도 항상 끝나고 isPdfGenerating는 false로
+    }
+  };
+
+  const patchConfirm = async () => {
+    try {
+      await callPatch(`/api/order/quotations/${id}/confirmation`);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleConfirmQuotation = async () => {
+    try {
+      await patchConfirm();
+
+      setDialog((prev) => ({
+        ...prev,
+        open: true,
+        topText: DIALOG_TEXT[1],
+        onClick: () => {
+          setDialog({ open: false, topText: '', onClick: () => {} });
+          closeModal();
+        },
+      }));
+    } catch (error) {
+      console.error('견적서 확정 중 오류 발생 : ', error);
     }
   };
 
@@ -104,11 +137,19 @@ const QuotationModal = ({ closeModal, id, isAdmin }: QuotationModalProps) => {
             <Button
               buttonText="주문확정"
               type="quoteOrder"
-              onClickHandler={closeModal}
+              onClickHandler={handleConfirmQuotation}
             />
           )}
         </div>
       </div>
+
+      {dialog.open && (
+        <Dialog
+          topText={dialog.topText}
+          BtnText={BUTTON_TEXT[3]}
+          onBtnClick={dialog.onClick}
+        />
+      )}
     </div>
   );
 };
