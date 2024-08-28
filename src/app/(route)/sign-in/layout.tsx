@@ -12,7 +12,7 @@ export default function RootLayout({
 }) {
   return (
     <div>
-      <div className="shadow-lg">
+      <div className="shadow-lg pb-[88px]">
         <Header />
       </div>
       {children}

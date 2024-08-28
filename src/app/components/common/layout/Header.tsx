@@ -22,7 +22,7 @@ function Header() {
   const isCOMMON = user?.category === 'COMMON';
 
   return (
-    <div className="relative w-full pt-6 bg-white">
+    <div className="absolute w-full pt-6 bg-white">
       <header className="relative w-full h-16 flex items-center px-[15%] justify-between">
         <div className="flex gap-x-2 cursor-pointer text-[#306317] text-2xl font-bold items-center">
           <Image src="/Images/JMF2.png" width={60} height={48} alt="logo" />
