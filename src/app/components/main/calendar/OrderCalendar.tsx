@@ -3,7 +3,6 @@
 import {
   CALENDAR_ORDER_COLOR,
   CALENDAR_ORDER_TEXT,
-  DAILY_QUOTATION_GUEST,
   MAIN_CALENDAR_TEXT,
 } from '@/app/constants/main';
 import '@/app/ui/Calendar.css';
@@ -22,9 +21,7 @@ interface OrderCalendarProps {
 
 const OrderCalendar = ({ clientType }: OrderCalendarProps) => {
   const [today, setToday] = useState<Date | null>(null);
-  const [daily, setDaily] = useState<DailyQuotationTypes[]>(
-    DAILY_QUOTATION_GUEST,
-  );
+  const [daily, setDaily] = useState<DailyQuotationTypes[]>([]);
 
   const path =
     clientType === 'COMMON'
@@ -39,10 +36,8 @@ const OrderCalendar = ({ clientType }: OrderCalendarProps) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      if (clientType === 'COMMON') {
-        const data = await callGet('/api/quotation/daily');
-        setDaily(data.result);
-      }
+      const data = await callGet('/api/quotation/daily');
+      setDaily(data.result);
     };
     fetchData();
   }, [clientType]);
@@ -66,7 +61,7 @@ const OrderCalendar = ({ clientType }: OrderCalendarProps) => {
     });
   };
 
-  const renderTileContent = ({ date, view }: { date: Date; view: string }) => {
+  const renderTileContent = ({ date }: { date: Date }) => {
     const status = getStatusForDate(date);
     return status ? (
       <CalendarStatus
