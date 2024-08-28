@@ -7,3 +7,5 @@ export const DELETE_PASTORDER = [
   '삭제',
   '취소',
 ];
+
+export const PASTORDER_DETAIL = ['분류', '번호', '상품명', '단위', '개수'];
