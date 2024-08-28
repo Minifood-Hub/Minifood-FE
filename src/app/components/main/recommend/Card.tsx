@@ -1,5 +1,6 @@
 'use client';
 
+import { CARD_TEXT } from '@/app/constants/main';
 import Image from 'next/image';
 import Button from '../../common/Button';
 
@@ -22,10 +23,9 @@ function RecommendCard({ customProducts }: RecommendCardProps) {
           objectFit="cover"
           className="rounded"
         />
-        <div className="absolute inset-0 bg-gray-300 opacity-0 hover:opacity-70 transition-opacity duration-300 rounded" />
       </div>
       <Button
-        buttonText="바로담기"
+        buttonText={CARD_TEXT[0]}
         type="recommendButton"
         onClickHandler={orderItem}
       />
