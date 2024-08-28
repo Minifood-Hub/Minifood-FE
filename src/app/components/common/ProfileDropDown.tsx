@@ -52,14 +52,14 @@ const ProfileDropDown = ({ user, logout }: ProfileDropDownProps) => {
         <Icons name={HeaderProfileIcon} hoverFill="#306317" />
       </div>
       {isOpen && (
-        <div className="flex flex-col bg-white border-[#E0E0E0] border absolute top-[52px] z-10">
-          <div className="flex items-center w-[126px] h-[33px] px-3 py-2 border-b">
+        <div className="flex flex-col bg-white border-[#E0E0E0] border absolute top-[52px] transform -translate-x-1/3 z-10">
+          <div className="flex items-center w-auto h-auto px-3 py-2 border-b">
             {user.isSuccess ? user.result.client_name : HEADER_PROFILE[3]}
           </div>
           {getOptions().map((option) => (
             <div
               key={option}
-              className="flex items-center w-[126px] h-[33px] px-3 py-2 cursor-pointer hover:bg-gray-100"
+              className="flex items-center w-auto min-w-[126px] h-[33px] px-3 py-2 cursor-pointer hover:bg-gray-100"
               onClick={() => clickOption(option)}
             >
               {option}
