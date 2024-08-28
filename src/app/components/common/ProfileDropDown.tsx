@@ -19,11 +19,11 @@ const ProfileDropDown = ({ user, logout }: ProfileDropDownProps) => {
     if (index === 2) {
       logout();
     } else if (!user.isSuccess) {
-      router.push('sign-in/client');
+      router.push('/sign-in/client');
     } else if (index === 1) {
-      router.push('sign-in/client/edit');
+      router.push('/sign-in/client/edit');
     } else {
-      router.push('sign-in/client');
+      router.push('/sign-in/client');
     }
     setIsOpen(false);
   };
