@@ -9,7 +9,9 @@ export const SIGNIN_TEXT = [
   '거래처 주소',
   '이메일',
   '환영합니다!',
-  '가입이 완료되었습니다.',
+  '가입이 완료되었습니다.', // 10
+  '거래처 생성',
+  '거래처가 생성되었습니다.',
 ];
 
 export const SIGNIN_PLACEHOLDER = [
@@ -40,6 +42,7 @@ export const SIGNUP_BUTTON = [
   '수정',
   '삭제',
   '로그인하러 가기',
+  '이동',
 ];
 
 export const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
