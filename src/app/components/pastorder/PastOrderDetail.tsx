@@ -15,7 +15,7 @@ const PastOrderDetail = ({ pastorderId }: PastOrderDetailProps) => {
       setPastOrders(data.result.product_list);
     };
     fetchData();
-  }, []);
+  }, [pastorderId]);
 
   return (
     <div className="w-full flex flex-col text-[#333333] bg-[#FCFCFC]">
