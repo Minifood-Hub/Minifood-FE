@@ -32,15 +32,12 @@ const OrderCalendar = ({ clientType }: OrderCalendarProps) => {
 
   useEffect(() => {
     setToday(new Date());
-  }, []);
-
-  useEffect(() => {
     const fetchData = async () => {
       const data = await callGet('/api/quotation/daily');
       setDaily(data.result);
     };
     fetchData();
-  }, [clientType]);
+  }, []);
 
   const onChangeToday = () => {
     setToday(today);

@@ -4,14 +4,14 @@ interface CalendarStatusProps {
 }
 
 const CalendarStatus = ({ status, date }: CalendarStatusProps) => {
-  const statusStyle = (status: string) => {
-    switch (status) {
-      case '하':
-        return '#55AA00';
+  const statusStyle = (dailyStatus: string) => {
+    switch (dailyStatus) {
       case '중':
         return '#FF9D00';
       case '상':
         return '#FF4D00';
+      default:
+        return '#55AA00';
     }
   };
 
