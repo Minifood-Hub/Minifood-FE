@@ -25,7 +25,7 @@ export default function SignInComponents() {
     email: '',
     pwd: '',
   });
-  const [error, setError] = useState('');
+  const [errorState, setErrorState] = useState('');
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -44,7 +44,7 @@ export default function SignInComponents() {
     const { email, pwd } = signInState;
 
     if (!email || !pwd) {
-      setError(SIGNIN_ERROR[1]);
+      setErrorState(SIGNIN_ERROR[1]);
       return;
     }
 
@@ -52,21 +52,19 @@ export default function SignInComponents() {
       const responseData = await postLogin({ email, pwd });
       if (responseData.isSuccess) {
         setTokens(responseData.result.access_token);
-        setError('');
+        setErrorState('');
         await fetchUser();
         router.push('/');
       } else {
-        setError(SIGNIN_ERROR[0]);
+        setErrorState(SIGNIN_ERROR[0]);
       }
     } catch (error) {
       console.error('로그인 에러 : ', error);
-      setError(SIGNIN_ERROR[2]);
+      setErrorState(SIGNIN_ERROR[2]);
     }
   };
 
   const kakaoLink = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_KAKAO_KEY}&redirect_uri=${REDIRECT_URL}&response_type=code`;
-
-  console.log('카카오링크', kakaoLink);
 
   return (
     <div className="w-full flex-center flex-col gap-8 max-w-[600px]">
@@ -90,7 +88,7 @@ export default function SignInComponents() {
       </div>
 
       <div className="flex w-[600px] flex-col items-center gap-[10px]">
-        {error && <p className="text-red-1">{error}</p>}
+        {errorState && <p className="text-red-1">{errorState}</p>}
 
         <SignInButton
           onClick={handleBtnClick}

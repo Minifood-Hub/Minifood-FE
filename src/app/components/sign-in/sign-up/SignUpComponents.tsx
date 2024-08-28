@@ -14,6 +14,7 @@ import {
 } from '@/app/constants/sign-in';
 import { SignUpState, ValidationType } from '@/app/_types/sign-in';
 import { callPost } from '@/app/utils/callApi';
+import { Dialog } from '../../common/Dialog';
 
 export default function SignUpComponents() {
   const router = useRouter();
@@ -26,19 +27,21 @@ export default function SignUpComponents() {
     pwdError: '',
     pwdConfirmError: '',
   });
+  const [dialog, setDialog] = useState(false);
 
+  // 유효성 검사
   const validateField = (
     type: ValidationType,
     value: string,
     password?: string,
   ) => {
     switch (type) {
-      case 'email':
+      case 'email': // 이메일
         if (!emailRegex.test(value)) {
           return { isValid: false, error: SIGNUP_ERROR[0] };
         }
         return { isValid: true, error: '' };
-      case 'pwd':
+      case 'pwd': // 비밀번호
         if (!passwordRegex.test(value)) {
           return {
             isValid: false,
@@ -46,7 +49,7 @@ export default function SignUpComponents() {
           };
         }
         return { isValid: true, error: '' };
-      case 'pwdConfirm':
+      case 'pwdConfirm': // 비밀번호 확인
         if (value !== password) {
           return { isValid: false, error: SIGNUP_ERROR[2] };
         }
@@ -76,6 +79,13 @@ export default function SignUpComponents() {
     const pwdValidation = validateField('pwd', pwd);
     const pwdConfirmValidation = validateField('pwdConfirm', pwdConfirm, pwd);
 
+    setFormState((prevState) => ({
+      ...prevState,
+      emailError: emailValidation.error,
+      pwdError: pwdValidation.error,
+      pwdConfirmError: pwdConfirmValidation.error,
+    }));
+
     if (
       emailValidation.isValid &&
       pwdValidation.isValid &&
@@ -87,13 +97,8 @@ export default function SignUpComponents() {
           password: pwd,
         });
 
-        if (responseData.code === 4003) {
-          alert('이미 존재하는 사용자입니다.');
-          return;
-        }
-
         if (responseData.isSuccess) {
-          router.push('/sign-in');
+          setDialog((prev) => !prev);
         } else {
           setFormState((prevState) => ({
             ...prevState,
@@ -103,51 +108,75 @@ export default function SignUpComponents() {
       } catch (error) {
         console.error('오류가 발생했습니다.');
       }
-    } else {
-      setFormState((prevState) => ({
-        ...prevState,
-        emailError: emailValidation.error,
-        pwdError: pwdValidation.error,
-        pwdConfirmError: pwdConfirmValidation.error,
-      }));
     }
   };
 
   return (
-    <div className="w-full flex-center flex-col gap-6 max-w-[678px]">
-      <SignInInput
-        label={SIGNIN_TEXT[0]}
-        placeholder={SIGNIN_PLACEHOLDER[0]}
-        type="email"
-        value={formState.email}
-        onChange={(e) => handleInputChange(e, 'email')}
-        error={!!formState.emailError}
-        errorMessage={formState.emailError}
-      />
-      <SignInInput
-        label={SIGNIN_TEXT[2]}
-        placeholder={SIGNIN_PLACEHOLDER[1]}
-        type="password"
-        value={formState.pwd}
-        onChange={(e) => handleInputChange(e, 'pwd')}
-        error={!!formState.pwdError}
-        errorMessage={formState.pwdError}
-      />
-      <SignInInput
-        label={SIGNIN_TEXT[3]}
-        placeholder={SIGNIN_PLACEHOLDER[2]}
-        type="password"
-        value={formState.pwdConfirm}
-        onChange={(e) => handleInputChange(e, 'pwdConfirm')}
-        error={!!formState.pwdConfirmError}
-        errorMessage={formState.pwdConfirmError}
-      />
+    <div className="w-full flex-center flex-col gap-8 max-w-[600px]">
+      <span className="text-xl font-semibold">{SIGNIN_TEXT[5]}</span>
+      <div className="flex flex-col items-start gap-8 self-stretch">
+        <div className="flex flex-col items-start gap-2 self-stretch">
+          <div className="flex items-start font-semibold">
+            <p>{SIGNIN_TEXT[8]}</p> <p className="text-[#FC4C00]">*</p>
+            {formState.emailError && (
+              <p className="text-[#FC4C00] pl-3">{formState.emailError}</p>
+            )}
+          </div>
+          <SignInInput
+            placeholder={SIGNIN_PLACEHOLDER[0]}
+            type="email"
+            value={formState.email}
+            onChange={(e) => handleInputChange(e, 'email')}
+            error={!!formState.emailError}
+          />
+        </div>
+
+        <div className="flex flex-col items-start gap-2 self-stretch">
+          <div className="flex items-start font-semibold">
+            <p>{SIGNIN_TEXT[2]}</p> <p className="text-[#FC4C00]">*</p>
+            {formState.pwdError && (
+              <p className="text-[#FC4C00] pl-3">{formState.pwdError}</p>
+            )}
+          </div>
+          <SignInInput
+            placeholder={SIGNIN_PLACEHOLDER[1]}
+            type="password"
+            value={formState.pwd}
+            onChange={(e) => handleInputChange(e, 'pwd')}
+            error={!!formState.pwdError}
+          />
+        </div>
+
+        <div className="flex flex-col items-start gap-2 self-stretch">
+          <div className="flex items-start font-semibold">
+            <p>{SIGNIN_TEXT[3]}</p> <p className="text-[#FC4C00]">*</p>
+            {formState.pwdConfirmError && (
+              <p className="text-[#FC4C00] pl-3">{formState.pwdConfirmError}</p>
+            )}
+          </div>
+          <SignInInput
+            placeholder={SIGNIN_PLACEHOLDER[6]}
+            type="password"
+            value={formState.pwdConfirm}
+            onChange={(e) => handleInputChange(e, 'pwdConfirm')}
+            error={!!formState.pwdConfirmError}
+          />
+        </div>
+      </div>
 
       <SignInButton
         type="button"
         text={SIGNUP_BUTTON[0]}
         onClick={handleBtnClick}
       />
+      {dialog && (
+        <Dialog
+          topText={SIGNIN_TEXT[9]}
+          subText={SIGNIN_TEXT[10]}
+          BtnText={SIGNUP_BUTTON[4]}
+          onBtnClick={() => router.push('/sign-in')}
+        />
+      )}
     </div>
   );
 }

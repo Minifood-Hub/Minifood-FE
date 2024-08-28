@@ -22,8 +22,7 @@ export const BUTTON_STYLE = {
 
 export const INPUT_STYLE = {
   // 회원가입 input
-  signin: (className: string) =>
-    ` placeholder:text-gray-2 placeholder:font-normal ${className}`,
+  signin: (className: string) => `h-14 ${className}`,
   search: (className: string) =>
     `w-full h-9 rounded-[4px] text-sm placeholder:text-sm focus:outline-none ${className}`,
   // 견적서 개수 입력

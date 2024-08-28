@@ -9,7 +9,6 @@ export interface SignInputProps {
   value?: string;
   onChange?: ChangeEventHandler<HTMLInputElement>;
   error?: boolean;
-  errorMessage?: string;
 }
 
 export interface SingInButtonProps {
