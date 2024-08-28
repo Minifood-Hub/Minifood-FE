@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import '../ui/globals.css';
+import UserProvider from '../components/common/useProvider';
 
 export const metadata: Metadata = {
   title: 'JMF',
@@ -16,7 +17,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
-      <body className="min-h-screen min-w-[1100px] mx-auto">{children}</body>
+      <body className="min-h-screen min-w-[1100px] mx-auto">
+        <UserProvider>{children}</UserProvider>
+      </body>
     </html>
   );
 }

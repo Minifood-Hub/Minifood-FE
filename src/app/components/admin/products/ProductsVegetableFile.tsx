@@ -1,6 +1,5 @@
 import { ALERT_TEXT, BTN_TEXT } from '@/app/constants/admin';
 import Button from '../../common/Button';
-import { callPostFile } from '@/app/utils/callApi';
 import Input from '../../common/Input';
 import { ChangeEvent, FormEvent, useState } from 'react';
 
@@ -24,13 +23,20 @@ export default function ProductsVegetableFile() {
     formData.append('file', file);
 
     try {
-      const data = await callPostFile(
-        `/api/admin/products/vegetable/file`,
-        formData,
-      );
-      console.log(data);
+      const response = await fetch('/api/admin/products/vegetable/file', {
+        method: 'PATCH',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      await response.json();
+      alert(ALERT_TEXT[10]);
     } catch (error) {
-      console.error(error);
+      console.error('파일 업로드 중 오류 발생:', error);
+      alert(ALERT_TEXT[11]);
     }
   };
   return (

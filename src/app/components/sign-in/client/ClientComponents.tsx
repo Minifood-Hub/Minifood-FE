@@ -12,9 +12,11 @@ import { ClientState, ValidationClientType } from '@/app/_types/sign-in';
 import { callPost } from '@/app/utils/callApi';
 import SignInButton from '../common/SignInButton';
 import SignInInput from '../common/SignInInput';
+import { useUserStore } from '@/app/store/useStore';
 
 export default function ClientComponents() {
   const router = useRouter();
+  const fetchUser = useUserStore((state) => state.fetchUser);
 
   const [formState, setFormState] = useState<ClientState>({
     name: '',
@@ -50,14 +52,13 @@ export default function ClientComponents() {
         name: formState.name,
         address: formState.address,
       };
-      const responseData = await callPost('/api/sign-in/client', body);
-      console.log('리스폰스 데이터', responseData);
+      await callPost('/api/sign-in/client', body);
     } catch (error) {
       console.error(error);
     }
   };
 
-  const handleBtnClick = () => {
+  const handleBtnClick = async () => {
     const nameError = validateField('name', formState.name);
     const addressError = validateField('address', formState.address);
 
@@ -76,6 +77,12 @@ export default function ClientComponents() {
         isBtnActive: true,
       }));
       handlePostClient();
+      // 서버 처리 시간을 고려한 지연 추가
+      await new Promise((resolve) => {
+        setTimeout(resolve, 1000);
+      });
+
+      await fetchUser();
       router.push('/');
     }
   };

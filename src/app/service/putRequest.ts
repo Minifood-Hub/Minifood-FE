@@ -8,11 +8,14 @@ const headers = {
 
 export const putRequest = async (
   url: string,
-  req: Request,
+  req?: Request,
   body: any = null,
 ) => {
   try {
-    const token = getCookie(req, 'accessToken');
+    let token;
+    if (req) {
+      token = getCookie(req, 'accessToken');
+    }
     const response = await fetch(url, {
       method: 'PUT',
       headers: {
@@ -71,7 +74,7 @@ export const putUpdateProducts = async (
   req: Request,
 ) => {
   try {
-    const url = `${SERVER_URL}/api/v1/products${product_id}/update`;
+    const url = `${SERVER_URL}/api/v1/products/${product_id}/update`;
     return await putRequest(url, req, productContents);
   } catch (error) {
     console.error(error);
@@ -83,24 +86,20 @@ export const putUpdateProducts = async (
 export const putAdminNotices = async (
   notice_id: string,
   noticeContents: any,
-  req: Request,
 ) => {
   try {
     const url = `${SERVER_URL}/api/v1/notices/${notice_id}`;
-    return await putRequest(url, req, noticeContents);
+    return await putRequest(url, undefined, noticeContents);
   } catch (error) {
     console.error(error);
     throw new Error('putAdminNotices 에러 발생');
   }
 };
 
-export const putAdminFAQ = (
-  faq_id: string,
-  noticeContents: FAQPostTypes,
-  req: Request,
-) => {
+// FAQ 수정
+export const putAdminFAQ = (faq_id: string, noticeContents: FAQPostTypes) => {
   const url = `${SERVER_URL}/api/v1/faqs/${faq_id}`;
-  return putRequest(url, req, noticeContents);
+  return putRequest(url, undefined, noticeContents);
 };
 
 export const putProduct = async (

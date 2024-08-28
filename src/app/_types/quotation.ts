@@ -13,6 +13,7 @@ interface QuotationInfoTypes {
   products: ProductsTypes[];
   name: string;
   total: number;
+  status?: string;
   created_at: string;
   updated_at: string;
 }

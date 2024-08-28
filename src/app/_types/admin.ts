@@ -7,7 +7,7 @@ interface AdminPageProps {
 }
 
 interface ClientIdProps {
-  clientId: string;
+  clientId: string | number;
 }
 
 interface ClientsNameProps {
@@ -23,6 +23,62 @@ interface NoticeProps {
   id: number;
   created_at: string;
   updated_at: string | null;
+}
+
+interface FAQProps {
+  category: string;
+  question: string;
+  answer: string;
+  id: number;
+  created_at: string;
+  updated_at: string | null;
+}
+
+interface FAQPutProps {
+  editingId: number | null;
+  selectedId: number | null;
+  editFAQ: {
+    category: string;
+    question: string;
+    answer: string;
+  };
+  setEditFAQ: React.Dispatch<
+    React.SetStateAction<{
+      category: string;
+      question: string;
+      answer: string;
+    }>
+  >;
+  setEditingId: React.Dispatch<React.SetStateAction<number | null>>;
+  handleGetFAQ: () => Promise<void>;
+  item: {
+    id: number;
+    category: string;
+    question: string;
+    answer: string;
+  };
+}
+
+interface NoticePutProps {
+  editingId: number | null;
+  selectedId: number | null;
+  editNotice: {
+    title: string;
+    content: string;
+  };
+  setEditNotice: React.Dispatch<
+    React.SetStateAction<{
+      title: string;
+      content: string;
+    }>
+  >;
+  setEditingId: React.Dispatch<React.SetStateAction<number | null>>;
+  handleGetNotice: () => Promise<void>;
+  item: {
+    id: number;
+    title: string;
+    content: string;
+  };
 }
 
 interface ProductProps {
@@ -50,15 +106,6 @@ interface AdminItemProps {
 interface CheckQuotationResult {
   client_id: number;
   status: boolean;
-}
-
-interface FAQProps {
-  category: string;
-  question: string;
-  answer: string;
-  id: number;
-  created_at: string;
-  updated_at: string;
 }
 
 interface FAQPostTypes {

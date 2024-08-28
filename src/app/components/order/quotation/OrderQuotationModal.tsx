@@ -29,19 +29,17 @@ export default function QuotationModal({
     partiValue: '',
     loading: false,
   });
-  const { total, partiValue, loading } = state;
+  const { partiValue, loading } = state;
   const [dialog, setDialog] = useState({
     open: false,
     topText: '',
     onClick: () => {},
   });
 
-  // 견적서 합계 금액 업데이트
+  // 견적서 합계 금액 업데이트(관리자에서 조회를 위해)
   const updateTotal = async (quotation_id: string) => {
     try {
       const data = await callGet(`/api/order/quotations/${quotation_id}/total`);
-      console.log(quotation_id);
-      console.log(data);
       if (data.isSuccess) {
         setState((prev) => ({ ...prev, total: data.result }));
       }

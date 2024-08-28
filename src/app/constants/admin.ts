@@ -1,43 +1,27 @@
-export const ADMIN_TEXT = ['거래처', ' 상품', '견적서', '공지사항'];
+export const ADMIN_TEXT = ['거래처', ' 상품', '견적서', '공지사항', 'FAQ'];
 
 export const OPTION_TEXT = [
   '거래처 명으로 조회',
-  '거래처 견적서 조회',
-  '거래처 견적서 기간에 따른 조회',
-  '거래처 주문 내역 조회',
-  '거래처 해당 날짜 견적서 제출 여부 파악',
-  '거래처 지역 선택',
-  '거래처 특이사항 작성',
-  '거래처 삭제',
   '거래처 지역으로 조회',
   '옵션을 선택해 주세요',
   '물건 견적서 파일 업로드',
   '분류 별 물품 조회',
-  '물품 수정',
   '물품 추가 생성',
-  '물품 삭제',
   '야채 물품 가격 직접 변경',
   '야채 물품 가격 엑셀 파일로 변경',
-  '견적서 정보 조회',
-  '오늘 날짜의 모든 견적서 excel 파일로 추출',
 ];
 
 export const INPUT_TEXT = [
-  '거래처 id',
-  '거래처 아이디 입력',
-  '페이지',
-  '페이지 크기',
   '시작 날짜',
   '종료 날짜',
-  '날짜 입력',
   '특이사항 입력',
   '거래처 명',
   '물품 번호',
   '제목',
   '내용',
   '공지사항 id',
-  '',
-  '견적서 id',
+  '종료 날짜의 모든 견적서 excel 파일로 추출',
+  'FAQ id',
 ];
 
 export const BTN_TEXT = [
@@ -49,6 +33,7 @@ export const BTN_TEXT = [
   '취소',
   '저장',
   '작성',
+  '조회',
 ];
 
 export const TABLE_TEXT = [
@@ -63,6 +48,9 @@ export const TABLE_TEXT = [
   '분류',
   '단위',
   'excel로 추출',
+  '주문내역',
+  '특이사항',
+  '추출',
 ];
 
 export const ALERT_TEXT = [
@@ -75,10 +63,14 @@ export const ALERT_TEXT = [
   '정상적으로 제출되었습니다.',
   '공지사항이 삭제되었습니다.',
   '접근 권한이 없습니다.',
+  '가격이 변경되었습니다.',
+  '파일이 성공적으로 업로드되었습니다.',
+  '파일 업로드 중 오류가 발생했습니다.',
+  '물품이 생성되었습니다.',
 ];
 
 export const REGION_TEXT = [
-  '지역을 선택해주세요',
+  '지역 선택',
   '노원',
   '의정부',
   '강남',
@@ -86,7 +78,9 @@ export const REGION_TEXT = [
   '신촌',
 ];
 
-export const CATEGORY_TEXT = ['냉동', '냉장', '공산', '채소'];
+export const CATEGORY_TEXT = ['분류 선택', '냉동', '냉장', '공산', '채소'];
+
+export const FAQ_CATEGORY = ['분류 선택', '상품', '배송', '결제'];
 
 export const clientStatusMapping: { [key: string]: string } = {
   COMPLETED: '제출됨',

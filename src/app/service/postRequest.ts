@@ -121,25 +121,27 @@ export const postQuotationsProducts = async (
 
 // ===== 관리자 =====
 // 물건 견적서 파일 업로드
-export const postAdminProductsUpload = async (file: File) => {
+export const postAdminProductsUpload = async (file: File, req: Request) => {
   try {
     const url = `${SERVER_URL}/api/v1/products/upload`;
     const formData = new FormData();
     formData.append('file', file);
 
+    const token = getCookie(req, 'accessToken');
+
     const response = await fetch(url, {
       method: 'POST',
+      headers: {
+        ...(token && { 'access-token': token }),
+      },
       body: formData,
     });
 
-    const responseText = await response.text();
-    console.log('서버 응답 :', response.status, responseText);
-
     if (!response.ok) {
-      throw new Error(`서버 응답 오류: ${response.status} ${responseText}`);
+      throw new Error(`서버 응답 오류: ${response.status}`);
     }
 
-    return JSON.parse(responseText);
+    return await response.json();
   } catch (error) {
     console.error('에러 상세 정보:', error);
     throw new Error('postAdminProductUpload 에러 발생');
@@ -161,10 +163,10 @@ export const postAdminProducts = async (
 };
 
 // 공지사항 생성
-export const postAdminNotices = async (noticeContents: any, req: Request) => {
+export const postAdminNotices = async (noticeContents: any) => {
   try {
     const url = `${SERVER_URL}/api/v1/notices`;
-    return await postRequest(url, noticeContents, req);
+    return await postRequest(url, noticeContents);
   } catch (error) {
     console.error('에러 : ', error);
     throw new Error('postAdminNotices 에러 발생');
@@ -172,9 +174,9 @@ export const postAdminNotices = async (noticeContents: any, req: Request) => {
 };
 
 // FAQ 생성
-export const postAdminFAQ = (faqContents: FAQPostTypes, req: Request) => {
+export const postAdminFAQ = (faqContents: FAQPostTypes) => {
   const url = `${SERVER_URL}/api/v1/faqs`;
-  return postRequest(url, faqContents, req);
+  return postRequest(url, faqContents);
 };
 
 export const postProduct = async (product: any, req: Request) => {

@@ -9,14 +9,10 @@ export async function PUT(
     const { notice_id } = params;
     const body = await req.json();
 
-    const response = await putAdminNotices(notice_id, body, req);
+    const response = await putAdminNotices(notice_id, body);
 
     return NextResponse.json(response, { status: 200 });
   } catch (error) {
-    console.error('API Error:', error);
-    return NextResponse.json(
-      { error: 'Internal Server Error' },
-      { status: 500 },
-    );
+    return NextResponse.json({ error: '인터넷 서버 에러' }, { status: 500 });
   }
 }
