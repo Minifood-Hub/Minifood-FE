@@ -163,10 +163,10 @@ export const postAdminProducts = async (
 };
 
 // 공지사항 생성
-export const postAdminNotices = async (noticeContents: any, req: Request) => {
+export const postAdminNotices = async (noticeContents: any) => {
   try {
     const url = `${SERVER_URL}/api/v1/notices`;
-    return await postRequest(url, noticeContents, req);
+    return await postRequest(url, noticeContents);
   } catch (error) {
     console.error('에러 : ', error);
     throw new Error('postAdminNotices 에러 발생');
@@ -174,7 +174,7 @@ export const postAdminNotices = async (noticeContents: any, req: Request) => {
 };
 
 // FAQ 생성
-export const postAdminFAQ = (faqContents: FAQPostTypes, req: Request) => {
+export const postAdminFAQ = (faqContents: FAQPostTypes) => {
   const url = `${SERVER_URL}/api/v1/faqs`;
-  return postRequest(url, faqContents, req);
+  return postRequest(url, faqContents);
 };

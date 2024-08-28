@@ -1,4 +1,4 @@
-export const ADMIN_TEXT = ['거래처', ' 상품', '견적서', '공지사항'];
+export const ADMIN_TEXT = ['거래처', ' 상품', '견적서', '공지사항', 'FAQ'];
 
 export const OPTION_TEXT = [
   '거래처 명으로 조회',
@@ -21,6 +21,7 @@ export const INPUT_TEXT = [
   '내용',
   '공지사항 id',
   '종료 날짜의 모든 견적서 excel 파일로 추출',
+  'FAQ id',
 ];
 
 export const BTN_TEXT = [
@@ -78,6 +79,8 @@ export const REGION_TEXT = [
 ];
 
 export const CATEGORY_TEXT = ['분류 선택', '냉동', '냉장', '공산', '채소'];
+
+export const FAQ_CATEGORY = ['분류 선택', '상품', '배송', '결제'];
 
 export const clientStatusMapping: { [key: string]: string } = {
   COMPLETED: '제출됨',

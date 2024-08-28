@@ -36,6 +36,7 @@ export const MODAL_INFO = [
   '주소',
   '주문목록',
   '합계',
+  '총 수량',
 ];
 
 export const DIALOG_TEXT = [
@@ -55,15 +56,6 @@ export const categoryMapping: { [key: string]: string } = {
   frozen: '냉동',
   industrial: '공산',
   vegetable: '야채',
-};
-
-export const initialOrderState = {
-  bookmark: false,
-  showBookmark: false,
-  search: '',
-  bookmarkName: '',
-  showQuot: false,
-  currentDate: '',
 };
 
 export const initialEditOrderState = {

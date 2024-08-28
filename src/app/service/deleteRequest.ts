@@ -6,9 +6,12 @@ const commonHeaders = {
   'Content-Type': 'application/json',
 };
 
-const deleteRequest = async (url: string, req: Request) => {
+const deleteRequest = async (url: string, req?: Request) => {
   try {
-    const token = getCookie(req, 'accessToken');
+    let token;
+    if (req) {
+      token = getCookie(req, 'accessToken');
+    }
     const response = await fetch(url, {
       method: 'DELETE',
       headers: { ...commonHeaders, ...(token && { 'access-token': token }) },
@@ -55,13 +58,13 @@ export const deleteAdminProducts = async (product_id: string, req: Request) => {
 };
 
 // 공지사항 삭제
-export const deleteAdminNotices = async (notice_id: string, req: Request) => {
+export const deleteAdminNotices = async (notice_id: string) => {
   const url = `${SERVER_URL}/api/v1/notices/${notice_id}`;
-  return deleteRequest(url, req);
+  return deleteRequest(url);
 };
 
 // faq 삭제
-export const deleteAdminFAQ = async (faq_id: string, req: Request) => {
+export const deleteAdminFAQ = async (faq_id: string) => {
   const url = `${SERVER_URL}/api/v1/faqs/${faq_id}`;
-  return deleteRequest(url, req);
+  return deleteRequest(url);
 };

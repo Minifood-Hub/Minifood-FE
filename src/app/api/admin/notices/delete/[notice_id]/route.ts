@@ -10,9 +10,9 @@ export async function DELETE(
   try {
     const { notice_id } = params;
 
-    const data = await deleteAdminNotices(notice_id, req);
+    const data = await deleteAdminNotices(notice_id);
     return NextResponse.json(data);
   } catch (error) {
-    return NextResponse.json('Internal Server Error');
+    return NextResponse.json('인터넷 서버 에러');
   }
 }

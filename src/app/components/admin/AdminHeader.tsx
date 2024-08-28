@@ -1,11 +1,20 @@
 'use client';
 
-import { ADMIN_TEXT } from '@/app/constants/admin';
+import { ADMIN_TEXT, ALERT_TEXT } from '@/app/constants/admin';
+import { useUser } from '@/app/hooks/useUser';
 import { useRouter } from 'next/navigation';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 export default function AdminHeader({ isActive }: AdminHeaderProps) {
   const router = useRouter();
+  const { user } = useUser();
+
+  useEffect(() => {
+    if (user && user.result && user.result.is_admin === false) {
+      alert(ALERT_TEXT[8]);
+      router.push('/');
+    }
+  }, [user, router]);
 
   const handleActiveChange = (page: string) => {
     router.push(`?page=${page}`);
@@ -37,6 +46,12 @@ export default function AdminHeader({ isActive }: AdminHeaderProps) {
           onClick={() => handleActiveChange('notices')}
         >
           {ADMIN_TEXT[3]}
+        </div>
+        <div
+          className={`px-4 py-2 font-extrabold cursor-pointer ${isActive === 'faq' ? 'bg-primary-1 text-white' : 'bg-white'}`}
+          onClick={() => handleActiveChange('faq')}
+        >
+          {ADMIN_TEXT[4]}
         </div>
       </div>
     </header>
