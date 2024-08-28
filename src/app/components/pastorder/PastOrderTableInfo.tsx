@@ -12,7 +12,7 @@ interface PastOrderTableInfoProps {
 
 const PastOrderTableInfo = ({ pastorder, index }: PastOrderTableInfoProps) => {
   const router = useRouter();
-  const { isOpen, openModal, closeModal, handleModalClick } = useModal(false);
+  const { isOpen, openModal, closeModal } = useModal(false);
 
   const deletePastOrder = (id: number) => {
     callDelete(`/api/past-order/delete?pastorder_id=${id}`);
@@ -28,8 +28,8 @@ const PastOrderTableInfo = ({ pastorder, index }: PastOrderTableInfoProps) => {
         />
       )}
       <div className="w-full pl-1 justify-start items-center inline-flex h-[53px] text-base font-normal border-b border-b-[#E0E0E0]">
-        <div className="w-[9.5%] text-center">{index + 1}</div>
-        <div className="w-[65.5%] text-center">{pastorder.name}</div>
+        <div className="w-[9%] text-center">{index + 1}</div>
+        <div className="w-[65.5%] ">{pastorder.name}</div>
         <div className="flex gap-x-[10%] px-[5%] flex-grow">
           <Button
             buttonText={QUOTATION_MANAGE[0]}
