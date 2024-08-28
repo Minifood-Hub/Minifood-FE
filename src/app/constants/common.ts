@@ -16,9 +16,13 @@ export const HEADER_TEXT = [
   '찾으시는 상품을 입력해주세요',
 ];
 
-export const HEADER_PROFILE = ['내 정보', '거래처', '로그아웃'];
-
-export const HEADER_PROFILE_PATH = ['내 정보', '거래처', '로그아웃'];
+export const HEADER_PROFILE = [
+  '거래처 생성',
+  '거래처 조회',
+  '거래처 수정',
+  '거래처 미생성',
+  '로그아웃',
+];
 
 export const FOOTER_TEXT = [
   '이용약관',

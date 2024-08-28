@@ -5,7 +5,6 @@ import { useUser } from '@/app/hooks/useUser';
 import { HeaderCartIcon, HeaderHeartIcon } from '@/app/ui/iconPath';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import HeaderSearchBar from '../HeaderSearchBar';
 import Icons from '../Icons';
 import ProfileDropDown from '../ProfileDropDown';
@@ -13,9 +12,9 @@ import ProfileDropDown from '../ProfileDropDown';
 function Header() {
   const { user } = useUser();
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     document.cookie = `accessToken=; expires=0; path=/;`;
-    window.location.reload();
+    window.location.href = '/';
   };
 
   const isClient = user?.category === 'CLIENT';
