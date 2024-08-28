@@ -21,6 +21,7 @@ interface User {
   message: string;
   category: string;
   result: UserResult;
+  detail?: string;
 }
 
 interface searchProductsProps {
