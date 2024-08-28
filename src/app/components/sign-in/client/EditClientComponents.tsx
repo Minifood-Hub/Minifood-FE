@@ -12,10 +12,13 @@ import { useState } from 'react';
 import SignInButton from '../common/SignInButton';
 import SignInInput from '../common/SignInInput';
 import { useUser } from '@/app/hooks/useUser';
+import { useUserStore } from '@/app/store/useStore';
+import { Dialog } from '../../common/Dialog';
 
 export default function EditClientComponents() {
   const router = useRouter();
   const { user } = useUser();
+  const fetchUser = useUserStore((state) => state.fetchUser);
 
   const [formState, setFormState] = useState<ClientState>({
     name: '',
@@ -24,6 +27,7 @@ export default function EditClientComponents() {
     addressError: '',
     isBtnActive: false,
   });
+  const [dialog, setDialog] = useState(false);
 
   const validateField = (type: ValidationClientType, value: string) => {
     if (!value.trim()) {
@@ -67,7 +71,7 @@ export default function EditClientComponents() {
     }
   };
 
-  const handleBtnClick = () => {
+  const handleBtnClick = async () => {
     const nameError = validateField('name', formState.name);
     const addressError = validateField('address', formState.address);
 
@@ -86,36 +90,66 @@ export default function EditClientComponents() {
         isBtnActive: true,
       }));
       handlePutClient();
-      router.push('/');
+      // 서버 처리 시간을 고려한 지연 추가
+      await new Promise((resolve) => {
+        setTimeout(resolve, 1000);
+      });
+
+      await fetchUser();
+      setDialog((prev) => !prev);
     }
   };
 
   return (
-    <div className="w-full flex-center flex-col gap-6 max-w-[678px]">
-      <SignInInput
-        label={SIGNIN_TEXT[6]}
-        placeholder={SIGNIN_PLACEHOLDER[4]}
-        type="text"
-        value={formState.name}
-        onChange={(e) => handleInputChange(e, 'name')}
-        error={!!formState.nameError}
-        errorMessage={formState.nameError}
-      />
-      <SignInInput
-        label={SIGNIN_TEXT[7]}
-        placeholder={SIGNIN_PLACEHOLDER[5]}
-        type="text"
-        value={formState.address}
-        onChange={(e) => handleInputChange(e, 'address')}
-        error={!!formState.addressError}
-        errorMessage={formState.addressError}
-      />
+    <div className="w-full flex-center flex-col gap-8 max-w-[600px]">
+      <span className="text-xl font-semibold">{SIGNIN_TEXT[13]}</span>
+      <div className="flex flex-col items-start gap-8 self-stretch">
+        <div className="flex flex-col items-start gap-2 self-stretch">
+          <div className="flex items-start font-semibold">
+            <p>{SIGNIN_TEXT[6]}</p> <p className="text-[#FC4C00]">*</p>
+            {formState.nameError && (
+              <p className="text-[#FC4C00] pl-3">{formState.nameError}</p>
+            )}
+          </div>
+          <SignInInput
+            placeholder={SIGNIN_PLACEHOLDER[4]}
+            type="text"
+            value={formState.name}
+            onChange={(e) => handleInputChange(e, 'name')}
+            error={!!formState.nameError}
+          />
+        </div>
+
+        <div className="flex flex-col items-start gap-2 self-stretch">
+          <div className="flex items-start font-semibold">
+            <p>{SIGNIN_TEXT[7]}</p> <p className="text-[#FC4C00]">*</p>
+            {formState.addressError && (
+              <p className="text-[#FC4C00] pl-3">{formState.addressError}</p>
+            )}
+          </div>
+          <SignInInput
+            placeholder={SIGNIN_PLACEHOLDER[5]}
+            type="text"
+            value={formState.address}
+            onChange={(e) => handleInputChange(e, 'address')}
+            error={!!formState.addressError}
+          />
+        </div>
+      </div>
 
       <SignInButton
         type="button"
         text={SIGNUP_BUTTON[2]}
         onClick={handleBtnClick}
       />
+
+      {dialog && (
+        <Dialog
+          topText={SIGNIN_TEXT[14]}
+          BtnText={SIGNUP_BUTTON[5]}
+          onBtnClick={() => router.push('/')}
+        />
+      )}
     </div>
   );
 }

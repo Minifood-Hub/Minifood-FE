@@ -12,6 +12,8 @@ export const SIGNIN_TEXT = [
   '가입이 완료되었습니다.', // 10
   '거래처 생성',
   '거래처가 생성되었습니다.',
+  '거래처 수정',
+  '거래처가 수정되었습니다.',
 ];
 
 export const SIGNIN_PLACEHOLDER = [
