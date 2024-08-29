@@ -49,7 +49,13 @@ export const DIALOG_TEXT = [
   '세션이 만료되었습니다. 다시 로그인해주세요.',
 ];
 
-export const BUTTON_TEXT = ['이동', '추가', '주문 확정', '닫기'];
+export const BUTTON_TEXT = [
+  '이동',
+  '추가',
+  '주문 확정',
+  '닫기',
+  '주문 시작하기',
+];
 
 export const categoryMapping: { [key: string]: string } = {
   refrigeration: '냉장',
