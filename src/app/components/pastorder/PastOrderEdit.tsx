@@ -1,17 +1,21 @@
+import { categoryMapping } from '@/app/constants/order';
 import { PASTORDER_DETAIL } from '@/app/constants/pastorder';
 import { TrashBinIcon } from '@/app/ui/iconPath';
-import { callGet, callPost } from '@/app/utils/callApi';
+import { callGet } from '@/app/utils/callApi';
 import { useEffect, useState } from 'react';
 import Icons from '../common/Icons';
 
 interface PastOrderEditProps {
   pastorderId: number;
-  pastorderName: string;
+  setProductIds: (ids: number[]) => void;
 }
 
-const PastOrderEdit = ({ pastorderId, pastorderName }: PastOrderEditProps) => {
+const PastOrderEdit = ({ pastorderId, setProductIds }: PastOrderEditProps) => {
   const [products, setProducts] = useState<PastOrderProduct[]>([]);
-  const productIds = products.map((product) => product.id);
+  useEffect(() => {
+    const productIds = products.map((product) => product.id);
+    setProductIds(productIds);
+  }, [products, setProductIds]);
 
   const deleteItem = (id: number) => {
     const updatedProducts = products.filter((product) => product.id !== id);
@@ -25,13 +29,6 @@ const PastOrderEdit = ({ pastorderId, pastorderName }: PastOrderEditProps) => {
     };
     fetchData();
   }, [pastorderId]);
-
-  const putPastOrder = async () => {
-    await callPost(`/api/past-order/edit?${pastorderId}`, {
-      name: pastorderName,
-      product_ids: productIds,
-    });
-  };
 
   return (
     <div className="w-full flex flex-col text-[#333333] bg-[#FCFCFC]">
@@ -47,11 +44,13 @@ const PastOrderEdit = ({ pastorderId, pastorderName }: PastOrderEditProps) => {
           className="w-full flex h-[54px] items-center text-base font-normal"
           key={product.id}
         >
-          <div className="w-[9.1%] text-center">{product.category}</div>
+          <div className="w-[9.1%] text-center">
+            {categoryMapping[product.category]}
+          </div>
           <div className="w-[18.6%] pl-[14px]">{i + 1}</div>
           <div className="w-[49.1%] pl-[14px]">{product.name}</div>
           <div className="w-[11.4%] text-center">{product.unit}</div>
-          <div className="w-[11.4%] text-center">
+          <div className="w-[11.4%] flex justify-center items-center">
             <Icons
               name={TrashBinIcon}
               className="cursor-pointer"

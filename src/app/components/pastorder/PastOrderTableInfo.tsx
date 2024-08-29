@@ -2,7 +2,7 @@
 
 import { QUOTATION_MANAGE } from '@/app/constants/quotation';
 import { useModal } from '@/app/hooks/useModal';
-import { callDelete } from '@/app/utils/callApi';
+import { callDelete, callPut } from '@/app/utils/callApi';
 import { useState } from 'react';
 import Button from '../common/Button';
 import DeletePastorderModal from './modal/DeletePastorderModal';
@@ -18,10 +18,32 @@ const PastOrderTableInfo = ({ pastorder, index }: PastOrderTableInfoProps) => {
   const { isOpen, openModal, closeModal } = useModal(false);
   const [isView, setIsView] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
+  const [productIds, setProductIds] = useState<number[]>([]); // productIds 상태 추가
+
+  const putPastOrder = async () => {
+    await callPut(
+      `/api/past-order/put?pastorder_id=${pastorder.past_order_id}`,
+      {
+        name: pastorder.name,
+        product_ids: productIds,
+      },
+    );
+    setIsEdit(false);
+  };
 
   const deletePastOrder = (id: number) => {
     callDelete(`/api/past-order/delete?pastorder_id=${id}`);
     window.location.reload();
+  };
+
+  const editPastOrder = () => {
+    setIsEdit(!isEdit);
+    setIsView(false);
+  };
+
+  const viewPastOrder = () => {
+    setIsView(!isView);
+    setIsEdit(false);
   };
 
   return (
@@ -36,11 +58,17 @@ const PastOrderTableInfo = ({ pastorder, index }: PastOrderTableInfoProps) => {
         <div className="w-[9.5%] text-center">{index + 1}</div>
         <div className="w-[65.5%] pl-3">{pastorder.name}</div>
         {isEdit ? (
-          <div className="flex flex-row-reverse pl-[5%]">
+          <div className="flex flex-row-reverse pl-[5%] gap-x-[10%] px-[5%] flex-grow">
             <Button
-              buttonText={isView ? QUOTATION_MANAGE[3] : QUOTATION_MANAGE[0]}
+              buttonText={QUOTATION_MANAGE[4]}
               type="quoteTableControl"
-              onClickHandler={() => setIsEdit(!isEdit)}
+              onClickHandler={putPastOrder}
+              className="bg-[#55AA00] text-white"
+            />
+            <Button
+              buttonText={QUOTATION_MANAGE[3]}
+              type="quoteTableControl"
+              onClickHandler={() => setIsEdit(false)}
               className="border border-[#e0e0e0]"
             />
           </div>
@@ -49,13 +77,13 @@ const PastOrderTableInfo = ({ pastorder, index }: PastOrderTableInfoProps) => {
             <Button
               buttonText={isView ? QUOTATION_MANAGE[3] : QUOTATION_MANAGE[0]}
               type="quoteTableControl"
-              onClickHandler={() => setIsView(!isView)}
+              onClickHandler={viewPastOrder}
               className="border border-[#e0e0e0]"
             />
             <Button
               buttonText={QUOTATION_MANAGE[1]}
               type="quoteTableControl"
-              onClickHandler={() => setIsEdit(!isEdit)}
+              onClickHandler={editPastOrder}
               className="border border-[#e0e0e0]"
             />
             <Button
@@ -71,7 +99,7 @@ const PastOrderTableInfo = ({ pastorder, index }: PastOrderTableInfoProps) => {
       {isEdit && (
         <PastOrderEdit
           pastorderId={pastorder.past_order_id}
-          pastorderName={pastorder.name}
+          setProductIds={setProductIds}
         />
       )}
     </div>
