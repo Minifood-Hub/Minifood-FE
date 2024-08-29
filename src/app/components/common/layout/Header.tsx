@@ -8,9 +8,13 @@ import Link from 'next/link';
 import HeaderSearchBar from '../HeaderSearchBar';
 import Icons from '../Icons';
 import ProfileDropDown from '../ProfileDropDown';
+import { usePathname } from 'next/navigation';
 
 function Header() {
   const { user } = useUser();
+
+  const pathname = usePathname();
+  const showSearchBar = !pathname.startsWith('/sign-in');
 
   const handleLogout = async () => {
     document.cookie = `accessToken=; expires=0; path=/;`;
@@ -27,7 +31,7 @@ function Header() {
           <Image src="/Images/JMF2.png" width={60} height={48} alt="logo" />
           <Link href="/">{HEADER_TEXT[0]}</Link>
         </div>
-        <HeaderSearchBar />
+        {showSearchBar && <HeaderSearchBar />}
         {isClient || isCOMMON ? (
           <div className="flex gap-x-[54px]">
             <Link href="/">
