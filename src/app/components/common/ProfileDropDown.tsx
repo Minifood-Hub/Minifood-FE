@@ -1,7 +1,7 @@
 'use client';
 
 import { HEADER_PROFILE } from '@/app/constants/common';
-import { HeaderProfileIcon } from '@/app/ui/iconPath';
+import { DropDownIcon } from '@/app/ui/iconPath';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import Icons from './Icons';
@@ -32,9 +32,10 @@ const ProfileDropDown = ({ user, logout }: ProfileDropDownProps) => {
     <div className="flex flex-col">
       <div
         onClick={() => setIsOpen(!isOpen)}
-        className="cursor-pointer relative"
+        className="flex cursor-pointer relative items-center"
       >
-        <Icons name={HeaderProfileIcon} hoverFill="#306317" />
+        {user.result.client_name}님
+        <Icons name={DropDownIcon} />
       </div>
       {isOpen && (
         <div className="flex flex-col bg-white border-[#E0E0E0] border absolute top-[52px] z-10">

@@ -181,3 +181,10 @@ export const TrashBinIcon = {
   height: 18,
   fill: '#6E6E6E',
 };
+
+export const DropDownIcon = {
+  path: 'M9 11.25L5.25 7.5H12.75L9 11.25Z',
+  width: 18,
+  height: 18,
+  fill: '#333333',
+};

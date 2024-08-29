@@ -10,6 +10,7 @@ import {
 import { useUser } from '@/app/hooks/useUser';
 import Image from 'next/image';
 import Link from 'next/link';
+import ProfileDropDown from '../ProfileDropDown';
 
 function Header() {
   const { user } = useUser();
@@ -35,13 +36,17 @@ function Header() {
             ))}
           </div>
         </div>
-        <div className="flex font-normal text-sm">
-          {HEADER_SIGNUP_PATH.map((path, i) => (
-            <Link href={path} key={path} className="w-[68px] text-center">
-              {HEADER_SIGNUP[i]}
-            </Link>
-          ))}
-        </div>
+        {user ? (
+          <ProfileDropDown user={user} logout={handleLogout} />
+        ) : (
+          <div className="flex font-normal text-sm">
+            {HEADER_SIGNUP_PATH.map((path, i) => (
+              <Link href={path} key={path} className="w-[68px] text-center">
+                {HEADER_SIGNUP[i]}
+              </Link>
+            ))}
+          </div>
+        )}
       </header>
     </div>
   );
