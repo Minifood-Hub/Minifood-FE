@@ -153,7 +153,7 @@ export default function ClientsRegion() {
               </div>
               <div className="w-[25%] flex justify-between pr-6">
                 <Input
-                  className="border-2"
+                  className="max-h-12 border-2"
                   type="default"
                   onChange={(e) => setInputComment(e.target.value)}
                   textValue={inputComment}
@@ -201,7 +201,7 @@ export default function ClientsRegion() {
 
         <Button
           className="admin-btn"
-          buttonText={BTN_TEXT[0]}
+          buttonText={BTN_TEXT[4]}
           type="default"
           onClickHandler={handleSetRegion}
           isDisabled={region === REGION_TEXT[0]}

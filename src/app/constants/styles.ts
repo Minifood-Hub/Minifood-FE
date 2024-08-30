@@ -1,7 +1,7 @@
 export const BUTTON_STYLE = {
   dialog: (className: string) =>
     `flex-center px-4 py-2 gap-2 rounded-[4px] whitespace-nowrap text-lg font-medium ${className}`,
-  default: (className: string) => `w-full h-full ${className}`,
+  default: (className: string) => `w-full ${className}`,
   modalLogin: (className: string) =>
     `w-[110px] h-[45px] bg-[#55aa00] rounded text-white text-sm font-bold font-medium cursor-pointer ${className}`,
   modalClose: (className: string) =>
