@@ -28,9 +28,12 @@ const QuotationViewTable = ({
 
   useEffect(() => {
     const fetchData = async () => {
+      if (!user?.result?.client_id) {
+        return;
+      }
       const url = customDate
-        ? `/api/quotation?id=${user?.result.client_id}&date=${viewType}&page=${page}&start=${customDate.startDate}&end=${customDate.endDate}`
-        : `/api/quotation?id=${user?.result.client_id}&date=${viewType}&page=${page}`;
+        ? `/api/quotation?id=${user.result.client_id}&date=${viewType}&page=${page}&start=${customDate.startDate}&end=${customDate.endDate}`
+        : `/api/quotation?id=${user.result.client_id}&date=${viewType}&page=${page}`;
       const data = await callGet(url);
 
       setQuotation(data.result);
