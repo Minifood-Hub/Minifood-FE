@@ -68,3 +68,8 @@ export const deleteAdminFAQ = async (faq_id: string) => {
   const url = `${SERVER_URL}/api/v1/faqs/${faq_id}`;
   return deleteRequest(url);
 };
+
+export const deleteProduct = async (product_id: string, req: Request) => {
+  const url = `${SERVER_URL}/api/v1/custom-products/${product_id}/delete`;
+  return deleteRequest(url, req);
+};

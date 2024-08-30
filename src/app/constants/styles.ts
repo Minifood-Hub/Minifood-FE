@@ -33,4 +33,6 @@ export const INPUT_STYLE = {
   // 다이얼로그 input
   dialog: (className: string) =>
     `border-[1px] border-gray-2 rounded-[4px] p-3 w-full ${className}`,
+  searchProduct: (className: string) =>
+    `w-[479px] pl-6 py-3 h-[44px] rounded-[4px] text-base font-normal bg-[#f6f6f6] focus:outline-[#E0E0E0]  focus:bg-white ${className}`,
 } as const;

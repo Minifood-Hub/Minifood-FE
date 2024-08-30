@@ -11,6 +11,7 @@
     "format:fix": "prettier --write --ignore-path .gitignore ."
   },
   "dependencies": {
+    "clsx": "^2.1.1",
     "cookie": "^0.6.0",
     "file-saver": "^2.0.5",
     "html-to-image": "^1.11.11",

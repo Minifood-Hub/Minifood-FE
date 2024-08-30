@@ -203,7 +203,7 @@ export default function OrderContainer() {
     return (
       <div className="flex-center flex-col w-full px-0 self-stretch">
         <Button
-          className="h-fit py-2 admin-btn"
+          className="h-min py-2 admin-btn"
           type="default"
           onClickHandler={() => setIsOrderStarted(true)}
           buttonText={BUTTON_TEXT[4]}

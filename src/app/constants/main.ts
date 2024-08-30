@@ -3,6 +3,7 @@ export const REORDER_TEXT = [
   '이전에 구매한 상품을 간편하게 담아 보세요.',
   '바로 주문하기',
   '최근 주문내역이 존재하지 않습니다.',
+  '주문상품 전체보기 >',
 ];
 
 export const RECOMMEND_TEXT = ['오늘, 이런 상품은 어때요?', '구매하기'];
@@ -37,3 +38,5 @@ export const CALENDAR_ORDER_TEXT = [
 export const CALENDAR_ORDER_COLOR = ['#FF4D00', '#FF9D00', '#55AA00'];
 
 export const MAIN_INFORMATION = ['공지사항', 'FAQ', '고객센터'];
+
+export const CARD_TEXT = ['바로담기'];

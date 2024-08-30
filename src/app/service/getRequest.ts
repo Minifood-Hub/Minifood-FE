@@ -250,3 +250,19 @@ export const getRecentQuotation = async (client_id: string, req: Request) => {
   const url = `${SERVER_URL}/api/v1/clients/${client_id}/recent/purchase`;
   return getRequest(url, req);
 };
+
+// 일별 견적서 통계 조회
+export const getDailyQuotation = async () => {
+  const url = `${SERVER_URL}/api/v1/statistics/daily-quotation-totals`;
+  return getRequest(url);
+};
+
+export const getProducts = async (req: Request) => {
+  const url = `${SERVER_URL}/api/v1/custom-products`;
+  return getRequest(url, req);
+};
+
+export const getProductDetail = async (product_id: string, req: Request) => {
+  const url = `${SERVER_URL}/api/v1/custom-products/${product_id}`;
+  return getRequest(url, req);
+};
