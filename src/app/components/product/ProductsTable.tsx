@@ -1,0 +1,119 @@
+import ProductCard from './ProductCard';
+
+const ProductsTable = () => {
+  const clickCard = () => {
+    console.log('카드가 클릭되었습니다.');
+  };
+
+  return (
+    <div className="w-full flex flex-wrap justify-between gap-x-[1.7%] gap-y-[89px]">
+      <ProductCard
+        itemName="토마토"
+        amount={12}
+        category="냉동"
+        price={20000}
+        orderItem={clickCard}
+      />
+      <ProductCard
+        itemName="토마토"
+        amount={12}
+        category="냉동"
+        price={20000}
+        orderItem={clickCard}
+      />
+      <ProductCard
+        itemName="토마토"
+        amount={12}
+        category="냉동"
+        price={20000}
+        orderItem={clickCard}
+      />
+      <ProductCard
+        itemName="토마토"
+        amount={12}
+        category="냉동"
+        price={20000}
+        orderItem={clickCard}
+      />
+      <ProductCard
+        itemName="토마토"
+        amount={12}
+        category="냉동"
+        price={20000}
+        orderItem={clickCard}
+      />
+      <ProductCard
+        itemName="토마토"
+        amount={12}
+        category="냉동"
+        price={20000}
+        orderItem={clickCard}
+      />
+      <ProductCard
+        itemName="토마토"
+        amount={12}
+        category="냉동"
+        price={20000}
+        orderItem={clickCard}
+      />
+      <ProductCard
+        itemName="토마토"
+        amount={12}
+        category="냉동"
+        price={20000}
+        orderItem={clickCard}
+      />
+      <ProductCard
+        itemName="토마토"
+        amount={12}
+        category="냉동"
+        price={20000}
+        orderItem={clickCard}
+      />
+      <ProductCard
+        itemName="토마토"
+        amount={12}
+        category="냉동"
+        price={20000}
+        orderItem={clickCard}
+      />
+      <ProductCard
+        itemName="토마토"
+        amount={12}
+        category="냉동"
+        price={20000}
+        orderItem={clickCard}
+      />
+      <ProductCard
+        itemName="토마토"
+        amount={12}
+        category="냉동"
+        price={20000}
+        orderItem={clickCard}
+      />
+      <ProductCard
+        itemName="토마토"
+        amount={12}
+        category="냉동"
+        price={20000}
+        orderItem={clickCard}
+      />
+      <ProductCard
+        itemName="토마토"
+        amount={12}
+        category="냉동"
+        price={20000}
+        orderItem={clickCard}
+      />
+      <ProductCard
+        itemName="토마토"
+        amount={12}
+        category="냉동"
+        price={20000}
+        orderItem={clickCard}
+      />
+    </div>
+  );
+};
+
+export default ProductsTable;

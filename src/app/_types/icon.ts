@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 interface IconPathTypes {
   path: string;
   width: number;

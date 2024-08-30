@@ -9,16 +9,22 @@ import {
   StarIcon,
 } from '@/app/ui/iconPath';
 
-export const HEADER_TEXT = [
-  'JMF',
-  '회원가입',
-  '로그인',
-  '찾으시는 상품을 입력해주세요',
+export const HEADER_TEXT = ['주문생성', '즐겨찾기', '견적서', '상품조회'];
+
+export const HEADER_PATH = ['/order', '/past-order', '/quotation', '/product'];
+
+export const HEADER_PATH_GUEST = [
+  '/sign-in',
+  '/sign-in',
+  '/sign-in',
+  '/product',
 ];
 
-export const HEADER_PROFILE = ['내 정보', '거래처', '로그아웃'];
+export const HEADER_SIGNUP = ['회원가입', '로그인'];
 
-export const HEADER_PROFILE_PATH = ['내 정보', '거래처', '로그아웃'];
+export const HEADER_SIGNUP_PATH = ['/sign-in/sign-up', '/sign-in'];
+
+export const HEADER_PROFILE = ['내 정보', '거래처', '로그아웃'];
 
 export const FOOTER_TEXT = [
   '이용약관',
@@ -45,7 +51,7 @@ export const SELECTED_SIDENAV_ICONS = [
   SelectedProductsIcon,
 ];
 
-export const SIDENAV_PATH = ['/order', '/pastorder', '/quotation', '/'];
+export const SIDENAV_PATH = ['/order', '/pastorder', '/quotation', '/product'];
 
 export const DAYS_OF_WEEEK = [
   '월요일',
