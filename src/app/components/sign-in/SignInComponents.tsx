@@ -105,9 +105,9 @@ export default function SignInComponents() {
           className="cursor-pointer w-full flex-center"
         >
           <Image
-            src="/images/kakao_login_medium_wide.png"
+            src="/images/kakao_login.png"
             alt="카카오 로그인"
-            width={300}
+            width={600}
             height={45}
           />
         </div>
