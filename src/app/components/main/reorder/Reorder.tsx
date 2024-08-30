@@ -21,7 +21,7 @@ export default function Reorder({ client_id }: ReorderProps) {
       setRecent(data.result);
     };
     fetchData();
-  }, []);
+  }, [client_id]);
 
   return (
     <div className="w-full h-[421px] flex flex-col items-center py-6 bg-[#f7f7f7]">

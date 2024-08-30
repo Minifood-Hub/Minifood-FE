@@ -1,10 +1,10 @@
 'use client';
 
 import { PRODUCT_HEADER } from '@/app/constants/product';
-import { SearchProductIcon } from '@/app/ui/iconPath';
 import { useState } from 'react';
 import Icons from '../common/Icons';
 import Input from '../common/Input';
+import { SearchProductIcon } from '@/app/ui/iconPath';
 
 const ProductHeader = () => {
   const [searchText, setSearchText] = useState('');
@@ -16,7 +16,7 @@ const ProductHeader = () => {
         <div className="flex items-center relative">
           <Input
             textValue={searchText}
-            type={'searchProduct'}
+            type="searchProduct"
             onChange={(e) => setSearchText(e.target.value)}
             placeholder={PRODUCT_HEADER[1]}
           />
