@@ -28,7 +28,9 @@ function Header() {
     <div className="relative w-full pt-6 bg-white">
       <header className="relative w-full h-16 flex items-center px-[13.5%] justify-between">
         <div className="flex gap-x-[63.5px] cursor-pointer text-[#333] items-center text-[15px] font-medium">
-          <Image src="/Images/JMF2.png" width={60} height={48} alt="logo" />
+          <Link href="/">
+            <Image src="/Images/JMF2.png" width={60} height={48} alt="logo" />
+          </Link>
           <div className="flex gap-x-[63.5px]">
             {HEADER_TEXT.map((text, i) => (
               <Link key={text} href={headerPath[i]}>

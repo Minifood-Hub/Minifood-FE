@@ -11,7 +11,7 @@ import {
 
 export const HEADER_TEXT = ['주문생성', '즐겨찾기', '견적서', '상품조회'];
 
-export const HEADER_PATH = ['/order', '/past-order', '/quotation', '/product'];
+export const HEADER_PATH = ['/order', '/pastorder', '/quotation', '/product'];
 
 export const HEADER_PATH_GUEST = [
   '/sign-in',
