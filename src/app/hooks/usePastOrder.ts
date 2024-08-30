@@ -9,7 +9,7 @@ export function usePastOrder() {
 
   const getPastOrder = useCallback(async () => {
     try {
-      const client_id = user?.result.client_id;
+      const client_id = user?.result?.client_id;
       if (!client_id) return;
 
       const data = await callGet(`/api/order/${client_id}/get-past-order`);
@@ -17,7 +17,7 @@ export function usePastOrder() {
     } catch (error) {
       console.error('클라이언트 에러', error);
     }
-  }, [user?.result.client_id]);
+  }, [user?.result?.client_id]);
 
   const toggleShowPastOrder = () => setShowPastOrder((prev) => !prev);
 
@@ -51,8 +51,11 @@ export function usePastOrder() {
       return;
     }
     try {
+      const client_id = user?.result?.client_id;
+      if (!client_id) return;
+
       const body = {
-        client_id: user?.result.client_id,
+        client_id,
         name: pastorderName,
         product_ids: productIds,
       };

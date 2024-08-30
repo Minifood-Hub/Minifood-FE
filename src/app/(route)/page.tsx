@@ -6,7 +6,7 @@ export default function MainPage() {
   return (
     <section>
       <div className="relative flex w-full min-h-screen flex-col items-center">
-        <div className="mb-[200px] w-full">
+        <div className="w-full">
           <Header />
           <MainContainer />
         </div>

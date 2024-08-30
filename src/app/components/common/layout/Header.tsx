@@ -10,15 +10,10 @@ import {
 import { useUser } from '@/app/hooks/useUser';
 import Image from 'next/image';
 import Link from 'next/link';
-import Icons from '../Icons';
 import ProfileDropDown from '../ProfileDropDown';
-import { usePathname } from 'next/navigation';
 
 function Header() {
   const { user } = useUser();
-
-  const pathname = usePathname();
-  const showSearchBar = !pathname.startsWith('/sign-in');
 
   const handleLogout = async () => {
     document.cookie = `accessToken=; expires=0; path=/;`;
@@ -28,6 +23,7 @@ function Header() {
   const isClient = user?.category === 'CLIENT';
   const isCOMMON = user?.category === 'COMMON';
   const headerPath = isClient || isCOMMON ? HEADER_PATH : HEADER_PATH_GUEST;
+
   return (
     <div className="relative w-full pt-6 bg-white">
       <header className="relative w-full h-16 flex items-center px-[13.5%] justify-between">
@@ -41,7 +37,7 @@ function Header() {
             ))}
           </div>
         </div>
-        {user ? (
+        {user && user.detail !== 'Not authenticated' ? (
           <ProfileDropDown user={user} logout={handleLogout} />
         ) : (
           <div className="flex font-normal text-sm">

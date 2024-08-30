@@ -65,7 +65,7 @@ export default function EditQuotationModal({
 
   useEffect(() => {
     const completeQuotation = async () => {
-      if (currentDate && user?.result.client_id && quotationId) {
+      if (currentDate && user?.result?.client_id && quotationId) {
         await createProducts();
         await updateProducts();
         await updateTotal(quotationId);
@@ -74,7 +74,7 @@ export default function EditQuotationModal({
       }
     };
     completeQuotation();
-  }, [currentDate, user?.result.client_id, quotationId]);
+  }, [currentDate, user?.result?.client_id, quotationId]);
 
   const patchParticulars = async () => {
     const particulars = partiValue;

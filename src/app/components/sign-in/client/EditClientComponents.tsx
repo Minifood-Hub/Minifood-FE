@@ -56,7 +56,7 @@ export default function EditClientComponents() {
         address: formState.address,
       };
       const response = await fetch(
-        `/api/sign-in/client/${user?.result.client_id}/update`,
+        `/api/sign-in/client/${user?.result?.client_id}/update`,
         {
           method: 'PUT',
           headers: {

@@ -46,6 +46,7 @@ export default function OrderContainer() {
 
   // 견적서 생성
   const createQuotations = async () => {
+    if (!user?.result?.client_id) return null;
     try {
       const body = {
         client_id: user?.result.client_id,
@@ -105,7 +106,7 @@ export default function OrderContainer() {
     }
 
     const completeQuotation = async () => {
-      if (currentDate && user?.result.client_id) {
+      if (currentDate && user?.result?.client_id) {
         try {
           const id = await createQuotations();
           if (id) {
@@ -118,7 +119,7 @@ export default function OrderContainer() {
     };
     completeQuotation();
     getPastOrder();
-  }, [isLoading, currentDate, user?.result.client_id, isOrderStarted]);
+  }, [isLoading, currentDate, user?.result?.client_id, isOrderStarted]);
 
   // 검색 결과 저장
   const handleSearchResultsUpdate = (results: ProductItemProps[]) => {
