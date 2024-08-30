@@ -125,30 +125,34 @@ const QuotationModal = ({ closeModal, id, isAdmin }: QuotationModalProps) => {
             />
           )}
         </div>
-        <div className="pt-8 flex justify-end items-center self-stretch">
-          <button
-            className="max-w-fit flex-center py-2 px-[18px] rounded bg-primary-3 gap-2"
-            type="button"
-            onClick={handlePDFGeneration}
-          >
-            <Icons name={PhotoCameraIcon} />
-            <p className="font-medium text-white">PDF로 저장</p>
-          </button>
-        </div>
-        <div className="w-full flex gap-x-4 mt-[60px]">
-          <Button
-            buttonText="닫기"
-            type="quoteClose"
-            onClickHandler={closeModal}
-          />
-          {detailData?.status !== 'COMPLETED' && (
-            <Button
-              buttonText="주문확정"
-              type="quoteOrder"
-              onClickHandler={handleConfirmQuotation}
-            />
-          )}
-        </div>
+        {!isPdfGenerating && (
+          <>
+            <div className="pt-8 flex justify-end items-center self-stretch">
+              <button
+                className="max-w-fit flex-center py-2 px-[18px] rounded bg-primary-3 gap-2"
+                type="button"
+                onClick={handlePDFGeneration}
+              >
+                <Icons name={PhotoCameraIcon} />
+                <p className="font-medium text-white">PDF로 저장</p>
+              </button>
+            </div>
+            <div className="w-full flex gap-x-4 mt-[60px]">
+              <Button
+                buttonText="닫기"
+                type="quoteClose"
+                onClickHandler={closeModal}
+              />
+              {detailData?.status !== 'COMPLETED' && (
+                <Button
+                  buttonText="주문확정"
+                  type="quoteOrder"
+                  onClickHandler={handleConfirmQuotation}
+                />
+              )}
+            </div>
+          </>
+        )}
       </div>
 
       {dialog.open && (
