@@ -22,7 +22,8 @@ const PastorderTable = ({ customDate }: PastorderTableProps) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const url = `/api/order/${user?.result.client_id}/get-past-order`;
+      if (!user?.result?.client_id) return;
+      const url = `/api/order/${user.result.client_id}/get-past-order`;
       const data = await callGet(url);
       setPastOrders(data.result);
     };

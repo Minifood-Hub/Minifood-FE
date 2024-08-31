@@ -32,7 +32,7 @@ const QuotationOrderTable = ({
         {quotationInfo.products.map((itemData, index) => {
           return (
             <div key={itemData.product}>
-              <div className="flex pl-1 gap-x-1">
+              <div className="flex pl-1 gap-x-1 py-[1px]">
                 <div className="w-20">{index + 1}</div>
                 <div className="w-[420px] flex-wrap">{itemData.product}</div>
                 <div className="w-20">{itemData.unit}</div>

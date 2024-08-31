@@ -14,7 +14,9 @@ function MainContainer() {
     <div className="flex flex-col gap-y-20 items-center relative bg-white">
       <InformationContainer />
       <OrderCalendar clientType={user?.category || 'GUEST'} />
-      {isCOMMON && <Reorder client_id={user.result.client_id} />}
+      {isCOMMON && user?.result?.client_id && (
+        <Reorder client_id={user.result.client_id} />
+      )}
       <Recommend />
     </div>
   );

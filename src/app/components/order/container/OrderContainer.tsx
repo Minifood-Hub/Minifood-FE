@@ -32,6 +32,7 @@ export default function OrderContainer() {
     search: '',
     showQuot: false,
   });
+  const [isOrderStarted, setIsOrderStarted] = useState(false);
 
   const [searchResults, setSearchResults] = useState<ProductItemProps[]>([]);
   const [addedItems, setAddedItems] = useState<ProductItemProps[]>([]); // 추가한 상품
@@ -45,6 +46,7 @@ export default function OrderContainer() {
 
   // 견적서 생성
   const createQuotations = async () => {
+    if (!user?.result?.client_id) return null;
     try {
       const body = {
         client_id: user?.result.client_id,
@@ -88,6 +90,7 @@ export default function OrderContainer() {
   }, [user]);
 
   useEffect(() => {
+    if (!isOrderStarted) return; // 주문 시작하기 버튼을 누르기 전
     if (isLoading) return; // 로딩 중일 때는 아무 작업도 하지 않음
     if (!user || !user.result) {
       setDialogState(() => ({
@@ -103,7 +106,7 @@ export default function OrderContainer() {
     }
 
     const completeQuotation = async () => {
-      if (currentDate && user?.result.client_id) {
+      if (currentDate && user?.result?.client_id) {
         try {
           const id = await createQuotations();
           if (id) {
@@ -116,7 +119,7 @@ export default function OrderContainer() {
     };
     completeQuotation();
     getPastOrder();
-  }, [isLoading, currentDate, user?.result.client_id]);
+  }, [isLoading, currentDate, user?.result?.client_id, isOrderStarted]);
 
   // 검색 결과 저장
   const handleSearchResultsUpdate = (results: ProductItemProps[]) => {
@@ -195,6 +198,20 @@ export default function OrderContainer() {
       prevItems.map((item) => (item.id === id ? { ...item, count } : item)),
     );
   };
+
+  // 주문 시작하기 버튼
+  if (!isOrderStarted) {
+    return (
+      <div className="flex-center flex-col w-full px-0 self-stretch">
+        <Button
+          className="h-min py-2 admin-btn"
+          type="default"
+          onClickHandler={() => setIsOrderStarted(true)}
+          buttonText={BUTTON_TEXT[4]}
+        />
+      </div>
+    );
+  }
   return (
     <section className="flex-center flex-col w-full px-0 py-[100px] gap-[10px] self-stretch">
       <div className="flex flex-col mx-auto items-end gap-3 self-stretch w-[960px]">

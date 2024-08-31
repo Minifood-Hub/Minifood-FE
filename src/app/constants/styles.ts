@@ -1,7 +1,7 @@
 export const BUTTON_STYLE = {
   dialog: (className: string) =>
     `flex-center px-4 py-2 gap-2 rounded-[4px] whitespace-nowrap text-lg font-medium ${className}`,
-  default: (className: string) => `w-full h-full ${className}`,
+  default: (className: string) => `w-full ${className}`,
   modalLogin: (className: string) =>
     `w-[110px] h-[45px] bg-[#55aa00] rounded text-white text-sm font-bold font-medium cursor-pointer ${className}`,
   modalClose: (className: string) =>
@@ -22,8 +22,7 @@ export const BUTTON_STYLE = {
 
 export const INPUT_STYLE = {
   // 회원가입 input
-  signin: (className: string) =>
-    `w-full p-3 items-center rounded-xl border-2 bg-white text-gray-7 font-bold placeholder:text-gray-2 placeholder:font-normal ${className}`,
+  signin: (className: string) => `h-14 ${className}`,
   search: (className: string) =>
     `w-full h-9 rounded-[4px] text-sm placeholder:text-sm focus:outline-none ${className}`,
   // 견적서 개수 입력

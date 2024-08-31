@@ -11,16 +11,17 @@ interface UserResult {
   id: number;
   is_active: boolean;
   is_admin?: boolean;
-  client_name: string;
+  client_name?: string;
   client_region: string;
 }
 
 interface User {
-  isSuccess: boolean;
+  isSuccess?: boolean;
   code: string;
   message: string;
   category: string;
-  result: UserResult;
+  result?: UserResult;
+  detail?: string;
 }
 
 interface searchProductsProps {

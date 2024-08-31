@@ -15,19 +15,22 @@ import ProfileDropDown from '../ProfileDropDown';
 function Header() {
   const { user } = useUser();
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     document.cookie = `accessToken=; expires=0; path=/;`;
-    window.location.reload();
+    window.location.href = '/';
   };
 
   const isClient = user?.category === 'CLIENT';
   const isCOMMON = user?.category === 'COMMON';
   const headerPath = isClient || isCOMMON ? HEADER_PATH : HEADER_PATH_GUEST;
+
   return (
     <div className="relative w-full pt-6 bg-white">
       <header className="relative w-full h-16 flex items-center px-[13.5%] justify-between">
         <div className="flex gap-x-[63.5px] cursor-pointer text-[#333] items-center text-[15px] font-medium">
-          <Image src="/Images/JMF2.png" width={60} height={48} alt="logo" />
+          <Link href="/">
+            <Image src="/Images/JMF2.png" width={60} height={48} alt="logo" />
+          </Link>
           <div className="flex gap-x-[63.5px]">
             {HEADER_TEXT.map((text, i) => (
               <Link key={text} href={headerPath[i]}>
@@ -36,7 +39,7 @@ function Header() {
             ))}
           </div>
         </div>
-        {user ? (
+        {user && user.detail !== 'Not authenticated' ? (
           <ProfileDropDown user={user} logout={handleLogout} />
         ) : (
           <div className="flex font-normal text-sm">

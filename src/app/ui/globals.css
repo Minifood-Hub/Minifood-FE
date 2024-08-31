@@ -84,7 +84,7 @@ body {
     @apply bg-gray-0 w-fit border border-gray-7 px-4;
   }
   .admin-btn {
-    @apply max-w-fit px-4 bg-primary-3 text-white font-bold whitespace-nowrap;
+    @apply max-w-fit h-fit px-4 bg-primary-3 text-white font-bold whitespace-nowrap;
   }
 
   .quotation-table-btn {

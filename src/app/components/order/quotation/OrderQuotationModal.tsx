@@ -145,7 +145,7 @@ export default function QuotationModal({
                     <div className="flex justify-between items-center self-stretch">
                       <p className="text-gray-4 text-center">주소</p>
                       <p className="text-gray-6">
-                        {user?.result.client_region}
+                        {user?.result?.client_region}
                       </p>
                     </div>
                   </div>

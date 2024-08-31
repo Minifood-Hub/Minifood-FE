@@ -10,7 +10,10 @@ export default function AdminHeader({ isActive }: AdminHeaderProps) {
   const { user } = useUser();
 
   useEffect(() => {
-    if (user && user.result && user.result.is_admin === false) {
+    if (
+      user?.detail === 'Not authenticated' ||
+      (user?.result && user.result.is_admin === false)
+    ) {
       alert(ALERT_TEXT[8]);
       router.push('/');
     }
