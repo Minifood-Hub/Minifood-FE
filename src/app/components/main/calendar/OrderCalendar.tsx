@@ -49,8 +49,18 @@ const OrderCalendar = ({ clientType }: OrderCalendarProps) => {
     return dayStatus ? dayStatus.status : null;
   };
 
-  const getTileClassName = ({ date }: { date: Date }) => {
+  const getTileClassName = ({
+    date,
+    view,
+    activeStartDate,
+  }: {
+    date: Date;
+    view: string;
+    activeStartDate: Date;
+  }) => {
+    if (date.getMonth() !== activeStartDate.getMonth()) return ''; // 월별 뷰가 아니면 빈 문자열 반환
     const status = getStatusForDate(date);
+
     return clsx({
       high: status === '상',
       middle: status === '중',
@@ -58,7 +68,17 @@ const OrderCalendar = ({ clientType }: OrderCalendarProps) => {
     });
   };
 
-  const renderTileContent = ({ date }: { date: Date }) => {
+  const renderTileContent = ({
+    date,
+    view,
+    activeStartDate,
+  }: {
+    date: Date;
+    view: string;
+    activeStartDate: Date;
+  }) => {
+    if (date.getMonth() !== activeStartDate.getMonth()) return null; // 월별 뷰가 아니면 null 반환
+
     const status = getStatusForDate(date);
     return status ? (
       <CalendarStatus
