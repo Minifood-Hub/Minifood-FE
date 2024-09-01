@@ -12,7 +12,7 @@ const Question = () => {
   const [isSelected, setIsSelected] = useState(0);
 
   const [faqs, setFaqs] = useState<FAQProps[]>([]);
-  const preFaqs = faqs.slice(0, 3);
+  const preFaqs = faqs?.slice(0, 3);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,9 +22,13 @@ const Question = () => {
     fetchData();
   }, []);
 
+  const filteredFaqs = faqs.filter(
+    (faq) => faq.category === preFaqs[isSelected]?.category,
+  );
+
   return (
-    <div className="w-[333px] h-40 px-4 py-[18px] rounded-[20px] shadow text-[#333333]">
-      <div className="flex justify-between mb-4 items-center">
+    <div className="w-[333px] h-40 p-4 py-[18px] rounded-[20px] shadow text-[#333333] overflow-hidden">
+      <div className="flex justify-between mb-1 items-center">
         <div className="text-lg font-medium">FAQ</div>
         <Icons
           className="cursor-pointer"
@@ -45,7 +49,13 @@ const Question = () => {
           />
         ))}
       </div>
-      <div className="mt-4">{faqs[0] && faqs[0].question}</div>
+      <div className="mt-1">
+        {filteredFaqs.map((faq) => (
+          <div key={faq.id} className="">
+            {faq.question}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

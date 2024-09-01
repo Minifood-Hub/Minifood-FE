@@ -8,7 +8,7 @@ import Icons from '../../common/Icons';
 
 const Announcement = () => {
   const [notices, setNotices] = useState<NoticeProps[]>([]);
-  const preNotices = notices.slice(0, 3);
+  const preNotices = notices?.slice(0, 3);
 
   useEffect(() => {
     const fetchData = async () => {
