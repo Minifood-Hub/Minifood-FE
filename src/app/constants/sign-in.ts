@@ -24,6 +24,7 @@ export const SIGNIN_PLACEHOLDER = [
   '거래처명을 정확히 입력해주세요.',
   '거래처 주소를 정확히 입력해주세요.',
   '비밀번호를 재입력해주세요.',
+  '거래처 상세 주소를 정확히 입력해주세요.',
 ];
 
 export const SIGNIN_ERROR = [
@@ -45,6 +46,8 @@ export const SIGNUP_BUTTON = [
   '삭제',
   '로그인하러 가기',
   '이동',
+  '닫기',
+  '주소 찾기',
 ];
 
 export const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
