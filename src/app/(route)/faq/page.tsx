@@ -4,7 +4,9 @@ import FrequentFAQContainer from '@/app/components/faq/container/FrequentFAQCont
 export default function FAQ() {
   return (
     <section>
-      <Header />
+      <div className="shadow-lg">
+        <Header />
+      </div>
       <FrequentFAQContainer />
     </section>
   );

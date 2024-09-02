@@ -188,3 +188,19 @@ export const DropDownIcon = {
   height: 18,
   fill: '#333333',
 };
+
+// 뒤로가기 아이콘
+export const GoBackIcon = {
+  path: 'M5.86875 10.25L10.0688 14.45L9 15.5L3 9.5L9 3.5L10.0688 4.55L5.86875 8.75H15V10.25H5.86875Z',
+  width: 18,
+  height: 19,
+  fill: '#6E6E6E',
+};
+
+// 오른쪽 화살표 아이콘
+export const ArrowRightIcon = {
+  path: 'M12.6 12L8 7.4L9.4 6L15.4 12L9.4 18L8 16.6L12.6 12Z',
+  width: 24,
+  height: 24,
+  fill: '#999999',
+};

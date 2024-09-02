@@ -1,12 +1,13 @@
 'use client';
 
-import { ArrowDownIcon, SearchIcon } from '@/app/ui/iconPath';
+import { ArrowRightIcon, SearchIcon } from '@/app/ui/iconPath';
 import Icons from '../../common/Icons';
 import Input from '../../common/Input';
 import { callGet } from '@/app/utils/callApi';
 import { useCallback, useEffect, useState } from 'react';
-import { formatDate } from '@/app/utils/date';
 import { FAQ_TEXT, faqCategories } from '@/app/constants/faq';
+import DetailFAQ from '../DetailFAQ';
+import FAQSideBar from '../FAQSideBar';
 
 export default function FrequentFAQContainer() {
   const [faqs, setFaqs] = useState<FAQProps[]>([]);
@@ -29,7 +30,7 @@ export default function FrequentFAQContainer() {
     handleGetFAQ();
   }, []);
 
-  const toggleContent = (faq_id: number) => {
+  const selectContent = (faq_id: number) => {
     setSelectedId((prevId) => (prevId === faq_id ? null : faq_id));
   };
 
@@ -38,7 +39,7 @@ export default function FrequentFAQContainer() {
       selectedCategory === faqCategories[0] ||
       faq.category === selectedCategory;
 
-    const matchesSearch = faq.question // 사용자가 입력한 검색어가 포함된 FAQ 출력
+    const matchesSearch = faq.question // 사용자의 검색어가 포함된 모든 FAQ출력
       .toLowerCase()
       .includes(searchTerm.toLowerCase());
     return matchesCategory && matchesSearch;
@@ -46,6 +47,11 @@ export default function FrequentFAQContainer() {
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
+  };
+
+  // 목록으로 돌아가는 핸들러 추가
+  const handleBackToList = () => {
+    setSelectedId(null);
   };
 
   return (
@@ -63,56 +69,44 @@ export default function FrequentFAQContainer() {
         />
         <Icons name={SearchIcon} />
       </div>
-      <div className="mt-[31px] mb-12 flex w-40 h-[814px] py-6 px-[18px] flex-col gap-[18px] rounded-lg bg-gray-0">
-        <div className="flex w-[124px] flex-col items-start gap-[18px]">
-          {faqCategories.map((category) => (
-            <div
-              key={category}
-              className={`flex w-full p-3 items-center rounded ${
-                selectedCategory === category
-                  ? 'bg-primary-3 text-white'
-                  : 'bg-gray-0 text-gray-7'
-              } text-center text-lg font-semibold cursor-pointer`}
-              onClick={() => setSelectedCategory(category)}
-            >
-              {category}
-            </div>
-          ))}
-        </div>
-      </div>
+      <div className="flex items-center gap-[18px]">
+        <FAQSideBar
+          categories={faqCategories}
+          selectedCategory={selectedCategory}
+          onSelectCategory={setSelectedCategory}
+        />
 
-      {filteredFaqs.map((item) => (
-        <div
-          className="flex flex-col w-full px-4 py-2 border-[1px] border-gray-7"
-          key={item.id}
-        >
-          <div
-            className="flex w-full justify-between items-center cursor-pointer max-w-full overflow-hidden"
-            onClick={() => toggleContent(item.id)}
-          >
-            <div className="flex items-center gap-4 min-w-0 flex-1">
-              <p className="text-gray-2 flex-shrink-0">{item.id}</p>
-              <p className="text-gray-7">{item.category} |</p>
-              <span className="font-bold text-xl whitespace-nowrap overflow-hidden text-ellipsis">
-                {item.question}
-              </span>
-            </div>
-            <div className="flex gap-2 items-center text-xs whitespace-nowrap flex-shrink-0">
-              <p>{formatDate(item.updated_at || item.created_at)}</p>
-              <p
-                className={`${selectedId === item.id ? 'transform rotate-180' : ''}`}
+        <div className="flex w-full h-[814px] pl-[18px] flex-col items-start gap-6">
+          {selectedId ? (
+            // FAQ 상세 화면 렌더링
+            <DetailFAQ
+              item={faqs.find((faq) => faq.id === selectedId)}
+              onBack={handleBackToList}
+            />
+          ) : (
+            // FAQ 목록 화면 렌더링
+            filteredFaqs.map((item) => (
+              <div
+                className="flex p-3 justify-between items-center self-stretch rounded bg-white hover:bg-gray-1 cursor-pointer"
+                onClick={() => selectContent(item.id)}
+                key={item.id}
               >
-                <Icons name={ArrowDownIcon} />
-              </p>
-            </div>
-          </div>
-          {selectedId === item.id && (
-            <div className="mt-4 p-4 bg-gray-0 rounded-md">
-              <p className="text-gray-7">{item.answer}</p>
-            </div>
+                <div className="flex w-full justify-between items-center max-w-full overflow-hidden">
+                  <div className="flex items-center gap-4">
+                    <p className="text-xl font-semibold text-gray-3">Q</p>
+                    <span className="text-xl text-gray-4 whitespace-nowrap overflow-hidden text-ellipsis">
+                      {item.question}
+                    </span>
+                  </div>
+                  <div className="flex items-center text-xs whitespace-nowrap flex-shrink-0">
+                    <Icons name={ArrowRightIcon} />
+                  </div>
+                </div>
+              </div>
+            ))
           )}
         </div>
-      ))}
+      </div>
     </div>
   );
 }
