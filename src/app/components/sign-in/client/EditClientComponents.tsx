@@ -14,6 +14,8 @@ import SignInInput from '../common/SignInInput';
 import { useUser } from '@/app/hooks/useUser';
 import { useUserStore } from '@/app/store/useStore';
 import { Dialog } from '../../common/Dialog';
+import Button from '../../common/Button';
+import AddressModal from './AddressModal';
 
 export default function EditClientComponents() {
   const router = useRouter();
@@ -23,11 +25,13 @@ export default function EditClientComponents() {
   const [formState, setFormState] = useState<ClientState>({
     name: '',
     address: '',
+    detail: '',
     nameError: '',
     addressError: '',
     isBtnActive: false,
   });
   const [dialog, setDialog] = useState(false);
+  const [isAddressModalOpen, setIsAddressModalOpen] = useState(false);
 
   const validateField = (type: ValidationClientType, value: string) => {
     if (!value.trim()) {
@@ -53,7 +57,7 @@ export default function EditClientComponents() {
     try {
       const body = {
         name: formState.name,
-        address: formState.address,
+        address: `${formState.address} ${formState.detail}`,
       };
       const response = await fetch(
         `/api/sign-in/client/${user?.result?.client_id}/update`,
@@ -99,6 +103,14 @@ export default function EditClientComponents() {
       setDialog((prev) => !prev);
     }
   };
+  const handleAddressSelect = (address: string) => {
+    setFormState((prevState) => ({
+      ...prevState,
+      address,
+      addressError: validateField('address', address),
+    }));
+    setIsAddressModalOpen(false); // 주소 모달 닫기
+  };
 
   return (
     <div className="w-full flex-center flex-col gap-8 max-w-[600px]">
@@ -127,11 +139,32 @@ export default function EditClientComponents() {
               <p className="text-[#FC4C00] pl-3">{formState.addressError}</p>
             )}
           </div>
+          <div className="flex items-center gap-2 self-stretch">
+            <SignInInput
+              className="w-full"
+              placeholder={SIGNIN_PLACEHOLDER[5]}
+              type="text"
+              value={formState.address}
+              onChange={(e) => handleInputChange(e, 'address')}
+              error={!!formState.addressError}
+              onFocus={() => setIsAddressModalOpen(true)}
+            />
+
+            <Button
+              type="default"
+              className="max-w-fit h-14 py-3 px-6 flex-center rounded bg-primary-3 text-white text-lg font-medium"
+              buttonType="button"
+              buttonText={SIGNUP_BUTTON[7]}
+              onClickHandler={() => setIsAddressModalOpen(true)}
+            />
+          </div>
+
           <SignInInput
-            placeholder={SIGNIN_PLACEHOLDER[5]}
+            className="w-full"
+            placeholder={SIGNIN_PLACEHOLDER[7]}
             type="text"
-            value={formState.address}
-            onChange={(e) => handleInputChange(e, 'address')}
+            value={formState.detail}
+            onChange={(e) => handleInputChange(e, 'detail')}
             error={!!formState.addressError}
           />
         </div>
@@ -142,6 +175,13 @@ export default function EditClientComponents() {
         text={SIGNUP_BUTTON[2]}
         onClick={handleBtnClick}
       />
+
+      {isAddressModalOpen && (
+        <AddressModal
+          onSelectAddress={handleAddressSelect}
+          onClose={() => setIsAddressModalOpen(false)}
+        />
+      )}
 
       {dialog && (
         <Dialog
