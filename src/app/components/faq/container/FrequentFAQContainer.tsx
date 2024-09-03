@@ -8,6 +8,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { FAQ_TEXT, faqCategories } from '@/app/constants/faq';
 import DetailFAQ from '../DetailFAQ';
 import FAQSideBar from '../FAQSideBar';
+import Pagination from '../../common/Pagination';
 
 export default function FrequentFAQContainer() {
   const [faqs, setFaqs] = useState<FAQProps[]>([]);
@@ -16,6 +17,14 @@ export default function FrequentFAQContainer() {
     faqCategories[0],
   );
   const [searchTerm, setSearchTerm] = useState('');
+
+  const [page, setPage] = useState(1);
+  const itemsPerPage = 10; // 한 페이지당 표시할 FAQ 수
+  const totalPages = Math.ceil(faqs.length / itemsPerPage); // 총 페이지 수 계산
+
+  const handlePageChange = ({ selected }: { selected: number }) => {
+    setPage(() => selected + 1);
+  };
 
   const handleGetFAQ = useCallback(async () => {
     try {
@@ -28,7 +37,7 @@ export default function FrequentFAQContainer() {
 
   useEffect(() => {
     handleGetFAQ();
-  }, []);
+  }, [page]);
 
   const selectContent = (faq_id: number) => {
     setSelectedId((prevId) => (prevId === faq_id ? null : faq_id));
@@ -39,14 +48,21 @@ export default function FrequentFAQContainer() {
       selectedCategory === faqCategories[0] ||
       faq.category === selectedCategory;
 
-    const matchesSearch = faq.question // 사용자의 검색어가 포함된 모든 FAQ출력
+    const matchesSearch = faq.question // 사용자의 검색어가 포함된 모든 FAQ 출력
       .toLowerCase()
       .includes(searchTerm.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
+  // 현재 페이지에 해당하는 FAQ만 표시
+  const displayedFaqs = filteredFaqs.slice(
+    (page - 1) * itemsPerPage,
+    page * itemsPerPage,
+  );
+
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
+    setPage(1); // 검색어 변경 시 페이지를 첫 페이지로 리셋
   };
 
   // 목록으로 돌아가는 핸들러 추가
@@ -85,7 +101,7 @@ export default function FrequentFAQContainer() {
             />
           ) : (
             // FAQ 목록 화면 렌더링
-            filteredFaqs.map((item) => (
+            displayedFaqs.map((item) => (
               <div
                 className="flex p-3 justify-between items-center self-stretch rounded bg-white hover:bg-gray-1 cursor-pointer"
                 onClick={() => selectContent(item.id)}
@@ -107,6 +123,8 @@ export default function FrequentFAQContainer() {
           )}
         </div>
       </div>
+
+      <Pagination onPageChange={handlePageChange} totalPages={totalPages} />
     </div>
   );
 }
