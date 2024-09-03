@@ -23,7 +23,7 @@ export default function DetailFAQ({ item, onBack }: DetailFAQProps) {
           </div>
         </div>
 
-        <div className="flex py-8 px-4 flex-col items-start gap-6 flex-1 self-stretch border-y border-gray-1">
+        <div className="flex py-8 px-4 flex-col items-start gap-6 flex-1 self-stretch border-y border-gray-1 whitespace-pre-wrap">
           {item?.answer}
         </div>
       </div>
