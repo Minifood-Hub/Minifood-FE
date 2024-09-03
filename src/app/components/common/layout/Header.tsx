@@ -20,9 +20,8 @@ function Header() {
     window.location.href = '/';
   };
 
-  const isClient = user?.category === 'CLIENT';
-  const isCOMMON = user?.category === 'COMMON';
-  const headerPath = isClient || isCOMMON ? HEADER_PATH : HEADER_PATH_GUEST;
+  const headerPath =
+    user?.detail !== 'Not authenticated' ? HEADER_PATH : HEADER_PATH_GUEST;
 
   return (
     <div className="relative w-full pt-6 bg-white">

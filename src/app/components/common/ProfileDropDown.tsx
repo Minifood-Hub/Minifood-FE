@@ -27,7 +27,6 @@ const ProfileDropDown = ({ user, logout }: ProfileDropDownProps) => {
   const clickOption = (option: string) => {
     switch (option) {
       case '거래처 조회':
-        console.log('거래처 조회');
         break;
       case '거래처 생성':
         router.push('/sign-in/client');
