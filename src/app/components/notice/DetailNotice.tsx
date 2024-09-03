@@ -22,14 +22,14 @@ export default function DetailNotice({ item, onBack }: DetailNoticeProps) {
         <div className="flex p-3 items-center self-stretch">
           <div className="flex items-center gap-9">
             <p className="text-xl text-gray-6">{item?.title}</p>
-            <p className="text-gray-4">
-              {formatDate(item?.created_at || item?.updated_at)}
+            <p className="text-gray-4 whitespace-nowrap">
+              {formatDate(item?.updated_at || item?.created_at)}
             </p>
           </div>
         </div>
       </div>
 
-      <div className="flex py-8 px-4 flex-col items-start gap-6 self-stretch border-t border-b border-gray-1">
+      <div className="flex py-8 px-4 flex-col items-start gap-6 self-stretch border-t border-b border-gray-1 whitespace-pre-wrap">
         {item?.content}
       </div>
     </div>

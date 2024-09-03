@@ -102,7 +102,7 @@ export default function MainNoticeContainer() {
                   <p className="text-xl font-semibold text-gray-3">
                     {index + 1}
                   </p>
-                  <span className="text-xl text-gray-4 whitespace-nowrap overflow-hidden text-ellipsis">
+                  <span className="text-xl text-gray-4 max-w-96 whitespace-nowrap overflow-hidden text-ellipsis">
                     {item.title}
                   </span>
                   <p>{formatDate(item.created_at || item.updated_at)}</p>
