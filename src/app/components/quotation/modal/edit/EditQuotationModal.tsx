@@ -55,7 +55,7 @@ export default function EditQuotationModal({
   };
 
   const updateTotal = async (quotation_id: string) => {
-    const data = await callGet(`/api/order/quotations/${quotation_id}/total`);
+    await callGet(`/api/order/quotations/${quotation_id}/total`);
   };
 
   useEffect(() => {
