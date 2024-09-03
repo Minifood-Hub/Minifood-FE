@@ -22,9 +22,9 @@ const Question = () => {
     fetchData();
   }, []);
 
-  const filteredFaqs = faqs.filter(
-    (faq) => faq.category === preFaqs[isSelected]?.category,
-  );
+  const filteredFaqs = faqs
+    .filter((faq) => faq.category === preFaqs[isSelected]?.category)
+    .slice(0, 3);
 
   return (
     <div className="w-[333px] h-40 p-4 py-[18px] rounded-[20px] shadow text-[#333333] overflow-hidden">
@@ -51,7 +51,10 @@ const Question = () => {
       </div>
       <div className="mt-1">
         {filteredFaqs.map((faq) => (
-          <div key={faq.id} className="">
+          <div
+            key={faq.id}
+            className="overflow-hidden text-ellipsis whitespace-nowrap"
+          >
             {faq.question}
           </div>
         ))}
