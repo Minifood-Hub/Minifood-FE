@@ -17,7 +17,7 @@ const QuotationViewTableInfo = ({
   index,
 }: QuotationViewTableInfoProps) => {
   const router = useRouter();
-  const { isOpen, openModal, closeModal, handleModalClick } = useModal(false);
+  const { isOpen, openModal, closeModal } = useModal(false);
   const {
     isOpen: isDeleteModalOpen,
     openModal: openDeleteModal,
