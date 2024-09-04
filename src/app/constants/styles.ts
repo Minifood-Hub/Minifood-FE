@@ -20,6 +20,8 @@ export const BUTTON_STYLE = {
     `w-[56px] h-[29px] rounded text-sm font-medium ${className}`,
   accountConfirm: (className: string) =>
     `w-[600px] h-[46px] rounded text-white text-lg font-medium bg-[#55aa00] ${className}`,
+  accountUpdate: (className: string) =>
+    `w-[288px] h-[46px] rounded text-lg font-medium ${className}`,
 } as const;
 
 export const INPUT_STYLE = {
