@@ -17,7 +17,7 @@ const AccountCertificate = () => {
 
   return (
     <div className="flex flex-col gap-y-8">
-      <div className="gap-y-2">
+      <div className="flex flex-col gap-y-2">
         <p>{ACCOUNT_TEXT[1]}</p>
         <Input
           type="account"
@@ -26,8 +26,11 @@ const AccountCertificate = () => {
           isDisabled
         />
       </div>
-      <div className="gap-y-2 mb-8">
-        <p>{ACCOUNT_TEXT[2]}</p>
+      <div className="flex flex-col gap-y-2 mb-8">
+        <div className="flex">
+          <p>{ACCOUNT_TEXT[2]}</p>
+          <div className="text-[#fc4c00] text-base font-semibold">*</div>
+        </div>
         <Input
           type="account"
           onChange={(e) => setPassword(e.target.value)}

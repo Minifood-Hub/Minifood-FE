@@ -188,3 +188,10 @@ export const DropDownIcon = {
   height: 18,
   fill: '#333333',
 };
+
+export const RightArrowIcon = {
+  path: 'M12.1312 8.75L7.93125 4.55L9 3.5L15 9.5L9 15.5L7.93125 14.45L12.1312 10.25L3 10.25V8.75L12.1312 8.75Z',
+  width: 18,
+  height: 20,
+  fill: '#333333',
+};
