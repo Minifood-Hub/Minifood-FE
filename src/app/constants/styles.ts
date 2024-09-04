@@ -18,6 +18,8 @@ export const BUTTON_STYLE = {
     `w-full h-[45px] bg-white rounded text-black text-lg font-medium border border-[#B8B8B8] ${className}`,
   quoteTableControl: (className: string) =>
     `w-[56px] h-[29px] rounded text-sm font-medium ${className}`,
+  accountConfirm: (className: string) =>
+    `w-[600px] h-[46px] rounded text-white text-lg font-medium bg-[#55aa00] ${className}`,
 } as const;
 
 export const INPUT_STYLE = {
@@ -35,4 +37,6 @@ export const INPUT_STYLE = {
     `border-[1px] border-gray-2 rounded-[4px] p-3 w-full ${className}`,
   searchProduct: (className: string) =>
     `w-[479px] pl-6 py-3 h-[44px] rounded-[4px] text-base font-normal bg-[#f6f6f6] focus:outline-[#E0E0E0]  focus:bg-white ${className}`,
+  account: (className: string) =>
+    `w-[600px] h-[56px] border-[1px] border-gray-1 rounded-[4px] px-6 py-1 ${className}`,
 } as const;
