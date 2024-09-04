@@ -3,16 +3,29 @@ import {
   ACCOUNT_GUIDE,
   ACCOUNT_TEXT,
 } from '@/app/constants/account';
+import { useUser } from '@/app/hooks/useUser';
+import { callGet } from '@/app/utils/callApi';
 import { useState } from 'react';
 import Button from '../common/Button';
 import Input from '../common/Input';
 
-const AccountCertificate = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+interface AccountCertificateProps {
+  certifyHandler: () => void;
+}
 
-  const confirmAccount = () => {
-    console.log('확인 로직');
+const AccountCertificate = ({ certifyHandler }: AccountCertificateProps) => {
+  const [password, setPassword] = useState('');
+  const [isCorrect, setIsCorrect] = useState(true);
+
+  const { user } = useUser();
+
+  const confirmAccount = async () => {
+    const data = await callGet(`/api/account/password?password=${password}`);
+    if (data.result === true) {
+      certifyHandler();
+    } else {
+      setIsCorrect(false);
+    }
   };
 
   return (
@@ -21,15 +34,18 @@ const AccountCertificate = () => {
         <p>{ACCOUNT_TEXT[1]}</p>
         <Input
           type="account"
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => setPassword(e.target.value)}
           placeholder={ACCOUNT_TEXT[1]}
           isDisabled
+          textValue={user?.result?.email}
         />
       </div>
       <div className="flex flex-col gap-y-2 mb-8">
         <div className="flex">
           <p>{ACCOUNT_TEXT[2]}</p>
-          <div className="text-[#fc4c00] text-base font-semibold">*</div>
+          <div className="text-[#fc4c00] text-base font-semibold">
+            {isCorrect ? '*' : '* 비밀번호가 일치하지 않습니다'}
+          </div>
         </div>
         <Input
           type="account"
