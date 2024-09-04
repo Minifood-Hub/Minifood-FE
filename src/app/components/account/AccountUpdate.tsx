@@ -6,9 +6,11 @@ import {
   ACCOUNT_PASSWORD,
   ACCOUNT_TEXT,
 } from '@/app/constants/account';
+import { useUser } from '@/app/hooks/useUser';
 import { RightArrowIcon } from '@/app/ui/iconPath';
 import { useState } from 'react';
 import Button from '../common/Button';
+import ClientInfoModal from '../common/ClientInfoModal';
 import Icons from '../common/Icons';
 import Input from '../common/Input';
 
@@ -16,7 +18,10 @@ const AccountUpdate = () => {
   const [currentPW, setCurrentPW] = useState('');
   const [newPW, setNewPW] = useState('');
   const [checkPW, setCheckPW] = useState('');
+
   const setPasswordFunctions = [setCurrentPW, setNewPW, setCheckPW];
+
+  const { user } = useUser();
 
   const deleteAccount = () => {
     console.log('탈퇴 로직');
@@ -35,6 +40,7 @@ const AccountUpdate = () => {
           onChange={(e) => setCurrentPW(e.target.value)}
           placeholder={ACCOUNT_TEXT[1]}
           isDisabled
+          textValue={user?.result?.email}
         />
       </div>
       {ACCOUNT_GUIDE.map((guide, i) => (
@@ -56,7 +62,12 @@ const AccountUpdate = () => {
           {ACCOUNT_PASSWORD[4]} <Icons name={RightArrowIcon} />
         </div>
       </div>
-      <div className="flex gap-x-6">
+      <ClientInfoModal
+        name={user?.result?.client_name}
+        region={user?.result?.client_region}
+        isForAccount
+      />
+      <div className="flex gap-x-6 mt-8 mb-12">
         <Button
           buttonText={ACCOUNT_BTN_TEXT[1]}
           type="accountUpdate"

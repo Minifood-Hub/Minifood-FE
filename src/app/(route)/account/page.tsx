@@ -1,5 +1,4 @@
 import AccountContainer from '@/app/components/account/AccountContainer';
-import Footer from '@/app/components/common/layout/Footer';
 import Header from '@/app/components/common/layout/Header';
 
 const AccountPage = () => {
@@ -10,7 +9,6 @@ const AccountPage = () => {
           <Header />
           <AccountContainer />
         </div>
-        <Footer />
       </div>
     </section>
   );
