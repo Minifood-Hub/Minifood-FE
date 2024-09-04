@@ -28,7 +28,7 @@ const QuotationTable = ({
       />
 
       <div className="w-full flex py-4 justify-end border-b-2 border-dashed border-gray-2">
-        <div className="flex justify-between w-40 text-black font-bold pr-6">
+        <div className="flex justify-between gap-3 w-40 text-black font-bold pr-6 whitespace-nowrap">
           {isAdmin ? (
             <>
               <div>{MODAL_INFO[6]}</div>

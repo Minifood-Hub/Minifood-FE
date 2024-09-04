@@ -1,7 +1,7 @@
 import { ChangeEventHandler } from 'react';
 
 export type ValidationType = 'email' | 'pwd' | 'pwdConfirm';
-export type ValidationClientType = 'name' | 'address';
+export type ValidationClientType = 'name' | 'address' | 'detail';
 
 export interface SignInputProps {
   placeholder: string;
@@ -9,6 +9,8 @@ export interface SignInputProps {
   value?: string;
   onChange?: ChangeEventHandler<HTMLInputElement>;
   error?: boolean;
+  className?: string;
+  onFocus?: () => void;
 }
 
 export interface SingInButtonProps {
@@ -32,6 +34,7 @@ export interface SignUpState extends SingInState {
 export interface ClientState {
   name: string;
   address: string;
+  detail: string;
   nameError: string;
   addressError: string;
   isBtnActive: boolean;

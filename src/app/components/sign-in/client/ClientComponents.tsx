@@ -14,6 +14,8 @@ import SignInButton from '../common/SignInButton';
 import SignInInput from '../common/SignInInput';
 import { useUserStore } from '@/app/store/useStore';
 import { Dialog } from '../../common/Dialog';
+import Button from '../../common/Button';
+import AddressModal from './AddressModal';
 
 export default function ClientComponents() {
   const router = useRouter();
@@ -22,11 +24,13 @@ export default function ClientComponents() {
   const [formState, setFormState] = useState<ClientState>({
     name: '',
     address: '',
+    detail: '',
     nameError: '',
     addressError: '',
     isBtnActive: false,
   });
   const [dialog, setDialog] = useState(false);
+  const [isAddressModalOpen, setIsAddressModalOpen] = useState(false);
 
   const validateField = (type: ValidationClientType, value: string) => {
     if (!value.trim()) {
@@ -52,8 +56,9 @@ export default function ClientComponents() {
     try {
       const body = {
         name: formState.name,
-        address: formState.address,
+        address: `${formState.address} ${formState.detail}`,
       };
+
       await callPost('/api/sign-in/client', body);
     } catch (error) {
       console.error(error);
@@ -89,10 +94,19 @@ export default function ClientComponents() {
     }
   };
 
+  const handleAddressSelect = (address: string) => {
+    setFormState((prevState) => ({
+      ...prevState,
+      address,
+      addressError: validateField('address', address),
+    }));
+    setIsAddressModalOpen(false); // 주소 모달 닫기
+  };
+
   return (
     <div className="w-full flex-center flex-col gap-8 max-w-[600px]">
       <span className="text-xl font-semibold">{SIGNIN_TEXT[11]}</span>
-      <div className="flex flex-col items-start gap-8 self-stretch">
+      <div className="flex flex-col items-start gap-8 self-stretch pb-8">
         <div className="flex flex-col items-start gap-2 self-stretch">
           <div className="flex items-start font-semibold">
             <p>{SIGNIN_TEXT[6]}</p> <p className="text-[#FC4C00]">*</p>
@@ -116,11 +130,32 @@ export default function ClientComponents() {
               <p className="text-[#FC4C00] pl-3">{formState.addressError}</p>
             )}
           </div>
+          <div className="flex items-center gap-2 self-stretch">
+            <SignInInput
+              className="w-full"
+              placeholder={SIGNIN_PLACEHOLDER[5]}
+              type="text"
+              value={formState.address}
+              onChange={(e) => handleInputChange(e, 'address')}
+              error={!!formState.addressError}
+              onFocus={() => setIsAddressModalOpen(true)}
+            />
+
+            <Button
+              type="default"
+              className="max-w-fit h-14 py-3 px-6 flex-center rounded bg-primary-3 text-white text-lg font-medium"
+              buttonType="button"
+              buttonText={SIGNUP_BUTTON[7]}
+              onClickHandler={() => setIsAddressModalOpen(true)}
+            />
+          </div>
+
           <SignInInput
-            placeholder={SIGNIN_PLACEHOLDER[5]}
+            className="w-full"
+            placeholder={SIGNIN_PLACEHOLDER[7]}
             type="text"
-            value={formState.address}
-            onChange={(e) => handleInputChange(e, 'address')}
+            value={formState.detail}
+            onChange={(e) => handleInputChange(e, 'detail')}
             error={!!formState.addressError}
           />
         </div>
@@ -131,6 +166,13 @@ export default function ClientComponents() {
         text={SIGNUP_BUTTON[1]}
         onClick={handleBtnClick}
       />
+
+      {isAddressModalOpen && (
+        <AddressModal
+          onSelectAddress={handleAddressSelect}
+          onClose={() => setIsAddressModalOpen(false)}
+        />
+      )}
 
       {dialog && (
         <Dialog
