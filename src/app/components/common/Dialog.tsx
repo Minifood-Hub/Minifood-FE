@@ -9,6 +9,7 @@ interface DialogProps {
 
   isTwoButton?: boolean;
   onSubBtnClick?: () => void;
+  isWarn?: boolean;
 
   hasInput?: boolean;
   value?: string;
@@ -20,6 +21,7 @@ export function Dialog({
   subText,
   BtnText,
   onBtnClick,
+  isWarn,
 
   isTwoButton,
   onSubBtnClick,
@@ -36,7 +38,7 @@ export function Dialog({
           <span className="text-center text-lg font-medium break-words whitespace-pre-wrap">
             {topText}
           </span>
-          <p className="text-sm">{subText}</p>
+          {subText && <p className="text-sm">{subText}</p>}
         </div>
 
         {/* 인풋 */}
@@ -55,6 +57,16 @@ export function Dialog({
 
         {/* 버튼 */}
         <div className="flex items-center gap-6 self-stretch">
+          {/* 기본 버튼 */}
+          {isWarn && (
+            <Button
+              onClickHandler={onBtnClick}
+              className="bg-red-1 text-white w-full"
+              buttonText={BtnText}
+              type="dialog"
+            />
+          )}
+
           {/* 버튼 2개일 때 나오는 왼쪽 버튼 */}
           {isTwoButton && (
             <Button
@@ -62,18 +74,18 @@ export function Dialog({
               className="bg-white text-gray-7 border-[1px] border-gray-1 w-full"
               buttonText="취소"
               type="dialog"
-              isDisabled={false}
             />
           )}
 
           {/* 기본 버튼 */}
-          <Button
-            onClickHandler={onBtnClick}
-            buttonText={BtnText}
-            type="dialog"
-            className="bg-primary-3 text-white w-full"
-            isDisabled={false}
-          />
+          {!isWarn && (
+            <Button
+              onClickHandler={onBtnClick}
+              className="bg-primary-3 text-white w-full"
+              buttonText={BtnText}
+              type="dialog"
+            />
+          )}
         </div>
       </div>
     </div>

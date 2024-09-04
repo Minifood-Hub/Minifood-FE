@@ -61,7 +61,7 @@ export const ALERT_TEXT = [
   '지역을 선택해주세요.',
   '파일을 선택해주세요.',
   '정상적으로 제출되었습니다.',
-  '공지사항이 삭제되었습니다.',
+  '',
   '접근 권한이 없습니다.',
   '가격이 변경되었습니다.',
   '파일이 성공적으로 업로드되었습니다.',
@@ -81,6 +81,11 @@ export const REGION_TEXT = [
 export const CATEGORY_TEXT = ['분류 선택', '냉동', '냉장', '공산', '채소'];
 
 export const FAQ_CATEGORY = ['분류 선택', '상품', '배송', '결제'];
+
+export const DIALOG_TEXT = [
+  '삭제시 복구는 불가능합니다',
+  '공지사항을 삭제하시겠습니까?',
+];
 
 export const clientStatusMapping: { [key: string]: string } = {
   COMPLETED: '제출됨',
