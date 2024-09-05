@@ -37,8 +37,8 @@ function CardSwiper() {
         slidesPerView={4}
         autoplay={{ delay: 2000, disableOnInteraction: false }}
       >
-        {CUSTOM_MOOKDATA.map((product, i) => (
-          <SwiperSlide key={0}>
+        {CUSTOM_MOOKDATA.map((product) => (
+          <SwiperSlide key={product.id}>
             <RecommendCard customProducts={product} />
           </SwiperSlide>
         ))}

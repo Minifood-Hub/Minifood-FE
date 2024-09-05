@@ -27,7 +27,7 @@ const Announcement = () => {
         </Link>
       </div>
       <div className="flex flex-col gap-y-1.5 text-[16px] font-normal tracking-tight">
-        {preNotices.map((notice, index) => (
+        {preNotices.map((notice) => (
           <div key={notice.id}>{shortenText(notice.title, 15)}</div>
         ))}
       </div>

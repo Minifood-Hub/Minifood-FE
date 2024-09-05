@@ -36,7 +36,7 @@ const PastorderTable = ({ customDate }: PastorderTableProps) => {
         <div className="w-[9.5%] text-center">{VIEW_PASTORDER_TABLE[0]}</div>
         <div className="w-[65.5%] pl-3 py-2">{VIEW_PASTORDER_TABLE[1]}</div>
       </div>
-      <div className="flex flex-col w-full h-[540px] overflow-y-auto">
+      <div className="flex flex-col w-full h-[540px] overflow-y-auto hide-scrollbar">
         {pastOrders?.map((pastorder, index) => {
           return (
             <PastOrderTableInfo

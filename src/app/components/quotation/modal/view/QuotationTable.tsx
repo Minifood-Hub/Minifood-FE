@@ -1,7 +1,7 @@
 import { MODAL_INFO } from '@/app/constants/order';
+import { formatPrice } from '@/app/utils/formatPrice';
 import QuotationOrderTable from './QuotationOrderTable';
 import QuoteBottom from './QuoteBottom';
-import { formatPrice } from '@/app/utils/formatPrice';
 
 interface QuotationTableProps {
   quotationInfo: QuotationInfoTypes;
@@ -16,6 +16,10 @@ const QuotationTable = ({
   isPdfGenerating,
   totalQuantity,
 }: QuotationTableProps) => {
+  let total = 0;
+  quotationInfo.products.forEach((product) => {
+    total += product.quantity;
+  });
   return (
     <div className="flex w-full flex-col mt-5">
       <QuotationOrderTable
@@ -33,7 +37,7 @@ const QuotationTable = ({
           ) : (
             <>
               <div>{MODAL_INFO[7]}</div>
-              <div>{totalQuantity} 개</div>
+              <div>{total} 개</div>
             </>
           )}
         </div>

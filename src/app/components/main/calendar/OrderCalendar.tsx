@@ -49,7 +49,15 @@ const OrderCalendar = ({ clientType }: OrderCalendarProps) => {
     return dayStatus ? dayStatus.status : null;
   };
 
-  const getTileClassName = ({ date }: { date: Date }) => {
+  const getTileClassName = ({
+    date,
+    view,
+  }: {
+    date: Date;
+    view: string;
+    activeStartDate: Date;
+  }) => {
+    if (view !== 'month') return '';
     const status = getStatusForDate(date);
     return clsx({
       high: status === '상',
@@ -58,7 +66,8 @@ const OrderCalendar = ({ clientType }: OrderCalendarProps) => {
     });
   };
 
-  const renderTileContent = ({ date }: { date: Date }) => {
+  const renderTileContent = ({ date, view }: { date: Date; view: string }) => {
+    if (view !== 'month') return null;
     const status = getStatusForDate(date);
     return status ? (
       <CalendarStatus

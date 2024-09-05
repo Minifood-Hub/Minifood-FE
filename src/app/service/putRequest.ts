@@ -110,3 +110,11 @@ export const putProduct = async (
   const url = `${SERVER_URL}/api/v1/custom-products/${product_id}/update`;
   return putRequest(url, req, product);
 };
+
+export const putPassword = async (
+  passwords: ChangePasswordTypes,
+  req: Request,
+) => {
+  const url = `${SERVER_URL}/api/v1/users/me/password`;
+  return putRequest(url, req, passwords);
+};

@@ -35,14 +35,18 @@ export default function Reorder({ client_id }: ReorderProps) {
                 {REORDER_TEXT[3]}
               </div>
             ) : (
-              recent?.map((quotations, i) => (
+              recent?.map((quotations) => (
                 <div
                   key={quotations.date}
                   className="flex justify-between w-full py-4 px-6 h-[81px] bg-white items-center"
                 >
                   <div className="flex flex-col gap-y-1.5 text-base font-normal">
                     <p>{quotations.date}</p>
-                    <p>{shortenText(quotations.products.join(','), 45)}</p>
+                    <p>
+                      {quotations.products.length === 0
+                        ? '주문내역이 존재하지 않습니다.'
+                        : shortenText(quotations.products.join(','), 45)}
+                    </p>
                   </div>
                   <Link
                     className="w-[111px] h-[39px] bg-[#55aa00] rounded text-white text-base font-normal flex-center"
