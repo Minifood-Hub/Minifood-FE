@@ -30,7 +30,7 @@ export default function EditQuoteContainer({ id }: EditQuoteContainerProps) {
     const fetchData = async () => {
       const data = await callGet(`/api/quotation/detail?id=${id}`);
       setAddedItems(
-        data.result.products.map((product: any, index: number) => ({
+        data.result.products.map((product: any) => ({
           category: categoryMapping[product.category],
           id: product.id,
           name: product.product,

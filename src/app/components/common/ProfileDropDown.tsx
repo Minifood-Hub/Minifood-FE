@@ -4,8 +4,8 @@ import { HEADER_PROFILE } from '@/app/constants/common';
 import { DropDownIcon } from '@/app/ui/iconPath';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import Icons from './Icons';
 import ClientInfoModal from './ClientInfoModal';
+import Icons from './Icons';
 
 interface ProfileDropDownProps {
   user: User;
@@ -21,7 +21,12 @@ const ProfileDropDown = ({ user, logout }: ProfileDropDownProps) => {
 
   const getOptions = () => {
     if (hasClient) {
-      return [HEADER_PROFILE[1], HEADER_PROFILE[2], HEADER_PROFILE[4]];
+      return [
+        HEADER_PROFILE[1],
+        HEADER_PROFILE[2],
+        HEADER_PROFILE[4],
+        HEADER_PROFILE[5],
+      ];
     }
     return [HEADER_PROFILE[0], HEADER_PROFILE[4]];
   };
@@ -40,7 +45,9 @@ const ProfileDropDown = ({ user, logout }: ProfileDropDownProps) => {
       case '로그아웃':
         logout();
         break;
-      default:
+      case '내정보':
+        router.push('/account');
+        break;
     }
     setIsOpen(false);
   };

@@ -266,3 +266,8 @@ export const getProductDetail = async (product_id: string, req: Request) => {
   const url = `${SERVER_URL}/api/v1/custom-products/${product_id}`;
   return getRequest(url, req);
 };
+
+export const getCheckPassword = async (password: string, req: Request) => {
+  const url = `${SERVER_URL}/api/v1/users/me/password/check?password=${password}`;
+  return getRequest(url, req);
+};
