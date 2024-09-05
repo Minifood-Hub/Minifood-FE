@@ -11,6 +11,8 @@ import { passwordRegex } from '@/app/constants/sign-in';
 import { useUser } from '@/app/hooks/useUser';
 import { RightArrowIcon } from '@/app/ui/iconPath';
 import { callPut } from '@/app/utils/callApi';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import Button from '../common/Button';
 import ClientInfoModal from '../common/ClientInfoModal';
@@ -22,7 +24,7 @@ const AccountUpdate = () => {
   const [newPW, setNewPW] = useState('');
   const [checkPW, setCheckPW] = useState('');
   const [errorType, setErrorType] = useState('');
-
+  const router = useRouter();
   const { user } = useUser();
   const pwBody = {
     current_password: currentPW,
@@ -44,8 +46,10 @@ const AccountUpdate = () => {
         setErrorType('WRONG_NOW');
       } else if (data.code === '2008') {
         setErrorType('WRONG_NEW');
+      } else {
+        router.push('/');
       }
-    }else if (newPW !== checkPW){
+    } else if (newPW !== checkPW) {
       setErrorType('INCONSISTENCY');
     }
   };
@@ -108,12 +112,15 @@ const AccountUpdate = () => {
         />
       </div>
       <div>
-        <div className="flex w-full justify-between text-[#333333] text-base font-normal mb-2">
+        <Link
+          href={'/sign-in/client/edit'}
+          className="flex w-full justify-between text-[#333333] text-base font-normal mb-2"
+        >
           <p className="font-semibold">{ACCOUNT_PASSWORD[3]}</p>
           <div className="flex items-center">
             {ACCOUNT_PASSWORD[4]} <Icons name={RightArrowIcon} />
           </div>
-        </div>
+        </Link>
         <ClientInfoModal
           name={user?.result?.client_name}
           region={user?.result?.client_region}
