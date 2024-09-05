@@ -9,7 +9,7 @@ import ProductsVegetable from '../products/ProductsVegetable';
 import ProductsVegetableFile from '../products/ProductsVegetableFile';
 
 export default function ProductsContainer() {
-  const [selectedOption, setSelectedOption] = useState('productsUpload');
+  const [selectedOption, setSelectedOption] = useState('productsCategory');
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { value } = e.target;
@@ -18,10 +18,10 @@ export default function ProductsContainer() {
 
   const renderComponent = () => {
     switch (selectedOption) {
-      case 'productsUpload':
-        return <ProductsUpload />;
       case 'productsCategory':
         return <ProdcutsCategory />;
+      case 'productsUpload':
+        return <ProductsUpload />;
       case 'productsCreate':
         return <ProductsCreate />;
       case 'productsVegetable':
@@ -42,8 +42,8 @@ export default function ProductsContainer() {
           onChange={handleSelectChange}
           value={selectedOption}
         >
-          <option value="productsUpload">{OPTION_TEXT[3]}</option>
           <option value="productsCategory">{OPTION_TEXT[4]}</option>
+          <option value="productsUpload">{OPTION_TEXT[3]}</option>
           <option value="productsCreate">{OPTION_TEXT[5]}</option>
           <option value="productsVegetable">{OPTION_TEXT[6]}</option>
           <option value="productsVegetableFile">{OPTION_TEXT[7]}</option>
