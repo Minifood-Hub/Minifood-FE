@@ -5,6 +5,7 @@ import { DropDownIcon } from '@/app/ui/iconPath';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import Icons from './Icons';
+import ClientInfoModal from './ClientInfoModal';
 
 interface ProfileDropDownProps {
   user: User;
@@ -14,6 +15,7 @@ interface ProfileDropDownProps {
 const ProfileDropDown = ({ user, logout }: ProfileDropDownProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
+  const [showInfo, setShowInfo] = useState(false);
 
   const hasClient = user.result && user.result.client_id;
 
@@ -27,7 +29,7 @@ const ProfileDropDown = ({ user, logout }: ProfileDropDownProps) => {
   const clickOption = (option: string) => {
     switch (option) {
       case '거래처 조회':
-        console.log('거래처 조회');
+        setShowInfo((prev) => !prev);
         break;
       case '거래처 생성':
         router.push('/sign-in/client');
@@ -68,6 +70,18 @@ const ProfileDropDown = ({ user, logout }: ProfileDropDownProps) => {
               {option}
             </div>
           ))}
+        </div>
+      )}
+
+      {showInfo && (
+        <div
+          onClick={() => setShowInfo((prev) => !prev)}
+          className="fixed inset-0 flex-center z-50 bg-black bg-opacity-30"
+        >
+          <ClientInfoModal
+            name={user.result?.client_name}
+            region={user.result?.client_region}
+          />
         </div>
       )}
     </div>

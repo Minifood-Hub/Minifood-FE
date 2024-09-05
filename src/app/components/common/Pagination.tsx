@@ -1,4 +1,5 @@
-import { leftAngle, rightAngle } from '@/app/ui/iconPath';
+import { doubleRightAngle, leftAngle, rightAngle } from '@/app/ui/iconPath';
+import React, { useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import Icons from './Icons';
 
@@ -11,23 +12,75 @@ const Pagination: React.FC<PaginationProps> = ({
   totalPages,
   onPageChange,
 }) => {
+  const [currentPage, setCurrentPage] = useState(0);
+
+  const handlePageChange = (selectedItem: { selected: number }) => {
+    setCurrentPage(selectedItem.selected);
+    onPageChange(selectedItem);
+  };
+
+  const handleNextFivePages = () => {
+    const nextPage = Math.min(currentPage + 5, totalPages - 1);
+    setCurrentPage(nextPage);
+    onPageChange({ selected: nextPage });
+  };
+
+  const handlePrevFivePages = () => {
+    const prevPage = Math.max(currentPage - 5, 0);
+    setCurrentPage(prevPage);
+    onPageChange({ selected: prevPage });
+  };
+
+  const isAtStart = currentPage === 0;
+  const isAtEnd = currentPage >= totalPages - 1;
+
   return (
-    <ReactPaginate
-      className="flex items-center justify-center h-[40px] w-full gap-3 text-base text-[#999] font-normal"
-      previousLabel={
-        <div className="ml-4">
-          <Icons name={leftAngle} />
-        </div>
-      }
-      nextLabel={
-        <div className="mr-4">
-          <Icons name={rightAngle} />
-        </div>
-      }
-      pageCount={totalPages}
-      onPageChange={onPageChange}
-      activeClassName="active text-[#5A0] font-semibold"
-    />
+    <div className="flex-center h-[40px] w-full gap-3 text-[#999]">
+      <button
+        type="button"
+        onClick={handlePrevFivePages}
+        className="translate rotate-180"
+        disabled={isAtStart}
+      >
+        <Icons
+          name={{
+            ...doubleRightAngle,
+            fill: isAtStart ? '#ccc' : doubleRightAngle.fill,
+          }}
+        />
+      </button>
+      <ReactPaginate
+        className="flex-center h-[40px] gap-3"
+        previousLabel={
+          <Icons
+            name={{
+              ...leftAngle,
+              fill: isAtStart ? '#ccc' : leftAngle.fill,
+            }}
+          />
+        }
+        nextLabel={
+          <Icons
+            name={{
+              ...rightAngle,
+              fill: isAtEnd ? '#ccc' : rightAngle.fill,
+            }}
+          />
+        }
+        pageCount={totalPages}
+        onPageChange={handlePageChange}
+        forcePage={currentPage}
+        activeClassName="active text-[#5A0] font-semibold"
+      />
+      <button type="button" onClick={handleNextFivePages} disabled={isAtEnd}>
+        <Icons
+          name={{
+            ...doubleRightAngle,
+            fill: isAtEnd ? '#ccc' : doubleRightAngle.fill,
+          }}
+        />
+      </button>
+    </div>
   );
 };
 

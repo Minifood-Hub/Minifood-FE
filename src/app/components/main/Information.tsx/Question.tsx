@@ -1,16 +1,15 @@
-'use client';
-
 import { AddIcon } from '@/app/ui/iconPath';
 import { callGet } from '@/app/utils/callApi';
 import { useEffect, useState } from 'react';
 import Button from '../../common/Button';
 import Icons from '../../common/Icons';
+import Link from 'next/link';
 
 const Question = () => {
   const [isSelected, setIsSelected] = useState(0);
 
   const [faqs, setFaqs] = useState<FAQProps[]>([]);
-  const preFaqs = faqs.slice(0, 3);
+  const preFaqs = faqs?.slice(0, 3);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,11 +19,17 @@ const Question = () => {
     fetchData();
   }, []);
 
+  const filteredFaqs = faqs
+    .filter((faq) => faq.category === preFaqs[isSelected]?.category)
+    .slice(0, 3);
+
   return (
-    <div className="w-[333px] h-40 px-4 py-[18px] rounded-[20px] shadow text-[#333333]">
-      <div className="flex justify-between mb-4 items-center">
+    <div className="w-[333px] h-40 p-4 py-[18px] rounded-[20px] shadow text-[#333333] overflow-hidden">
+      <div className="flex justify-between mb-1 items-center">
         <div className="text-lg font-medium">FAQ</div>
-        <Icons name={AddIcon} />
+        <Link href="/faq">
+          <Icons className="cursor-pointer" name={AddIcon} />
+        </Link>
       </div>
       <div className="flex gap-x-3">
         {preFaqs.map((faq, i) => (
@@ -37,7 +42,16 @@ const Question = () => {
           />
         ))}
       </div>
-      <div className="mt-4">{faqs[0] && faqs[0].question}</div>
+      <div className="mt-1">
+        {filteredFaqs.map((faq) => (
+          <div
+            key={faq.id}
+            className="overflow-hidden text-ellipsis whitespace-nowrap"
+          >
+            {faq.question}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

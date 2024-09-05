@@ -2,6 +2,8 @@
 
 import { ADMIN_TEXT, ALERT_TEXT } from '@/app/constants/admin';
 import { useUser } from '@/app/hooks/useUser';
+import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useEffect } from 'react';
 
@@ -24,10 +26,13 @@ export default function AdminHeader({ isActive }: AdminHeaderProps) {
   };
 
   return (
-    <header className="bg-gray-0 p-4 flex justify-between items-center">
+    <header className="bg-gray-0 px-48 py-4 flex justify-between items-center">
       <div className="flex gap-4">
+        <Link href="/">
+          <Image src="/Images/JMF2.png" width={60} height={48} alt="logo" />
+        </Link>
         <div
-          className={`px-4 py-2 font-extrabold cursor-pointer ${isActive === 'quotation' ? 'bg-primary-1 text-white' : 'bg-white'}`}
+          className={`ml-4 px-4 py-2 font-extrabold cursor-pointer ${isActive === 'quotation' ? 'bg-primary-1 text-white' : 'bg-white'}`}
           onClick={() => handleActiveChange('quotation')}
         >
           {ADMIN_TEXT[2]}
