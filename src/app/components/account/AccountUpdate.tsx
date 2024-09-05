@@ -75,6 +75,7 @@ const AccountUpdate = () => {
           </div>
         </div>
         <Input
+          inputType="password"
           type="account"
           onChange={(e) => setCurrentPW(e.target.value)}
           placeholder={ACCOUNT_GUIDE[0]}
@@ -93,6 +94,7 @@ const AccountUpdate = () => {
           </div>
         </div>
         <Input
+          inputType="password"
           type="account"
           onChange={(e) => setNewPW(e.target.value)}
           placeholder={ACCOUNT_GUIDE[1]}
@@ -106,6 +108,7 @@ const AccountUpdate = () => {
           </div>
         </div>
         <Input
+          inputType="password"
           type="account"
           onChange={(e) => setCheckPW(e.target.value)}
           placeholder={ACCOUNT_GUIDE[2]}
@@ -124,6 +127,7 @@ const AccountUpdate = () => {
         <ClientInfoModal
           name={user?.result?.client_name}
           region={user?.result?.client_region}
+          address={user?.result?.client_address}
           isForAccount
         />
       </div>

@@ -13,6 +13,7 @@ interface UserResult {
   is_admin?: boolean;
   client_name?: string;
   client_region: string;
+  client_address: string;
 }
 
 interface User {

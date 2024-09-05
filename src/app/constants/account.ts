@@ -1,4 +1,4 @@
-export const ACCOUNT_TEXT = ['내정보', '이메일', '비밀번호'];
+export const ACCOUNT_TEXT = ['내 정보', '이메일', '비밀번호'];
 
 export const ACCOUNT_PASSWORD = [
   '현재 비밀번호',
