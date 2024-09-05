@@ -3,6 +3,7 @@
 import {
   ALERT_TEXT,
   BTN_TEXT,
+  DIALOG_TEXT,
   INPUT_TEXT,
   REGION_TEXT,
   TABLE_TEXT,
@@ -12,6 +13,7 @@ import React, { useState } from 'react';
 import { callDelete, callGet, callPatch } from '@/app/utils/callApi';
 import InquiryPastOrder from './InquiryPastOrder';
 import Input from '../../common/Input';
+import { Dialog } from '../../common/Dialog';
 
 export default function ClientsRegion() {
   const [inputComment, setInputComment] = useState('');
@@ -21,10 +23,12 @@ export default function ClientsRegion() {
   const [result, setResult] = useState<{ items: ClientsNameProps[] }>({
     items: [],
   });
+  const [isDialogOpen, setIsDialogOpen] = useState(false); // 다이얼로그 상태 추가
+  const [selectedClientId, setSelectedClientId] = useState<number | null>(null); // 삭제할 client_id 상태 추가
 
   const handleSetRegion = async () => {
     if (!region) {
-      alert(ALERT_TEXT[4]);
+      alert(ALERT_TEXT[3]);
       return;
     }
     try {
@@ -73,14 +77,17 @@ export default function ClientsRegion() {
   };
 
   // 거래처 삭제
-  const handleDelete = async (client_id: number) => {
+  const handleDelete = async () => {
+    if (selectedClientId === null) return;
     try {
-      await callDelete(`/api/admin/clients/${client_id}/delete`);
+      await callDelete(`/api/admin/clients/${selectedClientId}/delete`);
       alert(ALERT_TEXT[3]);
 
       await handleSetRegion();
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsDialogOpen(false); // 다이얼로그 닫기
     }
   };
 
@@ -169,7 +176,10 @@ export default function ClientsRegion() {
               <div className="w-[5%] flex justify-center">
                 <Button
                   type="default"
-                  onClickHandler={() => handleDelete(item.id)}
+                  onClickHandler={() => {
+                    setIsDialogOpen(true); // 다이얼로그 열기
+                    setSelectedClientId(item.id); // 선택한 client_id 설정
+                  }}
                   className="bg-red-1 admin-btn"
                   buttonText={BTN_TEXT[1]}
                 />
@@ -208,6 +218,18 @@ export default function ClientsRegion() {
         />
       </div>
       <div className="w-full">{renderTable()}</div>
+
+      {/* 다이얼로그 추가 */}
+      {isDialogOpen && (
+        <Dialog
+          topText={DIALOG_TEXT[2]}
+          BtnText={BTN_TEXT[1]}
+          onBtnClick={handleDelete} // 삭제 처리 함수
+          onSubBtnClick={() => setIsDialogOpen(false)} // 다이얼로그 취소
+          isWarn
+          isTwoButton
+        />
+      )}
     </div>
   );
 }

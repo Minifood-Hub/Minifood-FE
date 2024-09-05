@@ -1,17 +1,17 @@
-'use client';
-
+import React, { useState } from 'react';
 import {
   ALERT_TEXT,
   BTN_TEXT,
+  DIALOG_TEXT,
   INPUT_TEXT,
   REGION_TEXT,
   TABLE_TEXT,
 } from '@/app/constants/admin';
 import Input from '../../common/Input';
 import Button from '../../common/Button';
-import React, { useState } from 'react';
 import { callDelete, callGet, callPatch } from '@/app/utils/callApi';
 import InquiryPastOrder from './InquiryPastOrder';
+import { Dialog } from '../../common/Dialog';
 
 export default function ClientsName() {
   const [name, setName] = useState('');
@@ -22,6 +22,8 @@ export default function ClientsName() {
   const [showPastOrder, setShowPastOrder] = useState<number | null>(null);
   const [isEditRegion, setIsEditRegion] = useState<number | null>(null);
   const [region, setRegion] = useState('');
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [deleteClientId, setDeleteClientId] = useState<number | null>(null); // 삭제할 client_id 상태
 
   // 거래처 조회
   const handleGetQuotations = async () => {
@@ -47,7 +49,6 @@ export default function ClientsName() {
       );
       alert(ALERT_TEXT[1]);
       setIsEditRegion(null);
-
       await handleGetQuotations();
     } catch (error) {
       console.error(error);
@@ -72,14 +73,16 @@ export default function ClientsName() {
   };
 
   // 거래처 삭제
-  const handleDelete = async (client_id: number) => {
-    try {
-      await callDelete(`/api/admin/clients/${client_id}/delete`);
-      alert(ALERT_TEXT[3]);
-
-      await handleGetQuotations();
-    } catch (error) {
-      console.error(error);
+  const handleDelete = async () => {
+    if (deleteClientId !== null) {
+      try {
+        await callDelete(`/api/admin/clients/${deleteClientId}/delete`);
+        await handleGetQuotations();
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setIsDialogOpen(false);
+      }
     }
   };
 
@@ -167,7 +170,10 @@ export default function ClientsName() {
               <div className="w-[5%] flex justify-center">
                 <Button
                   type="default"
-                  onClickHandler={() => handleDelete(item.id)}
+                  onClickHandler={() => {
+                    setDeleteClientId(item.id);
+                    setIsDialogOpen(true); // 다이얼로그 열기
+                  }}
                   className="bg-red-1 admin-btn"
                   buttonText={BTN_TEXT[1]}
                 />
@@ -205,6 +211,18 @@ export default function ClientsName() {
         />
       </div>
       <div className="w-full">{renderTable()}</div>
+
+      {/* 삭제 확인 다이얼로그 */}
+      {isDialogOpen && (
+        <Dialog
+          topText={DIALOG_TEXT[2]}
+          BtnText={BTN_TEXT[1]}
+          isWarn
+          onBtnClick={handleDelete} // 삭제 실행
+          isTwoButton
+          onSubBtnClick={() => setIsDialogOpen(false)} // 다이얼로그 닫기
+        />
+      )}
     </div>
   );
 }
