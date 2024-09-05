@@ -43,9 +43,8 @@ const ProfileDropDown = ({ user, logout }: ProfileDropDownProps) => {
         router.push('/sign-in/client/edit');
         break;
       case '로그아웃':
-        console.log('로그아웃 실행');
-        break;
         logout();
+        break;
       case '내정보':
         router.push('/account');
         break;
