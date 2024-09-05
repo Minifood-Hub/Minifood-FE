@@ -35,14 +35,20 @@ const ProfileDropDown = ({ user, logout }: ProfileDropDownProps) => {
     switch (option) {
       case '거래처 조회':
         setShowInfo((prev) => !prev);
+        break;
       case '거래처 생성':
         router.push('/sign-in/client');
+        break;
       case '거래처 수정':
         router.push('/sign-in/client/edit');
+        break;
       case '로그아웃':
+        console.log('로그아웃 실행');
+        break;
         logout();
       case '내정보':
         router.push('/account');
+        break;
     }
     setIsOpen(false);
   };

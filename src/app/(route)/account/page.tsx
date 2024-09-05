@@ -5,10 +5,10 @@ const AccountPage = () => {
   return (
     <section>
       <div className="relative flex w-full min-h-screen flex-col items-center">
-        <div className="w-full">
+        <div className=" w-full shadow">
           <Header />
-          <AccountContainer />
         </div>
+        <AccountContainer />
       </div>
     </section>
   );
