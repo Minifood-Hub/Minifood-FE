@@ -65,8 +65,8 @@ const AccountUpdate = () => {
       <div className="flex flex-col gap-y-2">
         <div className="flex">
           <p>{ACCOUNT_PASSWORD[0]}</p>
-          <div className={`text-[#fc4c00] text-base font-semibold`}>
-            *{' '}
+          <div className="text-[#fc4c00] text-base font-semibold">
+            *
             {errorType === 'INVALID'
               ? ` ${ACCOUNT_ALERT[1]}`
               : errorType === 'WRONG_NOW'
@@ -83,8 +83,8 @@ const AccountUpdate = () => {
       <div className="flex flex-col gap-y-2">
         <div className="flex">
           <p>{ACCOUNT_PASSWORD[1]}</p>
-          <div className={`text-[#fc4c00] text-base font-semibold`}>
-            *{' '}
+          <div className="text-[#fc4c00] text-base font-semibold">
+            *
             {errorType === 'INVALID_NEW'
               ? ` ${ACCOUNT_ALERT[1]}`
               : errorType === 'WRONG_NEW'
@@ -101,9 +101,9 @@ const AccountUpdate = () => {
       <div className="flex flex-col gap-y-2">
         <div className="flex">
           <p>{ACCOUNT_PASSWORD[2]}</p>
-          <div className={`text-[#fc4c00] text-base font-semibold`}>
+          <div className="text-[#fc4c00] text-base font-semibold">
             * {errorType === 'INCONSISTENCY' ? ` ${ACCOUNT_ALERT[0]}` : ''}
-          </div>{' '}
+          </div>
         </div>
         <Input
           type="account"
@@ -113,7 +113,7 @@ const AccountUpdate = () => {
       </div>
       <div>
         <Link
-          href={'/sign-in/client/edit'}
+          href="/sign-in/client/edit"
           className="flex w-full justify-between text-[#333333] text-base font-normal mb-2"
         >
           <p className="font-semibold">{ACCOUNT_PASSWORD[3]}</p>
