@@ -1,4 +1,5 @@
 import {
+  ACCOUNT_ALERT,
   ACCOUNT_BTN_TEXT,
   ACCOUNT_GUIDE,
   ACCOUNT_TEXT,
@@ -32,19 +33,15 @@ const AccountCertificate = ({ certifyHandler }: AccountCertificateProps) => {
     <div className="flex flex-col gap-y-8">
       <div className="flex flex-col gap-y-2">
         <p>{ACCOUNT_TEXT[1]}</p>
-        <Input
-          type="account"
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder={ACCOUNT_TEXT[1]}
-          isDisabled
-          textValue={user?.result?.email}
-        />
+        <div className="w-[600px] h-[56px] border-[1px] border-gray-1 rounded-[4px] px-6 py-1 flex items-center">
+          {user?.result?.email}
+        </div>
       </div>
       <div className="flex flex-col gap-y-2 mb-8">
         <div className="flex">
           <p>{ACCOUNT_TEXT[2]}</p>
           <div className="text-[#fc4c00] text-base font-semibold">
-            {isCorrect ? '*' : '* 비밀번호가 일치하지 않습니다'}
+            {isCorrect ? '*' : `* ${ACCOUNT_ALERT[0]}`}
           </div>
         </div>
         <Input
