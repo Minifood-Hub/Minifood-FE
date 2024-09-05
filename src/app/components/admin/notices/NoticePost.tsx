@@ -21,7 +21,7 @@ export default function NoticePost() {
     }
     try {
       await callPost(`/api/admin/notices/post`, notice);
-      alert(ALERT_TEXT[6]);
+      alert(ALERT_TEXT[5]);
       window.location.reload();
       router.refresh();
     } catch (error) {

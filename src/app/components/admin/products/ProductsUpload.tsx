@@ -15,7 +15,7 @@ export default function ProductsUpload() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!file) {
-      alert(ALERT_TEXT[5]);
+      alert(ALERT_TEXT[4]);
       return;
     }
 
@@ -33,10 +33,10 @@ export default function ProductsUpload() {
       }
 
       await response.json();
-      alert(ALERT_TEXT[10]);
+      alert(ALERT_TEXT[8]);
     } catch (error) {
       console.error('파일 업로드 중 오류 발생:', error);
-      alert(ALERT_TEXT[11]);
+      alert(ALERT_TEXT[9]);
     }
   };
 

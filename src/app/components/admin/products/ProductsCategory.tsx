@@ -113,7 +113,7 @@ export default function ProductsCategory() {
           <div className="w-[10%] text-center">{BTN_TEXT[3]}</div>
           <div className="w-[10%] text-center">{BTN_TEXT[1]}</div>
         </div>
-        {result.items.map((item: ProductProps) => (
+        {result?.items?.map((item: ProductProps) => (
           <div className="flex p-2 border-2" key={item.id}>
             <div className="w-[5%]">{item.id}</div>
             <div className="w-[10%]">

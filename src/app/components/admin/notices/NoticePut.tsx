@@ -33,7 +33,7 @@ export default function NoticesPut({
     }
     try {
       await callPut(`/api/admin/notices/put/${selectedId}`, editNotice);
-      alert(ALERT_TEXT[6]);
+      alert(ALERT_TEXT[5]);
       setEditNotice({
         title: '',
         content: '',
