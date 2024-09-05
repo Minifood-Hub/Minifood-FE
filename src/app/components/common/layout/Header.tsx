@@ -20,7 +20,7 @@ function Header() {
     window.location.href = '/';
   };
 
-  const headerPath = user && user.result ? HEADER_PATH : HEADER_PATH_GUEST;
+  const headerPath = user && user?.category ? HEADER_PATH : HEADER_PATH_GUEST;
 
   return (
     <div className="relative w-full pt-6 bg-white">
@@ -37,7 +37,7 @@ function Header() {
             ))}
           </div>
         </div>
-        {user && user.result ? (
+        {user && user?.category ? (
           <ProfileDropDown user={user} logout={handleLogout} />
         ) : (
           <div className="flex font-normal text-sm">
