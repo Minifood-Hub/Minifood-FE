@@ -19,7 +19,6 @@ interface QuotationModalProps {
 const QuotationModal = ({ closeModal, id, isAdmin }: QuotationModalProps) => {
   const [detailData, setDetailData] = useState<QuotationInfoTypes | null>(null);
   const [isPdfGenerating, setIsPdfGenerating] = useState(false);
-  const [totalQuantity, setTotalQuantity] = useState(0);
 
   const [dialog, setDialog] = useState({
     open: false,
@@ -31,15 +30,10 @@ const QuotationModal = ({ closeModal, id, isAdmin }: QuotationModalProps) => {
     const fetchData = async () => {
       const data = await callGet(`/api/quotation/detail?id=${id}`);
       setDetailData(data.result);
-
-      const total = data.result.products.reduce(
-        (sum: number, product: { quantity: number }) => sum + product.quantity,
-        0,
-      );
-      setTotalQuantity(total);
     };
     fetchData();
   }, []);
+  console.log(detailData);
 
   const { toPDF, targetRef } = usePDF({
     filename: 'JMF견적서.pdf',
@@ -121,7 +115,6 @@ const QuotationModal = ({ closeModal, id, isAdmin }: QuotationModalProps) => {
               quotationInfo={detailData}
               isAdmin={isAdmin}
               isPdfGenerating={isPdfGenerating}
-              totalQuantity={totalQuantity}
             />
           )}
         </div>

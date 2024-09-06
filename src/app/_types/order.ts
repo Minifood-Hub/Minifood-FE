@@ -47,6 +47,7 @@ interface QuotationItemType {
 
 interface QuotationTableProps {
   quotationInfo: QuotationItemType[];
+  currentDate: string | undefined;
 }
 
 interface ProductItemProps extends QuotationItemType {

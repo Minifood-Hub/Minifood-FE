@@ -20,6 +20,7 @@ export default function QuotationModal({
   QuotationModalData,
   closeModal,
   quotationId,
+  currentDate,
 }: QuotationModalProps) {
   const { user } = useUser();
   const router = useRouter();
@@ -150,7 +151,10 @@ export default function QuotationModal({
                     </div>
                   </div>
                 </div>
-                <QuotationTable quotationInfo={QuotationModalData} />
+                <QuotationTable
+                  currentDate={currentDate}
+                  quotationInfo={QuotationModalData}
+                />
               </div>
             </div>
 

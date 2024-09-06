@@ -1,10 +1,10 @@
 import { MODAL_INFO, MODAL_TEXT } from '@/app/constants/order';
 import QuoteBottom from '../../quotation/modal/view/QuoteBottom';
-import { useCurrentDate } from '@/app/hooks/useCurrentDate';
 
-export default function QuotationTable({ quotationInfo }: QuotationTableProps) {
-  const currentDate = useCurrentDate();
-
+export default function QuotationTable({
+  quotationInfo,
+  currentDate,
+}: QuotationTableProps) {
   const totalCount = quotationInfo.reduce(
     (sum, itemData) => sum + Number(itemData.count),
     0,
