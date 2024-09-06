@@ -71,7 +71,7 @@ export default function FrequentFAQContainer() {
   };
 
   return (
-    <div className="w-full h-full flex-shrink-0 px-[195px]">
+    <div className="w-full flex-shrink-0 px-[195px]">
       <p className="w-full text-center text-xl font-semibold pt-11">
         {FAQ_TEXT[0]}
       </p>

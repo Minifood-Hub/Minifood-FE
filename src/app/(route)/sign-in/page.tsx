@@ -3,7 +3,7 @@ import SignInComponents from '@/app/components/sign-in/SignInComponents';
 export default function SignIn() {
   return (
     <section>
-      <div className="flex items-center pt-[101px] w-full h-screen flex-col px-20">
+      <div className="flex items-center pt-[101px] w-full flex-col px-20">
         <SignInComponents />
       </div>
     </section>
