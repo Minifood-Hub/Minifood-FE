@@ -1,5 +1,6 @@
 import { MODAL_INFO, MODAL_TEXT } from '@/app/constants/order';
 import QuoteBottom from '../../quotation/modal/view/QuoteBottom';
+import { useDayOfWeek } from '@/app/hooks/useDayOfWeek';
 
 export default function QuotationTable({
   quotationInfo,
@@ -9,11 +10,15 @@ export default function QuotationTable({
     (sum, itemData) => sum + Number(itemData.count),
     0,
   );
+  const dayOfWeek = useDayOfWeek(currentDate);
+
   return (
     <div className="flex flex-col items-center self-stretch">
       <div className="flex h-[50px] py-3 px-0 justify-between items-center self-stretch border-b-2 border-gray-6">
         <p className="text-lg font-bold">{MODAL_TEXT[0]}</p>
-        <p className="text-base">{currentDate}</p>
+        <p className="text-base">
+          {currentDate} ({dayOfWeek})
+        </p>
       </div>
       <div className="flex py-4 px-0 flex-col gap-3 self-stretch border-b-2 border-dashed border-gray-2 mb-8">
         <div className="flex gap-1 self-stretch text-gray-4">

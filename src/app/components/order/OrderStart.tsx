@@ -1,7 +1,7 @@
-import Input from '../common/Input';
 import Button from '../common/Button';
 import { BUTTON_TEXT } from '@/app/constants/order';
 import { useCurrentDate } from '@/app/hooks/useCurrentDate';
+import { useDayOfWeek } from '@/app/hooks/useDayOfWeek';
 
 interface OrderStartProps {
   onStartOrder: () => void;
@@ -29,6 +29,7 @@ export default function OrderStart({
     }
   };
 
+  const dayOfWeek = useDayOfWeek(orderDate); // 요일 가져오기
   return (
     <div className="flex-center flex-col w-full px-0 self-stretch gap-12">
       <div className="">
@@ -42,7 +43,9 @@ export default function OrderStart({
           min={currentDate}
         />
         {orderDate && (
-          <div className="font-bold pt-2">선택 날짜 : {orderDate}</div>
+          <div className="font-bold pt-2">
+            선택 날짜: {orderDate} ({dayOfWeek})
+          </div>
         )}
       </div>
 

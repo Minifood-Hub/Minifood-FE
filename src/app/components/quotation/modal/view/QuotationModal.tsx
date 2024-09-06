@@ -33,7 +33,6 @@ const QuotationModal = ({ closeModal, id, isAdmin }: QuotationModalProps) => {
     };
     fetchData();
   }, []);
-  console.log(detailData);
 
   const { toPDF, targetRef } = usePDF({
     filename: 'JMF견적서.pdf',

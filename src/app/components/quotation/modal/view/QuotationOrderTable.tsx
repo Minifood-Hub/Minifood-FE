@@ -1,4 +1,5 @@
 import { MODAL_TEXT } from '@/app/constants/order';
+import { useDayOfWeek } from '@/app/hooks/useDayOfWeek';
 import { formatDate } from '@/app/utils/date';
 
 interface QuotationOrderTableProps {
@@ -10,12 +11,13 @@ const QuotationOrderTable = ({
   quotationInfo,
   isPdfGenerating,
 }: QuotationOrderTableProps) => {
+  const dayOfWeek = useDayOfWeek(quotationInfo.created_at);
   return (
     <div>
       <div className="flex justify-between py-3 border-black border-b-2 px-1">
         <div className="text-lg font-bold">{MODAL_TEXT[0]}</div>
         <div className="text-base font-normal">
-          {formatDate(quotationInfo.created_at)}
+          {formatDate(quotationInfo.created_at)} ({dayOfWeek})
         </div>
       </div>
       <div className="flex gap-x-1 text-base font-normal text-[#999] mt-4">
