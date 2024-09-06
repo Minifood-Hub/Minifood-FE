@@ -26,7 +26,7 @@ export const HEADER_PROFILE = [
   '거래처 수정',
   '거래처 미생성',
   '로그아웃',
-  '내정보',
+  '내 정보',
 ];
 
 export const HEADER_SIGNUP = ['회원가입', '로그인'];

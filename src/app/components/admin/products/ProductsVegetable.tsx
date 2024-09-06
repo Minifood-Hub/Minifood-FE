@@ -25,7 +25,7 @@ export default function ProductsVegetable() {
         `/api/admin/products/${productId}/vegetable`,
         `price=${price}`,
       );
-      alert(ALERT_TEXT[9]);
+      alert(ALERT_TEXT[7]);
       setProductId('');
       setPrice('');
     } catch (error) {

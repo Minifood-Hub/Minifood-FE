@@ -98,8 +98,8 @@ export default function QuotationInfo() {
             >
               {item.name}
             </div>
-            <div className="w-[15%]">{item.created_at}</div>
-            <div className="w-[15%]">{item.updated_at || 'N/A'}</div>
+            <div className="w-[15%]">{formatDate(item.created_at)}</div>
+            <div className="w-[15%]">{item.updated_at || '-'}</div>
             <div className="w-[10%]">{clientStatusMapping[item.status]}</div>
             <div className="w-[15%] text-center">
               {formatPrice(item.total_price)} 원

@@ -1,7 +1,9 @@
-import { ALERT_TEXT, BTN_TEXT } from '@/app/constants/admin';
+import { ALERT_TEXT, BTN_TEXT, DIALOG_TEXT } from '@/app/constants/admin';
 import { callDelete, callPut } from '@/app/utils/callApi';
 import Button from '../../common/Button';
 import Input from '../../common/Input';
+import { useState } from 'react';
+import { Dialog } from '../../common/Dialog';
 
 export default function NoticesPut({
   editingId,
@@ -12,6 +14,8 @@ export default function NoticesPut({
   handleGetNotice,
   item,
 }: NoticePutProps) {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
   // 공지사항 수정모드
   const handleEdit = (notice_id: number, title: string, content: string) => {
     setEditingId(notice_id);
@@ -29,7 +33,7 @@ export default function NoticesPut({
     }
     try {
       await callPut(`/api/admin/notices/put/${selectedId}`, editNotice);
-      alert(ALERT_TEXT[6]);
+      alert(ALERT_TEXT[5]);
       setEditNotice({
         title: '',
         content: '',
@@ -45,10 +49,11 @@ export default function NoticesPut({
   const handleDelete = async () => {
     try {
       await callDelete(`/api/admin/notices/delete/${selectedId}`);
-      alert(ALERT_TEXT[7]);
       await handleGetNotice(); // 삭제 후 새로 불러오기
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsDialogOpen(false);
     }
   };
   return (
@@ -95,7 +100,9 @@ export default function NoticesPut({
           buttonText={editingId === item.id ? BTN_TEXT[5] : BTN_TEXT[1]}
           type="default"
           onClickHandler={
-            editingId === item.id ? () => setEditingId(null) : handleDelete
+            editingId === item.id
+              ? () => setEditingId(null)
+              : () => setIsDialogOpen(true)
           }
         />
 
@@ -109,6 +116,18 @@ export default function NoticesPut({
               : () => handleEdit(item.id, item.title, item.content)
           }
         />
+
+        {isDialogOpen && (
+          <Dialog
+            topText={DIALOG_TEXT[1]}
+            subText={DIALOG_TEXT[0]}
+            BtnText={BTN_TEXT[1]}
+            isWarn
+            onBtnClick={handleDelete}
+            isTwoButton
+            onSubBtnClick={() => setIsDialogOpen(false)}
+          />
+        )}
       </div>
     </>
   );

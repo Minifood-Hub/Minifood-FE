@@ -15,12 +15,13 @@ interface AccountCertificateProps {
 }
 
 const AccountCertificate = ({ certifyHandler }: AccountCertificateProps) => {
-  const [password, setPassword] = useState('');
+  const [inputPassword, setInputPassword] = useState('');
   const [isCorrect, setIsCorrect] = useState(true);
 
   const { user } = useUser();
 
   const confirmAccount = async () => {
+    const password = encodeURIComponent(inputPassword);
     const data = await callGet(`/api/account/password?password=${password}`);
     if (data.result === true) {
       certifyHandler();
@@ -45,8 +46,9 @@ const AccountCertificate = ({ certifyHandler }: AccountCertificateProps) => {
           </div>
         </div>
         <Input
+          inputType="password"
           type="account"
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => setInputPassword(e.target.value)}
           placeholder={ACCOUNT_GUIDE[0]}
         />
       </div>

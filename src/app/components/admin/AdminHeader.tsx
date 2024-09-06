@@ -16,7 +16,7 @@ export default function AdminHeader({ isActive }: AdminHeaderProps) {
       user?.detail === 'Not authenticated' ||
       (user?.result && user.result.is_admin === false)
     ) {
-      alert(ALERT_TEXT[8]);
+      alert(ALERT_TEXT[6]);
       router.push('/');
     }
   }, [user, router]);

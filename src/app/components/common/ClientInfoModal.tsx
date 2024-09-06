@@ -4,12 +4,14 @@ import Icons from './Icons';
 interface ClientInfoModalProps {
   name: string | undefined;
   region: string | undefined;
+  address: string | undefined;
   isForAccount?: boolean;
 }
 
 export default function ClientInfoModal({
   name,
   region,
+  address,
   isForAccount,
 }: ClientInfoModalProps) {
   return (
@@ -17,7 +19,7 @@ export default function ClientInfoModal({
       className={`flex w-[600px] py-[18px] px-6 flex-col justify-center items-start rounded bg-white  ${isForAccount ? 'border border-[#E0E0E0]' : 'shadow-md'}`}
     >
       <div className="flex items-center gap-[18px]">
-        <div className="flex-center w-[60px] h-[60px] rounded-full bg-primary-3">
+        <div className="flex-center min-w-[60px] h-[60px] rounded-full bg-primary-3">
           <Icons name={ShopIcon} />
         </div>
 
@@ -29,7 +31,7 @@ export default function ClientInfoModal({
             </div>
           </div>
 
-          <p className="text-[#333]">어디에도 몇시 어쩌구 어디로 1234-5678</p>
+          <div className="text-[#333]">{address}</div>
         </div>
       </div>
     </div>

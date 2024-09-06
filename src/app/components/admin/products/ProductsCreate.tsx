@@ -46,7 +46,7 @@ export default function ProdcutsCreate() {
 
     try {
       await callPost(`/api/admin/products`, postData);
-      alert(ALERT_TEXT[12]);
+      alert(ALERT_TEXT[10]);
 
       setInputState({
         category: '',

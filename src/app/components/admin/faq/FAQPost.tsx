@@ -27,7 +27,7 @@ export default function FAQPost() {
     }
     try {
       await callPost(`/api/admin/faq/post`, faq);
-      alert(ALERT_TEXT[6]);
+      alert(ALERT_TEXT[5]);
       window.location.reload();
       router.refresh();
     } catch (error) {
