@@ -25,6 +25,8 @@ const QuotationViewTable = ({
   const handlePageChange = ({ selected }: { selected: number }) => {
     setPage(() => selected + 1);
   };
+  const completedQuotation =
+    quotation?.items.filter((item) => item.status === 'COMPLETED') || [];
 
   useEffect(() => {
     const fetchData = async () => {
@@ -54,7 +56,7 @@ const QuotationViewTable = ({
             날짜를 선택해주세요 📆
           </div>
         ) : (
-          quotation?.items.map((quoteView, index) => {
+          completedQuotation.map((quoteView, index) => {
             return (
               <QuotationViewTableInfo
                 quoteView={quoteView}
