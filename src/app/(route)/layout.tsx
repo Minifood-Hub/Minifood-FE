@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   title: 'JMF',
   description: '정말 맛있는 음식과 함께, JMF',
   icons: {
-    icon: '/favicon.ico',
+    icon: '/Images/favicon.png',
   },
 };
 
