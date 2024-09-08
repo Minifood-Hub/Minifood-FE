@@ -81,7 +81,7 @@ body {
     @apply border border-gray-3 px-4 py-2;
   }
   .admin-input {
-    @apply bg-gray-0 w-fit border border-gray-7 px-4;
+    @apply w-fit rounded border px-4 h-10;
   }
   .admin-btn {
     @apply max-w-fit h-fit px-4 bg-primary-3 text-white font-bold whitespace-nowrap;
