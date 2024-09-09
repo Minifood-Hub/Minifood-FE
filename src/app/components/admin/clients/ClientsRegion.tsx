@@ -103,7 +103,7 @@ export default function ClientsRegion() {
           <div className="w-[25%]">{TABLE_TEXT[12]}</div>
           <div className="w-[5%] text-center">{BTN_TEXT[1]}</div>
         </div>
-        {result.items.map((item: ClientsNameProps) => (
+        {result?.items?.map((item: ClientsNameProps) => (
           <React.Fragment key={item.id}>
             <div className="flex p-2 border-2">
               <div className="w-[5%]">{item.id}</div>

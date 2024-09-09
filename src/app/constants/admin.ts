@@ -9,6 +9,7 @@ export const OPTION_TEXT = [
   '물품 추가 생성', // 5
   '야채 물품 가격 직접 변경',
   '야채 물품 가격 엑셀 파일로 변경',
+  '전체 거래처 조회',
 ];
 
 export const INPUT_TEXT = [
