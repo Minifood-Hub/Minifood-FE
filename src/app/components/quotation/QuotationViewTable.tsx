@@ -25,8 +25,7 @@ const QuotationViewTable = ({
   const handlePageChange = ({ selected }: { selected: number }) => {
     setPage(() => selected + 1);
   };
-  const completedQuotation =
-    quotation?.items.filter((item) => item.status === 'COMPLETED') || [];
+  const completedQuotation = quotation?.items || [];
 
   useEffect(() => {
     const fetchData = async () => {
