@@ -26,7 +26,7 @@ export default function ClientsRegion() {
   const [isDialogOpen, setIsDialogOpen] = useState(false); // 다이얼로그 상태 추가
   const [selectedClientId, setSelectedClientId] = useState<number | null>(null); // 삭제할 client_id 상태 추가
 
-  const handleSetRegion = async () => {
+  const handleGetClients = async () => {
     if (!region) {
       alert(ALERT_TEXT[3]);
       return;
@@ -52,8 +52,7 @@ export default function ClientsRegion() {
       );
       alert(ALERT_TEXT[1]);
       setIsEditRegion(null);
-
-      await handleSetRegion();
+      await handleGetClients();
     } catch (error) {
       console.error(error);
     }
@@ -83,7 +82,7 @@ export default function ClientsRegion() {
       await callDelete(`/api/admin/clients/${selectedClientId}/delete`);
       alert(ALERT_TEXT[3]);
 
-      await handleSetRegion();
+      await handleGetClients();
     } catch (error) {
       console.error(error);
     } finally {
@@ -213,7 +212,7 @@ export default function ClientsRegion() {
           className="admin-btn"
           buttonText={BTN_TEXT[4]}
           type="default"
-          onClickHandler={handleSetRegion}
+          onClickHandler={handleGetClients}
           isDisabled={region === REGION_TEXT[0]}
         />
       </div>

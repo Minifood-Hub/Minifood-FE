@@ -25,7 +25,7 @@ export default function EntireClients() {
   const [deleteClientId, setDeleteClientId] = useState<number | null>(null); // 삭제할 client_id 상태
 
   // 거래처 조회
-  const handleGetQuotations = async () => {
+  const handleGetClients = async () => {
     try {
       const data = await callGet(`/api/admin/clients/all`);
       setResult({ items: data.result });
@@ -36,7 +36,7 @@ export default function EntireClients() {
   };
 
   useEffect(() => {
-    handleGetQuotations();
+    handleGetClients();
   }, []);
 
   // 지역 선택 및 저장
@@ -48,7 +48,7 @@ export default function EntireClients() {
       );
       alert(ALERT_TEXT[1]);
       setIsEditRegion(null);
-      await handleGetQuotations();
+      await handleGetClients();
     } catch (error) {
       console.error(error);
     }
@@ -76,7 +76,7 @@ export default function EntireClients() {
     if (deleteClientId !== null) {
       try {
         await callDelete(`/api/admin/clients/${deleteClientId}/delete`);
-        await handleGetQuotations();
+        await handleGetClients();
       } catch (error) {
         console.error(error);
       } finally {
