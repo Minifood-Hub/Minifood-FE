@@ -19,7 +19,7 @@ function Button({
   buttonText,
   buttonType = 'button',
   className,
-  isDisabled, 
+  isDisabled,
   onClickHandler,
   mouseEnterHandler,
   mouseLeaveHandler,
@@ -30,7 +30,7 @@ function Button({
   return (
     <button
       // eslint-disable-next-line react/button-has-type
-      type={buttonType  }
+      type={buttonType}
       className={`${buttonStyles}`}
       onClick={onClickHandler}
       disabled={isDisabled}
