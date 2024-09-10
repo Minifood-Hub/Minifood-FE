@@ -84,7 +84,7 @@ body {
     @apply w-fit rounded border px-4 h-10;
   }
   .admin-btn {
-    @apply max-w-fit h-fit px-4 bg-primary-3 text-white font-bold whitespace-nowrap;
+    @apply max-w-fit h-fit py-1 px-4 bg-primary-3 text-white font-bold whitespace-nowrap;
   }
 
   .quotation-table-btn {

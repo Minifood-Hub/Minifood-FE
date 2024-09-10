@@ -153,7 +153,7 @@ export default function EntireClients() {
               </div>
               <div className="w-[25%] flex justify-between pr-6">
                 <Input
-                  className="border-2"
+                  className="border-2 max-h-10 mr-2 px-2"
                   type="default"
                   onChange={(e) => setInputComment(e.target.value)}
                   textValue={inputComment}
