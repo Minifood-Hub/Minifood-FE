@@ -15,6 +15,8 @@ interface InputProps {
   onBlur?: () => void;
   onEnterPress?: () => void;
   isDisabled?: boolean;
+  min?: string | number;
+  onClick?: () => void;
 }
 
 function Input({
@@ -30,6 +32,8 @@ function Input({
   onEnterPress,
   onChange,
   isDisabled,
+  min,
+  onClick,
 }: InputProps) {
   const buttonStyles = INPUT_STYLE[type](className || '');
 
@@ -46,6 +50,8 @@ function Input({
       className={buttonStyles}
       accept={accept}
       disabled={isDisabled}
+      min={min}
+      onClick={onClick}
     />
   );
 }

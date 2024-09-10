@@ -1,17 +1,18 @@
 'use client';
 
-import { useCurrentDate } from '@/app/hooks/useCurrentDate';
 import { usePastOrder } from '@/app/hooks/usePastOrder';
 import { useUser } from '@/app/hooks/useUser';
 import { callDelete, callGet, callPost } from '@/app/utils/callApi';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { SetStateAction, useEffect, useState } from 'react';
 import { BUTTON_TEXT, DIALOG_TEXT, ORDER_TEXT } from '../../../constants/order';
 import Button from '../../common/Button';
 import { Dialog } from '../../common/Dialog';
 import ProductList from '../ProductList';
 import QuotationModal from '../quotation/OrderQuotationModal';
 import SearchComponent from '../Search';
+import Input from '../../common/Input';
+import OrderStart from '../OrderStart';
 
 export default function OrderContainer() {
   const router = useRouter();
@@ -24,7 +25,6 @@ export default function OrderContainer() {
     addPastOrder,
     getPastOrder,
   } = usePastOrder();
-  const currentDate = useCurrentDate();
 
   const [orderState, setOrderState] = useState<OrderState>({
     createPastorder: false,
@@ -43,6 +43,7 @@ export default function OrderContainer() {
     BtnText: '',
     onBtnClick: () => {},
   });
+  const [orderDate, setOrderDate] = useState('');
 
   // 견적서 생성
   const createQuotations = async () => {
@@ -50,7 +51,7 @@ export default function OrderContainer() {
     try {
       const body = {
         client_id: user?.result.client_id,
-        created_at: currentDate,
+        created_at: orderDate,
         status: 'CREATED',
       };
       const response = await callPost('/api/order/quotations', body);
@@ -106,7 +107,7 @@ export default function OrderContainer() {
     }
 
     const completeQuotation = async () => {
-      if (currentDate && user?.result?.client_id) {
+      if (user?.result?.client_id) {
         try {
           const id = await createQuotations();
           if (id) {
@@ -119,7 +120,7 @@ export default function OrderContainer() {
     };
     completeQuotation();
     getPastOrder();
-  }, [isLoading, currentDate, user?.result?.client_id, isOrderStarted]);
+  }, [isLoading, user?.result?.client_id, isOrderStarted]);
 
   // 검색 결과 저장
   const handleSearchResultsUpdate = (results: ProductItemProps[]) => {
@@ -202,14 +203,11 @@ export default function OrderContainer() {
   // 주문 시작하기 버튼
   if (!isOrderStarted) {
     return (
-      <div className="flex-center flex-col w-full px-0 self-stretch">
-        <Button
-          className="h-min py-2 admin-btn"
-          type="default"
-          onClickHandler={() => setIsOrderStarted(true)}
-          buttonText={BUTTON_TEXT[4]}
-        />
-      </div>
+      <OrderStart
+        onStartOrder={() => setIsOrderStarted(true)}
+        onDateChange={(date: SetStateAction<string>) => setOrderDate(date)}
+        orderDate={orderDate}
+      />
     );
   }
   return (
@@ -339,7 +337,7 @@ export default function OrderContainer() {
             setOrderState((prev) => ({ ...prev, showQuot: false }));
           }}
           quotationId={quotationId}
-          currentDate={currentDate}
+          currentDate={orderDate}
         />
       )}
     </section>

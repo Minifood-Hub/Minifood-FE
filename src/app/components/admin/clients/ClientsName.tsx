@@ -26,7 +26,7 @@ export default function ClientsName() {
   const [deleteClientId, setDeleteClientId] = useState<number | null>(null); // 삭제할 client_id 상태
 
   // 거래처 조회
-  const handleGetQuotations = async () => {
+  const handleGetClients = async () => {
     if (!name) {
       alert(ALERT_TEXT[0]);
       return;
@@ -49,7 +49,7 @@ export default function ClientsName() {
       );
       alert(ALERT_TEXT[1]);
       setIsEditRegion(null);
-      await handleGetQuotations();
+      await handleGetClients();
     } catch (error) {
       console.error(error);
     }
@@ -77,7 +77,7 @@ export default function ClientsName() {
     if (deleteClientId !== null) {
       try {
         await callDelete(`/api/admin/clients/${deleteClientId}/delete`);
-        await handleGetQuotations();
+        await handleGetClients();
       } catch (error) {
         console.error(error);
       } finally {
@@ -207,7 +207,7 @@ export default function ClientsName() {
           className="admin-btn"
           buttonText={BTN_TEXT[4]}
           type="default"
-          onClickHandler={handleGetQuotations}
+          onClickHandler={handleGetClients}
         />
       </div>
       <div className="w-full">{renderTable()}</div>

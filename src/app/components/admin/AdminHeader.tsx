@@ -5,25 +5,34 @@ import { useUser } from '@/app/hooks/useUser';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 export default function AdminHeader({ isActive }: AdminHeaderProps) {
   const router = useRouter();
   const { user } = useUser();
+  const [isAllow, setIsAllow] = useState(false);
 
   useEffect(() => {
-    if (
-      user?.detail === 'Not authenticated' ||
-      (user?.result && user.result.is_admin === false)
-    ) {
-      alert(ALERT_TEXT[6]);
-      router.push('/');
+    if (user) {
+      if (
+        user?.detail === 'Not authenticated' ||
+        (user?.result && user.result.is_admin === false)
+      ) {
+        alert(ALERT_TEXT[6]);
+        router.push('/');
+      } else {
+        setIsAllow(true);
+      }
     }
   }, [user, router]);
 
   const handleActiveChange = (page: string) => {
     router.push(`?page=${page}`);
   };
+
+  if (!isAllow) {
+    return <div className="bg-white h-[2160px]" />;
+  }
 
   return (
     <header className="bg-gray-0 px-48 py-4 flex justify-between items-center">

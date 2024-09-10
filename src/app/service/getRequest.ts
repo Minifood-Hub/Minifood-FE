@@ -127,6 +127,12 @@ export const getQuotationDetail = async (quotationId: string, req: Request) => {
 };
 
 // ===== 관리자 =====
+// 모든 거래처 조회
+export const getAdminClientAll = async (req: Request) => {
+  const url = `${SERVER_URL}/api/v1/clients/all?_t=${Date.now()}`;
+  return getRequest(url, req);
+};
+
 // 거래처 명으로 조회
 export const getAdminClientName = async (name: string, req: Request) => {
   const url = `${SERVER_URL}/api/v1/clients/name/${name}?_t=${Date.now()}`;

@@ -29,7 +29,7 @@ function KakaoAuthContent() {
         .then((data) => {
           if (data.access_token) {
             // 서버로부터 받은 액세스 토큰 저장
-            setTokens(data.access_token);
+            setTokens(data.access_token, data.refresh_token);
 
             fetchUser();
             router.push('/');

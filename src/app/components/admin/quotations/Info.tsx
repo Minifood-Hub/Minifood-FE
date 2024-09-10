@@ -7,11 +7,11 @@ import {
 } from '@/app/constants/admin';
 import { callGet, callGetBinary } from '@/app/utils/callApi';
 import { useState } from 'react';
-import Input from '../../common/Input';
 import Button from '../../common/Button';
 import { formatPrice } from '@/app/utils/formatPrice';
 import { formatDate } from '@/app/utils/date';
 import QuotationModal from '../../quotation/modal/view/QuotationModal';
+import ExtractAll from '../../order/ExtractAll';
 
 export default function QuotationInfo() {
   const [startDate, setStartDate] = useState('');
@@ -25,15 +25,19 @@ export default function QuotationInfo() {
   const [selectedId, setSelectedId] = useState<number>(0);
 
   const handleGetQuotations = async () => {
-    if (!startDate || !endDate || !query) {
+    if (!startDate || !endDate) {
       alert(ALERT_TEXT[0]);
       return;
     }
 
     try {
+      const queryString = query
+        ? `start=${startDate}&end=${endDate}&query=${query}`
+        : `start=${startDate}&end=${endDate}`;
+
       const data = await callGet(
         `/api/admin/quotations/search/info`,
-        `start=${startDate}&end=${endDate}&query=${query}`,
+        queryString,
       );
       setResult({ items: data.result });
     } catch (error) {
@@ -49,17 +53,6 @@ export default function QuotationInfo() {
     }
     try {
       await callGetBinary(`/api/admin/quotations/extract/${quotation_id}`);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const handleExtractTodayQuotation = async () => {
-    try {
-      await callGetBinary(
-        `/api/admin/quotations/extracts/today`,
-        `input_date=${endDate}`,
-      );
     } catch (error) {
       console.error(error);
     }
@@ -121,47 +114,46 @@ export default function QuotationInfo() {
   };
 
   return (
-    <>
-      <div className="flex flex-col gap-4 border-2 p-8">
-        <div className="flex w-full gap-12">
-          <div className="flex gap-4 items-center">
-            <p className="whitespace-nowrap">{INPUT_TEXT[0]}</p>
-            <Input
-              name="startDate"
-              className="admin-input"
-              inputType="date"
-              type="default"
-              onChange={(e) => setStartDate(e.target.value)}
-              textValue={startDate}
-              placeholder={INPUT_TEXT[0]}
-            />
-          </div>
+    <div className="flex flex-col gap-4 border-2 p-8">
+      <ExtractAll />
 
-          <div className="flex gap-4 items-center">
-            <p className="whitespace-nowrap">{INPUT_TEXT[1]}</p>
-            <Input
-              name="endDate"
-              className="admin-input"
-              inputType="date"
-              type="default"
-              onChange={(e) => setEndDate(e.target.value)}
-              textValue={endDate}
-              placeholder={INPUT_TEXT[1]}
-            />
-          </div>
-
+      <div className="flex  items-center flex-col lg:flex-row gap-2 lg:gap-8">
+        <p className="font-bold text-lg break-words min-w-[80px]">
+          견적서 검색하기:
+        </p>
+        <div className="flex gap-4 items-center">
+          <p className="whitespace-nowrap">{INPUT_TEXT[0]}</p>
+          <input
+            className="w-40 h-10 border rounded px-4"
+            type="date"
+            onChange={(e) => setStartDate(e.target.value)}
+            onClick={(e) => (e.target as HTMLInputElement).showPicker()}
+            value={startDate}
+            placeholder={INPUT_TEXT[0]}
+          />
+        </div>
+        <div className="flex gap-4 items-center">
+          <p className="whitespace-nowrap">{INPUT_TEXT[1]}</p>
+          <input
+            className="w-40 h-10 border rounded px-4"
+            type="date"
+            onChange={(e) => setEndDate(e.target.value)}
+            onClick={(e) => (e.target as HTMLInputElement).showPicker()}
+            value={endDate}
+            placeholder={INPUT_TEXT[1]}
+          />
+        </div>
+        <div className="flex items-center gap-4">
           <div className="flex gap-4 items-center">
             <p className="whitespace-nowrap">{INPUT_TEXT[3]}</p>
-            <Input
-              name="query"
+            <input
               className="admin-input"
-              type="default"
+              type="text"
               onChange={(e) => setQuery(e.target.value)}
-              textValue={query}
+              value={query}
               placeholder={INPUT_TEXT[3]}
             />
           </div>
-
           <Button
             className="admin-btn"
             buttonText={BTN_TEXT[4]}
@@ -169,20 +161,12 @@ export default function QuotationInfo() {
             onClickHandler={handleGetQuotations}
           />
         </div>
-        <div className="w-full">{renderTable()}</div>
       </div>
-      <div className="flex items-center gap-4 justify-end pt-8">
-        <p>{INPUT_TEXT[8]}</p>
-        <Button
-          className="text-white font-bold max-w-fit px-8 py-2 self-end bg-primary-3"
-          buttonText={BTN_TEXT[0]}
-          type="default"
-          onClickHandler={handleExtractTodayQuotation}
-        />
-      </div>
+
+      <div className="w-full">{renderTable()}</div>
       {showQuote && (
         <QuotationModal closeModal={handleCloseQuote} id={selectedId} isAdmin />
       )}
-    </>
+    </div>
   );
 }

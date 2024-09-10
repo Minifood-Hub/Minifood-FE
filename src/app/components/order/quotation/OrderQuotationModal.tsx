@@ -20,6 +20,7 @@ export default function QuotationModal({
   QuotationModalData,
   closeModal,
   quotationId,
+  currentDate,
 }: QuotationModalProps) {
   const { user } = useUser();
   const router = useRouter();
@@ -33,8 +34,41 @@ export default function QuotationModal({
   const [dialog, setDialog] = useState({
     open: false,
     topText: '',
+    btnText: '',
     onClick: () => {},
+    isTwoBtn: false,
+    onSubBtnClick: () => {},
   });
+
+  // 다이얼로그 상태 초기화 함수
+  const resetDialog = () => {
+    setDialog({
+      open: false,
+      topText: '',
+      onClick: () => {},
+      isTwoBtn: false,
+      onSubBtnClick: () => {},
+      btnText: '',
+    });
+  };
+
+  // 다이얼로그 열기 함수
+  const openDialog = (
+    topText: string,
+    btnText: string,
+    onClick: () => void,
+    isTwoBtn = false,
+    onSubBtnClick = () => {},
+  ) => {
+    setDialog({
+      open: true,
+      topText,
+      btnText,
+      onClick,
+      isTwoBtn,
+      onSubBtnClick,
+    });
+  };
 
   // 견적서 합계 금액 업데이트(관리자에서 조회를 위해)
   const updateTotal = async (quotation_id: string) => {
@@ -98,18 +132,23 @@ export default function QuotationModal({
       await patchParticulars();
       await patchConfirm();
 
-      setDialog((prev) => ({
-        ...prev,
-        open: true,
-        topText: DIALOG_TEXT[1],
-        onClick: () => {
-          setDialog({ open: false, topText: '', onClick: () => {} });
-          router.push('/quotation');
-        },
-      }));
+      openDialog(DIALOG_TEXT[1], BUTTON_TEXT[3], () => {
+        resetDialog();
+        router.push('/quotation');
+      });
     } catch (error) {
       console.error('견적서 확정 중 오류 발생 : ', error);
     }
+  };
+
+  const handleConfirmClick = () => {
+    openDialog(
+      DIALOG_TEXT[7],
+      BUTTON_TEXT[5],
+      handleConfirmQuotation,
+      true,
+      resetDialog,
+    );
   };
 
   return (
@@ -150,7 +189,10 @@ export default function QuotationModal({
                     </div>
                   </div>
                 </div>
-                <QuotationTable quotationInfo={QuotationModalData} />
+                <QuotationTable
+                  currentDate={currentDate}
+                  quotationInfo={QuotationModalData}
+                />
               </div>
             </div>
 
@@ -174,7 +216,7 @@ export default function QuotationModal({
                 onClickHandler={closeModal}
               />
               <Button
-                onClickHandler={handleConfirmQuotation}
+                onClickHandler={handleConfirmClick}
                 buttonText={BUTTON_TEXT[2]}
                 type="default"
                 className="flex-center py-3 px-6 gap-[10px] rounded border bg-primary-3 font-normal text-white"
@@ -184,8 +226,10 @@ export default function QuotationModal({
             {dialog.open && (
               <Dialog
                 topText={dialog.topText}
-                BtnText={BUTTON_TEXT[3]}
+                BtnText={dialog.btnText}
                 onBtnClick={dialog.onClick}
+                isTwoButton={dialog.isTwoBtn}
+                onSubBtnClick={dialog.onSubBtnClick}
               />
             )}
           </>

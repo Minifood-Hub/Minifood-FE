@@ -4,9 +4,10 @@ import { useState } from 'react';
 import { OPTION_TEXT } from '@/app/constants/admin';
 import ClientsName from '../clients/ClientsName';
 import ClientsRegion from '../clients/ClientsRegion';
+import EntireClients from '../clients/EntireClients';
 
 export default function ClientContainer() {
-  const [state, setState] = useState('clientsName');
+  const [state, setState] = useState('clientsAll');
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { value } = e.target;
@@ -15,6 +16,8 @@ export default function ClientContainer() {
 
   const renderComponent = () => {
     switch (state) {
+      case 'clientsAll':
+        return <EntireClients />;
       case 'clientsName':
         return <ClientsName />;
       case 'clientsRegion':
@@ -33,6 +36,7 @@ export default function ClientContainer() {
           onChange={handleSelectChange}
           value={state}
         >
+          <option value="clientsAll">{OPTION_TEXT[8]}</option>
           <option value="clientsName">{OPTION_TEXT[0]}</option>
           <option value="clientsRegion">{OPTION_TEXT[1]}</option>
         </select>

@@ -7,14 +7,12 @@ interface QuotationTableProps {
   quotationInfo: QuotationInfoTypes;
   isAdmin?: boolean;
   isPdfGenerating?: boolean;
-  totalQuantity?: number;
 }
 
 const QuotationTable = ({
   quotationInfo,
   isAdmin,
   isPdfGenerating,
-  totalQuantity,
 }: QuotationTableProps) => {
   let total = 0;
   quotationInfo.products.forEach((product) => {

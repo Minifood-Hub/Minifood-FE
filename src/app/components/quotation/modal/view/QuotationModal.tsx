@@ -19,24 +19,50 @@ interface QuotationModalProps {
 const QuotationModal = ({ closeModal, id, isAdmin }: QuotationModalProps) => {
   const [detailData, setDetailData] = useState<QuotationInfoTypes | null>(null);
   const [isPdfGenerating, setIsPdfGenerating] = useState(false);
-  const [totalQuantity, setTotalQuantity] = useState(0);
 
   const [dialog, setDialog] = useState({
     open: false,
     topText: '',
+    btnText: '',
     onClick: () => {},
+    isTwoBtn: false,
+    onSubBtnClick: () => {},
   });
+
+  // 다이얼로그 상태 초기화 함수
+  const resetDialog = () => {
+    setDialog({
+      open: false,
+      topText: '',
+      onClick: () => {},
+      isTwoBtn: false,
+      onSubBtnClick: () => {},
+      btnText: '',
+    });
+  };
+
+  // 다이얼로그 열기 함수
+  const openDialog = (
+    topText: string,
+    btnText: string,
+    onClick: () => void,
+    isTwoBtn = false,
+    onSubBtnClick = () => {},
+  ) => {
+    setDialog({
+      open: true,
+      topText,
+      btnText,
+      onClick,
+      isTwoBtn,
+      onSubBtnClick,
+    });
+  };
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await callGet(`/api/quotation/detail?id=${id}`);
       setDetailData(data.result);
-
-      const total = data.result.products.reduce(
-        (sum: number, product: { quantity: number }) => sum + product.quantity,
-        0,
-      );
-      setTotalQuantity(total);
     };
     fetchData();
   }, []);
@@ -75,18 +101,23 @@ const QuotationModal = ({ closeModal, id, isAdmin }: QuotationModalProps) => {
     try {
       await patchConfirm();
 
-      setDialog((prev) => ({
-        ...prev,
-        open: true,
-        topText: DIALOG_TEXT[1],
-        onClick: () => {
-          setDialog({ open: false, topText: '', onClick: () => {} });
-          closeModal();
-        },
-      }));
+      openDialog(DIALOG_TEXT[1], BUTTON_TEXT[3], () => {
+        resetDialog();
+        closeModal();
+      });
     } catch (error) {
       console.error('견적서 확정 중 오류 발생 : ', error);
     }
+  };
+
+  const handleConfirmClick = () => {
+    openDialog(
+      DIALOG_TEXT[7],
+      BUTTON_TEXT[5],
+      handleConfirmQuotation,
+      true,
+      resetDialog,
+    );
   };
 
   return (
@@ -121,7 +152,6 @@ const QuotationModal = ({ closeModal, id, isAdmin }: QuotationModalProps) => {
               quotationInfo={detailData}
               isAdmin={isAdmin}
               isPdfGenerating={isPdfGenerating}
-              totalQuantity={totalQuantity}
             />
           )}
         </div>
@@ -147,7 +177,7 @@ const QuotationModal = ({ closeModal, id, isAdmin }: QuotationModalProps) => {
                 <Button
                   buttonText="주문확정"
                   type="quoteOrder"
-                  onClickHandler={handleConfirmQuotation}
+                  onClickHandler={handleConfirmClick}
                 />
               )}
             </div>
@@ -158,8 +188,10 @@ const QuotationModal = ({ closeModal, id, isAdmin }: QuotationModalProps) => {
       {dialog.open && (
         <Dialog
           topText={dialog.topText}
-          BtnText={BUTTON_TEXT[3]}
+          BtnText={dialog.btnText}
           onBtnClick={dialog.onClick}
+          isTwoButton={dialog.isTwoBtn}
+          onSubBtnClick={dialog.onSubBtnClick}
         />
       )}
     </div>

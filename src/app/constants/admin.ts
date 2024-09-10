@@ -9,6 +9,7 @@ export const OPTION_TEXT = [
   '물품 추가 생성', // 5
   '야채 물품 가격 직접 변경',
   '야채 물품 가격 엑셀 파일로 변경',
+  '전체 거래처 조회',
 ];
 
 export const INPUT_TEXT = [
@@ -20,7 +21,7 @@ export const INPUT_TEXT = [
   '제목', // 5
   '내용',
   '공지사항 id',
-  '종료 날짜의 모든 견적서 excel 파일로 추출',
+  '선택 날짜의 모든 견적서 excel 파일로 추출: ',
   'FAQ id',
 ];
 
@@ -34,6 +35,7 @@ export const BTN_TEXT = [
   '저장',
   '작성',
   '조회',
+  '추출',
 ];
 
 export const TABLE_TEXT = [
