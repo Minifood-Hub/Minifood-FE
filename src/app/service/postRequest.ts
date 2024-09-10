@@ -61,6 +61,17 @@ export const postLogin = async (signInContents: any) => {
   }
 };
 
+// 액세스 토큰 재발급
+export const postRefreshToken = async (refresh_token: string) => {
+  try {
+    const url = `${SERVER_URL}/api/v1/token/refresh?refresh_token=${encodeURIComponent(refresh_token)}`;
+    return await postRequest(url, null);
+  } catch (error) {
+    console.error('에러 :', error);
+    throw new Error('postRefreshToken 액세스 토큰 재발급 에러 발생');
+  }
+};
+
 // user 가입
 export const postSignUp = async (signUpContents: any) => {
   try {
