@@ -1,12 +1,16 @@
 import { parse } from 'cookie';
 
-export const setTokens = (accessToken: string) => {
+export const setTokens = (accessToken: string, refreshToken: string) => {
   try {
     const accessTokenExpires = new Date(Date.now() + 1000 * 60 * 30);
     const accessTokenExpiresUTC = accessTokenExpires.toUTCString();
 
+    const refreshTokenExpires = new Date(Date.now() + 1000 * 60 * 120);
+    const refreshTokenExpiresUTC = refreshTokenExpires.toUTCString();
+
     // secure 속성을 추가하여 HTTPS 연결에서만 전송되도록
     document.cookie = `accessToken=${accessToken}; expires=${accessTokenExpiresUTC}; path=/; secure;`;
+    document.cookie = `refreshToken=${refreshToken}; expires=${refreshTokenExpiresUTC}; path=/; secure;`;
 
     setTimeout(
       () => {

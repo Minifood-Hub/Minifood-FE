@@ -50,8 +50,12 @@ export default function SignInComponents() {
 
     try {
       const responseData = await postLogin({ email, pwd });
+
       if (responseData.isSuccess) {
-        setTokens(responseData.result.access_token);
+        setTokens(
+          responseData.result.access_token,
+          responseData.result.refresh_token,
+        );
         setErrorState('');
         await fetchUser();
         router.push('/');
