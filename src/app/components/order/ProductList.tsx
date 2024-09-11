@@ -13,6 +13,7 @@ export default function ProductList({
   onAddItem,
   onRemoveItem,
   onCountChange,
+  isNew,
 }: ProductListProps) {
   return (
     <div className="flex w-full flex-col h-[350px] items-start self-stretch border-[1px] border-gray-1 bg-white">
@@ -76,6 +77,7 @@ export default function ProductList({
             onRemoveItem={onRemoveItem}
             onCountChange={onCountChange}
             isSearchResult={isSearchResult}
+            isNew={isNew}
           />
         ))}
       </div>

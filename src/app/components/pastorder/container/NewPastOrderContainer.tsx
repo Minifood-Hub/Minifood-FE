@@ -96,12 +96,12 @@ export default function NewPastOrderContainer() {
               />
             </div>
             <ProductList
+              isNew
               items={searchResults}
               isSearchResult
               addedItems={addedItems}
               onAddItem={handleAddItem}
               onRemoveItem={handleRemoveItem}
-              onCountChange={handleCountChange}
             />
           </div>
           <ProductList

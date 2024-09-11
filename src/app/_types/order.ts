@@ -57,6 +57,7 @@ interface ProductItemProps extends QuotationItemType {
   onAddItem?: (item: ProductItemProps) => void;
   onRemoveItem?: (id: string | number) => void;
   onCountChange?: (id: string | number, value: string) => void;
+  isNew?: boolean;
 }
 
 interface ProductListProps {
@@ -66,6 +67,7 @@ interface ProductListProps {
   onAddItem?: (item: ProductItemProps) => void;
   onRemoveItem: (id: string | number) => void;
   onCountChange?: (id: string | number, value: string) => void;
+  isNew?: boolean;
 }
 
 interface QuotationModalProps {
