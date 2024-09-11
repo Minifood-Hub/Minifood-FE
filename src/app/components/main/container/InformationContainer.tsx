@@ -7,7 +7,12 @@ function InformationContainer() {
   return (
     <div className="flex w-full flex-col items-center">
       <div className="relative h-[360px] w-full mb-6">
-        <Image src="/Images/mainImage.jpg" alt="배경" fill />
+        <Image
+          src="/Images/maintest2.jpg"
+          alt="배경"
+          layout="fill"
+          objectFit="cover"
+        />
       </div>
       <div className=" w-[1050px] flex justify-between">
         <Announcement />

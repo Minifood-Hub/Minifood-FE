@@ -13,6 +13,9 @@ const config: Config = {
       lg: '882px',
     },
     extend: {
+      fontFamily: {
+        pretendard: ['var(--font-pretendard)'],
+      },
       colors: {
         gray: {
           0: '#F4F4F4',

@@ -1,5 +1,5 @@
-import Footer from '../components/common/layout/Footer';
 import Header from '../components/common/layout/Header';
+import Footer from '../components/common/layout/Footer';
 import MainContainer from '../components/main/container/MainContainer';
 
 export default function MainPage() {
