@@ -109,7 +109,6 @@ export default function EditQuoteContainer({ id }: EditQuoteContainerProps) {
               onCountChange={handleCountChange}
             />
           </div>
-
           <ProductList
             items={addedItems}
             isSearchResult={false}

@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Button from '../../../common/Button';
 import QuotationTable from '../view/QuotationTable';
+import { QUOTATION_ALERT } from '@/app/constants/alert';
 
 export default function EditQuotationModal({
   QuotationModalData,
@@ -92,6 +93,7 @@ export default function EditQuotationModal({
     await patchParticulars();
     await patchConfirm();
     router.push('/quotation');
+    alert(QUOTATION_ALERT[0]);
     closeModal();
   };
 

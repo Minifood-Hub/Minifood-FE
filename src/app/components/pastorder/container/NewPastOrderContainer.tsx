@@ -9,6 +9,7 @@ import Button from '../../common/Button';
 import { Dialog } from '../../common/Dialog';
 import ProductList from '../../order/ProductList';
 import SearchComponent from '../../order/Search';
+import { PASTORDER_ALERT } from '@/app/constants/alert';
 
 export default function NewPastOrderContainer() {
   const router = useRouter();
@@ -63,6 +64,7 @@ export default function NewPastOrderContainer() {
       pastorderName: '',
     }));
     router.push('/pastorder');
+    alert(PASTORDER_ALERT[0]);
   };
 
   // 상품 추가

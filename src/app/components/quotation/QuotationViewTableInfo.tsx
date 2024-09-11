@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import Button from '../common/Button';
 import DeleteQuotationModal from './modal/edit/DeleteQuotationModal';
 import QuotationModal from './modal/view/QuotationModal';
+import { QUOTATION_ALERT } from '@/app/constants/alert';
 
 interface QuotationViewTableInfoProps {
   quoteView: ItemsTypes;
@@ -23,11 +24,14 @@ const QuotationViewTableInfo = ({
     openModal: openDeleteModal,
     closeModal: closeDeleteModal,
   } = useModal(false);
+
   const completeStatus =
     quoteView.status === 'COMPLETED' ? 'bg-[#24C063]' : 'bg-[#d9d9d9]';
+
   const deleteQuotation = (id: number) => {
     callDelete(`/api/quotation/delete?id=${id}`);
     window.location.reload();
+    alert(QUOTATION_ALERT[1]);
   };
 
   return (

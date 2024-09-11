@@ -8,6 +8,7 @@ import Button from '../common/Button';
 import DeletePastorderModal from './modal/DeletePastorderModal';
 import PastOrderDetail from './PastOrderDetail';
 import PastOrderEdit from './PastOrderEdit';
+import { PASTORDER_ALERT } from '@/app/constants/alert';
 
 interface PastOrderTableInfoProps {
   pastorder: PastOrder;
@@ -29,6 +30,7 @@ const PastOrderTableInfo = ({ pastorder, index }: PastOrderTableInfoProps) => {
       },
     );
     setIsEdit(false);
+    alert(PASTORDER_ALERT[1]);
   };
 
   const deletePastOrder = (id: number) => {
