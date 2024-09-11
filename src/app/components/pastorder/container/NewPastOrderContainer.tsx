@@ -79,13 +79,6 @@ export default function NewPastOrderContainer() {
     );
   };
 
-  // 개수 변경 함수
-  const handleCountChange = (id: string | number, count: string) => {
-    setAddedItems((prevItems) =>
-      prevItems.map((item) => (item.id === id ? { ...item, count } : item)),
-    );
-  };
-
   // 주문 시작하기 버튼
   return (
     <section className="flex-center flex-col w-full px-0 py-[100px] gap-[10px] self-stretch">
