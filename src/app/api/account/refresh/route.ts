@@ -6,7 +6,7 @@ import { NextResponse } from 'next/server';
 export async function POST(req: Request): Promise<NextResponse> {
   try {
     const body = await req.json();
-    const response = await postRefreshToken(body.refreshToken);
+    const response = await postRefreshToken(body.refreshToken, req);
 
     return NextResponse.json(response, { status: 200 });
   } catch (error) {

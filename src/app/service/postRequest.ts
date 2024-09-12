@@ -62,10 +62,31 @@ export const postLogin = async (signInContents: any) => {
 };
 
 // 액세스 토큰 재발급
-export const postRefreshToken = async (refresh_token: string) => {
+export const postRefreshToken = async (refresh_token: string, req: Request) => {
   try {
+    let token;
+    if (req) {
+      token = getCookie(req, 'accessToken');
+    }
+
     const url = `${SERVER_URL}/api/v1/token/refresh?refresh_token=${encodeURIComponent(refresh_token)}`;
-    return await postRequest(url, null);
+
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...(token && { 'access-token': token }),
+      },
+    });
+
+    // 응답 상태 확인
+    if (!response.ok) {
+      throw new Error('액세스 토큰 재발급 요청 실패');
+    }
+
+    const responseData = await response.json();
+
+    return responseData;
   } catch (error) {
     console.error('에러 :', error);
     throw new Error('postRefreshToken 액세스 토큰 재발급 에러 발생');

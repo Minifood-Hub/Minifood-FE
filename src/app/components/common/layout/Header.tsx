@@ -40,7 +40,8 @@ function Header() {
 
       if (response.ok) {
         const responseData = await response.json();
-        const newAccessToken = responseData.result;
+        console.log(responseData.result.access_token);
+        const newAccessToken = responseData.result.access_token;
 
         // 새로운 액세스 토큰을 쿠키에 저장
         if (refreshToken) {
