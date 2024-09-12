@@ -40,12 +40,12 @@ function Header() {
 
       if (response.ok) {
         const responseData = await response.json();
-        console.log(responseData.result.access_token);
         const newAccessToken = responseData.result.access_token;
+        const newAccessRefreshToken = responseData.result.refresh_token;
 
         // 새로운 액세스 토큰을 쿠키에 저장
         if (refreshToken) {
-          setTokens(newAccessToken, refreshToken);
+          setTokens(newAccessToken, newAccessRefreshToken);
         }
 
         alert('세션이 연장되었습니다.');
