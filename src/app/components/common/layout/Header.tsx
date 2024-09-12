@@ -73,11 +73,14 @@ function Header() {
             ))}
           </div>
         </div>
-        <button type="button" onClick={handleExtendSession}>
-          세션 연장
-        </button>
+
         {user && user?.category ? (
-          <ProfileDropDown user={user} logout={handleLogout} />
+          <div className="flex gap-8">
+            <button type="button" onClick={handleExtendSession}>
+              세션 연장
+            </button>
+            <ProfileDropDown user={user} logout={handleLogout} />
+          </div>
         ) : (
           <div className="flex font-normal text-sm">
             {HEADER_SIGNUP_PATH.map((path, i) => (
