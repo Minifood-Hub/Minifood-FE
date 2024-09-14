@@ -25,14 +25,16 @@
 
 .swiper-button-next {
   right: 145px;
-  top: 155px;
-  background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white" viewBox="0 0 32 32"><path d="M16.8 16L10.6667 9.86667L12.5333 8L20.5333 16L12.5333 24L10.6667 22.1333L16.8 16Z"></path></svg>');
+  top: 172px;
+  background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="11" height="16" fill="white" viewBox="0 0 11 16"><path d="M6.80008 8L0.666748 1.86667L2.53341 0L10.5334 8L2.53341 16L0.666748 14.1333L6.80008 8Z"></path></svg>');
   background-position: center;
+  background-repeat: no-repeat;
 }
 
 .swiper-button-prev {
   left: 145px;
-  top: 155px;
-  background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white" viewBox="0 0 32 32"><path d="M15.2 16L21.3334 22.1333L19.4667 24L11.4667 16L19.4667 8L21.3334 9.86667L15.2 16Z"></path></svg>');
+  top: 172px;
+  background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="11" height="16" fill="white" viewBox="0 0 11 16"><path d="M4.20004 8L10.3334 14.1333L8.46671 16L0.466707 8L8.46671 0L10.3334 1.86667L4.20004 8Z"></path></svg>');
   background-position: center;
+  background-repeat: no-repeat;
 }
