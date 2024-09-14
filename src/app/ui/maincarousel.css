@@ -1,0 +1,12 @@
+.swiper {
+  width: 100%;
+}
+
+.swiper-wrapper {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.swiper .swiper-pagination-bullet {
+  background-color: rgb(26, 163, 8);
+}
