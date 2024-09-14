@@ -4,7 +4,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-import { Autoplay, Navigation, Pagination } from 'swiper/modules';
+import { Navigation, Pagination } from 'swiper/modules';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -13,13 +13,14 @@ import MainCard from './MainCard';
 
 function MainCarousel() {
   return (
-    <div className="w-full">
+    <div className="w-full relative">
       <Swiper
         grabCursor
         slideToClickedSlide
-        modules={[Pagination, Autoplay, Navigation]}
+        modules={[Pagination, Navigation]}
         slidesPerView={1}
-        autoplay={{ delay: 2000, disableOnInteraction: false }}
+        // autoplay={{ delay: 3000, disableOnInteraction: false }}
+        navigation
       >
         {CUSTOM_MAINCARD_TEXT.map((card) => (
           <SwiperSlide key={card.id}>

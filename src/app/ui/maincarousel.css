@@ -7,6 +7,32 @@
   padding-bottom: 0px;
 }
 
-.swiper .swiper-pagination-bullet {
-  background-color: rgb(26, 163, 8);
+.swiper-button-next,
+.swiper-button-prev {
+  width: 50px;
+  height: 50px;
+  background-color: rgba(22, 22, 22, 0.15);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  content: none; /* 기본 화살표 제거 */
+}
+
+.swiper-button-next {
+  right: 145px;
+  top: 155px;
+  background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white" viewBox="0 0 32 32"><path d="M16.8 16L10.6667 9.86667L12.5333 8L20.5333 16L12.5333 24L10.6667 22.1333L16.8 16Z"></path></svg>');
+  background-position: center;
+}
+
+.swiper-button-prev {
+  left: 145px;
+  top: 155px;
+  background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white" viewBox="0 0 32 32"><path d="M15.2 16L21.3334 22.1333L19.4667 24L11.4667 16L19.4667 8L21.3334 9.86667L15.2 16Z"></path></svg>');
+  background-position: center;
 }
