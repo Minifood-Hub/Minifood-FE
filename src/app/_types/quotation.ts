@@ -35,6 +35,7 @@ interface ItemsTypes {
   status: string;
   created_at: string;
   updated_at: string;
+  input_date: string;
 }
 
 interface QuotationTableInfoTypes {
