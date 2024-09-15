@@ -11,22 +11,20 @@ function MainCard3() {
         <p className="font-bold">{CUSTOM_MAINCARD_TEXT[0].secondlinre}</p>
       </div>
 
-      <div className="w-[400px] h-[340px] relative">
-        <div className="absolute w-[430px] h-[360px]">
+      <div className="w-[430px] h-[360px] relative flex-center">
+        <div className="relative w-[400px] h-[340px]">
           <Image
             src="/Images/banner3.png"
             alt="blurred banner"
             layout="fill"
-            objectFit="contain"
-            className="blur-xl opacity"
+            className="z-10"
           />
         </div>
         <Image
           src="/Images/banner3.png"
           alt="banner"
           layout="fill"
-          objectFit="contain"
-          className="z-10"
+          className="blur-lg opacity"
         />
       </div>
     </div>

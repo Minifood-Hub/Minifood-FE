@@ -10,13 +10,22 @@ function MainCard4() {
         </p>
         <p className="font-bold">{CUSTOM_MAINCARD_TEXT[1].secondlinre}</p>
       </div>
-      <Image
-        src="/Images/banner5.png"
-        alt="banner"
-        className="rounded-full"
-        width={400}
-        height={320}
-      />
+      <div className="relative h-[360px] flex-center">
+        <div className="relative w-[360px] h-[360px] ">
+          <Image
+            src="/Images/banner5.png"
+            alt="blurred banner"
+            layout="fill"
+            className="z-10 rounded-full"
+          />
+        </div>
+        <Image
+          src="/Images/banner5.png"
+          alt="banner"
+          layout="fill"
+          className="blur-sm opacity rounded-full"
+        />
+      </div>
     </div>
   );
 }
