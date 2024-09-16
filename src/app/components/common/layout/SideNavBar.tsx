@@ -43,7 +43,7 @@ export default function SideNavBar({ selected }: SideNavBarProps) {
 
         // 새로운 액세스 토큰을 쿠키에 저장
         if (refreshToken) {
-          setTokens(newAccessToken, newAccessRefreshToken);
+          setTokens(newAccessToken, newAccessRefreshToken, true);
         }
 
         alert('세션이 연장되었습니다.');

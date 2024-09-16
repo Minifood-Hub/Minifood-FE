@@ -1,25 +1,39 @@
 import { parse } from 'cookie';
 
-export const setTokens = (accessToken: string, refreshToken: string) => {
+let sessionTimeoutId: number | null = null;
+
+const setSessionTimeout = (duration: number) => {
+  if (sessionTimeoutId !== null) {
+    clearTimeout(sessionTimeoutId);
+  }
+
+  sessionTimeoutId = window.setTimeout(() => {
+    alert('세션이 만료되었습니다. 다시 로그인해 주세요.');
+    window.location.href = '/sign-in';
+  }, duration - 5000); // 만료 5초 전에 알림
+};
+
+export const setTokens = (
+  accessToken: string,
+  refreshToken: string,
+  isRefresh: boolean = false,
+) => {
   try {
-    const accessTokenExpires = new Date(Date.now() + 1000 * 60 * 30);
+    const accessTokenExpires = new Date(Date.now() + 1000 * 60 * 30); // 30분
     const accessTokenExpiresUTC = accessTokenExpires.toUTCString();
 
-    const refreshTokenExpires = new Date(Date.now() + 1000 * 60 * 120);
+    const refreshTokenExpires = new Date(Date.now() + 1000 * 60 * 120); // 120분
     const refreshTokenExpiresUTC = refreshTokenExpires.toUTCString();
 
-    // secure 속성을 추가하여 HTTPS 연결에서만 전송되도록
-    document.cookie = `accessToken=${accessToken}; expires=${accessTokenExpiresUTC}; path=/; secure;`;
-    document.cookie = `refreshToken=${refreshToken}; expires=${refreshTokenExpiresUTC}; path=/; secure;`;
+    document.cookie = `accessToken=${accessToken}; expires=${accessTokenExpiresUTC}; path=/; secure; HttpOnly; SameSite=Strict`;
+    document.cookie = `refreshToken=${refreshToken}; expires=${refreshTokenExpiresUTC}; path=/; secure; HttpOnly; SameSite=Strict`;
 
-    setTimeout(
-      () => {
-        alert('세션이 만료되었습니다. 다시 로그인해 주세요.');
-        window.location.href = '/sign-in';
-      },
-      1000 * 60 * 29 + 1000 * 58,
-    ); // 29분 58초
+    const timeoutDuration = isRefresh
+      ? 1000 * 60 * 119 + 1000 * 58
+      : 1000 * 60 * 29 + 1000 * 58;
+    setSessionTimeout(timeoutDuration);
   } catch (error) {
+    console.error('토큰 설정 중 오류 발생:', error);
     throw error;
   }
 };
