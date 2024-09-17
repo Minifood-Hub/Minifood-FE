@@ -1,13 +1,3 @@
-export const MODAL_TEXT = [
-  '주문일자',
-  '상품명',
-  '주문 개수',
-  '총 가격',
-  '사진으로 저장',
-];
-
-export const MODAL_INFO = ['견적서', 'Date', '구매자', '총액'];
-
 export const QUOTATION_VIEW = ['견적서 조회'];
 
 export const QUOTATION_VIEWTYPE = ['전체', '주간', '월간', '날짜'];
@@ -21,7 +11,7 @@ export const QUOTATION_TRANS_VIEWTYPE: Record<string, CheckTypes> = {
 
 export const VIEW_QUOTATION_GRAPH = [
   '번호',
-  '생성일자',
+  '주문일자',
   '견적서 이름',
   '확정 여부',
 ];
