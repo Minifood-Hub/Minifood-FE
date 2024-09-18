@@ -7,7 +7,7 @@ export async function GET(
 ): Promise<NextResponse> {
   try {
     const { quotation_id } = params;
-    const data = await getQuotations(quotation_id);
+    const data = await getQuotations(quotation_id, req);
     return NextResponse.json(data);
   } catch (error) {
     console.error('API Error: ', error);

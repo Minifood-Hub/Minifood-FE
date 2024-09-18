@@ -1,52 +1,89 @@
 'use client';
 
-import { HEADER_TEXT } from '@/app/constants/common';
+import {
+  HEADER_PATH,
+  HEADER_PATH_GUEST,
+  HEADER_SIGNUP,
+  HEADER_SIGNUP_PATH,
+  HEADER_TEXT,
+} from '@/app/constants/common';
 import { useUser } from '@/app/hooks/useUser';
-import { HeaderCartIcon, HeaderHeartIcon } from '@/app/ui/iconPath';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import HeaderSearchBar from '../HeaderSearchBar';
-import Icons from '../Icons';
 import ProfileDropDown from '../ProfileDropDown';
+import { setTokens } from '@/app/utils/setTokens';
 
 function Header() {
   const { user } = useUser();
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     document.cookie = `accessToken=; expires=0; path=/;`;
-    window.location.reload();
+    document.cookie = `refreshToken=; expires=0; path=/;`;
+    window.location.href = '/';
   };
 
-  const isClient = user?.category === 'CLIENT';
-  const isCOMMON = user?.category === 'COMMON';
+  const handleExtendSession = async () => {
+    // 쿠키에서 리프레시 토큰을 가져옴
+    const cookies = document.cookie.split(';');
+    const refreshToken = cookies
+      .find((cookie) => cookie.trim().startsWith('refreshToken='))
+      ?.split('=')[1];
+
+    try {
+      const response = await fetch('/api/account/refresh', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ refreshToken }),
+      });
+
+      if (response.ok) {
+        const responseData = await response.json();
+        const newAccessToken = responseData.result;
+
+        // 새로운 액세스 토큰을 쿠키에 저장
+        if (refreshToken) {
+          setTokens(newAccessToken, refreshToken);
+        }
+
+        alert('세션이 연장되었습니다.');
+      }
+    } catch (error) {
+      console.error('세션 연장 에러:', error);
+      alert('세션 연장 중 오류가 발생했습니다.');
+    }
+  };
+
+  const headerPath = user && user?.category ? HEADER_PATH : HEADER_PATH_GUEST;
 
   return (
     <div className="relative w-full pt-6 bg-white">
-      <header className="relative w-full h-16 flex items-center px-[15%] justify-between">
-        <div className="flex gap-x-2 cursor-pointer text-[#306317] text-2xl font-bold items-center">
-          <Image src="/Images/JMF2.png" width={60} height={48} alt="logo" />
-          <Link href="/">{HEADER_TEXT[0]}</Link>
-        </div>
-        <HeaderSearchBar />
-        {isClient || isCOMMON ? (
-          <div className="flex gap-x-[54px]">
-            <Link href="/">
-              <Icons name={HeaderHeartIcon} hoverFill="#306317" />
-            </Link>
-            <ProfileDropDown user={user} logout={handleLogout} />
-            <Link href="/">
-              <Icons name={HeaderCartIcon} hoverFill="#306317" />
-            </Link>
+      <header className="relative w-full h-16 flex items-center px-[13.5%] justify-between">
+        <div className="flex gap-x-[63.5px] cursor-pointer text-[#333] items-center text-[15px] font-medium">
+          <Link href="/">
+            <Image src="/Images/JMF2.png" width={60} height={48} alt="logo" />
+          </Link>
+          <div className="flex gap-x-[63.5px]">
+            {HEADER_TEXT.map((text, i) => (
+              <Link key={text} href={headerPath[i]}>
+                {text}
+              </Link>
+            ))}
           </div>
+        </div>
+        <button type="button" onClick={handleExtendSession}>
+          세션 연장
+        </button>
+        {user && user?.category ? (
+          <ProfileDropDown user={user} logout={handleLogout} />
         ) : (
-          <div className="flex text-[14px] font-normal">
-            <Link href="/sign-in/sign-up" className="w-[68px]">
-              {HEADER_TEXT[1]}
-            </Link>
-            <Link href="/sign-in" className="w-[68px]">
-              {HEADER_TEXT[2]}
-            </Link>
+          <div className="flex font-normal text-sm">
+            {HEADER_SIGNUP_PATH.map((path, i) => (
+              <Link href={path} key={path} className="w-[68px] text-center">
+                {HEADER_SIGNUP[i]}
+              </Link>
+            ))}
           </div>
         )}
       </header>

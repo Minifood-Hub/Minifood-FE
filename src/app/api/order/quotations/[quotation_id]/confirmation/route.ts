@@ -1,4 +1,5 @@
 import { patchQuotationConfirm } from '@/app/service/patchRequest';
+
 import { NextResponse } from 'next/server';
 
 export async function PATCH(
@@ -8,9 +9,7 @@ export async function PATCH(
   try {
     const { quotation_id } = params;
 
-    const data = await patchQuotationConfirm({
-      quotation_id,
-    });
+    const data = await patchQuotationConfirm(quotation_id, req);
     return NextResponse.json(data);
   } catch (error) {
     console.error('API Error:', error);

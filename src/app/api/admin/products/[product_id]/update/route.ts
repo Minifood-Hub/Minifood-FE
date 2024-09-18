@@ -9,10 +9,9 @@ export async function PUT(
 ): Promise<NextResponse> {
   try {
     const { product_id } = params;
-    console.log(product_id);
     const body = await req.json();
 
-    const response = await putUpdateProducts(body, product_id);
+    const response = await putUpdateProducts(body, product_id, req);
 
     return NextResponse.json(response, { status: 200 });
   } catch (error) {

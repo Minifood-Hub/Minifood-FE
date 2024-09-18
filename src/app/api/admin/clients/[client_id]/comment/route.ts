@@ -12,7 +12,7 @@ export async function PATCH(
     const { searchParams } = new URL(req.url);
     const input_comment = searchParams.get('input_comment') || '';
 
-    const data = await patchAdminClientComment(client_id, input_comment);
+    const data = await patchAdminClientComment(client_id, input_comment, req);
     return NextResponse.json(data);
   } catch (error) {
     console.error('API Error:', error);

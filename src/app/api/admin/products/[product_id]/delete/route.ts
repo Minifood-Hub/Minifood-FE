@@ -9,8 +9,7 @@ export async function DELETE(
 ): Promise<NextResponse> {
   try {
     const { product_id } = params;
-
-    const data = await deleteAdminProducts(product_id);
+    const data = await deleteAdminProducts(product_id, req);
     return NextResponse.json(data);
   } catch (error) {
     return NextResponse.json('Internal Server Error');

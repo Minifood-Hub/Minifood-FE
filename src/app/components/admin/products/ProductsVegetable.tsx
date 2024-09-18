@@ -25,6 +25,9 @@ export default function ProductsVegetable() {
         `/api/admin/products/${productId}/vegetable`,
         `price=${price}`,
       );
+      alert(ALERT_TEXT[7]);
+      setProductId('');
+      setPrice('');
     } catch (error) {
       console.error(error);
     }
@@ -32,13 +35,13 @@ export default function ProductsVegetable() {
   return (
     <div className="flex gap-4 border-2 p-8">
       <div className="flex gap-4 items-center">
-        <p className="whitespace-nowrap">{INPUT_TEXT[9]}</p>
+        <p className="whitespace-nowrap">{INPUT_TEXT[4]}</p>
         <Input
           className="admin-input"
           type="default"
           onChange={(e) => setProductId(e.target.value)}
           textValue={productId}
-          placeholder={INPUT_TEXT[9]}
+          placeholder={INPUT_TEXT[4]}
         />
       </div>
 

@@ -1,4 +1,10 @@
-import { BTN_TEXT, CATEGORY_TEXT, TABLE_TEXT } from '@/app/constants/admin';
+import {
+  ALERT_TEXT,
+  BTN_TEXT,
+  CATEGORY_TEXT,
+  mapCategoryToEnglish,
+  TABLE_TEXT,
+} from '@/app/constants/admin';
 import Button from '../../common/Button';
 import { callPost } from '@/app/utils/callApi';
 import { ChangeEvent, useState } from 'react';
@@ -24,9 +30,30 @@ export default function ProdcutsCreate() {
   };
 
   const handleCreate = async () => {
+    // 사용자가 분류를 선택하지 않았을 경우 업로드를 막음
+    if (inputState.category === CATEGORY_TEXT[0]) {
+      alert('분류를 선택해 주세요.');
+      return;
+    }
+
+    // 카테고리를 영어로 변환
+    const englishCategory = mapCategoryToEnglish[inputState.category];
+
+    const postData = {
+      ...inputState,
+      category: englishCategory,
+    };
+
     try {
-      const response = await callPost(`/api/admin/products/`, inputState);
-      console.log('Response:', response);
+      await callPost(`/api/admin/products`, postData);
+      alert(ALERT_TEXT[10]);
+
+      setInputState({
+        category: '',
+        name: '',
+        unit: '',
+        price: '',
+      });
     } catch (error) {
       console.error(error);
     }
@@ -40,10 +67,11 @@ export default function ProdcutsCreate() {
           onChange={(e) => handleInputChange(e, 'category')}
           value={inputState.category}
         >
-          <option value={CATEGORY_TEXT[0]}>{CATEGORY_TEXT[0]}</option>
-          <option value={CATEGORY_TEXT[1]}>{CATEGORY_TEXT[1]}</option>
-          <option value={CATEGORY_TEXT[2]}>{CATEGORY_TEXT[2]}</option>
-          <option value={CATEGORY_TEXT[3]}>{CATEGORY_TEXT[3]}</option>
+          {CATEGORY_TEXT.map((category, index) => (
+            <option key={index} value={category}>
+              {category}
+            </option>
+          ))}
         </select>
       </div>
 

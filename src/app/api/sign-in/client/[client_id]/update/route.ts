@@ -9,7 +9,7 @@ export async function PUT(
     const { client_id } = params;
     const body = await req.json();
 
-    const response = await putUpdateClient(body, client_id);
+    const response = await putUpdateClient(body, client_id, req);
 
     return NextResponse.json(response, { status: 200 });
   } catch (error) {

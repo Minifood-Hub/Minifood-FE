@@ -14,7 +14,12 @@ export async function GET(
     const page = url.searchParams.get('page') || '';
     const page_size = url.searchParams.get('page_size') || '';
 
-    const data = await getAdminClientQuotations(client_id, page, page_size);
+    const data = await getAdminClientQuotations(
+      client_id,
+      page,
+      page_size,
+      req,
+    );
     return NextResponse.json(data);
   } catch (error) {
     console.error('API Error:', error);

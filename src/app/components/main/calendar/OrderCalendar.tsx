@@ -8,9 +8,12 @@ import {
 import '@/app/ui/Calendar.css';
 import CalendarNext from '@/app/ui/Icons/CalendarNext';
 import CalendarPrev from '@/app/ui/Icons/CalendarPrev';
+import { callGet } from '@/app/utils/callApi';
+import clsx from 'clsx';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
+import CalendarStatus from './CalendarStatus';
 
 interface OrderCalendarProps {
   clientType: string;
@@ -18,6 +21,8 @@ interface OrderCalendarProps {
 
 const OrderCalendar = ({ clientType }: OrderCalendarProps) => {
   const [today, setToday] = useState<Date | null>(null);
+  const [daily, setDaily] = useState<DailyQuotationTypes[]>([]);
+
   const path =
     clientType === 'COMMON'
       ? '/order'
@@ -27,10 +32,53 @@ const OrderCalendar = ({ clientType }: OrderCalendarProps) => {
 
   useEffect(() => {
     setToday(new Date());
+    const fetchData = async () => {
+      const data = await callGet('/api/quotation/daily');
+      setDaily(data.result);
+    };
+    fetchData();
   }, []);
 
   const onChangeToday = () => {
     setToday(today);
+  };
+
+  const getStatusForDate = (date: Date) => {
+    const formattedDate = date.toISOString().split('T')[0];
+    const dayStatus = daily.find((item) => item.date === formattedDate);
+    return dayStatus ? dayStatus.status : null;
+  };
+
+  const getTileClassName = ({
+    date,
+    view,
+  }: {
+    date: Date;
+    view: string;
+    activeStartDate: Date;
+  }) => {
+    if (view !== 'month') return '';
+    const status = getStatusForDate(date);
+    return clsx({
+      high: status === '상',
+      middle: status === '중',
+      low: status === '하',
+    });
+  };
+
+  const renderTileContent = ({ date, view }: { date: Date; view: string }) => {
+    if (view !== 'month') return null;
+    const status = getStatusForDate(date);
+    return status ? (
+      <CalendarStatus
+        status={status || ''}
+        date={date.toISOString().split('T')[0]}
+      />
+    ) : (
+      <div className="text-center">
+        {date.toISOString().split('T')[0].slice(8, 10)}
+      </div>
+    );
   };
 
   return (
@@ -48,6 +96,8 @@ const OrderCalendar = ({ clientType }: OrderCalendarProps) => {
             nextLabel={<CalendarNext />}
             next2Label={null}
             locale="ko-KR"
+            tileContent={renderTileContent}
+            tileClassName={getTileClassName}
           />
           <div className="flex flex-col gap-y-8">
             {CALENDAR_ORDER_TEXT.map((text, i) => (

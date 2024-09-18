@@ -1,8 +1,7 @@
 interface OrderState {
-  bookmark: boolean;
-  showBookmark: boolean;
+  createPastorder: boolean;
+  pastorderName: string;
   search: string;
-  bookmarkName: string;
   showQuot: boolean;
 }
 
@@ -11,22 +10,24 @@ interface UserResult {
   email: string;
   id: number;
   is_active: boolean;
-  client_name: string;
+  is_admin?: boolean;
+  client_name?: string;
   client_region: string;
+  client_address: string;
 }
 
 interface User {
-  isSuccess: boolean;
+  isSuccess?: boolean;
   code: string;
   message: string;
   category: string;
-  result: UserResult;
+  result?: UserResult;
+  detail?: string;
 }
 
 interface searchProductsProps {
   namePrefix: string;
   limit: string;
-  token: string;
 }
 
 interface PastOrder {
@@ -35,16 +36,18 @@ interface PastOrder {
 }
 
 interface QuotationItemType {
-  id?: string | number;
+  id: string | number;
   category: string;
   name: string;
   count?: string | number;
   unit: string;
-  price?: string;
+  price?: number;
+  created_at?: string;
 }
 
 interface QuotationTableProps {
   quotationInfo: QuotationItemType[];
+  currentDate: string | undefined;
 }
 
 interface ProductItemProps extends QuotationItemType {
@@ -55,6 +58,7 @@ interface ProductItemProps extends QuotationItemType {
   onAddItem?: (item: ProductItemProps) => void;
   onRemoveItem?: (id: string | number) => void;
   onCountChange?: (id: string | number, value: string) => void;
+  isNew?: boolean;
 }
 
 interface ProductListProps {
@@ -64,14 +68,7 @@ interface ProductListProps {
   onAddItem?: (item: ProductItemProps) => void;
   onRemoveItem: (id: string | number) => void;
   onCountChange?: (id: string | number, value: string) => void;
-}
-
-interface quotationIdProps {
-  quotation_id: string;
-}
-
-interface patchQuotationPartiProps extends quotationIdProps {
-  particulars: string;
+  isNew?: boolean;
 }
 
 interface QuotationModalProps {
@@ -79,6 +76,7 @@ interface QuotationModalProps {
   closeModal: () => void;
   quotationId?: string | null;
   currentDate?: string;
+  quotationName?: string;
 }
 
 interface EditOrderState {

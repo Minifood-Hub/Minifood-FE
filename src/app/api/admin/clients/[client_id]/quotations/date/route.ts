@@ -23,6 +23,7 @@ export async function GET(
       end_date,
       page,
       page_size,
+      req,
     );
     return NextResponse.json(data);
   } catch (error) {

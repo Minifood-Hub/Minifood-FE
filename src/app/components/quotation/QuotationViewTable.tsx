@@ -25,12 +25,16 @@ const QuotationViewTable = ({
   const handlePageChange = ({ selected }: { selected: number }) => {
     setPage(() => selected + 1);
   };
+  const completedQuotation = quotation?.items || [];
 
   useEffect(() => {
     const fetchData = async () => {
+      if (!user?.result?.client_id) {
+        return;
+      }
       const url = customDate
-        ? `/api/quotation?id=${user?.result.client_id}&date=${viewType}&page=${page}&start=${customDate.startDate}&end=${customDate.endDate}`
-        : `/api/quotation?id=${user?.result.client_id}&date=${viewType}&page=${page}`;
+        ? `/api/quotation?id=${user.result.client_id}&date=${viewType}&page=${page}&start=${customDate.startDate}&end=${customDate.endDate}`
+        : `/api/quotation?id=${user.result.client_id}&date=${viewType}&page=${page}`;
       const data = await callGet(url);
 
       setQuotation(data.result);
@@ -41,10 +45,10 @@ const QuotationViewTable = ({
   return (
     <div className="w-[full] h-[665px] flex flex-col items-center bg-white mt-4 relative">
       <div className="flex w-full items-center text-white text-base font-bold h-9 bg-[#55aa00]">
-        <div className="w-[10.4%] text-center">{VIEW_QUOTATION_GRAPH[0]}</div>
-        <div className="w-[21.4%] text-center">{VIEW_QUOTATION_GRAPH[1]}</div>
-        <div className="w-[21.4%] text-center">{VIEW_QUOTATION_GRAPH[2]}</div>
-        <div className="w-[21.4%] text-center">{VIEW_QUOTATION_GRAPH[3]}</div>
+        <div className="w-[9.6%] text-center">{VIEW_QUOTATION_GRAPH[0]}</div>
+        <div className="w-[25.5%] text-center">{VIEW_QUOTATION_GRAPH[1]}</div>
+        <div className="w-[25.5%] text-center">{VIEW_QUOTATION_GRAPH[2]}</div>
+        <div className="w-[13.5%] text-center">{VIEW_QUOTATION_GRAPH[3]}</div>
       </div>
       <div className="flex flex-col w-full">
         {viewType === 'custom' && quotation === null ? (
@@ -52,7 +56,7 @@ const QuotationViewTable = ({
             날짜를 선택해주세요 📆
           </div>
         ) : (
-          quotation?.items.map((quoteView, index) => {
+          completedQuotation.map((quoteView, index) => {
             return (
               <QuotationViewTableInfo
                 quoteView={quoteView}

@@ -6,7 +6,7 @@ export async function DELETE(req: Request): Promise<NextResponse> {
     const { searchParams } = new URL(req.url);
     const id = searchParams.get('id') || '';
 
-    const data = await deleteQuotation(id);
+    const data = await deleteQuotation(id, req);
     return NextResponse.json(data);
   } catch (error) {
     return NextResponse.json('Internal Server Error');

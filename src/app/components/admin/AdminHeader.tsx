@@ -1,19 +1,51 @@
 'use client';
 
-import { ADMIN_TEXT } from '@/app/constants/admin';
+import { ADMIN_TEXT, ALERT_TEXT } from '@/app/constants/admin';
+import { useUser } from '@/app/hooks/useUser';
+import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 export default function AdminHeader({ isActive }: AdminHeaderProps) {
   const router = useRouter();
+  const { user } = useUser();
+  const [isAllow, setIsAllow] = useState(false);
+
+  useEffect(() => {
+    if (user) {
+      if (
+        user?.detail === 'Not authenticated' ||
+        (user?.result && user.result.is_admin === false)
+      ) {
+        alert(ALERT_TEXT[6]);
+        router.push('/');
+      } else {
+        setIsAllow(true);
+      }
+    }
+  }, [user, router]);
 
   const handleActiveChange = (page: string) => {
     router.push(`?page=${page}`);
   };
 
+  if (!isAllow) {
+    return <div className="bg-white h-[2160px]" />;
+  }
+
   return (
-    <header className="bg-gray-0 p-4 flex justify-between items-center">
+    <header className="bg-gray-0 px-48 py-4 flex justify-between items-center">
       <div className="flex gap-4">
+        <Link href="/">
+          <Image src="/Images/JMF2.png" width={60} height={48} alt="logo" />
+        </Link>
+        <div
+          className={`ml-4 px-4 py-2 font-extrabold cursor-pointer ${isActive === 'quotation' ? 'bg-primary-1 text-white' : 'bg-white'}`}
+          onClick={() => handleActiveChange('quotation')}
+        >
+          {ADMIN_TEXT[2]}
+        </div>
         <div
           className={`px-4 py-2 font-extrabold cursor-pointer ${isActive === 'client' ? 'bg-primary-1 text-white' : 'bg-white'}`}
           onClick={() => handleActiveChange('client')}
@@ -27,10 +59,16 @@ export default function AdminHeader({ isActive }: AdminHeaderProps) {
           {ADMIN_TEXT[1]}
         </div>
         <div
-          className={`px-4 py-2 font-extrabold cursor-pointer ${isActive === 'quotation' ? 'bg-primary-1 text-white' : 'bg-white'}`}
-          onClick={() => handleActiveChange('quotation')}
+          className={`px-4 py-2 font-extrabold cursor-pointer ${isActive === 'notices' ? 'bg-primary-1 text-white' : 'bg-white'}`}
+          onClick={() => handleActiveChange('notices')}
         >
-          {ADMIN_TEXT[2]}
+          {ADMIN_TEXT[3]}
+        </div>
+        <div
+          className={`px-4 py-2 font-extrabold cursor-pointer ${isActive === 'faq' ? 'bg-primary-1 text-white' : 'bg-white'}`}
+          onClick={() => handleActiveChange('faq')}
+        >
+          {ADMIN_TEXT[4]}
         </div>
       </div>
     </header>

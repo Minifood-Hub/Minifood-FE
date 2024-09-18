@@ -14,7 +14,7 @@ import QuotationViewTable from '../QuotationViewTable';
 const QuotationContainer = () => {
   const [checkType, setCheckType] = useState<CheckTypes>('all');
   const [date, setDate] = useState<any>(new Date());
-  const { isOpen, openModal, closeModal, handleModalClick } = useModal(false);
+  const { isOpen, openModal, closeModal } = useModal(false);
 
   const bg = (checked: CheckTypes) =>
     checkType === checked ? 'bg-[#55aa00]' : 'bg-[#b8b8b8]';

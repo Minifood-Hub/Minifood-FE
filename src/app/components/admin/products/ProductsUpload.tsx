@@ -1,7 +1,6 @@
 import { ALERT_TEXT, BTN_TEXT } from '@/app/constants/admin';
 import Button from '../../common/Button';
 import { ChangeEvent, FormEvent, useState } from 'react';
-import { callPostFile } from '@/app/utils/callApi';
 import Input from '../../common/Input';
 
 export default function ProductsUpload() {
@@ -16,7 +15,7 @@ export default function ProductsUpload() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!file) {
-      alert(ALERT_TEXT[5]);
+      alert(ALERT_TEXT[4]);
       return;
     }
 
@@ -24,10 +23,20 @@ export default function ProductsUpload() {
     formData.append('file', file);
 
     try {
-      const data = await callPostFile(`/api/admin/products/upload`, formData);
-      console.log(data);
+      const response = await fetch('/api/admin/products/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      await response.json();
+      alert(ALERT_TEXT[8]);
     } catch (error) {
-      console.error(error);
+      console.error('파일 업로드 중 오류 발생:', error);
+      alert(ALERT_TEXT[9]);
     }
   };
 

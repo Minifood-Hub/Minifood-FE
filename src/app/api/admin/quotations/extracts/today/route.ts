@@ -8,7 +8,7 @@ export async function GET(req: Request): Promise<NextResponse> {
     const url = new URL(req.url);
     const input_date = url.searchParams.get('input_date') || '';
 
-    const data = await getAdminQuotationsExtractsToday(input_date);
+    const data = await getAdminQuotationsExtractsToday(input_date, req);
 
     // Blob 타입의 데이터를 ArrayBuffer로 변환하여 바이너리 데이터를 얻음
     const fileBuffer = await data.arrayBuffer();

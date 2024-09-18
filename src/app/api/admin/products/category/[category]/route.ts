@@ -9,7 +9,7 @@ export async function GET(
 ): Promise<NextResponse> {
   try {
     const { category } = params;
-    const data = await getAdminProductsCategory(category);
+    const data = await getAdminProductsCategory(category, req);
     return NextResponse.json(data);
   } catch (error) {
     console.error('API Error:', error);

@@ -8,14 +8,15 @@ import InformationContainer from './InformationContainer';
 
 function MainContainer() {
   const { user } = useUser();
-  const isClient = user?.category === 'CLIENT';
   const isCOMMON = user?.category === 'COMMON';
 
   return (
     <div className="flex flex-col gap-y-20 items-center relative bg-white">
       <InformationContainer />
       <OrderCalendar clientType={user?.category || 'GUEST'} />
-      {isCOMMON && <Reorder />}
+      {isCOMMON && user?.result?.client_id && (
+        <Reorder client_id={user.result.client_id} />
+      )}
       <Recommend />
     </div>
   );

@@ -15,6 +15,7 @@ export default function ProductItem({
   onAddItem,
   onRemoveItem,
   onCountChange,
+  isNew,
 }: ProductItemProps) {
   const [inputState, setInputState] = useState({
     count: count?.toString() || '1',
@@ -84,7 +85,7 @@ export default function ProductItem({
         {unit}
       </div>
       <div className="flex items-center justify-between w-[110px] py-2 px-5 self-stretch">
-        {isSearchResult ? (
+        {isSearchResult && !isNew ? (
           <>
             <button type="button" onClick={handleDecrement}>
               -

@@ -10,7 +10,7 @@ const CustomerService = () => {
         <Icons name={AddIcon} />
       </div>
       <div className="flex flex-col gap-y-1.5 text-[16px] font-normal tracking-tight">
-        {CUSTOMER_SERVICE_TEXT.map((text, i) => (
+        {CUSTOMER_SERVICE_TEXT.map((text) => (
           <div key={text}>{text}</div>
         ))}
       </div>
