@@ -8,11 +8,10 @@ import { SetStateAction, useEffect, useState } from 'react';
 import { BUTTON_TEXT, DIALOG_TEXT, ORDER_TEXT } from '../../../constants/order';
 import Button from '../../common/Button';
 import { Dialog } from '../../common/Dialog';
+import OrderStart from '../OrderStart';
 import ProductList from '../ProductList';
 import QuotationModal from '../quotation/OrderQuotationModal';
 import SearchComponent from '../Search';
-import Input from '../../common/Input';
-import OrderStart from '../OrderStart';
 
 export default function OrderContainer() {
   const router = useRouter();
@@ -51,9 +50,10 @@ export default function OrderContainer() {
     try {
       const body = {
         client_id: user?.result.client_id,
-        created_at: orderDate,
+        input_date: orderDate,
         status: 'CREATED',
       };
+      console.log(orderDate, '날짜');
       const response = await callPost('/api/order/quotations', body);
       if (response.code === '4003') {
         setDialogState(() => ({
