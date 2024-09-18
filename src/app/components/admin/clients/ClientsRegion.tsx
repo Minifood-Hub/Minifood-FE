@@ -94,20 +94,22 @@ export default function ClientsRegion() {
     return (
       <div className="w-full">
         <div className="flex bg-primary-1 w-full p-2 text-white font-bold">
-          <div className="w-[5%]">{TABLE_TEXT[0]}</div>
-          <div className="w-[15%]">{TABLE_TEXT[1]}</div>
-          <div className="w-[15%]">{TABLE_TEXT[6]}</div>
-          <div className="w-[25%]">{TABLE_TEXT[7]}</div>
-          <div className="w-[10%] text-center">{TABLE_TEXT[11]}</div>
-          <div className="w-[25%]">{TABLE_TEXT[12]}</div>
+          <div className="w-[5%] border-r px-2">{TABLE_TEXT[0]}</div>
+          <div className="w-[15%] border-r px-2">{TABLE_TEXT[1]}</div>
+          <div className="w-[15%] border-r px-2">{TABLE_TEXT[6]}</div>
+          <div className="w-[25%] border-r px-2">{TABLE_TEXT[7]}</div>
+          <div className="w-[10%] text-center border-r px-2">
+            {TABLE_TEXT[11]}
+          </div>
+          <div className="w-[25%] border-r px-2">{TABLE_TEXT[12]}</div>
           <div className="w-[5%] text-center">{BTN_TEXT[1]}</div>
         </div>
         {result?.items?.map((item: ClientsNameProps) => (
           <React.Fragment key={item.id}>
             <div className="flex p-2 border-2">
-              <div className="w-[5%]">{item.id}</div>
-              <div className="w-[15%]">{item.name}</div>
-              <div className="w-[15%]">
+              <div className="w-[5%] border-r px-2">{item.id}</div>
+              <div className="w-[15%] border-r px-2">{item.name}</div>
+              <div className="w-[15%] border-r px-2">
                 {isEditRegion === item.id ? (
                   <div className="flex items-center">
                     <select
@@ -144,8 +146,8 @@ export default function ClientsRegion() {
                   </>
                 )}
               </div>
-              <div className="w-[25%]">{item.address}</div>
-              <div className="w-[10%] flex justify-center">
+              <div className="w-[25%] border-r px-2">{item.address}</div>
+              <div className="w-[10%] flex justify-center border-r">
                 <Button
                   type="default"
                   onClickHandler={() =>
@@ -157,16 +159,16 @@ export default function ClientsRegion() {
                   buttonText={BTN_TEXT[8]}
                 />
               </div>
-              <div className="w-[25%] flex justify-between pr-6">
+              <div className="w-[25%] flex justify-between pr-6 border-r-4">
                 <Input
-                  className="max-h-12 border-2"
+                  className="border-2 max-h-10 mr-2 px-2"
                   type="default"
                   onChange={(e) => setInputComment(e.target.value)}
                   textValue={inputComment}
                   placeholder={INPUT_TEXT[2]}
                 />
                 <Button
-                  className="admin-btn"
+                  className="ml-4 admin-btn"
                   buttonText={BTN_TEXT[0]}
                   type="default"
                   onClickHandler={() => handleSetComment(item.id)}
