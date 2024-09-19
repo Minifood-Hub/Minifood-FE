@@ -1,3 +1,4 @@
+import { QUOTATION_ALERT } from '@/app/constants/alert';
 import { QUOTATION_MANAGE } from '@/app/constants/quotation';
 import { useModal } from '@/app/hooks/useModal';
 import { callDelete } from '@/app/utils/callApi';
@@ -6,7 +7,6 @@ import { useRouter } from 'next/navigation';
 import Button from '../common/Button';
 import DeleteQuotationModal from './modal/edit/DeleteQuotationModal';
 import QuotationModal from './modal/view/QuotationModal';
-import { QUOTATION_ALERT } from '@/app/constants/alert';
 
 interface QuotationViewTableInfoProps {
   quoteView: ItemsTypes;
@@ -46,7 +46,7 @@ const QuotationViewTableInfo = ({
       <div className="w-full pl-1 justify-start items-center inline-flex h-[53px] text-base font-normal border-b border-b-[#E0E0E0]">
         <div className="w-[9.6%] text-center">{index + 1}</div>
         <div className="w-[25.5%] text-center">
-          {formatDate(quoteView.created_at)}
+          {formatDate(quoteView.input_date)}
         </div>
         <div className="w-[25.5%] text-center">{quoteView.name}</div>
         <div className="w-[13.5%] flex-center">

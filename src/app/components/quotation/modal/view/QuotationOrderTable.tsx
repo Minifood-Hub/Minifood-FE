@@ -11,13 +11,13 @@ const QuotationOrderTable = ({
   quotationInfo,
   isPdfGenerating,
 }: QuotationOrderTableProps) => {
-  const dayOfWeek = useDayOfWeek(quotationInfo.created_at);
+  const dayOfWeek = useDayOfWeek(quotationInfo.input_date);
   return (
     <div>
       <div className="flex justify-between py-3 border-black border-b-2 px-1">
         <div className="text-lg font-bold">{MODAL_TEXT[0]}</div>
         <div className="text-base font-normal">
-          {formatDate(quotationInfo.created_at)} ({dayOfWeek})
+          {formatDate(quotationInfo.input_date)} ({dayOfWeek})
         </div>
       </div>
       <div className="flex gap-x-1 text-base font-normal text-[#999] mt-4">
