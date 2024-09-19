@@ -34,15 +34,18 @@ export const HEADER_SIGNUP = ['회원가입', '로그인'];
 export const HEADER_SIGNUP_PATH = ['/sign-in/sign-up', '/sign-in'];
 
 export const FOOTER_TEXT = [
+  '회사소개',
   '이용약관',
   '개인정보처리방침',
-  '책임의 한계와 법적고지 ',
-  '고객센터',
-  'JMF',
-  'Copyright',
-  '©JMF Corp.',
-  'All Rights Reserved',
-  'Contributors',
+  '이용안내',
+  'JMF 기본정보',
+  '상호명',
+  '대표자명',
+  '사업장 주소',
+  '대표 전화',
+  '사업자 등록번호',
+  '개인정보보호책임자',
+  '팩스번호',
 ];
 
 export const CONTRIBUTORS = ['YPYP', 'KimGorok', 'Minkyu'];
@@ -71,3 +74,14 @@ export const DAYS_OF_WEEEK = [
 ];
 
 export const DAYS_OF_WEEK_SHORTEN = ['월', '화', '수', '목', '금', '토', '일'];
+
+export const JMF_INFO = [
+  '주식회사 미니푸드',
+  '이경희',
+  '경기도 남양주시 진건읍 고재로 191번길 48',
+  '1688-7606',
+  '031-528-2331',
+  '753-88-00719',
+  'minifood1435@hanmail.net',
+  '',
+];
