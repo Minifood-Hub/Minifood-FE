@@ -83,5 +83,4 @@ export const JMF_INFO = [
   '031-528-2331',
   '753-88-00719',
   'minifood1435@hanmail.net',
-  '',
 ];
