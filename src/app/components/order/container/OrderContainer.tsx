@@ -211,7 +211,7 @@ export default function OrderContainer() {
     );
   }
   return (
-    <section className="flex-center flex-col w-full px-0 py-[100px] gap-[10px] self-stretch">
+    <section className="flex-center flex-col w-full h-full px-0 gap-[10px] self-stretch">
       <div className="flex flex-col mx-auto items-end gap-3 self-stretch w-[960px]">
         <div className="flex flex-col items-start gap-8 self-stretch">
           <div className="flex flex-col items-start gap-4 self-stretch">

@@ -5,6 +5,7 @@ import {
   ORDER_TEXT,
   categoryMapping,
 } from '../../constants/order';
+import { useResponsiveHeight } from '@/app/hooks/useResponsiveHeight';
 
 export default function ProductList({
   items,
@@ -15,8 +16,13 @@ export default function ProductList({
   onCountChange,
   isNew,
 }: ProductListProps) {
+  // 세로 크기가 765px 이하일 때 h-[250px], 그 이상일 때 h-[350px] 사용
+  const heightClass = useResponsiveHeight(845, 'h-[250px]', 'h-[350px]');
+
   return (
-    <div className="flex w-full flex-col h-[350px] items-start self-stretch border-[1px] border-gray-1 bg-white">
+    <div
+      className={`flex w-full flex-col ${heightClass} items-start self-stretch border-[1px] border-gray-1 bg-white`}
+    >
       {isSearchResult ? (
         <div className="flex items-center self-stretch whitespace-nowrap bg-primary-3 text-white font-bold">
           <div className="flex-center w-[89px] py-2 px-3">

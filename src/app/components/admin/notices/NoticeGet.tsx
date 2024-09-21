@@ -9,6 +9,7 @@ import NoticePost from './NoticePost';
 import Icons from '../../common/Icons';
 import { ArrowDownIcon } from '@/app/ui/iconPath';
 import NoticesPut from './NoticePut';
+import { formatDateTime } from '@/app/utils/date';
 
 export default function NoticeGet() {
   const [inputId, setInputId] = useState('');
@@ -102,10 +103,11 @@ export default function NoticeGet() {
                 </div>
                 <div className="flex gap-2 items-center text-xs whitespace-nowrap flex-shrink-0">
                   <p>
-                    {TABLE_TEXT[2]}: {item.created_at}
+                    {TABLE_TEXT[2]}: {formatDateTime(item.created_at)}
                   </p>
                   <p>
-                    {TABLE_TEXT[3]}:{item.updated_at ? item.updated_at : '없음'}
+                    {TABLE_TEXT[3]}:{' '}
+                    {item.updated_at ? formatDateTime(item.updated_at) : '없음'}
                   </p>
                   <p
                     className={`${selectedId === item.id ? 'transform rotate-180' : ''}`}

@@ -40,11 +40,12 @@ function Header() {
 
       if (response.ok) {
         const responseData = await response.json();
-        const newAccessToken = responseData.result;
+        const newAccessToken = responseData.result.access_token;
+        const newAccessRefreshToken = responseData.result.refresh_token;
 
         // 새로운 액세스 토큰을 쿠키에 저장
         if (refreshToken) {
-          setTokens(newAccessToken, refreshToken);
+          setTokens(newAccessToken, newAccessRefreshToken, true);
         }
 
         alert('세션이 연장되었습니다.');
@@ -72,11 +73,14 @@ function Header() {
             ))}
           </div>
         </div>
-        <button type="button" onClick={handleExtendSession}>
-          세션 연장
-        </button>
+
         {user && user?.category ? (
-          <ProfileDropDown user={user} logout={handleLogout} />
+          <div className="flex gap-8">
+            <button type="button" onClick={handleExtendSession}>
+              세션 연장
+            </button>
+            <ProfileDropDown user={user} logout={handleLogout} />
+          </div>
         ) : (
           <div className="flex font-normal text-sm">
             {HEADER_SIGNUP_PATH.map((path, i) => (
