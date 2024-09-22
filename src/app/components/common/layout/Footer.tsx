@@ -14,7 +14,7 @@ function Footer() {
             src="/Images/JMF2.png"
             alt="logoIcon"
           />
-          <Link href="/">{FOOTER_TEXT[0]}</Link>
+          <Link href="introduce">{FOOTER_TEXT[0]}</Link>
           <Link href="/tos">{FOOTER_TEXT[1]}</Link>
           <Link href="/">{FOOTER_TEXT[2]}</Link>
           <Link href="/">{FOOTER_TEXT[3]}</Link>
