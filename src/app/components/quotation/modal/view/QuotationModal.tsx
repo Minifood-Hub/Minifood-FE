@@ -121,7 +121,7 @@ const QuotationModal = ({ closeModal, id, isAdmin }: QuotationModalProps) => {
   };
 
   return (
-    <div className="fixed top-0 left-0 w-full h-full bg-gray-3 bg-opacity-70 flex justify-center items-center z-50">
+    <div className="fixed top-0 left-0 w-full h-full bg-gray-3 bg-opacity-70 flex-center z-50">
       <div
         ref={targetRef}
         className="flex flex-col w-[800px] h-auto rounded p-10 bg-gray-1 relative items-center"

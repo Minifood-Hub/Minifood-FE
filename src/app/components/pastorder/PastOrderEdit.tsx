@@ -50,7 +50,7 @@ const PastOrderEdit = ({ pastorderId, setProductIds }: PastOrderEditProps) => {
           <div className="w-[18.6%] pl-[14px]">{i + 1}</div>
           <div className="w-[49.1%] pl-[14px]">{product.name}</div>
           <div className="w-[11.4%] text-center">{product.unit}</div>
-          <div className="w-[11.4%] flex justify-center items-center">
+          <div className="w-[11.4%] flex-center">
             <Icons
               name={TrashBinIcon}
               className="cursor-pointer"

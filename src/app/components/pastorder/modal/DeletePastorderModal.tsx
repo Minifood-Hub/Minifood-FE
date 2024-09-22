@@ -12,7 +12,7 @@ const DeletePastorderModal = ({
   deletePastorder,
 }: DeletePastorderModalProps) => {
   return (
-    <div className="fixed top-0 left-0 w-full h-full bg-gray-3 bg-opacity-70 flex justify-center items-center z-50">
+    <div className="fixed top-0 left-0 w-full h-full bg-gray-3 bg-opacity-70 flex-center z-50">
       <div className="flex flex-col items-center w-[420px] h-[162px] rounded bg-white p-8 gap-y-8">
         <p className="text-lg font-medium">{DELETE_PASTORDER[0]}</p>
         <div className="flex gap-x-6">

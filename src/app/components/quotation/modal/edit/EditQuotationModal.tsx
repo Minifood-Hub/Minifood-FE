@@ -98,7 +98,7 @@ export default function EditQuotationModal({
   };
 
   return (
-    <div className="fixed top-0 left-0 w-full h-full bg-gray-3 bg-opacity-70 flex justify-center items-center z-50">
+    <div className="fixed top-0 left-0 w-full h-full bg-gray-3 bg-opacity-70 flex-center z-50">
       <div className="flex flex-col w-[800px] rounded p-10 bg-gray-1 relative items-center">
         <div className="w-full flex-center bg-[#55AA00] text-white rounded h-[57px] mb-2">
           {quotationName}

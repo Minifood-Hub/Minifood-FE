@@ -29,7 +29,7 @@ export default function Reorder({ client_id }: ReorderProps) {
         <div className="text-xl font-semibold">{REORDER_TEXT[0]}</div>
         <div className="text-base font-normal">{REORDER_TEXT[1]}</div>
         <div className="flex flex-col gap-y-2 mb-[18px] mt-6">
-          <div className="flex flex-col gap-y-2 items-center justify-center">
+          <div className="flex-center flex-col gap-y-2">
             {recent?.length === 0 ? (
               <div className="text-3xl font-semibold pt-20">
                 {REORDER_TEXT[3]}

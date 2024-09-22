@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 function MainCard2() {
   return (
-    <div className="flex w-full h-[360px] bg-gradient-to-r from-[#b6c4c4] to-[#6e7e7d] items-center justify-center gap-x-[112px]">
+    <div className="flex-center w-full h-[360px] bg-gradient-to-r from-[#b6c4c4] to-[#6e7e7d] gap-x-[112px]">
       <div className="flex flex-col text-2xl text-white">
         <p className="font-normal leading-9">
           {CUSTOM_MAINCARD_TEXT[0].firstline}

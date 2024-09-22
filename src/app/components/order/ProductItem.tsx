@@ -81,7 +81,7 @@ export default function ProductItem({
       <div className="flex items-center w-[416px] py-2 px-[14px] self-stretch overflow-hidden text-ellipsis whitespace-nowrap">
         {name}
       </div>
-      <div className="flex items-center w-[110px] py-2 px-[14px] justify-center self-stretch overflow-hidden text-ellipsis whitespace-nowrap">
+      <div className="flex-center w-[110px] py-2 px-[14px] self-stretch overflow-hidden text-ellipsis whitespace-nowrap">
         {unit}
       </div>
       <div className="flex items-center justify-between w-[110px] py-2 px-5 self-stretch">
@@ -106,7 +106,7 @@ export default function ProductItem({
           <span className="text-center w-full">{inputState.count}</span>
         )}
       </div>
-      <div className="w-[110px] items-center px-[14px] flex justify-center">
+      <div className="flex-center w-[110px] px-[14px]">
         <button
           type="button"
           className={`${isAdded ? 'bg-white text-gray-6 border-[1px] border-gray-1' : 'bg-primary-3 text-white border-[1px] border-primary-3'} py-2 px-[18px] rounded-[4px] `}
