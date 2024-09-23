@@ -136,7 +136,7 @@ const AccountUpdate = () => {
           buttonText={ACCOUNT_BTN_TEXT[1]}
           type="accountUpdate"
           onClickHandler={deleteAccount}
-          className="border border-[#e0e0e0]"
+          className="border border-gray-1"
         />
         <Button
           buttonText={ACCOUNT_BTN_TEXT[2]}

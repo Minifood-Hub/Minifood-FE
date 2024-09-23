@@ -56,7 +56,7 @@ const PastOrderTableInfo = ({ pastorder, index }: PastOrderTableInfoProps) => {
           deletePastorder={() => deletePastOrder(pastorder.past_order_id)}
         />
       )}
-      <div className="w-full justify-start items-center inline-flex h-[53px] text-base font-normal border-b border-b-[#E0E0E0]">
+      <div className="w-full justify-start items-center inline-flex h-[53px] text-base font-normal border-b border-b-gray-1">
         <div className="w-[9.5%] text-center">{index + 1}</div>
         <div className="w-[65.5%] pl-3">{pastorder.name}</div>
         {isEdit ? (
@@ -71,7 +71,7 @@ const PastOrderTableInfo = ({ pastorder, index }: PastOrderTableInfoProps) => {
               buttonText={QUOTATION_MANAGE[3]}
               type="quoteTableControl"
               onClickHandler={() => setIsEdit(false)}
-              className="border border-[#e0e0e0]"
+              className="border border-gray-1"
             />
           </div>
         ) : (
@@ -80,13 +80,13 @@ const PastOrderTableInfo = ({ pastorder, index }: PastOrderTableInfoProps) => {
               buttonText={isView ? QUOTATION_MANAGE[3] : QUOTATION_MANAGE[0]}
               type="quoteTableControl"
               onClickHandler={viewPastOrder}
-              className="border border-[#e0e0e0]"
+              className="border border-gray-1"
             />
             <Button
               buttonText={QUOTATION_MANAGE[1]}
               type="quoteTableControl"
               onClickHandler={editPastOrder}
-              className="border border-[#e0e0e0]"
+              className="border border-gray-1"
             />
             <Button
               buttonText={QUOTATION_MANAGE[2]}

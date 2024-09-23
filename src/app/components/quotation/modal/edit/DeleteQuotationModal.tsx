@@ -27,7 +27,7 @@ const DeleteQuotationModal = ({
             buttonText={QUOTATION_DELETE[3]}
             type="deleteModalButton"
             onClickHandler={closeModal}
-            className="bg-white border border-[#E0E0E0]"
+            className="bg-white border border-gray-1"
           />
         </div>
       </div>
