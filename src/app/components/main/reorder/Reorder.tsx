@@ -49,7 +49,7 @@ export default function Reorder({ client_id }: ReorderProps) {
                     </p>
                   </div>
                   <Link
-                    className="w-[111px] h-[39px] bg-[#55aa00] rounded text-white text-base font-normal flex-center"
+                    className="w-[111px] h-[39px] bg-primary-3 rounded text-white text-base font-normal flex-center"
                     href="/order"
                   >
                     {REORDER_TEXT[2]}

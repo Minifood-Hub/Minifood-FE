@@ -142,7 +142,7 @@ const AccountUpdate = () => {
           buttonText={ACCOUNT_BTN_TEXT[2]}
           type="accountUpdate"
           onClickHandler={changePassword}
-          className="bg-[#55aa00] text-white"
+          className="bg-primary-3 text-white"
         />
       </div>
     </div>

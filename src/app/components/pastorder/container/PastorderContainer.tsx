@@ -12,7 +12,7 @@ const PastorderContainer = () => {
           <p className="text-2xl font-bold ">{PASTORDER_TABLE[0]}</p>
           <Link
             href="/pastorder/new"
-            className="h-9 px-6 py-3 bg-[#55aa00] rounded justify-center items-center gap-2.5 inline-flex"
+            className="h-9 px-6 py-3 bg-primary-3 rounded justify-center items-center gap-2.5 inline-flex"
           >
             <div className="text-center text-white text-base font-medium font-['Pretendard Variable'] tracking-tight">
               {PASTORDER_TABLE[1]}

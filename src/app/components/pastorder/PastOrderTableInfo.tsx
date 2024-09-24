@@ -65,7 +65,7 @@ const PastOrderTableInfo = ({ pastorder, index }: PastOrderTableInfoProps) => {
               buttonText={QUOTATION_MANAGE[4]}
               type="quoteTableControl"
               onClickHandler={putPastOrder}
-              className="bg-[#55AA00] text-white"
+              className="bg-primary-3 text-white"
             />
             <Button
               buttonText={QUOTATION_MANAGE[3]}

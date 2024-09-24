@@ -17,7 +17,7 @@ const QuotationContainer = () => {
   const { isOpen, openModal, closeModal } = useModal(false);
 
   const bg = (checked: CheckTypes) =>
-    checkType === checked ? 'bg-[#55aa00]' : 'bg-[#b8b8b8]';
+    checkType === checked ? 'bg-primary-3' : 'bg-[#b8b8b8]';
 
   const selectCheckType = (type: string) => {
     setCheckType(QUOTATION_TRANS_VIEWTYPE[type]);

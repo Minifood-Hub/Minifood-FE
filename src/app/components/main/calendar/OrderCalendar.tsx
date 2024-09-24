@@ -117,7 +117,7 @@ const OrderCalendar = ({ clientType }: OrderCalendarProps) => {
       </div>
       <Link
         href={path}
-        className="w-[426px] h-[46px] flex-center text-white font-medium text-lg bg-[#55AA00] rounded-[4px]"
+        className="w-[426px] h-[46px] flex-center text-white font-medium text-lg bg-primary-3 rounded-[4px]"
       >
         {clientType === 'GUEST' ? MAIN_CALENDAR_TEXT[1] : MAIN_CALENDAR_TEXT[2]}
       </Link>
