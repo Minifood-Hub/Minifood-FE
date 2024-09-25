@@ -20,7 +20,7 @@ const DeletePastorderModal = ({
             buttonText={DELETE_PASTORDER[1]}
             type="deleteModalButton"
             onClickHandler={deletePastorder}
-            className="bg-[#FC4C00] text-white"
+            className="bg-red-2 text-white"
           />
           <Button
             buttonText={DELETE_PASTORDER[2]}

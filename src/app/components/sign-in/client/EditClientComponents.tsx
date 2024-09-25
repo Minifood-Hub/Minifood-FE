@@ -118,9 +118,9 @@ export default function EditClientComponents() {
       <div className="flex flex-col items-start gap-8 self-stretch">
         <div className="flex flex-col items-start gap-2 self-stretch">
           <div className="flex items-start font-semibold">
-            <p>{SIGNIN_TEXT[6]}</p> <p className="text-[#FC4C00]">*</p>
+            <p>{SIGNIN_TEXT[6]}</p> <p className="text-red-2">*</p>
             {formState.nameError && (
-              <p className="text-[#FC4C00] pl-3">{formState.nameError}</p>
+              <p className="text-red-2 pl-3">{formState.nameError}</p>
             )}
           </div>
           <SignInInput
@@ -134,9 +134,9 @@ export default function EditClientComponents() {
 
         <div className="flex flex-col items-start gap-2 self-stretch">
           <div className="flex items-start font-semibold">
-            <p>{SIGNIN_TEXT[7]}</p> <p className="text-[#FC4C00]">*</p>
+            <p>{SIGNIN_TEXT[7]}</p> <p className="text-red-2">*</p>
             {formState.addressError && (
-              <p className="text-[#FC4C00] pl-3">{formState.addressError}</p>
+              <p className="text-red-2 pl-3">{formState.addressError}</p>
             )}
           </div>
           <div className="flex items-center gap-2 self-stretch">

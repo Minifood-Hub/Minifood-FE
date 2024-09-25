@@ -41,7 +41,7 @@ const AccountCertificate = ({ certifyHandler }: AccountCertificateProps) => {
       <div className="flex flex-col gap-y-2 mb-8">
         <div className="flex">
           <p>{ACCOUNT_TEXT[2]}</p>
-          <div className="text-[#fc4c00] text-base font-semibold">
+          <div className="text-red-2 text-base font-semibold">
             {isCorrect ? '*' : `* ${ACCOUNT_ALERT[0]}`}
           </div>
         </div>

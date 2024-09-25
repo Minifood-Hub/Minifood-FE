@@ -69,7 +69,7 @@ const QuotationViewTableInfo = ({
             buttonText={QUOTATION_MANAGE[2]}
             type="quoteTableControl"
             onClickHandler={openDeleteModal}
-            className="bg-[#fc4c00] text-white"
+            className="bg-red-2 text-white"
           />
         </div>
       </div>

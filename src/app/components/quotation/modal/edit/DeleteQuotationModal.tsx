@@ -21,7 +21,7 @@ const DeleteQuotationModal = ({
             buttonText={QUOTATION_DELETE[2]}
             type="deleteModalButton"
             onClickHandler={deleteQuote}
-            className="bg-[#FC4C00] text-white"
+            className="bg-red-2 text-white"
           />
           <Button
             buttonText={QUOTATION_DELETE[3]}

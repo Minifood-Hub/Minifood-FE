@@ -65,7 +65,7 @@ const AccountUpdate = () => {
       <div className="flex flex-col gap-y-2">
         <div className="flex">
           <p>{ACCOUNT_PASSWORD[0]}</p>
-          <div className="text-[#fc4c00] text-base font-semibold">
+          <div className="text-red-2 text-base font-semibold">
             *
             {errorType === 'INVALID'
               ? ` ${ACCOUNT_ALERT[1]}`
@@ -84,7 +84,7 @@ const AccountUpdate = () => {
       <div className="flex flex-col gap-y-2">
         <div className="flex">
           <p>{ACCOUNT_PASSWORD[1]}</p>
-          <div className="text-[#fc4c00] text-base font-semibold">
+          <div className="text-red-2 text-base font-semibold">
             *
             {errorType === 'INVALID_NEW'
               ? ` ${ACCOUNT_ALERT[1]}`
@@ -103,7 +103,7 @@ const AccountUpdate = () => {
       <div className="flex flex-col gap-y-2">
         <div className="flex">
           <p>{ACCOUNT_PASSWORD[2]}</p>
-          <div className="text-[#fc4c00] text-base font-semibold">
+          <div className="text-red-2 text-base font-semibold">
             * {errorType === 'INCONSISTENCY' ? ` ${ACCOUNT_ALERT[0]}` : ''}
           </div>
         </div>
