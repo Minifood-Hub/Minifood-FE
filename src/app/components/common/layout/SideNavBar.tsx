@@ -6,10 +6,10 @@ import {
   SIDENAV_PATH,
   SIDENAV_TEXT,
 } from '@/app/constants/common';
+import { setTokens } from '@/app/utils/setTokens';
 import Image from 'next/image';
 import Link from 'next/link';
 import Icons from '../Icons';
-import { setTokens } from '@/app/utils/setTokens';
 
 interface SideNavBarProps {
   selected: string;
