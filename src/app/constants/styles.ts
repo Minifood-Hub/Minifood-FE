@@ -15,7 +15,7 @@ export const BUTTON_STYLE = {
   quoteOrder: (className: string) =>
     `w-full h-[45px] bg-primary-3 rounded text-white text-lg font-medium  ${className}`,
   quoteClose: (className: string) =>
-    `w-full h-[45px] bg-white rounded text-black text-lg font-medium border border-[#B8B8B8] ${className}`,
+    `w-full h-[45px] bg-white rounded text-black text-lg font-medium border border-gray-2 ${className}`,
   quoteTableControl: (className: string) =>
     `w-[56px] h-[29px] rounded text-sm font-medium ${className}`,
   accountConfirm: (className: string) =>
