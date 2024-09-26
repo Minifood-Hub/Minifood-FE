@@ -43,8 +43,6 @@ export const FOOTER_TEXT = [
   '팩스번호',
 ];
 
-export const CONTRIBUTORS = ['YPYP', 'KimGorok', 'Minkyu'];
-
 export const SIDENAV_TEXT = ['주문생성', '즐겨찾기', '견적서', '상품조회'];
 
 export const SIDENAV_ICONS = [OrderIcon, StarIcon, QuotationIcon, ProductsIcon];
