@@ -1,6 +1,6 @@
 export const metadata = {
   title: '회원가입',
-  description: 'JMF 회원가입 페이지',
+  description: 'Minifood 회원가입 페이지',
 };
 
 export default function RootLayout({

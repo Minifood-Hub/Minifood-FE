@@ -11,8 +11,8 @@ const pretendard = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'JMF',
-  description: '정말 맛있는 음식과 함께, JMF',
+  title: 'Minifood',
+  description: '정말 맛있는 음식과 함께, Minifood',
   icons: {
     icon: '/Images/favicon.png',
   },

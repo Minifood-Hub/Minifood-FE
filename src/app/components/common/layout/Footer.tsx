@@ -6,12 +6,11 @@ function Footer() {
   return (
     <div className="w-full h-[auto] text-black bg-slate-100">
       <footer className="flex w-full h-[320px] flex-col gap-y-10 items-center justify-center min-w-[800px] py-4">
-        <div className="flex gap-x-4 font-medium text-[20px] items-center">
+        <div className="flex gap-x-8 font-medium text-[20px] items-center justify-start">
           <Image
-            width={40}
-            height={24}
-            style={{ width: 80, height: 'auto' }}
-            src="/Images/JMF2.png"
+            width={120}
+            height={40}
+            src="/Images/minifood.png"
             alt="logoIcon"
           />
           <Link href="introduce">{FOOTER_TEXT[0]}</Link>

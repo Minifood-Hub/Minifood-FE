@@ -1,8 +1,8 @@
 export const INTRODUCE_TITLE = '회사소개';
 export const INTRODUCE_INFO = '회사소개 정보';
 export const INTRODUCE_TEXT = [
-  '요식업 전문가를 위한 프리미엄 식자재 JMF에서 간편하게 주문해보세요',
-  '당신곁에 JMF 🥗',
+  '요식업 전문가를 위한 프리미엄 식자재 Minifood에서 간편하게 주문해보세요',
+  '당신곁에 Minifood 🥗',
 ];
 export const INTRODUCE_DETAIL = '회사 상세 정보';
 
