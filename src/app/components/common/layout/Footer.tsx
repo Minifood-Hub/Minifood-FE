@@ -4,9 +4,9 @@ import Link from 'next/link';
 
 function Footer() {
   return (
-    <div className="w-full h-[auto] text-black bg-slate-100">
-      <footer className="flex w-full h-[320px] flex-col gap-y-10 items-center justify-center min-w-[800px] py-4">
-        <div className="flex gap-x-8 font-medium text-[20px] items-center justify-start">
+    <div className="w-full flex justify-center h-[auto] text-black bg-slate-100 mt-10">
+      <footer className="flex h-[240px] flex-col gap-y-6 justify-center min-w-[800px]">
+        <div className="flex gap-x-8 font-medium text-[18px] items-center justify-start">
           <Image
             width={120}
             height={40}
@@ -33,18 +33,16 @@ function Footer() {
                 {FOOTER_TEXT[9]}
                 <div className="font-normal">{JMF_INFO[5]}</div>
               </div>
-            </div>
-            <div className="flex gap-x-2">
-              <div className="flex gap-x-1">
-                {FOOTER_TEXT[7]}
-                <div className="font-normal">{JMF_INFO[2]}</div>
-              </div>
               <div className="flex gap-x-1">
                 {FOOTER_TEXT[8]}
                 <div className="font-normal">{JMF_INFO[3]}</div>
               </div>
             </div>
             <div className="flex gap-x-2">
+              <div className="flex gap-x-1">
+                {FOOTER_TEXT[7]}
+                <div className="font-normal">{JMF_INFO[2]}</div>
+              </div>
               <div className="flex gap-x-1">
                 {FOOTER_TEXT[10]}
                 <div className="font-normal">{JMF_INFO[0]}</div>
