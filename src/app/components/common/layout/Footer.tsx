@@ -16,7 +16,7 @@ function Footer() {
           />
           <Link href="introduce">{FOOTER_TEXT[0]}</Link>
           <Link href="/tos">{FOOTER_TEXT[1]}</Link>
-          <Link href="/">{FOOTER_TEXT[2]}</Link>
+          <Link href="/personal">{FOOTER_TEXT[2]}</Link>
           <Link href="/">{FOOTER_TEXT[3]}</Link>
         </div>
         <div>
