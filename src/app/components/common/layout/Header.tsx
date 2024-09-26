@@ -8,10 +8,10 @@ import {
   HEADER_TEXT,
 } from '@/app/constants/common';
 import { useUser } from '@/app/hooks/useUser';
+import { setTokens } from '@/app/utils/setTokens';
 import Image from 'next/image';
 import Link from 'next/link';
 import ProfileDropDown from '../ProfileDropDown';
-import { setTokens } from '@/app/utils/setTokens';
 
 function Header() {
   const { user } = useUser();
