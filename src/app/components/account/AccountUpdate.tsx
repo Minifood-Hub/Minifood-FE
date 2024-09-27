@@ -117,7 +117,7 @@ const AccountUpdate = () => {
       <div>
         <Link
           href="/sign-in/client/edit"
-          className="flex w-full justify-between text-[#333333] font-normal mb-2"
+          className="flex w-full justify-between text-[#333333] mb-2"
         >
           <p className="font-semibold">{ACCOUNT_PASSWORD[3]}</p>
           <div className="flex items-center">

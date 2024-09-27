@@ -82,7 +82,7 @@ function Header() {
             <ProfileDropDown user={user} logout={handleLogout} />
           </div>
         ) : (
-          <div className="flex font-normal text-sm">
+          <div className="flex text-sm">
             {HEADER_SIGNUP_PATH.map((path, i) => (
               <Link href={path} key={path} className="w-[68px] text-center">
                 {HEADER_SIGNUP[i]}

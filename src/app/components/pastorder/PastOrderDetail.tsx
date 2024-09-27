@@ -28,10 +28,7 @@ const PastOrderDetail = ({ pastorderId }: PastOrderDetailProps) => {
         <div className="w-[11.4%] text-center">{PASTORDER_DETAIL[4]}</div>
       </div>
       {pastOrders.map((pastOrder, i) => (
-        <div
-          className="w-full flex h-[54px] items-center font-normal"
-          key={pastOrder.id}
-        >
+        <div className="w-full flex h-[54px] items-center" key={pastOrder.id}>
           <div className="w-[9.1%] text-center">
             {categoryMapping[pastOrder.category]}
           </div>

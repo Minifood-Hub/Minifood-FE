@@ -26,7 +26,7 @@ const Announcement = () => {
           <Icons name={AddIcon} className="cursor-pointer" />{' '}
         </Link>
       </div>
-      <div className="flex flex-col gap-y-1.5 text-[16px] font-normal tracking-tight">
+      <div className="flex flex-col gap-y-1.5 text-[16px] tracking-tight">
         {preNotices.map((notice) => (
           <div key={notice.id}>{shortenText(notice.title, 15)}</div>
         ))}

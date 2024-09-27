@@ -15,7 +15,7 @@ const DeleteQuotationModal = ({
     <div className="fixed top-0 left-0 w-full h-full bg-gray-3 bg-opacity-70 flex-center z-50">
       <div className="flex flex-col items-center w-[420px] h-[187px] rounded bg-white p-8 gap-y-2">
         <p className="text-lg font-medium">{QUOTATION_DELETE[0]}</p>
-        <p className="text-sm font-normal">{QUOTATION_DELETE[1]}</p>
+        <p className="text-sm">{QUOTATION_DELETE[1]}</p>
         <div className="flex gap-x-6 mt-6">
           <Button
             buttonText={QUOTATION_DELETE[2]}
