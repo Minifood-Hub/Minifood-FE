@@ -26,7 +26,7 @@ const PastorderTable = ({ customDate }: PastorderTableProps) => {
 
   return (
     <div className="w-[full] h-[665px] flex flex-col items-center bg-white mt-4 relative overflow-y-auto hide-scrollbar">
-      <div className="flex w-full items-center text-white text-base font-bold h-9 bg-primary-3">
+      <div className="flex w-full items-center text-white font-bold h-9 bg-primary-3">
         <div className="w-[9.5%] text-center">{VIEW_PASTORDER_TABLE[0]}</div>
         <div className="w-[65.5%] pl-3 py-2">{VIEW_PASTORDER_TABLE[1]}</div>
       </div>

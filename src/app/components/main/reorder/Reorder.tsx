@@ -27,7 +27,7 @@ export default function Reorder({ client_id }: ReorderProps) {
     <div className="w-full h-[421px] flex flex-col items-center py-6 bg-[#f7f7f7]">
       <div className="w-[1050px] flex flex-col">
         <div className="text-xl font-semibold">{REORDER_TEXT[0]}</div>
-        <div className="text-base font-normal">{REORDER_TEXT[1]}</div>
+        <div className="text-base">{REORDER_TEXT[1]}</div>
         <div className="flex flex-col gap-y-2 mb-[18px] mt-6">
           <div className="flex-center flex-col gap-y-2">
             {recent?.length === 0 ? (
@@ -40,7 +40,7 @@ export default function Reorder({ client_id }: ReorderProps) {
                   key={quotations.date}
                   className="flex justify-between w-full py-4 px-6 h-[81px] bg-white items-center"
                 >
-                  <div className="flex flex-col gap-y-1.5 text-base font-normal">
+                  <div className="flex flex-col gap-y-1.5">
                     <p>{quotations.date}</p>
                     <p>
                       {quotations.products.length === 0
@@ -49,7 +49,7 @@ export default function Reorder({ client_id }: ReorderProps) {
                     </p>
                   </div>
                   <Link
-                    className="w-[111px] h-[39px] bg-primary-3 rounded text-white text-base font-normal flex-center"
+                    className="w-[111px] h-[39px] bg-primary-3 rounded text-white text-base flex-center"
                     href="/order"
                   >
                     {REORDER_TEXT[2]}

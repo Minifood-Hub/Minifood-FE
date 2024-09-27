@@ -16,7 +16,7 @@ export default function QuotationTable({
     <div className="flex flex-col items-center self-stretch">
       <div className="flex h-[50px] py-3 px-0 justify-between items-center self-stretch border-b-2 border-gray-6">
         <p className="text-lg font-bold">{MODAL_TEXT[0]}</p>
-        <p className="text-base">
+        <p>
           {currentDate} ({dayOfWeek})
         </p>
       </div>

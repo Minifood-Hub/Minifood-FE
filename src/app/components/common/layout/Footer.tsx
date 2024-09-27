@@ -7,7 +7,7 @@ function Footer() {
     <div className="w-full h-[auto] text-[#306317]">
       <footer className="flex w-full h-[160px] justify-center min-w-[800px] p-[52px] gap-x-7">
         <div className="flex flex-col">
-          <div className="flex w-[auto] h-[auto] pb-2 text-base font-light ">
+          <div className="flex w-[auto] h-[auto] pb-2 font-light">
             <div className="border-r-2 pr-2">{FOOTER_TEXT[0]}</div>
             <div className="border-r-2 px-2">{FOOTER_TEXT[1]}</div>
             <div className="border-r-2 px-2">{FOOTER_TEXT[2]}</div>
@@ -39,7 +39,7 @@ function Footer() {
               alt="github icon"
             />
           </div>
-          <div className="flex items-center gap-x-1 font-medium text-base mb-2 underline">
+          <div className="flex items-center gap-x-1 font-medium mb-2 underline">
             <Link href="https://github.com/YPYP333YPYP" target="_blank">
               <div className="border-r-2 px-2">{CONTRIBUTORS[0]}</div>
             </Link>

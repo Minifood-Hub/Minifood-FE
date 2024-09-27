@@ -43,7 +43,7 @@ const QuotationViewTableInfo = ({
           deleteQuote={() => deleteQuotation(quoteView.id)}
         />
       )}
-      <div className="w-full pl-1 justify-start items-center inline-flex h-[53px] text-base font-normal border-b border-gray-1">
+      <div className="w-full pl-1 justify-start items-center inline-flex h-[53px] font-normal border-b border-gray-1">
         <div className="w-[9.6%] text-center">{index + 1}</div>
         <div className="w-[25.5%] text-center">
           {formatDate(quoteView.input_date)}

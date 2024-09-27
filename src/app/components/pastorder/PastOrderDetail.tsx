@@ -29,7 +29,7 @@ const PastOrderDetail = ({ pastorderId }: PastOrderDetailProps) => {
       </div>
       {pastOrders.map((pastOrder, i) => (
         <div
-          className="w-full flex h-[54px] items-center text-base font-normal"
+          className="w-full flex h-[54px] items-center font-normal"
           key={pastOrder.id}
         >
           <div className="w-[9.1%] text-center">
