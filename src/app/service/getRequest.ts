@@ -80,12 +80,6 @@ export const getPurchaseRecent = async (req: Request) => {
   return getRequest(url, req);
 };
 
-// 견적서 정보 조회
-export const getQuotations = async (quotation_id: string, req: Request) => {
-  const url = `${SERVER_URL}/api/v1/quotations/${quotation_id}`;
-  return getRequest(url, req);
-};
-
 // 즐겨찾기 상세 불러오기
 export const getPastOrder = async (past_order_id: string, req: Request) => {
   const url = `${SERVER_URL}/api/v1/past-order/${past_order_id}`;
