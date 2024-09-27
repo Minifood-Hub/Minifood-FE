@@ -74,7 +74,7 @@ export default function SideNavBar({ selected }: SideNavBarProps) {
               />
               <Link
                 href={path}
-                className={`${isSelected(SIDENAV_TEXT[i]) && 'text-[#49AA19]'}`}
+                className={`${isSelected(SIDENAV_TEXT[i]) && 'text-primary-2'}`}
               >
                 {SIDENAV_TEXT[i]}
               </Link>
