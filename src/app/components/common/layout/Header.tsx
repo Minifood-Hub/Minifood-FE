@@ -8,10 +8,10 @@ import {
   HEADER_TEXT,
 } from '@/app/constants/common';
 import { useUser } from '@/app/hooks/useUser';
+import { setTokens } from '@/app/utils/setTokens';
 import Image from 'next/image';
 import Link from 'next/link';
 import ProfileDropDown from '../ProfileDropDown';
-import { setTokens } from '@/app/utils/setTokens';
 
 function Header() {
   const { user } = useUser();
@@ -63,7 +63,12 @@ function Header() {
       <header className="relative w-full h-16 flex items-center px-[13.5%] justify-between">
         <div className="flex gap-x-[63.5px] cursor-pointer text-[#333] items-center text-[15px] font-medium">
           <Link href="/">
-            <Image src="/Images/JMF2.png" width={60} height={48} alt="logo" />
+            <Image
+              src="/Images/minifood.png"
+              width={129}
+              height={27}
+              alt="logo"
+            />
           </Link>
           <div className="flex gap-x-[63.5px]">
             {HEADER_TEXT.map((text, i) => (

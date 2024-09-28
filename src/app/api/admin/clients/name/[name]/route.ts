@@ -12,7 +12,6 @@ export async function GET(
     const data = await getAdminClientName(name, req);
     return NextResponse.json(data);
   } catch (error) {
-    console.error('API Error:', error);
     return NextResponse.json(
       { error: 'Internal Server Error' },
       { status: 500 },

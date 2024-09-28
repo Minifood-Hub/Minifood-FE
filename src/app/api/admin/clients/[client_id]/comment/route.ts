@@ -1,7 +1,7 @@
 // 거래처 특이사항 작성
 
-import { NextResponse } from 'next/server';
 import { patchAdminClientComment } from '@/app/service/patchRequest';
+import { NextResponse } from 'next/server';
 
 export async function PATCH(
   req: Request,
@@ -15,7 +15,6 @@ export async function PATCH(
     const data = await patchAdminClientComment(client_id, input_comment, req);
     return NextResponse.json(data);
   } catch (error) {
-    console.error('API Error:', error);
     return NextResponse.json(
       { error: 'Internal Server Error' },
       { status: 500 },

@@ -110,7 +110,7 @@ export default function EditQuotationModal({
           <div className="flex flex-col gap-y-2 mt-4 w-full pb-4 text-base font-normal text-black border-b-2 border-dashed border-gray-2 px-1">
             <div className="flex justify-between">
               <div className="text-[#999]">{MODAL_INFO[2]}</div>
-              <div>(주)JMF</div>
+              <div>(주)미니푸드</div>
             </div>
             <div className="flex justify-between">
               <div className="text-[#999]">{MODAL_INFO[3]}</div>

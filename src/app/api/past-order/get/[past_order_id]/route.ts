@@ -10,7 +10,6 @@ export async function GET(
     const data = await getPastOrder(past_order_id, req);
     return NextResponse.json(data);
   } catch (error) {
-    console.error('API Error:', error);
     return NextResponse.json(
       { error: 'Internal Server Error' },
       { status: 500 },

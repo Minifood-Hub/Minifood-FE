@@ -10,7 +10,6 @@ const ProductContainer = () => {
   const isSelected = (type: ProductCategory) => {
     return productType === type && 'text-[#5A0]';
   };
-  console.log(isSelected, productType);
 
   return (
     <div className="w-full flex justify-center pt-[100px]">

@@ -1,54 +1,57 @@
-import { CONTRIBUTORS, FOOTER_TEXT } from '@/app/constants/common';
+import { FOOTER_TEXT, JMF_INFO } from '@/app/constants/common';
 import Image from 'next/image';
 import Link from 'next/link';
 
 function Footer() {
   return (
-    <div className="w-full h-[auto] text-primary-4">
-      <footer className="flex w-full h-[160px] justify-center min-w-[800px] p-[52px] gap-x-7">
-        <div className="flex flex-col">
-          <div className="flex w-[auto] h-[auto] pb-2 font-light">
-            <div className="border-r-2 pr-2">{FOOTER_TEXT[0]}</div>
-            <div className="border-r-2 px-2">{FOOTER_TEXT[1]}</div>
-            <div className="border-r-2 px-2">{FOOTER_TEXT[2]}</div>
-            <div className="px-2">{FOOTER_TEXT[3]}</div>
-          </div>
-          <Link href="https://github.com/JMF-HUB">
-            <div className="flex items-center gap-x-1.5 mb-2">
-              <Image
-                width={24}
-                height={22.5}
-                src="/Images/logo.png"
-                alt="logoIcon"
-                style={{ width: 24, height: 22.5 }}
-              />
-              <div className="font-bold text-[20px]">{FOOTER_TEXT[4]}</div>
-              <div className="font-light text-[16px]">{FOOTER_TEXT[5]}</div>
-              <div className="font-bold text-[16px]">{FOOTER_TEXT[6]}</div>
-              <div className="font-light text-[16px]">{FOOTER_TEXT[7]}</div>
-            </div>
-          </Link>
+    <div className="w-full flex justify-center h-[auto] text-black bg-slate-100 mt-10">
+      <footer className="flex h-[240px] flex-col gap-y-6 justify-center min-w-[800px]">
+        <div className="flex gap-x-8 font-medium text-[18px] items-center justify-start">
+          <Image
+            width={120}
+            height={40}
+            src="/Images/minifood.png"
+            alt="logoIcon"
+          />
+          <Link href="introduce">{FOOTER_TEXT[0]}</Link>
+          <Link href="/tos">{FOOTER_TEXT[1]}</Link>
+          <Link href="/personal">{FOOTER_TEXT[2]}</Link>
         </div>
-        <div className="flex-col flex w-auto h-[20px] pb-2">
-          <div className="flex items-center gap-x-2 mb-1">
-            <div className="font-bold text-xl">{FOOTER_TEXT[8]}</div>
-            <Image
-              width={22}
-              height={22}
-              src="/Images/github.png"
-              alt="github icon"
-            />
-          </div>
-          <div className="flex items-center gap-x-1 font-medium mb-2 underline">
-            <Link href="https://github.com/YPYP333YPYP" target="_blank">
-              <div className="border-r-2 px-2">{CONTRIBUTORS[0]}</div>
-            </Link>
-            <Link href="https://github.com/kimgorok" target="_blank">
-              <div className="border-r-2 px-2">{CONTRIBUTORS[1]}</div>
-            </Link>
-            <Link href="https://github.com/Minkyu0424" target="_blank">
-              <div className="pl-2">{CONTRIBUTORS[2]}</div>
-            </Link>
+        <div>
+          <div className="font-semibold text-lg mb-2">{FOOTER_TEXT[4]}</div>
+          <div className="flex flex-col font-semibold gap-y-2">
+            <div className="flex gap-x-2">
+              <div className="flex gap-x-1">
+                {FOOTER_TEXT[5]}
+                <div className="font-normal">{JMF_INFO[0]}</div>
+              </div>
+              <div className="flex gap-x-1">
+                {FOOTER_TEXT[6]}
+                <div className="font-normal">{JMF_INFO[1]}</div>
+              </div>
+              <div className="flex gap-x-1">
+                {FOOTER_TEXT[9]}
+                <div className="font-normal">{JMF_INFO[5]}</div>
+              </div>
+              <div className="flex gap-x-1">
+                {FOOTER_TEXT[8]}
+                <div className="font-normal">{JMF_INFO[3]}</div>
+              </div>
+            </div>
+            <div className="flex gap-x-2">
+              <div className="flex gap-x-1">
+                {FOOTER_TEXT[7]}
+                <div className="font-normal">{JMF_INFO[2]}</div>
+              </div>
+              <div className="flex gap-x-1">
+                {FOOTER_TEXT[10]}
+                <div className="font-normal">{JMF_INFO[0]}</div>
+              </div>
+              <div className="flex gap-x-1">
+                {FOOTER_TEXT[11]}
+                <div className="font-normal">{JMF_INFO[4]}</div>
+              </div>
+            </div>
           </div>
         </div>
       </footer>
