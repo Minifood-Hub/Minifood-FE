@@ -212,14 +212,14 @@ export default function QuotationModal({
               <Button
                 buttonText="닫기"
                 type="default"
-                className="flex-center py-3 px-6 gap-[10px] rounded border border-gray-2 bg-white font-normal"
+                className="flex-center py-3 px-6 gap-[10px] rounded border border-gray-2 bg-white"
                 onClickHandler={closeModal}
               />
               <Button
                 onClickHandler={handleConfirmClick}
                 buttonText={BUTTON_TEXT[2]}
                 type="default"
-                className="flex-center py-3 px-6 gap-[10px] rounded border bg-primary-3 font-normal text-white"
+                className="flex-center py-3 px-6 gap-[10px] rounded border bg-primary-3 text-white"
               />
             </div>
 

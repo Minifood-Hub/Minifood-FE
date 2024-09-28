@@ -23,7 +23,7 @@ export default function ExtractAll() {
   };
 
   return (
-    <div className="flex justify-center items-center gap-4 py-4 border">
+    <div className="flex-center gap-4 py-4 border">
       <p className="font-bold text-lg">{INPUT_TEXT[8]}</p>
       <input
         className="w-56 h-10 border rounded px-4"

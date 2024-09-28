@@ -36,6 +36,7 @@ const config: Config = {
         },
         red: {
           1: '#FF0000',
+          2: '#Fc4c00',
         },
         yellow: {
           1: '#E3E300',

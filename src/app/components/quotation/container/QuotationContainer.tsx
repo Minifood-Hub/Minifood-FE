@@ -17,7 +17,7 @@ const QuotationContainer = () => {
   const { isOpen, openModal, closeModal } = useModal(false);
 
   const bg = (checked: CheckTypes) =>
-    checkType === checked ? 'bg-[#55aa00]' : 'bg-[#b8b8b8]';
+    checkType === checked ? 'bg-primary-3' : 'bg-gray-2';
 
   const selectCheckType = (type: string) => {
     setCheckType(QUOTATION_TRANS_VIEWTYPE[type]);
@@ -36,7 +36,7 @@ const QuotationContainer = () => {
   };
 
   return (
-    <div className="w-full flex justify-center pt-[100px]">
+    <div className="w-full flex justify-center py-[100px]">
       {isOpen && (
         <QuotationCalendar
           closeModal={closeModal}
@@ -47,7 +47,7 @@ const QuotationContainer = () => {
       <div className="w-[77%] flex flex-col">
         <div className="flex w-full justify-between items-end">
           <p className="text-2xl font-bold ">{QUOTATION_VIEW[0]}</p>
-          <div className="flex text-white text-base font-medium gap-x-4">
+          <div className="flex text-white font-medium gap-x-4">
             {QUOTATION_VIEWTYPE.map((type, index) => (
               <div
                 key={type}

@@ -38,7 +38,7 @@ const Question = () => {
             buttonText={faq.category}
             type="faqButton"
             onClickHandler={() => setIsSelected(i)}
-            className={isSelected === i ? 'bg-[#24c062]' : 'bg-[#b8b8b8]'}
+            className={isSelected === i ? 'bg-[#24c062]' : 'bg-gray-2'}
           />
         ))}
       </div>

@@ -6,8 +6,6 @@ export const REORDER_TEXT = [
   '주문상품 전체보기 >',
 ];
 
-export const RECOMMEND_TEXT = ['오늘, 이런 상품은 어때요?', '구매하기'];
-
 export const MAIN_MODAL_TEXT = [
   '로그인 후',
   '이용이 가능합니다.',
