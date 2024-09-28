@@ -10,7 +10,7 @@
 .swiper-button-next,
 .swiper-button-prev {
   width: 50px !important;
-  height: 50px !important;  
+  height: 50px !important;
   background-color: rgba(22, 22, 22, 0.15);
   border-radius: 50%;
   display: flex;
