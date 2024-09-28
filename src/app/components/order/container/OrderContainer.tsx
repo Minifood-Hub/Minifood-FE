@@ -53,7 +53,6 @@ export default function OrderContainer() {
         input_date: orderDate,
         status: 'CREATED',
       };
-      console.log(orderDate, '날짜');
       const response = await callPost('/api/order/quotations', body);
       if (response.code === '4003') {
         setDialogState(() => ({

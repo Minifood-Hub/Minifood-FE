@@ -26,7 +26,6 @@ export async function GET(req: Request): Promise<NextResponse> {
       },
     });
   } catch (error) {
-    console.error('API Error:', error);
     return NextResponse.json(
       { error: 'Internal Server Error' },
       { status: 500 },

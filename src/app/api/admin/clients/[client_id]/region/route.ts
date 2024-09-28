@@ -1,7 +1,7 @@
 // 거래처 지역 선택
 
-import { NextResponse } from 'next/server';
 import { patchAdminClientRegion } from '@/app/service/patchRequest';
+import { NextResponse } from 'next/server';
 
 export async function PATCH(
   req: Request,
@@ -15,7 +15,6 @@ export async function PATCH(
     const data = await patchAdminClientRegion(client_id, region, req);
     return NextResponse.json(data);
   } catch (error) {
-    console.error('API Error:', error);
     return NextResponse.json(
       { error: 'Internal Server Error' },
       { status: 500 },

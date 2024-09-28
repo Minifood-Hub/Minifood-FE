@@ -35,12 +35,10 @@ function KakaoAuthContent() {
             router.push('/');
           } else {
             // 액세스 토큰을 받지 못했다면
-            console.error('토큰 access 실패');
             router.push('/sign-in');
           }
         })
         .catch((error) => {
-          console.error('Kakao login 에러 발생', error);
           router.push('/sign-in');
         });
     }
