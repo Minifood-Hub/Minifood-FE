@@ -1,4 +1,4 @@
-// 주문내역 삭제
+// 즐겨찾기 삭제
 
 import { deletePastOrder } from '@/app/service/deleteRequest';
 import { NextResponse } from 'next/server';

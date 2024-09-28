@@ -13,7 +13,7 @@ interface PastOrderEditProps {
 const PastOrderEdit = ({ pastorderId, setProductIds }: PastOrderEditProps) => {
   const [products, setProducts] = useState<PastOrderProduct[]>([]);
   useEffect(() => {
-    const productIds = products.map((product) => product.id);
+    const productIds = products?.map((product) => product.id);
     setProductIds(productIds);
   }, [products, setProductIds]);
 
@@ -39,18 +39,15 @@ const PastOrderEdit = ({ pastorderId, setProductIds }: PastOrderEditProps) => {
         <div className="w-[11.4%] text-center">{PASTORDER_DETAIL[3]}</div>
         <div className="w-[11.4%] text-center">{PASTORDER_DETAIL[5]}</div>
       </div>
-      {products.map((product, i) => (
-        <div
-          className="w-full flex h-[54px] items-center text-base font-normal"
-          key={product.id}
-        >
+      {products?.map((product, i) => (
+        <div className="w-full flex h-[54px] items-center" key={product.id}>
           <div className="w-[9.1%] text-center">
             {categoryMapping[product.category]}
           </div>
           <div className="w-[18.6%] pl-[14px]">{i + 1}</div>
           <div className="w-[49.1%] pl-[14px]">{product.name}</div>
           <div className="w-[11.4%] text-center">{product.unit}</div>
-          <div className="w-[11.4%] flex justify-center items-center">
+          <div className="w-[11.4%] flex-center">
             <Icons
               name={TrashBinIcon}
               className="cursor-pointer"

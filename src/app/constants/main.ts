@@ -6,8 +6,6 @@ export const REORDER_TEXT = [
   '주문상품 전체보기 >',
 ];
 
-export const RECOMMEND_TEXT = ['오늘, 이런 상품은 어때요?', '구매하기'];
-
 export const MAIN_MODAL_TEXT = [
   '로그인 후',
   '이용이 가능합니다.',
@@ -18,9 +16,9 @@ export const MAIN_MODAL_TEXT = [
 export const FAQ_TEXT = ['상품', '배송', '결제'];
 
 export const CUSTOMER_SERVICE_TEXT = [
-  'Tel: 012-345-6789',
-  'Email: test@gmail.com',
-  'Fax: 012-345-6789',
+  'Tel: 1688-7606',
+  'Email: minifood1435@hanmail.net',
+  'Fax: 031-528-2331',
 ];
 
 export const MAIN_CALENDAR_TEXT = [

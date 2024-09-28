@@ -1,7 +1,7 @@
 import '@/app/ui/maincarousel.css';
-import Announcement from '../Information.tsx/Announcement';
-import CustomerService from '../Information.tsx/CustomerService';
-import Question from '../Information.tsx/Question';
+import Announcement from '../Information/Announcement';
+import CustomerService from '../Information/CustomerService';
+import Question from '../Information/Question';
 import MainCarousel from '../carousel/MainCarousel';
 
 function InformationContainer() {

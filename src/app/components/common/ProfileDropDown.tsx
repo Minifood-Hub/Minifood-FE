@@ -54,7 +54,7 @@ const ProfileDropDown = ({ user, logout }: ProfileDropDownProps) => {
         <Icons name={DropDownIcon} />
       </div>
       {isOpen && (
-        <div className="flex flex-col bg-white border-[#E0E0E0] border absolute top-[52px] z-10">
+        <div className="flex flex-col bg-white border border-gray-1 absolute top-[52px] z-10">
           <div className="flex items-center w-auto h-auto px-3 py-2 border-b">
             {user.result?.client_name || HEADER_PROFILE[3]}
           </div>

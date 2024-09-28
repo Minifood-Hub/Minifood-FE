@@ -80,12 +80,6 @@ export const getPurchaseRecent = async (req: Request) => {
   return getRequest(url, req);
 };
 
-// 견적서 정보 조회
-export const getQuotations = async (quotation_id: string, req: Request) => {
-  const url = `${SERVER_URL}/api/v1/quotations/${quotation_id}`;
-  return getRequest(url, req);
-};
-
 // 즐겨찾기 상세 불러오기
 export const getPastOrder = async (past_order_id: string, req: Request) => {
   const url = `${SERVER_URL}/api/v1/past-order/${past_order_id}`;
@@ -98,7 +92,7 @@ export const getQuotationTotal = async (quotation_id: string, req: Request) => {
   return getRequest(url, req);
 };
 
-// 거래처 주문 내역 조회(URL 캐시 버스팅 사용)
+// 거래처 즐겨찾기 조회(URL 캐시 버스팅 사용)
 export const getClientPastOrder = async (client_id: string, req: Request) => {
   const url = `${SERVER_URL}/api/v1/clients/${client_id}/past-order?_t=${Date.now()}`;
   return getRequest(url, req);
@@ -126,6 +120,11 @@ export const getQuotationDetail = async (quotationId: string, req: Request) => {
   return getRequest(url, req);
 };
 
+export const getCheckPassword = async (password: string, req: Request) => {
+  const url = `${SERVER_URL}/api/v1/users/me/password/check?password=${password}`;
+  return getRequest(url, req);
+};
+
 // ===== 관리자 =====
 // 모든 거래처 조회
 export const getAdminClientAll = async (req: Request) => {
@@ -142,50 +141,6 @@ export const getAdminClientName = async (name: string, req: Request) => {
 // 거래처 지역으로 조회
 export const getAdminClientRegion = async (region: string, req: Request) => {
   const url = `${SERVER_URL}/api/v1/clients/region?region=${region}`;
-  return getRequest(url, req);
-};
-
-// 거래처 견적서 조회
-export const getAdminClientQuotations = async (
-  client_id: string,
-  page: string,
-  page_size: string,
-  req: Request,
-) => {
-  const url = `${SERVER_URL}/api/v1/clients/${client_id}/quotations?page=${page}&page_size=${page_size}`;
-  return getRequest(url, req);
-};
-
-// 거래처 견적서 기간에 따른 조회
-export const getAdminClientQuotationsDate = async (
-  client_id: string,
-  date_range_type: string,
-  start_date: string,
-  end_date: string,
-  page: string,
-  page_size: string,
-  req: Request,
-) => {
-  const url = `${SERVER_URL}/api/v1/clients/${client_id}/quotations/date?date_range_type=${date_range_type}&start_date=${start_date}&end_date=${end_date}&page=${page}&page_size=${page_size}`;
-  return getRequest(url, req);
-};
-
-// 거래처 주문 내역 조회
-export const getAdminClientPastOrder = async (
-  client_id: string,
-  req: Request,
-) => {
-  const url = `${SERVER_URL}/api/v1/clients/${client_id}/past-order`;
-  return getRequest(url, req);
-};
-
-// 거래처 해당 날짜 견적서 제출 여부 파악
-export const getAdminClientCheck = async (
-  client_id: string,
-  input_date: string,
-  req: Request,
-) => {
-  const url = `${SERVER_URL}/api/v1/clients/${client_id}/check?input_date=${input_date}`;
   return getRequest(url, req);
 };
 
@@ -261,19 +216,4 @@ export const getRecentQuotation = async (client_id: string, req: Request) => {
 export const getDailyQuotation = async () => {
   const url = `${SERVER_URL}/api/v1/statistics/daily-quotation-totals`;
   return getRequest(url);
-};
-
-export const getProducts = async (req: Request) => {
-  const url = `${SERVER_URL}/api/v1/custom-products`;
-  return getRequest(url, req);
-};
-
-export const getProductDetail = async (product_id: string, req: Request) => {
-  const url = `${SERVER_URL}/api/v1/custom-products/${product_id}`;
-  return getRequest(url, req);
-};
-
-export const getCheckPassword = async (password: string, req: Request) => {
-  const url = `${SERVER_URL}/api/v1/users/me/password/check?password=${password}`;
-  return getRequest(url, req);
 };

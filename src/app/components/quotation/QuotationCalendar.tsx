@@ -20,7 +20,7 @@ const QuotationCalendar = ({
   closeModal,
 }: QuotationCalendarProps) => {
   return (
-    <div className="fixed top-0 left-0 w-full h-full bg-gray-3 bg-opacity-70 flex justify-center items-center z-50">
+    <div className="fixed top-0 left-0 w-full h-full bg-gray-3 bg-opacity-70 flex-center z-50">
       <div className="flex relative">
         <Calendar
           onChange={setDate}

@@ -65,7 +65,7 @@ const AccountUpdate = () => {
       <div className="flex flex-col gap-y-2">
         <div className="flex">
           <p>{ACCOUNT_PASSWORD[0]}</p>
-          <div className="text-[#fc4c00] text-base font-semibold">
+          <div className="text-red-2 font-semibold">
             *
             {errorType === 'INVALID'
               ? ` ${ACCOUNT_ALERT[1]}`
@@ -84,7 +84,7 @@ const AccountUpdate = () => {
       <div className="flex flex-col gap-y-2">
         <div className="flex">
           <p>{ACCOUNT_PASSWORD[1]}</p>
-          <div className="text-[#fc4c00] text-base font-semibold">
+          <div className="text-red-2 font-semibold">
             *
             {errorType === 'INVALID_NEW'
               ? ` ${ACCOUNT_ALERT[1]}`
@@ -103,7 +103,7 @@ const AccountUpdate = () => {
       <div className="flex flex-col gap-y-2">
         <div className="flex">
           <p>{ACCOUNT_PASSWORD[2]}</p>
-          <div className="text-[#fc4c00] text-base font-semibold">
+          <div className="text-red-2 font-semibold">
             * {errorType === 'INCONSISTENCY' ? ` ${ACCOUNT_ALERT[0]}` : ''}
           </div>
         </div>
@@ -117,7 +117,7 @@ const AccountUpdate = () => {
       <div>
         <Link
           href="/sign-in/client/edit"
-          className="flex w-full justify-between text-[#333333] text-base font-normal mb-2"
+          className="flex w-full justify-between text-[#333333] mb-2"
         >
           <p className="font-semibold">{ACCOUNT_PASSWORD[3]}</p>
           <div className="flex items-center">
@@ -136,13 +136,13 @@ const AccountUpdate = () => {
           buttonText={ACCOUNT_BTN_TEXT[1]}
           type="accountUpdate"
           onClickHandler={deleteAccount}
-          className="border border-[#e0e0e0]"
+          className="border border-gray-1"
         />
         <Button
           buttonText={ACCOUNT_BTN_TEXT[2]}
           type="accountUpdate"
           onClickHandler={changePassword}
-          className="bg-[#55aa00] text-white"
+          className="bg-primary-3 text-white"
         />
       </div>
     </div>

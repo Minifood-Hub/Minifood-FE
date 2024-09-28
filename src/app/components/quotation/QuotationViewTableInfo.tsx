@@ -43,7 +43,7 @@ const QuotationViewTableInfo = ({
           deleteQuote={() => deleteQuotation(quoteView.id)}
         />
       )}
-      <div className="w-full pl-1 justify-start items-center inline-flex h-[53px] text-base font-normal border-b border-b-[#E0E0E0]">
+      <div className="w-full pl-1 justify-start items-center inline-flex h-[53px] border-b border-gray-1">
         <div className="w-[9.6%] text-center">{index + 1}</div>
         <div className="w-[25.5%] text-center">
           {formatDate(quoteView.input_date)}
@@ -57,19 +57,19 @@ const QuotationViewTableInfo = ({
             buttonText={QUOTATION_MANAGE[0]}
             type="quoteTableControl"
             onClickHandler={openModal}
-            className="border border-[#e0e0e0]"
+            className="border border-gray-1"
           />
           <Button
             buttonText={QUOTATION_MANAGE[1]}
             type="quoteTableControl"
             onClickHandler={() => router.push(`quotation/edit/${quoteView.id}`)}
-            className="border border-[#e0e0e0]"
+            className="border border-gray-1"
           />
           <Button
             buttonText={QUOTATION_MANAGE[2]}
             type="quoteTableControl"
             onClickHandler={openDeleteModal}
-            className="bg-[#fc4c00] text-white"
+            className="bg-red-2 text-white"
           />
         </div>
       </div>

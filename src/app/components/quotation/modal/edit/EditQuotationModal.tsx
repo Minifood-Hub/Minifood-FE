@@ -98,9 +98,9 @@ export default function EditQuotationModal({
   };
 
   return (
-    <div className="fixed top-0 left-0 w-full h-full bg-gray-3 bg-opacity-70 flex justify-center items-center z-50">
+    <div className="fixed top-0 left-0 w-full h-full bg-gray-3 bg-opacity-70 flex-center z-50">
       <div className="flex flex-col w-[800px] rounded p-10 bg-gray-1 relative items-center">
-        <div className="w-full flex-center bg-[#55AA00] text-white rounded h-[57px] mb-2">
+        <div className="w-full flex-center bg-primary-3 text-white rounded h-[57px] mb-2">
           {quotationName}
         </div>
         <div className="w-full flex flex-col text-lg font-light bg-white px-6 pt-6">
@@ -110,7 +110,7 @@ export default function EditQuotationModal({
           <div className="flex flex-col gap-y-2 mt-4 w-full pb-4 text-base font-normal text-black border-b-2 border-dashed border-gray-2 px-1">
             <div className="flex justify-between">
               <div className="text-[#999]">{MODAL_INFO[2]}</div>
-              <div>(주)JMF</div>
+              <div>(주)미니푸드</div>
             </div>
             <div className="flex justify-between">
               <div className="text-[#999]">{MODAL_INFO[3]}</div>

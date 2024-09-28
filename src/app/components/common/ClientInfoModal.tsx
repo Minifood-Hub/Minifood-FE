@@ -16,7 +16,7 @@ export default function ClientInfoModal({
 }: ClientInfoModalProps) {
   return (
     <div
-      className={`flex w-[600px] py-[18px] px-6 flex-col justify-center items-start rounded bg-white  ${isForAccount ? 'border border-[#E0E0E0]' : 'shadow-md'}`}
+      className={`flex w-[600px] py-[18px] px-6 flex-col justify-center items-start rounded bg-white  ${isForAccount ? 'border border-gray-1' : 'shadow-md'}`}
     >
       <div className="flex items-center gap-[18px]">
         <div className="flex-center min-w-[60px] h-[60px] rounded-full bg-primary-3">

@@ -62,10 +62,11 @@ export const postLogin = async (signInContents: any) => {
 };
 
 // 액세스 토큰 재발급
-export const postRefreshToken = async (refresh_token: string) => {
+export const postRefreshToken = async (refresh_token: string, req: Request) => {
   try {
     const url = `${SERVER_URL}/api/v1/token/refresh?refresh_token=${encodeURIComponent(refresh_token)}`;
-    return await postRequest(url, null);
+
+    return await postRequest(url, null, req);
   } catch (error) {
     console.error('에러 :', error);
     throw new Error('postRefreshToken 액세스 토큰 재발급 에러 발생');
@@ -94,7 +95,7 @@ export const postClient = async (clientContents: any, req: Request) => {
   }
 };
 
-// 주문 내역 생성
+// 즐겨찾기 생성
 export const postPastOrder = async (pastOrderContents: any, req: Request) => {
   try {
     const url = `${SERVER_URL}/api/v1/past-order`;
@@ -188,14 +189,4 @@ export const postAdminNotices = async (noticeContents: any) => {
 export const postAdminFAQ = (faqContents: FAQPostTypes) => {
   const url = `${SERVER_URL}/api/v1/faqs`;
   return postRequest(url, faqContents);
-};
-
-export const postProduct = (product: any, req: Request) => {
-  const url = `${SERVER_URL}/api/v1/custom-products`;
-  return postRequest(url, product, req);
-};
-
-export const postProductBulk = (productBulk: any, req: Request) => {
-  const url = `${SERVER_URL}/api/v1/custom-products/bulk`;
-  return postRequest(url, productBulk, req);
 };

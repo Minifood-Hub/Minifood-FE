@@ -116,7 +116,7 @@ export default function NewPastOrderContainer() {
             className={`order-btn py-3 px-6  ${
               addedItems.length === 0
                 ? 'bg-gray-2 text-white'
-                : 'bg-[#55aa00] text-white '
+                : 'bg-primary-3 text-white '
             }`}
             buttonText={ORDER_TEXT[7]}
           />

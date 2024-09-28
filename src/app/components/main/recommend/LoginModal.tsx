@@ -12,7 +12,7 @@ const LoginModal = ({ closeModal }: LoginModalProps) => {
   const router = useRouter();
 
   return (
-    <div className="fixed top-0 left-0 w-full h-full bg-gray-3 bg-opacity-70 flex justify-center items-center z-50">
+    <div className="fixed top-0 left-0 w-full h-full bg-gray-3 bg-opacity-70 flex-center z-50">
       <div className="w-[300px] h-[193px] flex-center gap-y-8 flex-col bg-white rounded">
         <div className="flex flex-col items-center text-xl font-semibold">
           <p>{MAIN_MODAL_TEXT[0]}</p>

@@ -9,6 +9,7 @@ import { callGet, callPatch } from '@/app/utils/callApi';
 import { useEffect, useState } from 'react';
 import { usePDF } from 'react-to-pdf';
 import QuotationTable from './QuotationTable';
+import { JMF_INFO } from '@/app/constants/common';
 
 interface QuotationModalProps {
   closeModal: () => void;
@@ -68,7 +69,7 @@ const QuotationModal = ({ closeModal, id, isAdmin }: QuotationModalProps) => {
   }, []);
 
   const { toPDF, targetRef } = usePDF({
-    filename: 'JMF견적서.pdf',
+    filename: 'minifood견적서.pdf',
     page: { format: 'A4' },
     method: 'save',
   });
@@ -121,12 +122,12 @@ const QuotationModal = ({ closeModal, id, isAdmin }: QuotationModalProps) => {
   };
 
   return (
-    <div className="fixed top-0 left-0 w-full h-full bg-gray-3 bg-opacity-70 flex justify-center items-center z-50">
+    <div className="fixed top-0 left-0 w-full h-full bg-gray-3 bg-opacity-70 flex-center z-50">
       <div
         ref={targetRef}
         className="flex flex-col w-[800px] h-auto rounded p-10 bg-gray-1 relative items-center"
       >
-        <div className="w-full flex-center bg-[#55AA00] text-white rounded h-[57px] mb-2">
+        <div className="w-full flex-center bg-primary-3 text-white rounded h-[57px] mb-2">
           {detailData?.name}
         </div>
         <div className="w-full flex flex-col text-lg font-light bg-white px-6 pt-6">
@@ -136,15 +137,15 @@ const QuotationModal = ({ closeModal, id, isAdmin }: QuotationModalProps) => {
           <div className="flex flex-col gap-y-2 mt-4 w-full pb-4 text-base font-normal text-black border-b-2 border-dashed border-gray-2 px-1">
             <div className="flex justify-between">
               <div className="text-[#999]">{MODAL_INFO[2]}</div>
-              <div>(주)JMF</div>
+              <div>{JMF_INFO[0]}</div>
             </div>
             <div className="flex justify-between">
               <div className="text-[#999]">{MODAL_INFO[3]}</div>
-              <div>333-22-55555</div>
+              <div>{JMF_INFO[5]}</div>
             </div>
             <div className="flex justify-between">
               <div className="text-[#999]">{MODAL_INFO[4]}</div>
-              <div>서울시 어쩌구 어디로 888 1층</div>
+              <div>{JMF_INFO[2]}</div>
             </div>
           </div>
           {detailData && (
