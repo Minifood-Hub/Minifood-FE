@@ -36,7 +36,7 @@ const QuotationContainer = () => {
   };
 
   return (
-    <div className="w-full flex justify-center pt-[100px]">
+    <div className="w-full flex justify-center py-[100px]">
       {isOpen && (
         <QuotationCalendar
           closeModal={closeModal}

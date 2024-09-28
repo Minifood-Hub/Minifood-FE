@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 const PastorderContainer = () => {
   return (
-    <div className="w-full flex justify-center pt-[100px]">
+    <div className="w-full flex justify-center py-[100px]">
       <div className="w-[77%] flex flex-col">
         <div className="flex w-full justify-between">
           <p className="text-2xl font-bold ">{PASTORDER_TABLE[0]}</p>
