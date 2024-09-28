@@ -1,5 +1,5 @@
-import { NextResponse } from 'next/server';
 import { getSearchProducts } from '@/app/service/getRequest';
+import { NextResponse } from 'next/server';
 
 export async function GET(req: Request): Promise<NextResponse> {
   try {
@@ -16,7 +16,6 @@ export async function GET(req: Request): Promise<NextResponse> {
     );
     return NextResponse.json(data);
   } catch (error) {
-    console.error('API Error:', error);
     return NextResponse.json(
       { error: 'Internal Server Error' },
       { status: 500 },

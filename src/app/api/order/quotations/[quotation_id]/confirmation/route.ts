@@ -12,7 +12,6 @@ export async function PATCH(
     const data = await patchQuotationConfirm(quotation_id, req);
     return NextResponse.json(data);
   } catch (error) {
-    console.error('API Error:', error);
     return NextResponse.json(
       { error: 'Internal Server Error' },
       { status: 500 },

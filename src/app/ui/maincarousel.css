@@ -9,8 +9,8 @@
 
 .swiper-button-next,
 .swiper-button-prev {
-  width: 50px;
-  height: 50px;
+  width: 50px !important;
+  height: 50px !important;
   background-color: rgba(22, 22, 22, 0.15);
   border-radius: 50%;
   display: flex;
@@ -20,11 +20,11 @@
 
 .swiper-button-next::after,
 .swiper-button-prev::after {
-  content: none; /* 기본 화살표 제거 */
+  display: none;
 }
 
 .swiper-button-next {
-  right: 145px;
+  right: 280px;
   top: 172px;
   background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="11" height="16" fill="white" viewBox="0 0 11 16"><path d="M6.80008 8L0.666748 1.86667L2.53341 0L10.5334 8L2.53341 16L0.666748 14.1333L6.80008 8Z"></path></svg>');
   background-position: center;
@@ -32,7 +32,7 @@
 }
 
 .swiper-button-prev {
-  left: 145px;
+  left: 280px;
   top: 172px;
   background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="11" height="16" fill="white" viewBox="0 0 11 16"><path d="M4.20004 8L10.3334 14.1333L8.46671 16L0.466707 8L8.46671 0L10.3334 1.86667L4.20004 8Z"></path></svg>');
   background-position: center;

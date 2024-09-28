@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
-import '../ui/globals.css';
-import UserProvider from '../components/common/useProvider';
 import localFont from 'next/font/local';
+import UserProvider from '../components/common/useProvider';
+import '../ui/globals.css';
 
 const pretendard = localFont({
   src: '../static/fonts/PretendardVariable.woff2',
@@ -11,10 +11,10 @@ const pretendard = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'JMF',
-  description: '정말 맛있는 음식과 함께, JMF',
+  title: 'Minifood',
+  description: '정말 맛있는 음식과 함께, Minifood',
   icons: {
-    icon: '/Images/favicon.png',
+    icon: '/Images/minifoodorg.png',
   },
 };
 

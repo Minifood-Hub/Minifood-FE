@@ -13,7 +13,6 @@ export async function GET(req: Request): Promise<NextResponse> {
     const data = await getAdminQuotationsInfo(start, end, query, req);
     return NextResponse.json(data);
   } catch (error) {
-    console.error('API Error:', error);
     return NextResponse.json(
       { error: 'Internal Server Error' },
       { status: 500 },

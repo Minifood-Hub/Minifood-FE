@@ -1,7 +1,7 @@
 // 거래처 해당 날짜 견적서 제출 여부 파악
 
-import { NextResponse } from 'next/server';
 import { getAdminClientCheck } from '@/app/service/getRequest';
+import { NextResponse } from 'next/server';
 
 export async function GET(
   req: Request,
@@ -15,7 +15,6 @@ export async function GET(
     const data = await getAdminClientCheck(client_id, input_date, req);
     return NextResponse.json(data);
   } catch (error) {
-    console.error('API Error:', error);
     return NextResponse.json(
       { error: 'Internal Server Error' },
       { status: 500 },

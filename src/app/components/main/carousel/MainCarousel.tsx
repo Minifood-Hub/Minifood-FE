@@ -7,6 +7,7 @@ import 'swiper/css/pagination';
 import { Navigation, Pagination } from 'swiper/modules';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
+import '@/app/ui/maincarousel.css';
 
 import MainCard from './MainCard';
 import MainCard2 from './MainCard2';

@@ -29,7 +29,7 @@ export const MODAL_TEXT = [
 ];
 
 export const MODAL_INFO = [
-  'JMF 견적서',
+  'Minifood 견적서',
   '상점정보',
   '판매자상호',
   '상업자등록번호',

@@ -1,7 +1,7 @@
 // 거래처 견적서 조회
 
-import { NextResponse } from 'next/server';
 import { getAdminClientQuotations } from '@/app/service/getRequest';
+import { NextResponse } from 'next/server';
 
 export async function GET(
   req: Request,
@@ -22,7 +22,6 @@ export async function GET(
     );
     return NextResponse.json(data);
   } catch (error) {
-    console.error('API Error:', error);
     return NextResponse.json(
       { error: 'Internal Server Error' },
       { status: 500 },

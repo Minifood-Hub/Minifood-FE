@@ -15,7 +15,6 @@ export async function PATCH(
     const data = await patchAdminProductsVegetable(product_id, price, req);
     return NextResponse.json(data);
   } catch (error) {
-    console.error('API Error:', error);
     return NextResponse.json(
       { error: 'Internal Server Error' },
       { status: 500 },

@@ -1,7 +1,7 @@
 // 거래처 지역으로 조회
 
-import { NextResponse } from 'next/server';
 import { getAdminClientRegion } from '@/app/service/getRequest';
+import { NextResponse } from 'next/server';
 
 export async function GET(req: Request): Promise<NextResponse> {
   try {
@@ -11,7 +11,6 @@ export async function GET(req: Request): Promise<NextResponse> {
     const data = await getAdminClientRegion(region, req);
     return NextResponse.json(data);
   } catch (error) {
-    console.error('API Error:', error);
     return NextResponse.json(
       { error: 'Internal Server Error' },
       { status: 500 },
