@@ -95,7 +95,7 @@ export const postClient = async (clientContents: any, req: Request) => {
   }
 };
 
-// 주문 내역 생성
+// 즐겨찾기 생성
 export const postPastOrder = async (pastOrderContents: any, req: Request) => {
   try {
     const url = `${SERVER_URL}/api/v1/past-order`;

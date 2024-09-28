@@ -38,7 +38,7 @@ export const deleteQuoteProduct = async (
   return deleteRequest(url, req);
 };
 
-// 주문 내역 삭제
+// 즐겨찾기 삭제
 export const deletePastOrder = async (pastorder_id: string, req: Request) => {
   const url = `${SERVER_URL}/api/v1/past-order/${pastorder_id}/delete`;
   return deleteRequest(url, req);

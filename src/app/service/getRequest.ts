@@ -92,7 +92,7 @@ export const getQuotationTotal = async (quotation_id: string, req: Request) => {
   return getRequest(url, req);
 };
 
-// 거래처 주문 내역 조회(URL 캐시 버스팅 사용)
+// 거래처 즐겨찾기 조회(URL 캐시 버스팅 사용)
 export const getClientPastOrder = async (client_id: string, req: Request) => {
   const url = `${SERVER_URL}/api/v1/clients/${client_id}/past-order?_t=${Date.now()}`;
   return getRequest(url, req);

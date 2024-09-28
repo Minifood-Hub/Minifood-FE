@@ -1,5 +1,3 @@
-// 주문내역 삭제
-
 import { deleteProduct } from '@/app/service/deleteRequest';
 import { NextResponse } from 'next/server';
 
