@@ -13,7 +13,7 @@ interface PastOrderEditProps {
 const PastOrderEdit = ({ pastorderId, setProductIds }: PastOrderEditProps) => {
   const [products, setProducts] = useState<PastOrderProduct[]>([]);
   useEffect(() => {
-    const productIds = products.map((product) => product.id);
+    const productIds = products?.map((product) => product.id);
     setProductIds(productIds);
   }, [products, setProductIds]);
 
@@ -39,7 +39,7 @@ const PastOrderEdit = ({ pastorderId, setProductIds }: PastOrderEditProps) => {
         <div className="w-[11.4%] text-center">{PASTORDER_DETAIL[3]}</div>
         <div className="w-[11.4%] text-center">{PASTORDER_DETAIL[5]}</div>
       </div>
-      {products.map((product, i) => (
+      {products?.map((product, i) => (
         <div className="w-full flex h-[54px] items-center" key={product.id}>
           <div className="w-[9.1%] text-center">
             {categoryMapping[product.category]}
