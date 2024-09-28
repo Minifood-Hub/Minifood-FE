@@ -120,6 +120,11 @@ export const getQuotationDetail = async (quotationId: string, req: Request) => {
   return getRequest(url, req);
 };
 
+export const getCheckPassword = async (password: string, req: Request) => {
+  const url = `${SERVER_URL}/api/v1/users/me/password/check?password=${password}`;
+  return getRequest(url, req);
+};
+
 // ===== 관리자 =====
 // 모든 거래처 조회
 export const getAdminClientAll = async (req: Request) => {
@@ -211,19 +216,4 @@ export const getRecentQuotation = async (client_id: string, req: Request) => {
 export const getDailyQuotation = async () => {
   const url = `${SERVER_URL}/api/v1/statistics/daily-quotation-totals`;
   return getRequest(url);
-};
-
-export const getProducts = async (req: Request) => {
-  const url = `${SERVER_URL}/api/v1/custom-products`;
-  return getRequest(url, req);
-};
-
-export const getProductDetail = async (product_id: string, req: Request) => {
-  const url = `${SERVER_URL}/api/v1/custom-products/${product_id}`;
-  return getRequest(url, req);
-};
-
-export const getCheckPassword = async (password: string, req: Request) => {
-  const url = `${SERVER_URL}/api/v1/users/me/password/check?password=${password}`;
-  return getRequest(url, req);
 };

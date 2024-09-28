@@ -66,6 +66,14 @@ export const putPastOrder = async (
   return putRequest(url, req, pastOrderData);
 };
 
+export const putPassword = async (
+  passwords: ChangePasswordTypes,
+  req: Request,
+) => {
+  const url = `${SERVER_URL}/api/v1/users/me/password`;
+  return putRequest(url, req, passwords);
+};
+
 // ===== 관리자 =====
 // 물품 수정
 export const putUpdateProducts = async (
@@ -100,21 +108,4 @@ export const putAdminNotices = async (
 export const putAdminFAQ = (faq_id: string, noticeContents: FAQPostTypes) => {
   const url = `${SERVER_URL}/api/v1/faqs/${faq_id}`;
   return putRequest(url, undefined, noticeContents);
-};
-
-export const putProduct = async (
-  product_id: string,
-  product: ProductTypes,
-  req: Request,
-) => {
-  const url = `${SERVER_URL}/api/v1/custom-products/${product_id}/update`;
-  return putRequest(url, req, product);
-};
-
-export const putPassword = async (
-  passwords: ChangePasswordTypes,
-  req: Request,
-) => {
-  const url = `${SERVER_URL}/api/v1/users/me/password`;
-  return putRequest(url, req, passwords);
 };
