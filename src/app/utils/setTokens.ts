@@ -28,8 +28,8 @@ export const setTokens = (
     const refreshTokenExpires = new Date(Date.now() + 1000 * 60 * 120); // 120분
     const refreshTokenExpiresUTC = refreshTokenExpires.toUTCString();
 
-    document.cookie = `accessToken=${accessToken}; expires=${accessTokenExpiresUTC}; path=/; secure;`;
-    document.cookie = `refreshToken=${refreshToken}; expires=${refreshTokenExpiresUTC}; path=/; secure;`;
+    document.cookie = `accessToken=${accessToken}; expires=${accessTokenExpiresUTC}; path=/;`;
+    document.cookie = `refreshToken=${refreshToken}; expires=${refreshTokenExpiresUTC}; path=/;`;
 
     const timeoutDuration = accessTokenExpires.getTime() - Date.now();
     setSessionTimeout(timeoutDuration);
