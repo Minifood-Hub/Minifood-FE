@@ -15,6 +15,7 @@ import Input from '../../common/Input';
 import LoadingIndicator from '../../common/Loading';
 import QuotationTable from './OrderQuotationTable';
 import { useUser } from '@/app/hooks/useUser';
+import { JMF_INFO } from '@/app/constants/common';
 
 export default function QuotationModal({
   QuotationModalData,
@@ -175,17 +176,15 @@ export default function QuotationModal({
                   <div className="flex py-4 px-0 flex-col items-start gap-2 self-stretch">
                     <div className="flex justify-between items-center self-stretch">
                       <p className="text-gray-4 text-center">판매자상호</p>
-                      <p className="text-gray-6">JMF(주)</p>
+                      <p className="text-gray-6">{JMF_INFO[0]}</p>
                     </div>
                     <div className="flex justify-between items-center self-stretch">
                       <p className="text-gray-4 text-center">상업자등록번호</p>
-                      <p className="text-gray-6">333-22-55555</p>
+                      <p className="text-gray-6">{JMF_INFO[5]}</p>
                     </div>
                     <div className="flex justify-between items-center self-stretch">
                       <p className="text-gray-4 text-center">주소</p>
-                      <p className="text-gray-6">
-                        {user?.result?.client_region}
-                      </p>
+                      <p className="text-gray-6">{JMF_INFO[2]}</p>
                     </div>
                   </div>
                 </div>
