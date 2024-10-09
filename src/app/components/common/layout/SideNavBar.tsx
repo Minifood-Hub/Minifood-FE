@@ -21,37 +21,44 @@ export default function SideNavBar({ selected }: SideNavBarProps) {
   };
 
   return (
-    <div className="bg-white w-64 h-full flex flex-col items-center rounded-[20px] pt-9 shadow-xl relative">
-      <Link href="/">
-        <Image src="/Images/minifood.png" alt="로고" width={130} height={30} />
-      </Link>
-      <div className="w-40 mt-[52px] flex ml-7 justify-center flex-col gap-y-7 text-[22px] text-[#737373] font-bold">
-        {SIDENAV_PATH.map((path, i) => {
-          return (
-            <div
-              key={SIDENAV_TEXT[i]}
-              className="flex items-center gap-x-2 h-9"
-            >
-              <Icons
-                name={
-                  isSelected(SIDENAV_TEXT[i])
-                    ? SELECTED_SIDENAV_ICONS[i]
-                    : SIDENAV_ICONS[i]
-                }
-              />
-              <Link
-                href={path}
-                className={`${isSelected(SIDENAV_TEXT[i]) && 'text-primary-2'}`}
+    <div className="bg-white w-64 h-full flex flex-col items-center rounded-r-[20px] shadow-xl">
+      <div className="pt-9 w-full flex flex-col items-center">
+        <Link href="/">
+          <Image
+            src="/Images/minifood.png"
+            alt="로고"
+            width={130}
+            height={30}
+          />
+        </Link>
+        <div className="w-40 mt-[52px] flex ml-7 justify-center flex-col gap-y-7 text-[22px] text-[#737373] font-bold">
+          {SIDENAV_PATH.map((path, i) => {
+            return (
+              <div
+                key={SIDENAV_TEXT[i]}
+                className="flex items-center gap-x-2 h-9"
               >
-                {SIDENAV_TEXT[i]}
-              </Link>
-            </div>
-          );
-        })}
+                <Icons
+                  name={
+                    isSelected(SIDENAV_TEXT[i])
+                      ? SELECTED_SIDENAV_ICONS[i]
+                      : SIDENAV_ICONS[i]
+                  }
+                />
+                <Link
+                  href={path}
+                  className={`${isSelected(SIDENAV_TEXT[i]) && 'text-primary-2'}`}
+                >
+                  {SIDENAV_TEXT[i]}
+                </Link>
+              </div>
+            );
+          })}
+        </div>
       </div>
       <div
         onClick={handleExtendSession}
-        className="absolute bottom-12 cursor-pointer text-[22px] text-[#737373] font-bold justify-self-end"
+        className="mt-auto mb-12 cursor-pointer text-[22px] text-[#737373] font-bold"
       >
         세션 연장
       </div>

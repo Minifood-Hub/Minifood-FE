@@ -4,7 +4,7 @@ import { SIDENAV_TEXT } from '@/app/constants/common';
 
 export default function Order() {
   return (
-    <section className="bg-[#FAF7F7] min-w-full h-screen flex relative">
+    <section className="bg-[#FAF7F7] min-w-full h-screen flex">
       {/* 네비게이션 바 */}
       <SideNavBar selected={SIDENAV_TEXT[0]} />
 
