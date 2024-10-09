@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 function Footer() {
   return (
-    <footer className="h-full w-full flex justify-center text-black bg-slate-100 mt-10">
+    <footer className="w-full flex justify-center text-black bg-slate-100">
       <div className="flex h-[240px] flex-col gap-y-6 justify-center min-w-[800px]">
         <div className="flex gap-x-8 font-medium text-[18px] items-center justify-start">
           <Image
