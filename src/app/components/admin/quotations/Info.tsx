@@ -58,13 +58,13 @@ export default function QuotationInfo() {
     }
   };
 
-  // 견적서 열기
+  // 거래명세표 열기
   const handleShowQuote = (client_id: number) => {
     setSelectedId(client_id);
     setShowQuote(true);
   };
 
-  // 견적서 닫기
+  // 거래명세표 닫기
   const handleCloseQuote = () => {
     setShowQuote(false);
     setSelectedId(0);
@@ -119,7 +119,7 @@ export default function QuotationInfo() {
 
       <div className="flex  items-center flex-col lg:flex-row gap-2 lg:gap-8">
         <p className="font-bold text-lg break-words min-w-[80px]">
-          견적서 검색하기:
+          거래명세표 검색하기:
         </p>
         <div className="flex gap-4 items-center">
           <p className="whitespace-nowrap">{INPUT_TEXT[0]}</p>

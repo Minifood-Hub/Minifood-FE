@@ -44,7 +44,7 @@ export default function OrderContainer() {
   });
   const [orderDate, setOrderDate] = useState('');
 
-  // 견적서 생성
+  // 거래명세표 생성
   const createQuotations = async () => {
     if (!user?.result?.client_id) return null;
     try {
@@ -113,7 +113,7 @@ export default function OrderContainer() {
             setQuotationId(id); // id 설정
           }
         } catch (error) {
-          console.error('견적서 생성 중 오류 발생 : ', error);
+          console.error('거래명세표 생성 중 오류 발생 : ', error);
         }
       }
     };
@@ -162,7 +162,7 @@ export default function OrderContainer() {
       return [...prevItems, ...newItems];
     });
 
-    // 새로 추가된 상품만 견적서에 추가
+    // 새로 추가된 상품만 거래명세표에 추가
     await Promise.all(
       productList.map(async (item: ProductItemProps) => {
         // 현재 아이템이 이미 addedItems에 존재하는지 확인

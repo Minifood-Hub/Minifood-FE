@@ -71,7 +71,7 @@ export default function QuotationModal({
     });
   };
 
-  // 견적서 합계 금액 업데이트(관리자에서 조회를 위해)
+  // 거래명세표 합계 금액 업데이트(관리자에서 조회를 위해)
   const updateTotal = async (quotation_id: string) => {
     try {
       const data = await callGet(`/api/order/quotations/${quotation_id}/total`);
@@ -83,7 +83,7 @@ export default function QuotationModal({
     }
   };
 
-  // 견적서 완성
+  // 거래명세표 완성
   useEffect(() => {
     const completeQuotation = async () => {
       if (quotationId) {
@@ -91,7 +91,7 @@ export default function QuotationModal({
         try {
           await updateTotal(quotationId);
         } catch (error) {
-          console.error('견적서 생성 중 오류 발생 : ', error);
+          console.error('거래명세표 생성 중 오류 발생 : ', error);
         } finally {
           setState((prev) => ({ ...prev, loading: false })); // 로딩 종료
         }
@@ -100,13 +100,13 @@ export default function QuotationModal({
     completeQuotation();
   }, []);
 
-  // 견적서 특이사항 작성 onChange
+  // 거래명세표 특이사항 작성 onChange
   const handlePartiChange = (e: ChangeEvent<HTMLInputElement>) => {
     const parti = e.target.value;
     setState((prev) => ({ ...prev, partiValue: parti }));
   };
 
-  // 견적서 특이사항 작성
+  // 거래명세표 특이사항 작성
   const patchParticulars = async () => {
     try {
       const particulars = partiValue;
@@ -119,7 +119,7 @@ export default function QuotationModal({
     }
   };
 
-  // 견적서 작성 확정
+  // 거래명세표 작성 확정
   const patchConfirm = async () => {
     try {
       await callPatch(`/api/order/quotations/${quotationId}/confirmation`);
@@ -138,7 +138,7 @@ export default function QuotationModal({
         router.push('/quotation');
       });
     } catch (error) {
-      console.error('견적서 확정 중 오류 발생 : ', error);
+      console.error('거래명세표 확정 중 오류 발생 : ', error);
     }
   };
 
