@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Input from '../common/Input';
-import { categoryMapping, ORDER_TEXT } from '@/app/constants/order';
+import { ORDER_TEXT } from '@/app/constants/order';
 
 export default function ProductItem({
   category,
@@ -73,7 +73,7 @@ export default function ProductItem({
   return (
     <div className="flex items-center self-stretch text-gray-7 border-b-[1px] border-gray-1 py-2">
       <div className="flex-center w-[89px] py-2 px-[14px] self-stretch text-ellipsis whitespace-nowrap">
-        {categoryMapping[category]}
+        {category}
       </div>
       <div className="flex items-center w-[119px] py-2 px-[14px] self-stretch text-ellipsis whitespace-nowrap">
         {id}

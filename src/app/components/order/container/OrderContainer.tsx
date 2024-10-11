@@ -132,17 +132,11 @@ export default function OrderContainer() {
       const body = {
         quotation_id: quotationId,
         product_id: item.id,
-        quantity: item.count || 1,
+        quantity: item.count,
       };
       await callPost('/api/order/quotations/products', [body]);
       // 상품을 추가한 후 addedItems 상태 업데이트
-      setAddedItems((prevItems) => {
-        // 이미 존재하는 아이템이 아닐 경우에만 추가
-        if (!prevItems.some((prevItem) => prevItem.id === item.id)) {
-          return [...prevItems, { ...item, count: item.count || 1 }];
-        }
-        return prevItems;
-      });
+      setAddedItems((prevItems) => [...prevItems, item]);
     } catch (error) {
       console.error(error);
     }
@@ -151,27 +145,7 @@ export default function OrderContainer() {
   // 즐겨 찾기에서 불러온 상품을 추가한 상품에 저장
   const handleSetPastOrderId = async (past_order_id: string) => {
     const productList = await setPastOrderId(past_order_id);
-
-    // 중복을 제거하고 새로운 상품만 addedItems에 추가
-    setAddedItems((prevItems) => {
-      // productList에서 새로운 아이템만 필터링
-      const newItems = productList.filter(
-        (newItem: { id: string }) =>
-          !prevItems.some((prevItem) => prevItem.id === newItem.id), // 각 새 아이템에 대해, 이미 존재하는 아이템이 없는지 확인
-      );
-      return [...prevItems, ...newItems];
-    });
-
-    // 새로 추가된 상품만 거래명세표에 추가
-    await Promise.all(
-      productList.map(async (item: ProductItemProps) => {
-        // 현재 아이템이 이미 addedItems에 존재하는지 확인
-        if (!addedItems.some((addedItem) => addedItem.id === item.id)) {
-          await handleAddItem(item);
-        }
-      }),
-    );
-
+    setSearchResults(productList);
     toggleShowPastOrder();
   };
 
