@@ -69,7 +69,7 @@ const QuotationModal = ({ closeModal, id, isAdmin }: QuotationModalProps) => {
   }, []);
 
   const { toPDF, targetRef } = usePDF({
-    filename: 'minifood견적서.pdf',
+    filename: 'minifood 거래명세표.pdf',
     page: { format: 'A4' },
     method: 'save',
   });
@@ -107,7 +107,7 @@ const QuotationModal = ({ closeModal, id, isAdmin }: QuotationModalProps) => {
         closeModal();
       });
     } catch (error) {
-      console.error('견적서 확정 중 오류 발생 : ', error);
+      console.error('거래명세표 확정 중 오류 발생 : ', error);
     }
   };
 

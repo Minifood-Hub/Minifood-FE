@@ -44,7 +44,7 @@ export default function OrderContainer() {
   });
   const [orderDate, setOrderDate] = useState('');
 
-  // 견적서 생성
+  // 거래명세표 생성
   const createQuotations = async () => {
     if (!user?.result?.client_id) return null;
     try {
@@ -113,7 +113,7 @@ export default function OrderContainer() {
             setQuotationId(id); // id 설정
           }
         } catch (error) {
-          console.error('견적서 생성 중 오류 발생 : ', error);
+          console.error('거래명세표 생성 중 오류 발생 : ', error);
         }
       }
     };
@@ -124,6 +124,22 @@ export default function OrderContainer() {
   // 검색 결과 저장
   const handleSearchResultsUpdate = (results: ProductItemProps[]) => {
     setSearchResults(results);
+  };
+
+  // 상품 추가
+  const handleAddItem = async (item: ProductItemProps) => {
+    try {
+      const body = {
+        quotation_id: quotationId,
+        product_id: item.id,
+        quantity: item.count,
+      };
+      await callPost('/api/order/quotations/products', [body]);
+      // 상품을 추가한 후 addedItems 상태 업데이트
+      setAddedItems((prevItems) => [...prevItems, item]);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   // 즐겨 찾기에서 불러온 상품을 추가한 상품에 저장
@@ -163,22 +179,6 @@ export default function OrderContainer() {
       createPastorder: false,
       pastorderName: '',
     }));
-  };
-
-  // 상품 추가
-  const handleAddItem = async (item: ProductItemProps) => {
-    try {
-      const body = {
-        quotation_id: quotationId,
-        product_id: item.id,
-        quantity: item.count,
-      };
-      await callPost('/api/order/quotations/products', [body]);
-      // 상품을 추가한 후 addedItems 상태 업데이트
-      setAddedItems((prevItems) => [...prevItems, item]);
-    } catch (error) {
-      console.error(error);
-    }
   };
 
   // 상품 삭제
@@ -230,7 +230,7 @@ export default function OrderContainer() {
                 />
                 {showPastOrder && (
                   <div className="absolute top-9 flex flex-col bg-white rounded-[4px]">
-                    {pastOrder.map((order) => (
+                    {pastOrder?.map((order) => (
                       <Button
                         key={order.past_order_id}
                         type="default"

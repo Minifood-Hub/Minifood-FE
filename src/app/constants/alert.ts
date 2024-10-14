@@ -4,6 +4,6 @@ export const PASTORDER_ALERT = [
 ];
 
 export const QUOTATION_ALERT = [
-  '견적서가 수정되었습니다.',
-  '견적서가 삭제되었습니다.',
+  '거래명세표가 수정되었습니다.',
+  '거래명세표가 삭제되었습니다.',
 ];

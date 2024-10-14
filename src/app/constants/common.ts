@@ -9,7 +9,7 @@ import {
   StarIcon,
 } from '@/app/ui/iconPath';
 
-export const HEADER_TEXT = ['주문생성', '즐겨찾기', '견적서'];
+export const HEADER_TEXT = ['주문생성', '즐겨찾기', '거래명세표'];
 
 export const HEADER_PATH = ['/order', '/pastorder', '/quotation'];
 
@@ -43,7 +43,7 @@ export const FOOTER_TEXT = [
   '팩스번호',
 ];
 
-export const SIDENAV_TEXT = ['주문생성', '즐겨찾기', '견적서', '상품조회'];
+export const SIDENAV_TEXT = ['주문생성', '즐겨찾기', '거래명세표', '상품조회'];
 
 export const SIDENAV_ICONS = [OrderIcon, StarIcon, QuotationIcon, ProductsIcon];
 

@@ -1,4 +1,4 @@
-export const QUOTATION_VIEW = ['견적서 조회'];
+export const QUOTATION_VIEW = ['거래명세표 조회'];
 
 export const QUOTATION_VIEWTYPE = ['전체', '주간', '월간', '날짜'];
 
@@ -12,14 +12,14 @@ export const QUOTATION_TRANS_VIEWTYPE: Record<string, CheckTypes> = {
 export const VIEW_QUOTATION_GRAPH = [
   '번호',
   '주문일자',
-  '견적서 이름',
+  '거래명세표 이름',
   '확정 여부',
 ];
 
 export const QUOTATION_MANAGE = ['조회', '수정', '삭제', '확인', '저장'];
 
 export const QUOTATION_DELETE = [
-  '견적서를 삭제하시겠습니까?',
+  '거래명세표를 삭제하시겠습니까?',
   '삭제시 복구는 불가능합니다',
   '삭제',
   '취소',
