@@ -16,6 +16,8 @@ import QuotationModal from '../../quotation/modal/view/QuotationModal';
 export default function QuotationInfo() {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState(formatDate(new Date().toISOString()));
+  const [inputDate, setInputDate] = useState('');
+
   const [query, setQuery] = useState('');
   const [result, setResult] = useState<{ items: AdminItemProps[] }>({
     items: [],
@@ -39,6 +41,21 @@ export default function QuotationInfo() {
         `/api/admin/quotations/search/info`,
         queryString,
       );
+      setResult({ items: data.result });
+    } catch (error) {
+      console.error(error);
+      setResult({ items: [] });
+    }
+  };
+
+  const handleGetInputDateQuotations = async () => {
+    if (!inputDate) {
+      alert(ALERT_TEXT[0]);
+      return;
+    }
+
+    try {
+      const data = await callGet(`/api/admin/quotations/search/${inputDate}`);
       setResult({ items: data.result });
     } catch (error) {
       console.error(error);
@@ -159,6 +176,29 @@ export default function QuotationInfo() {
             buttonText={BTN_TEXT[4]}
             type="default"
             onClickHandler={handleGetQuotations}
+          />
+        </div>
+      </div>
+      <div className="flex items-center gap-8">
+        <p className="font-bold text-lg break-words min-w-[80px]">
+          거래명세표 입력 날짜로 검색하기:
+        </p>
+        <div className="flex gap-4 items-center">
+          <p className="whitespace-nowrap">입력 날짜</p>
+          <input
+            className="w-40 h-10 border rounded px-4"
+            type="date"
+            onChange={(e) => setInputDate(e.target.value)}
+            onClick={(e) => (e.target as HTMLInputElement).showPicker()}
+            value={inputDate}
+            placeholder={INPUT_TEXT[0]}
+          />
+
+          <Button
+            className="admin-btn"
+            buttonText={BTN_TEXT[4]}
+            type="default"
+            onClickHandler={handleGetInputDateQuotations}
           />
         </div>
       </div>

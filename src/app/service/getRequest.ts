@@ -164,6 +164,15 @@ export const getAdminQuotationsInfo = async (
   return getRequest(url, req);
 };
 
+// inputDate 견적서 정보 조회
+export const getAdminInputDateQuotation = async (
+  inputDate: string,
+  req: Request,
+) => {
+  const url = `${SERVER_URL}/api/v1/quotations/search/date/${inputDate}`;
+  return getRequest(url, req);
+};
+
 // 견적서 excel 파일로 추출
 export const getAdminQuotationsExtract = async (
   quotation_id: string,
