@@ -5,15 +5,11 @@ import { SIDENAV_TEXT } from '@/app/constants/common';
 
 export default function Quotation() {
   return (
-    <section>
-      <div className="bg-[#FAF7F7] w-full h-screen flex flex-col relative">
-        <div className="w-full flex relative h-full">
-          <SideNavBar selected={SIDENAV_TEXT[2]} />
-          <div className="flex flex-col items-center w-full">
-            <QuotationContainer />
-            <Footer />
-          </div>
-        </div>
+    <section className="bg-[#FAF7F7] w-full h-screen flex overflow-hidden">
+      <SideNavBar selected={SIDENAV_TEXT[2]} />
+      <div className="w-full overflow-auto">
+        <QuotationContainer />
+        <Footer />
       </div>
     </section>
   );

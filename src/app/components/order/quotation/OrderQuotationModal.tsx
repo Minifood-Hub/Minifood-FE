@@ -15,6 +15,7 @@ import Input from '../../common/Input';
 import LoadingIndicator from '../../common/Loading';
 import QuotationTable from './OrderQuotationTable';
 import { useUser } from '@/app/hooks/useUser';
+import { JMF_INFO } from '@/app/constants/common';
 
 export default function QuotationModal({
   QuotationModalData,
@@ -70,7 +71,7 @@ export default function QuotationModal({
     });
   };
 
-  // 견적서 합계 금액 업데이트(관리자에서 조회를 위해)
+  // 거래명세표 합계 금액 업데이트(관리자에서 조회를 위해)
   const updateTotal = async (quotation_id: string) => {
     try {
       const data = await callGet(`/api/order/quotations/${quotation_id}/total`);
@@ -82,7 +83,7 @@ export default function QuotationModal({
     }
   };
 
-  // 견적서 완성
+  // 거래명세표 완성
   useEffect(() => {
     const completeQuotation = async () => {
       if (quotationId) {
@@ -90,7 +91,7 @@ export default function QuotationModal({
         try {
           await updateTotal(quotationId);
         } catch (error) {
-          console.error('견적서 생성 중 오류 발생 : ', error);
+          console.error('거래명세표 생성 중 오류 발생 : ', error);
         } finally {
           setState((prev) => ({ ...prev, loading: false })); // 로딩 종료
         }
@@ -99,13 +100,13 @@ export default function QuotationModal({
     completeQuotation();
   }, []);
 
-  // 견적서 특이사항 작성 onChange
+  // 거래명세표 특이사항 작성 onChange
   const handlePartiChange = (e: ChangeEvent<HTMLInputElement>) => {
     const parti = e.target.value;
     setState((prev) => ({ ...prev, partiValue: parti }));
   };
 
-  // 견적서 특이사항 작성
+  // 거래명세표 특이사항 작성
   const patchParticulars = async () => {
     try {
       const particulars = partiValue;
@@ -118,7 +119,7 @@ export default function QuotationModal({
     }
   };
 
-  // 견적서 작성 확정
+  // 거래명세표 작성 확정
   const patchConfirm = async () => {
     try {
       await callPatch(`/api/order/quotations/${quotationId}/confirmation`);
@@ -137,7 +138,7 @@ export default function QuotationModal({
         router.push('/quotation');
       });
     } catch (error) {
-      console.error('견적서 확정 중 오류 발생 : ', error);
+      console.error('거래명세표 확정 중 오류 발생 : ', error);
     }
   };
 
@@ -175,17 +176,15 @@ export default function QuotationModal({
                   <div className="flex py-4 px-0 flex-col items-start gap-2 self-stretch">
                     <div className="flex justify-between items-center self-stretch">
                       <p className="text-gray-4 text-center">판매자상호</p>
-                      <p className="text-gray-6">JMF(주)</p>
+                      <p className="text-gray-6">{JMF_INFO[0]}</p>
                     </div>
                     <div className="flex justify-between items-center self-stretch">
                       <p className="text-gray-4 text-center">상업자등록번호</p>
-                      <p className="text-gray-6">333-22-55555</p>
+                      <p className="text-gray-6">{JMF_INFO[5]}</p>
                     </div>
                     <div className="flex justify-between items-center self-stretch">
                       <p className="text-gray-4 text-center">주소</p>
-                      <p className="text-gray-6">
-                        {user?.result?.client_region}
-                      </p>
+                      <p className="text-gray-6">{JMF_INFO[2]}</p>
                     </div>
                   </div>
                 </div>

@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import Button from '../../../common/Button';
 import QuotationTable from '../view/QuotationTable';
 import { QUOTATION_ALERT } from '@/app/constants/alert';
+import { JMF_INFO } from '@/app/constants/common';
 
 export default function EditQuotationModal({
   QuotationModalData,
@@ -110,15 +111,15 @@ export default function EditQuotationModal({
           <div className="flex flex-col gap-y-2 mt-4 w-full pb-4 text-base font-normal text-black border-b-2 border-dashed border-gray-2 px-1">
             <div className="flex justify-between">
               <div className="text-[#999]">{MODAL_INFO[2]}</div>
-              <div>(주)미니푸드</div>
+              <div>{JMF_INFO[0]}</div>
             </div>
             <div className="flex justify-between">
               <div className="text-[#999]">{MODAL_INFO[3]}</div>
-              <div>333-22-55555</div>
+              <div>{JMF_INFO[5]}</div>
             </div>
             <div className="flex justify-between">
               <div className="text-[#999]">{MODAL_INFO[4]}</div>
-              <div>서울시 어쩌구 어디로 888 1층</div>
+              <div>{JMF_INFO[2]}</div>
             </div>
           </div>
           {detailData && <QuotationTable quotationInfo={detailData} />}

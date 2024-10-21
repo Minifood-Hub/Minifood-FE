@@ -10,7 +10,6 @@ export async function POST(req: Request): Promise<NextResponse> {
 
     return NextResponse.json(response, { status: 200 });
   } catch (error) {
-    console.error('에러 : ', error);
     return NextResponse.json({ error: '물품 추가 생성 실패' });
   }
 }
