@@ -1,9 +1,9 @@
 'use client';
 
-import { Suspense, useEffect } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { setTokens } from '@/app/utils/setTokens';
 import { useUserStore } from '@/app/store/useStore';
+import { setTokens } from '@/app/utils/setTokens';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { Suspense, useEffect } from 'react';
 
 function KakaoAuthContent() {
   const router = useRouter();
@@ -38,7 +38,7 @@ function KakaoAuthContent() {
             router.push('/sign-in');
           }
         })
-        .catch((error) => {
+        .catch(() => {
           router.push('/sign-in');
         });
     }

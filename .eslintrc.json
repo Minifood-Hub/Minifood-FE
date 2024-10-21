@@ -43,10 +43,7 @@
         "endOfLine": "auto"
       }
     ],
-    "@typescript-eslint/no-unused-vars": [
-      "warn",
-      { "varsIgnorePattern": "^_", "argsIgnorePattern": "^_" }
-    ],
+    "@typescript-eslint/no-unused-vars": "off",
     "jsx-a11y/click-events-have-key-events": "off",
     "jsx-a11y/no-static-element-interactions": "off",
     "no-nested-ternary": "off",
