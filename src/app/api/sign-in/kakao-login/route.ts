@@ -43,7 +43,6 @@ export async function POST(request: Request) {
       user: userData,
     });
   } catch (error) {
-    console.error('KaKao 로그인 에러:', error);
     return NextResponse.json(
       { error: 'Kakao login 실행 실패' },
       { status: 500 },

@@ -16,7 +16,6 @@ export async function PATCH(req: NextRequest): Promise<NextResponse> {
 
     return NextResponse.json(result, { status: 200 });
   } catch (error) {
-    console.error('파일 업로드 중 오류 발생:', error);
     return NextResponse.json(
       { error: '파일 처리 중 오류가 발생했습니다.' },
       { status: 500 },
