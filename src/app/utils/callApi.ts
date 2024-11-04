@@ -29,7 +29,9 @@ export async function callGet(endpoint: string, params?: string) {
     ? `${process.env.NEXT_PUBLIC_LOCAL_SERVER}${endpoint}?${params}`
     : `${process.env.NEXT_PUBLIC_LOCAL_SERVER}${endpoint}`;
 
-  const response = await fetch(url);
+  const response = await fetch(url, {
+    credentials: 'include',
+  });
   return response.json();
 }
 
