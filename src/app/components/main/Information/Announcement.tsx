@@ -12,7 +12,7 @@ const Announcement = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await callGet('/api/admin/notices/get');
+      const data = await callGet('/api/v1/admin/notices/get');
       setNotices(data.result);
     };
     fetchData();

@@ -13,7 +13,7 @@ const Question = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await callGet('/api/admin/faq/get');
+      const data = await callGet('/api/v1/admin/faq/get');
       setFaqs(data.result);
     };
     fetchData();
