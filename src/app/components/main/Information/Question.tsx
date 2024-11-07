@@ -13,14 +13,14 @@ const Question = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await callGet('/api/v1/admin/faq/get');
+      const data = await callGet('/api/admin/faq/get');
       setFaqs(data.result);
     };
     fetchData();
   }, []);
 
   const filteredFaqs = faqs
-    .filter((faq) => faq.category === preFaqs[isSelected]?.category)
+    ?.filter((faq) => faq.category === preFaqs[isSelected]?.category)
     .slice(0, 3);
 
   return (
@@ -32,7 +32,7 @@ const Question = () => {
         </Link>
       </div>
       <div className="flex gap-x-3">
-        {preFaqs.map((faq, i) => (
+        {preFaqs?.map((faq, i) => (
           <Button
             key={faq.id}
             buttonText={faq.category}
@@ -43,7 +43,7 @@ const Question = () => {
         ))}
       </div>
       <div className="mt-1">
-        {filteredFaqs.map((faq) => (
+        {filteredFaqs?.map((faq) => (
           <div
             key={faq.id}
             className="overflow-hidden text-ellipsis whitespace-nowrap"
