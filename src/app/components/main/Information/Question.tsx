@@ -9,7 +9,7 @@ const Question = () => {
   const [isSelected, setIsSelected] = useState(0);
 
   const [faqs, setFaqs] = useState<FAQProps[]>([]);
-  const preFaqs = faqs?.slice(0, 3);
+  const preFaqs = faqs && Array.isArray(faqs) ? faqs.slice(0, 3) : [];
 
   useEffect(() => {
     const fetchData = async () => {
