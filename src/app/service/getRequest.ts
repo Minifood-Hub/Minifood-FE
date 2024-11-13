@@ -1,20 +1,26 @@
 import { getCookie } from '@/app/utils/setTokens';
 
 const SERVER_URL = process.env.NEXT_PUBLIC_SERVER;
-const commonHeaders = {
+const commonHeaders: Record<string, string> = {
   'Content-Type': 'application/json',
 };
 
-const getRequest = async (url: string, req?: Request) => {
+const getRequest = async (url: string, req?: Request, noCaching?: boolean) => {
   try {
     let token;
     if (req) {
       token = getCookie(req, 'accessToken');
     }
 
-    const headers = token
-      ? { ...commonHeaders, 'access-token': token }
-      : { ...commonHeaders };
+    const headers: Record<string, string> = { ...commonHeaders };
+
+    if (token) {
+      headers['access-token'] = token;
+    }
+
+    if (noCaching) {
+      headers['Cache-Control'] = 'no-store';
+    }
 
     const response = await fetch(url, { headers });
     return await response.json();
@@ -129,19 +135,19 @@ export const getCheckPassword = async (password: string, req: Request) => {
 // 모든 거래처 조회
 export const getAdminClientAll = async (req: Request) => {
   const url = `${SERVER_URL}/api/v1/clients/all?_t=${Date.now()}`;
-  return getRequest(url, req);
+  return getRequest(url, req, true);
 };
 
 // 거래처 명으로 조회
 export const getAdminClientName = async (name: string, req: Request) => {
   const url = `${SERVER_URL}/api/v1/clients/name/${name}?_t=${Date.now()}`;
-  return getRequest(url, req);
+  return getRequest(url, req, true);
 };
 
 // 거래처 지역으로 조회
 export const getAdminClientRegion = async (region: string, req: Request) => {
   const url = `${SERVER_URL}/api/v1/clients/region?region=${region}`;
-  return getRequest(url, req);
+  return getRequest(url, req, true);
 };
 
 // 분류 별 물품 조회
@@ -150,7 +156,7 @@ export const getAdminProductsCategory = async (
   req: Request,
 ) => {
   const url = `${SERVER_URL}/api/v1/products/${category}?_t=${Date.now()}`;
-  return getRequest(url, req);
+  return getRequest(url, req, true);
 };
 
 // 견적서 정보 조회
@@ -161,7 +167,7 @@ export const getAdminQuotationsInfo = async (
   req: Request,
 ) => {
   const url = `${SERVER_URL}/api/v1/quotations/search/info?start=${start}&end=${end}&query=${query}`;
-  return getRequest(url, req);
+  return getRequest(url, req, true);
 };
 
 // inputDate 견적서 정보 조회
@@ -170,7 +176,7 @@ export const getAdminInputDateQuotation = async (
   req: Request,
 ) => {
   const url = `${SERVER_URL}/api/v1/quotations/search/date/${inputDate}`;
-  return getRequest(url, req);
+  return getRequest(url, req, true);
 };
 
 // 견적서 excel 파일로 추출
@@ -194,35 +200,35 @@ export const getAdminQuotationsExtractsToday = async (
 // 모든 공지사항 조회
 export const getAdminNotices = async () => {
   const url = `${SERVER_URL}/api/v1/notices?_t=${Date.now()}`;
-  return getRequest(url);
+  return getRequest(url, undefined, true);
 };
 
 // 공지사항 조회
 export const getAdminNoticesId = async (notice_id: string, req: Request) => {
   const url = `${SERVER_URL}/api/v1/notices/${notice_id}?_t=${Date.now()}`;
-  return getRequest(url, req);
+  return getRequest(url, req, true);
 };
 
 // FAQ 조회
 export const getFAQ = async () => {
   const url = `${SERVER_URL}/api/v1/faqs?_t=${Date.now()}`;
-  return getRequest(url);
+  return getRequest(url, undefined, true);
 };
 
 // FAQ 상세조회
 export const getFAQId = async (faq_id: string) => {
   const url = `${SERVER_URL}/api/v1/faqs/${faq_id}?_t=${Date.now()}`;
-  return getRequest(url);
+  return getRequest(url, undefined, true);
 };
 
 // 최근 견적서 조회
 export const getRecentQuotation = async (client_id: string, req: Request) => {
   const url = `${SERVER_URL}/api/v1/clients/${client_id}/recent/purchase`;
-  return getRequest(url, req);
+  return getRequest(url, req, true);
 };
 
 // 일별 견적서 통계 조회
 export const getDailyQuotation = async () => {
   const url = `${SERVER_URL}/api/v1/statistics/daily-quotation-totals`;
-  return getRequest(url);
+  return getRequest(url, undefined, true);
 };
